@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberMapper">
+<select id="duplicateMember" resultType="int">
+		select count(*) from kcc2022_esoom.egis.TBL_MEMBER 
+		where 1=1 
+		<if test="member_id != null">
+			and id = #{member_id}
+		</if>
+		<if test="email != null">
+			and email = #{email}
+		</if>
+		<if test="num != null">
+			and num != #{num}
+		</if>
+</select>
+<select id="getMember" resultType="map">
+		select * from kcc2022_esoom.egis.TBL_MEMBER 
+		where 1=1
+		<if test="member_id != null"> 
+			and id = #{member_id}
+		</if>
+		<if test="num != null">
+			and num = #{num}
+		</if>
+		and chk_state = 'S'
+</select>
+<select id="findId" resultType="map">
+		select *,kcc2022_esoom.egis.FN_MASK_ID(id) as id2
+		 from kcc2022_esoom.egis.TBL_MEMBER 
+		where 1=1
+		and name = #{name}
+		and jumin = #{jumin}
+		and email = #{email}
+		and chk_state = 'S'
+</select>
+<select id="findPwd" resultType="map">
+		select *,kcc2022_esoom.egis.FN_MASK_ID(id) as id2
+		 from kcc2022_esoom.egis.TBL_MEMBER 
+		where 1=1
+		and name = #{name}
+		and id = #{member_id}
+		and email = #{email}
+		and chk_state = 'S'
+</select>
+	
+<insert id="insertMember" parameterType="map">
+		insert into kcc2022_esoom.egis.TBL_MEMBER (
+			 id, sha_pwd, name, jumin, zipcode, addr, daddr, email, tel
+			,chk_email, chk_sms ,chk_grade , chk_state ,reg_date ,login_date,logindate,out_date
+			,pwd_date,ip,sex,di,player_no
+		)values(
+			 #{member_id}, #{pwd}, #{name}, #{jumin}, #{zipcode}, #{addr}, #{daddr}, #{email}, #{tel}
+			,#{chk_email}, #{chk_sms} , '10', 'S', getdate(), CONVERT(VARCHAR(10), GETDATE(), 120),getdate(),'1900-01-01 00:00:00'
+			,CONVERT(VARCHAR(10), GETDATE(), 120),#{ip},#{sex},#{di},#{player_no}
+		)
+</insert>	
+<update id="updatePlayerNo" parameterType="map">
+		update kcc2022_esoom.egis.TBL_MEMBER
+		set player_no = #{player_no}
+		where
+		num = #{num}
+		
+	</update>
+<update id="updateMember" parameterType="map">
+		update kcc2022_esoom.egis.TBL_MEMBER
+		set tel = #{tel}
+			,jumin = #{jumin}
+			,email = #{email}
+			,zipcode = #{zipcode}
+			,addr = #{addr}
+			,daddr = #{daddr}
+			,player_no = #{player_no}
+			,di = #{di}
+			,name = #{name}
+		where
+		num = #{num}
+		
+	</update>
+<update id="deleteMember" parameterType="map">
+		update kcc2022_esoom.egis.TBL_MEMBER
+		set chk_state = 'N'
+		   ,out_date = GETDATE()
+		   ,delete_reason = #{delete_reason}
+		where
+		num = #{num}
+	</update>
+<update id="loginUpdate" parameterType="map">
+		update kcc2022_esoom.egis.TBL_MEMBER
+		set login_date = CONVERT(VARCHAR(10), GETDATE(), 120)
+		    ,logindate = getdate()
+		where
+		num = #{num}
+	</update>
+<select id="duplicateDi" resultType="map">
+		<![CDATA[
+		SELECT * 
+		FROM kcc2022_esoom.egis.TBL_MEMBER 
+		WHERE 1=1
+		  AND di = #{di}
+		  AND out_date >= DATEADD(DAY, -30, GETDATE())
+		  AND out_date <= GETDATE()
+	   ]]>
+</select>
+</mapper>

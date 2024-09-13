@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NewsMapper">
+<select id="newsHome" resultType="map">
+		select top 8 * from kcc2022_esoom.egis.TBL_NEWS
+		where
+			part = 'news'
+		and flag = 'N'
+		order by num desc
+	</select>
+<select id="mediaUHome" resultType="map">
+		select top 2 * from kcc2022_esoom.egis.TBL_NEWS
+		where
+			part = 'movie'
+		and flag = 'N'
+		and wtype = 'U'
+		order by num desc
+	</select>
+<select id="mediaSHome" resultType="map">
+		select top 2 * from kcc2022_esoom.egis.TBL_NEWS
+		where
+			part = 'movie'
+		and flag = 'N'
+		and wtype = 'S'
+		order by num desc
+	</select>
+<select id="photoHome" resultType="map">
+		select top 5 * from kcc2022_esoom.egis.TBL_NEWS
+		where
+			part = 'photo'
+		and flag = 'N'
+		order by num desc
+	</select>
+<select id="getPlayerMediaList" resultType="map">
+		select top 6 * from kcc2022_esoom.egis.TBL_NEWS 
+		where part in ('movie','photo') 
+		AND (
+	        (part = 'movie' AND tags LIKE CONCAT('%', #{player_no}, '%'))
+	        OR
+	        (part = 'photo' AND num IN (
+	            SELECT info_num
+	            FROM kcc2022_esoom.egis.TBL_NEWS_PHOTO
+	            WHERE tagcode LIKE CONCAT('%', #{player_no}, '%')
+	        ))
+    	)
+		and flag = 'N'
+		order by num desc
+	</select>
+<select id="playerMediaList" resultType="map">
+		select top 6 * from kcc2022_esoom.egis.TBL_NEWS 
+		where part in ('movie','news') 
+		and tags like CONCAT('%', #{pl_no}, '%')
+		and flag = 'N'
+		order by num desc
+	</select>
+<select id="mypageMovieList" resultType="map">
+		select top 4 * from kcc2022_esoom.egis.TBL_NEWS 
+		where part = 'movie' 
+		and etc1 = 'H'
+		and flag = 'N'
+		order by num desc
+	</select>
+<select id="mypageNoticeList" resultType="map">
+		select top 4 a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date
+		,(SELECT COUNT(*)
+				     FROM kcc2022_esoom.egis.TBL_NEWS_TAIL b
+				     WHERE b.info_num = a.num) AS tail_count
+		 from kcc2022_esoom.egis.TBL_NEWS a 
+		where a.part = 'notice' 
+		and a.flag = 'N'
+		order by a.num desc
+	</select>
+<select id="searchKeywordList" resultType="map">
+		select * from kcc2022_esoom.egis.TBL_SEARCH_KEYWORD 
+		order by view_order,num desc
+	</select>
+<select id="gameList" resultType="map">
+		select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+		isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+		from kcc2022_esoom.kbl_data.team_schedule t1 
+			inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+			inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+			inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+			left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+			left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+			left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+			left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+		where t1.season_code='43' 
+		and (t1.home_team= 60 or t1.away_team= 60)
+		<if test="game_round != null"> 
+		and t1.game_round = #{game_round}
+		</if>
+		<if test="game_code != null"> 
+		and t1.game_code = #{game_code}
+		</if>
+		order by t1.game_date desc
+	</select>
+	<select id="playerList" resultType="map">
+		select * from kcc2022_esoom.egis.TBL_PLAYER
+		where 1=1
+		and pl_show ='Y'
+		and pl_check = 'Y'
+		and pl_pos_code in ('a','g','c','f','s')
+		order by pl_order,pl_pos_code
+	</select>
+	<select id="getRoundDate" resultType="map">
+		select max(game_date) last_game_date,MIN(game_date) first_game_date from kcc2022_esoom.kbl_data.team_schedule
+		WHERE season_code = '43'
+		and (home_team ='60' or away_team ='60')
+		and game_round = #{round}
+	</select>
+	<select id="getNewsListCount" resultType="int">
+	select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+	where 1=1 
+	and a.part = 'news'
+	and flag = 'N'
+	and linkurl != ''
+	and linkurl LIKE '%https://%'  
+	<![CDATA[and LEN(linkurl) >= 8]]>
+	<if test="keyWord != null">
+		<if test='keyWord != ""'>
+			and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+		</if>
+	</if>
+	<if test="game != null">
+		<if test='game != "all"'>
+			and a.game_date = #{game}
+		</if>
+	</if>
+	<if test="player != null">
+		<if test='player != "all"'>
+			and a.tags like CONCAT('%', #{player}, '%')
+		</if>
+	</if>
+	<if test="round != null">
+		<if test='round != "all"'>
+			and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+		</if>
+	</if>   
+	<if test="sdate != null and edate !=null">
+		<if test='sdate != "" and edate !=""'>
+		and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+		</if>
+	</if>
+	) A 
+	</select>
+	<select id="newsList" resultType="map">
+		SELECT * 
+			FROM (	
+					select a.* from kcc2022_esoom.egis.TBL_NEWS a
+						where 1=1 
+						and a.part = 'news'
+						and flag = 'N'
+						and linkurl != ''
+						and linkurl LIKE '%https://%'  
+						<![CDATA[and LEN(linkurl) >= 8]]>
+						<if test="keyWord != null">
+							<if test='keyWord != ""'>
+								and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+							</if>
+						</if>
+						<if test="game != null">
+							<if test='game != "all"'>
+								and a.game_date = #{game}
+							</if>
+						</if>
+						<if test="player != null">
+							<if test='player != "all"'>
+								and a.tags like CONCAT('%', #{player}, '%')
+							</if>
+						</if>
+						<if test="round != null">
+							<if test='round != "all"'>
+								and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+							</if>
+						</if>   
+						<if test="sdate != null and edate !=null">
+							<if test='sdate != "" and edate !=""'>
+							and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+							</if>
+						</if>
+					) A 
+			ORDER BY num desc
+			OFFSET (#{currentPage}-1)*#{limit} ROWS
+			FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="movieList" resultType="map">
+		SELECT * 
+			FROM (	
+							select a.* from kcc2022_esoom.egis.TBL_NEWS a 
+					where 1=1 
+					and a.part = 'movie'
+					and flag = 'N'
+					<if test="etc1 != null">
+						<if test='etc1 != "all"'>
+							and a.etc1 = #{etc1}
+						</if>
+					</if>
+					<if test="keyWord != null">
+						<if test='keyWord != ""'>
+							and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+						</if>
+					</if>
+					<if test="game != null">
+						<if test='game != "all"'>
+							and a.game_date = #{game}
+						</if>
+					</if>
+					<if test="player != null">
+						<if test='player != "all"'>
+							and a.tags like CONCAT('%', #{player}, '%')
+						</if>
+					</if>
+					<if test="round != null">
+						<if test='round != "all"'>
+							and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+						</if>
+					</if>
+					<if test="wtype != null">
+						<if test='wtype != "all"'>
+							and a.wtype = #{wtype}
+						</if>
+					</if>
+					<if test="sdate != null and edate !=null">
+						<if test='sdate != "" and edate !=""'>
+						and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+						</if>
+					</if>
+					) A 
+			<if test='otype == "num"'>
+				ORDER BY num desc
+			</if>
+			<if test='otype != "num"'>
+				ORDER BY ${otype} DESC
+			</if>
+			OFFSET (#{currentPage}-1)*#{limit} ROWS
+			FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getMovieListCount" resultType="int">
+		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a 
+		where 1=1 
+		and a.part = 'movie'
+		and flag = 'N'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags like CONCAT('%', #{player}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+			</if>
+		</if>
+		<if test="wtype != null">
+			<if test='wtype != "all"'>
+				and a.wtype = #{wtype}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+			and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A 
+	</select>
+	<select id="topMovie" resultType="map">
+		select top 1 * from kcc2022_esoom.egis.TBL_NEWS
+		where part = 'movie'
+		and wtype = 'U'
+		and etc1 = #{etc1}
+		and flag = 'N'
+		order by num desc
+	</select>
+	<select id="getDetail" resultType="map">
+		select *,FORMAT(wdate, 'yyyy.MM.dd') AS reg_date from kcc2022_esoom.egis.TBL_NEWS
+		where num = #{num}
+	</select>
+	<select id="getDetail2" resultType="map">
+		select top 1 * from kcc2022_esoom.egis.TBL_NEWS
+		where part = #{part}
+		and game_date = #{game_date}
+		and etc1 = 'H'
+	</select>
+	<select id="gameSchedule" resultType="map">
+		select *
+		,SUBSTRING(a.game_date, 1, 4) + '.' +SUBSTRING(a.game_date, 5, 2) + '.' + SUBSTRING(a.game_date, 7, 2) AS game_date_format
+		,b.stadium_name_1 
+		,SUBSTRING(a.game_start, 1, 2) + ':' + SUBSTRING(a.game_start, 3, 2) AS game_start_format
+		from kcc2022_esoom.kbl_data.team_schedule a, kcc2022_esoom.kbl_data.code_stadium b
+		where game_date  = #{game_date}
+		and a.stadium_code = b.stadium_code 
+		and a.season_code = b.season_code 
+	</select>
+	<select id="tailList" resultType="map">
+		SELECT * 
+			FROM (
+				select *,FORMAT(wdate , 'yyyy.MM.dd') AS formatted_date,
+			    FORMAT(wdate, 'HH:mm') AS formatted_time,
+			    kcc2022_esoom.egis.FN_MASK_ID(id) as id2,
+		    	kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2
+			    from kcc2022_esoom.egis.TBL_NEWS_TAIL
+				where info_num = #{num}
+				) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="photoList" resultType="map">
+		SELECT * 
+			FROM (
+				SELECT 
+				    a.*, 
+				    (SELECT COUNT(*)
+				     FROM kcc2022_esoom.egis.TBL_NEWS_PHOTO b
+				     WHERE b.info_num = a.num) AS photo_count
+				FROM 
+				    kcc2022_esoom.egis.TBL_NEWS a
+				WHERE 1=1
+				and flag = 'N'
+				    <if test="etc1 != null">
+						<if test='etc1 != "all"'>
+							and a.etc1 = #{etc1}
+						</if>
+					</if>
+				    <if test="part != null">
+				    	and a.part = #{part}
+				    </if>
+				    <if test="keyWord != null">
+						<if test='keyWord != ""'>
+							and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+						</if>
+					</if>
+					<if test="game != null">
+						<if test='game != "all"'>
+							and a.game_date = #{game}
+						</if>
+					</if>
+					<if test="player != null">
+						<if test='player != "all"'>
+							and a.num in (select info_num from kcc2022_esoom.egis.TBL_NEWS_PHOTO where tagcode like CONCAT('%', #{player}, '%'))
+						</if>
+					</if>
+					<if test="round != null">
+						<if test='round != "all"'>
+							and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+						</if>
+					</if>
+					<if test="wtype != null">
+						<if test='wtype != "all"'>
+							and a.wtype = #{wtype}
+						</if>
+					</if>
+					<if test="sdate != null and edate !=null">
+						<if test='sdate != "" and edate !=""'>
+						and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+						</if>
+					</if>
+				) A
+		<if test='otype == "num"'>
+				ORDER BY num desc
+		</if>
+		<if test='otype != "num"'>
+			ORDER BY ${otype} DESC
+		</if>
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getPhotoListCount" resultType="int">
+		select count(*) from (
+		SELECT 
+		    a.*, 
+		    (SELECT COUNT(*)
+		     FROM kcc2022_esoom.egis.TBL_NEWS_PHOTO b
+		     WHERE b.info_num = a.num) AS photo_count
+		FROM 
+		    kcc2022_esoom.egis.TBL_NEWS a
+		WHERE 1=1
+		and flag = 'N'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+	    <if test="part != null">
+		    	and a.part = #{part}
+	    </if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.num in (select info_num from kcc2022_esoom.egis.TBL_NEWS_PHOTO where tagcode like CONCAT('%', #{player}, '%'))
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+			</if>
+		</if>
+		<if test="wtype != null">
+			<if test='wtype != "all"'>
+				and a.wtype = #{wtype}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+			and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A 
+	</select>
+	<select id="footMovieList" resultType="map">
+		select top 10 * from kcc2022_esoom.egis.TBL_NEWS
+		where part = #{part}  
+		and etc1 = #{etc1}
+		and flag = 'N'
+		order by num desc
+	</select>
+	<select id="getDateDetail" resultType="map">
+		select TOP 1 *,FORMAT(wdate, 'yyyy.MM.dd') AS reg_date from kcc2022_esoom.egis.TBL_NEWS
+		where game_date = #{game_date}
+		and part = #{part}
+	</select>
+	<select id="nextDetail" resultType="map">
+		select TOP 1 a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
+					(SELECT COUNT(*)
+				     FROM kcc2022_esoom.egis.TBL_NEWS_TAIL b
+				     WHERE b.info_num = a.num) AS tail_count
+					 from kcc2022_esoom.egis.TBL_NEWS a 
+					where 1=1 
+					and a.part = #{part}
+					<![CDATA[and a.num > #{num}]]>
+					and a.flag = 'N'
+					ORDER BY a.num
+	</select>
+	<select id="prevDetail" resultType="map">
+		select TOP 1 a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
+					(SELECT COUNT(*)
+				     FROM kcc2022_esoom.egis.TBL_NEWS_TAIL b
+				     WHERE b.info_num = a.num) AS tail_count
+					 from kcc2022_esoom.egis.TBL_NEWS a 
+					where 1=1 
+					and a.part = #{part}
+					<![CDATA[and a.num < #{num}]]>
+					and a.flag = 'N'
+					ORDER BY a.num DESC
+	</select>
+	<select id="photoChildList" resultType="map">
+		select * from kcc2022_esoom.egis.TBL_NEWS_PHOTO
+	   where info_num = #{num}
+	</select>
+	<select id="getTailListCount" resultType="int">
+		select count(*) from (
+			select *,FORMAT(wdate , 'yyyy.MM.dd') AS formatted_date,
+		    FORMAT(wdate, 'HH:mm') AS formatted_time 
+		    from kcc2022_esoom.egis.TBL_NEWS_TAIL
+			where info_num = #{num}
+		) A 
+	</select>
+	<insert id="contentWrite" parameterType="map">
+		insert into kcc2022_esoom.egis.TBL_NEWS_TAIL (
+			 info_num, id, writer, content, ip, wdate, part 
+		)values(
+			 #{num}, #{id}, #{name}, #{content}, #{ip}, getdate(), #{part}
+		)
+</insert>
+<delete id="contentDelete" parameterType="map">
+		delete from kcc2022_esoom.egis.TBL_NEWS_TAIL
+		where num = #{num}
+	</delete>
+	<update id="visitedUpdate" parameterType="map">
+		update kcc2022_esoom.egis.TBL_NEWS
+		set visited = visited +1
+		where
+		num = #{num}
+	</update>
+</mapper>

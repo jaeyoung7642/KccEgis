@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MainSlideMapper">
+<select id="mainSlideHome" resultType="map">
+		select num
+			  ,title
+			  ,img1
+			  ,img2
+			  ,use_yn
+			  ,banner_order
+			  ,CONVERT(char(10),reg_date,23) reg_date 
+			  ,links
+		from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		where use_yn = 'Y'
+		order by banner_order,num desc 
+	</select>
+</mapper>

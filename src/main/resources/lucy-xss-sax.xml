@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <config xmlns="http://www.nhncorp.com/lucy-xss" extends="lucy-xss-default-sax.xml">
+	<elementRule>
+		<element name="script" removeTag="true" />
+	</elementRule>
+</config>

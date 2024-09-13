@@ -1,0 +1,2597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMapper">
+	<select id="getAdmin" resultType="map">
+		SELECT * FROM
+		kcc2022_esoom.egis.TBL_ADMIN
+		WHERE id = #{id}
+	</select>
+	<select id="gScheduleList" resultType="map">
+		select t1.season_code, t1.game_no, t1.game_code, t1.away_team,
+		t1.home_team, t1.game_date,
+		isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score,
+		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end,
+		t1.game_start,
+		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS
+		away_team_name
+		from kcc2022_esoom.kbl_data.team_schedule t1
+		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		t1.home_team=t7.team_code and t1.season_code=t7.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		and t1.season_code=t8.season_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
+		t1.game_no=t3.game_no and t1.game_code=t3.game_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
+		t1.game_no=t4.game_no and t1.game_code=t4.game_code
+		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
+		t1.game_code=t5.game_code
+		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
+		t1.game_no=t6.game_no
+		where t1.season_code='43'
+		<if test="season != null">
+			and t1.game_code = #{season}
+		</if>
+		<if test="yyyymm != null">
+			and t1.game_date like CONCAT('%', #{yyyymm}, '%')
+		</if>
+		<if test="round != null">
+			<if test='round != "0"'>
+				and t1.game_round = #{round}
+			</if>
+		</if>
+		<if test="state != null">
+			<if test='state == "2"'>
+				and NULLIF(trim(t5.game_end),'') is null
+			</if>
+			<if test='state == "3"'>
+				and NULLIF(trim(t5.game_end),'') is not null
+			</if>
+		</if>
+		<if test="ha != null">
+			<if test='ha == "1"'>
+				and (t1.home_team= 60 or t1.away_team= 60)
+			</if>
+			<if test='ha == "2"'>
+				and t1.home_team= 60
+			</if>
+			<if test='ha == "3"'>
+				and t1.away_team= 60
+			</if>
+		</if>
+		order by t1.game_date DESC
+	</select>
+	<!-- <select id="gScheduleList" resultType="map"> select A.*, B.stadium_name_1, 
+		C.team_name_1 AS home_team_name, D.team_name_1 AS away_team_name from kcc2022_esoom.kbl_data.team_schedule 
+		A ,kcc2022_esoom.kbl_data.code_stadium B ,(select A.*,B.team_name_1 from 
+		kcc2022_esoom.kbl_data.team_schedule A,kcc2022_esoom.kbl_data.code_team B 
+		where 1=1 and A.season_code =43 and (A.home_team =60 or A.away_team =60) 
+		and A.home_team = B.team_code and A.season_code = B.season_code) AS C ,(select 
+		A.*,B.team_name_1 from kcc2022_esoom.kbl_data.team_schedule A,kcc2022_esoom.kbl_data.code_team 
+		B where 1=1 and A.season_code =43 and (A.home_team =60 or A.away_team =60) 
+		and A.away_team = B.team_code and A.season_code = B.season_code) AS D where 
+		1=1 and A.season_code = 43 and (A.home_team =60 or A.away_team =60) and A.season_code 
+		= B.season_code and A.stadium_code = B.stadium_code and A.season_code = C.season_code 
+		and A.season_code = D.season_code and A.game_no = C.game_no and A.game_no 
+		= D.game_no order by A.game_date DESC </select> -->
+	<select id="getListCount" resultType="int">
+		select count(*) from (
+		select t1.season_code, t1.game_no, t1.game_code,
+		t1.away_team, t1.home_team, t1.game_date,
+		isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score,
+		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end,
+		t1.game_start,
+		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS
+		away_team_name
+		from kcc2022_esoom.kbl_data.team_schedule t1
+		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		t1.home_team=t7.team_code and t1.season_code=t7.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		and t1.season_code=t8.season_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
+		t1.game_no=t3.game_no and t1.game_code=t3.game_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
+		t1.game_no=t4.game_no and t1.game_code=t4.game_code
+		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
+		t1.game_code=t5.game_code
+		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
+		t1.game_no=t6.game_no
+		where t1.season_code='43'
+		<if test="season != null">
+			and t1.game_code = #{season}
+		</if>
+		<if test="yyyymm != null">
+			and t1.game_date like CONCAT('%', #{yyyymm}, '%')
+		</if>
+		<if test="round != null">
+			<if test='round != "0"'>
+				and t1.game_round = #{round}
+			</if>
+		</if>
+		<if test="state != null">
+			<if test='state == "2"'>
+				and NULLIF(trim(t5.game_end),'') is null
+			</if>
+			<if test='state == "3"'>
+				and NULLIF(trim(t5.game_end),'') is not null
+			</if>
+		</if>
+		<if test="ha != null">
+			<if test='ha == "1"'>
+				and (t1.home_team= 60 or t1.away_team= 60)
+			</if>
+			<if test='ha == "2"'>
+				and t1.home_team= 60
+			</if>
+			<if test='ha == "3"'>
+				and t1.away_team= 60
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="stadiumList" resultType="map">
+		select * from
+		kcc2022_esoom.kbl_data.code_stadium
+		where
+		season_code = #{season_code}
+	</select>
+	<select id="teamList" resultType="map">
+		select * from
+		kcc2022_esoom.kbl_data.code_team
+		where
+		season_code = #{season_code}
+	</select>
+	<select id="quarterList" resultType="map">
+		select * from
+		kcc2022_esoom.kbl_data.team_quarter_list
+		where
+		season_code =
+		#{season_code}
+		and game_code = #{game_code}
+		and game_no = #{game_no}
+	</select>
+	<select id="DailyRankList" resultType="map">
+		select
+		B.team_name_1,A.season_code,A.game_code,A.rank,A.team_code,
+		A.game_count,A.t_win,A.t_loss,A.conti_win,A.conti_loss,format(A.win_rate,
+		'##0.##') win_rate,A.win_diff
+		from
+		kcc2022_esoom.kbl_data.team_daily_rank A,
+		kcc2022_esoom.kbl_data.code_team B
+		where
+		A.season_code =B.season_code
+		and A.team_code = B.team_code
+		and A.season_code =#{season_code}
+		and A.game_code = #{game_code}
+		and A.game_date =(select MAX(game_date) from kcc2022_esoom.kbl_data.team_daily_rank where game_code = '01')
+		order by rank
+	</select>
+	<select id="playerDailyList" resultType="map">
+		select
+		A.season_code,A.game_code,A.game_no,A.team_code,B.kname,A.back_num,A.player_no,A.pos,
+		A.start_flag,isnull(A.play_min, 0) play_min,isnull(A.play_sec, 0)
+		play_sec,A.fg,A.fg_a,A.ft,A.ft_a,
+		A.threep,A.threep_a,A.dk,A.dk_a,A.pp,A.pp_a,A.o_r,A.d_r,(A.o_r +
+		A.d_r) r_tot,A.a_s,A.s_t,A.b_s,
+		A.gd,A.t_o,A.wft,A.woft,A.idf,A.tf,A.ef,A.foul_tot,A.fb,A.p_score,A.score,A.inout,A.inout1,A.fo
+		from
+		kcc2022_esoom.kbl_data.player_daily_list A
+		,kcc2022_esoom.kbl_data.player B
+		where
+		A.season_code = B.season_code
+		and A.player_no = B.player_no
+		and A.season_code = #{season_code}
+		and
+		A.game_code = #{game_code}
+		and A.game_no = #{game_no}
+		and A.team_code =
+		#{team_code}
+		and NULLIF(A.play_min,'') is not null
+		and
+		NULLIF(A.play_sec,'') is not null
+		order by A.score DESC
+	</select>
+	<select id="gScheduleDetail" resultType="map">
+		select t1.season_code,
+		t1.game_no, t1.game_code, t1.away_team, t1.home_team, t1.game_date,
+		isnull(t3.play_min, 0) play_min, t2.stadium_code, t2.stadium_name_2,
+		isnull(t3.score, 0) away_score,
+		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start,
+		t1.week_day, t6.tv_play, t7.team_name_1 AS
+		home_team_name,t8.team_name_1 AS away_team_name
+		from kcc2022_esoom.kbl_data.team_schedule t1
+		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		t1.home_team=t7.team_code and t1.season_code=t7.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		and t1.season_code=t8.season_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
+		t1.game_no=t3.game_no and t1.game_code=t3.game_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
+		t1.game_no=t4.game_no and t1.game_code=t4.game_code
+		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
+		t1.game_code=t5.game_code
+		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
+		t1.game_no=t6.game_no
+		where
+		t1.season_code= #{season_code}
+		and t1.game_code = #{game_code}
+		and t1.game_no =
+		#{game_no}
+	</select>
+	<select id="getCoachProfileListCount" resultType="int">
+		select count(*) from kcc2022_esoom.egis.TBL_PLAYER
+		where 1=1
+		<if test="keyWord != null">
+			<if test='select == "all"'>
+				and pl_pos_code in
+				<foreach collection="posCode" item="item" index="index"
+					open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test='select == "g"'>
+				and pl_pos_code = 'g'
+			</if>
+			<if test='select == "c"'>
+				and pl_pos_code = 'c'
+			</if>
+			<if test='select == "f"'>
+				and pl_pos_code = 'f'
+			</if>
+			<if test='select == "s"'>
+				and pl_pos_code = 's'
+			</if>
+			and pl_name like CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="keyWord == null">
+			and pl_pos_code in
+			<foreach collection="posCode" item="item" index="index"
+				open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+		<if test="show_yn != null">
+			and pl_show = #{show_yn}
+		</if>
+	</select>
+	<select id="getNewsListCount" resultType="int">
+		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'news'
+		and linkurl != ''
+		and linkurl LIKE '%https://%'  
+		<![CDATA[and LEN(linkurl) >= 8]]>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags like CONCAT('%', #{player}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND
+				#{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="coachProfileList" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_PLAYER
+		where
+		pl_pos_code in ('a','b')
+		order by
+		pl_show desc,pl_order,num DESC
+	</select>
+	<select id="pSupportstaffProfileList" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_PLAYER
+		where
+		pl_pos_code in ('m','t','j','i')
+		order by
+		pl_show desc,pl_order,num DESC
+	</select>
+	<select id="playerProfileList" resultType="map">
+		select * from kcc2022_esoom.egis.TBL_PLAYER
+		where 1=1
+		<if test="keyWord != null">
+			<if test='select == "all"'>
+				and pl_pos_code in
+				<foreach collection="posCode" item="item" index="index"
+					open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test='select == "g"'>
+				and pl_pos_code = 'g'
+			</if>
+			<if test='select == "c"'>
+				and pl_pos_code = 'c'
+			</if>
+			<if test='select == "f"'>
+				and pl_pos_code = 'f'
+			</if>
+			<if test='select == "s"'>
+				and pl_pos_code = 's'
+			</if>
+			and pl_name like CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="keyWord == null">
+			and pl_pos_code in ('c','f','g','s')
+		</if>
+		<if test="show_yn != null">
+			and pl_show = #{show_yn}
+		</if>
+		order by pl_show desc,pl_order,num DESC
+	</select>
+	<select id="movieList2" resultType="map">
+		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'movie'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags = #{player}
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND
+				#{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		order by num desc
+	</select>
+	<select id="movieList" resultType="map">
+		SELECT *
+		FROM (
+		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'movie'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags like CONCAT('%', #{player}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="photoList2" resultType="map">
+		SELECT *
+		FROM (
+		select a.*, CONVERT(char(10),a.wdate,23) wdateformat
+		 from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'gallery'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="photoList" resultType="map">
+		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'photo'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.num in (select info_num from
+				kcc2022_esoom.egis.TBL_NEWS_PHOTO where tagcode like CONCAT('%',
+				#{player}, '%'))
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND
+				#{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		order by num desc
+	</select>
+	<select id="eventList" resultType="map">
+		SELECT *
+		FROM (
+		select a.*
+		,ROW_NUMBER() OVER (ORDER BY a.num) AS rownum
+		,SUBSTRING(CONVERT(char(19),a.sdate ,20),0,17) sdateFormat
+		,SUBSTRING(CONVERT(char(19),a.edate ,20),0,17) edateFormat
+		from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'event'
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		<if test='state == "ing"'>
+			and GETDATE() BETWEEN sdate and edate
+		</if>
+		<if test='state == "end"'>
+						<![CDATA[and GETDATE()  > edate]]>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="eventTailList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,info_num
+		,id
+		,kcc2022_esoom.egis.FN_MASK_NAME(writer) writer
+		,content
+		from kcc2022_esoom.egis.TBL_NEWS_TAIL
+		where
+		info_num = #{num}
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getEventTailListCount" resultType="map">
+		select count(*)
+		from (
+		select *
+		from kcc2022_esoom.egis.TBL_NEWS_TAIL
+		where info_num = #{num}
+		) A
+	</select>
+	<select id="getMovieListCount" resultType="int">
+		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'movie'
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags like CONCAT('%', #{player}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND
+				#{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getPhotoListCount" resultType="int">
+		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = #{part}
+		<if test="etc1 != null">
+			<if test='etc1 != "all"'>
+				and a.etc1 = #{etc1}
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags like CONCAT('%', #{player}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND
+				#{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="newsList" resultType="map">
+		SELECT *
+		FROM (
+		select a.*,ROW_NUMBER() OVER (ORDER BY num) AS rownum 
+		from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'news'
+		and linkurl != ''
+		and linkurl LIKE '%https://%'  
+		<![CDATA[and LEN(linkurl) >= 8]]>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags like CONCAT('%', #{player}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND #{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="wallpaperList" resultType="map">
+		SELECT *
+		FROM (
+		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date from
+		kcc2022_esoom.egis.TBL_WALLPAPER a
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and a.subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+		ORDER BY year_month desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="proposalList" resultType="map">
+		SELECT *
+		FROM (
+		select a.*,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date from
+		kcc2022_esoom.egis.TBL_CONTACT a
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and a.subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="proposalDetail" resultType="map">
+		select *,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date from
+		kcc2022_esoom.egis.TBL_CONTACT
+		where
+		num = #{num}
+	</select>
+	<select id="wallpaperMap" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_WALLPAPER
+		where
+		num = #{num}
+	</select>
+	<select id="newsList2" resultType="map">
+		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		where 1=1
+		and a.part = 'news'
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and (a.subject like CONCAT('%', #{keyWord}, '%') or a.keyword_tag like CONCAT('%', #{keyWord}, '%'))
+			</if>
+		</if>
+		<if test="game != null">
+			<if test='game != "all"'>
+				and a.game_date = #{game}
+			</if>
+		</if>
+		<if test="player != null">
+			<if test='player != "all"'>
+				and a.tags = #{player}
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "all"'>
+				and a.game_date BETWEEN #{first_game_date} AND
+				#{last_game_date}
+			</if>
+		</if>
+		<if test="sdate != null and edate !=null">
+			<if test='sdate != "" and edate !=""'>
+				and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		order by num desc
+	</select>
+	<select id="searchKeywordList" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_SEARCH_KEYWORD
+		order by view_order,num desc
+	</select>
+	<select id="getRoundDate" resultType="map">
+		select max(game_date)
+		last_game_date,MIN(game_date) first_game_date from
+		kcc2022_esoom.kbl_data.team_schedule
+		WHERE season_code = '43'
+		and
+		(home_team ='60' or away_team ='60')
+		and game_round = #{round}
+	</select>
+	<select id="gameList" resultType="map">
+		select t1.season_code, t1.game_no, t1.game_code,t1.game_round,
+		t1.away_team, t1.home_team, t1.game_date,
+		isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score,
+		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end,
+		t1.game_start,
+		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS
+		away_team_name
+		from kcc2022_esoom.kbl_data.team_schedule t1
+		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		t1.home_team=t7.team_code and t1.season_code=t7.season_code
+		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		and t1.season_code=t8.season_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
+		t1.game_no=t3.game_no and t1.game_code=t3.game_code
+		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
+		t1.game_no=t4.game_no and t1.game_code=t4.game_code
+		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
+		t1.game_code=t5.game_code
+		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
+		t1.game_no=t6.game_no
+		where t1.season_code='43'
+		and (t1.home_team= 60 or t1.away_team= 60)
+		<if test="game_round != null">
+			and t1.game_round = #{game_round}
+		</if>
+		<if test="game_code != null">
+			and t1.game_code = #{game_code}
+		</if>
+		order by t1.game_date desc
+	</select>
+	<select id="playerList" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_PLAYER
+		where 1=1
+		and pl_show ='Y'
+		and pl_pos_code
+		in ('a','g','c','f')
+		order by pl_order,pl_pos_code
+	</select>
+	<select id="newsPhotoList" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_NEWS_PHOTO
+		where 1=1
+		and info_num =#{num}
+		order by
+		num
+	</select>
+	<update id="changeShow" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_PLAYER
+		set pl_show = #{show}
+		where
+		pl_no =
+		#{pl_no}
+
+	</update>
+	<update id="updateTeamSchedule" parameterType="map">
+		update
+		kcc2022_esoom.kbl_data.team_schedule
+		set game_start =
+		#{game_start},game_date=#{game_date},stadium_code=#{stadium_code}
+		where
+		season_code=#{season_code}
+		and game_code=#{game_code}
+		and game_no =
+		#{game_no}
+
+	</update>
+	<update id="updateTeamScheduleOnair" parameterType="map">
+		merge into
+		kcc2022_esoom.kbl_data.team_schedule_onair A
+		using
+		(
+		select #{season_code} AS season_code
+		,#{game_code} AS game_code
+		,#{game_no} AS game_no
+		,#{tv_play} AS tv_play
+		) B
+		on A.season_code = B.season_code
+		and A.game_code =
+		B.game_code
+		and A.game_no = B.game_no
+		WHEN MATCHED THEN
+		UPDATE set
+		A.tv_play = B.tv_play
+		WHEN not MATCHED THEN
+		INSERT (
+		season_code
+		,game_code
+		,game_no
+		,tv_play
+		)
+		values (
+		B.season_code
+		,B.game_code
+		,B.game_no
+		,B.tv_play
+		);
+	</update>
+	<update id="updateTeamQuaterList" parameterType="map">
+		<foreach collection="list" item="list" separator=";">
+			merge into kcc2022_esoom.kbl_data.team_quarter_list A
+			using
+			(
+			select #{list.season_code} AS season_code
+			,#{list.game_code} AS game_code
+			,#{list.game_no} AS game_no
+			,#{list.team_code} AS team_code
+			,#{list.quarter} AS quarter
+			,#{list.score} AS score
+			,#{list.home_away} AS home_away
+			,#{list.away_team} AS away_team
+			) B
+			on A.season_code = B.season_code
+			and A.game_code = B.game_code
+			and A.game_no = B.game_no
+			and A.team_code = B.team_code
+			and A.game_no = B.game_no
+			and A.quarter_gu = B.quarter
+			WHEN MATCHED THEN
+			UPDATE set
+			A.score = B.score
+			WHEN not MATCHED THEN
+			INSERT (
+			season_code
+			,game_code
+			,game_no
+			,team_code
+			,quarter_gu
+			,home_away
+			,away_team
+			,play_min
+			,play_sec
+			,fg,fg_a,ft,ft_a,threep,threep_a,dk,dk_a,pp,pp_a,o_r,d_r
+			,t_r,a_s,s_t,b_s,gd,tto,t_o,wft,woft,idf,tf,bf,ef,foul_tot,tfb,fb,p_score
+			,score
+			,foulout,inout,inout1,r_count,s_count,pd_score,md_score,opertime
+			,inputtime,fo
+			)
+			values (
+			B.season_code
+			,B.game_code
+			,B.game_no
+			,B.team_code
+			,B.quarter
+			,B.home_away
+			,B.away_team
+			,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+			,B.score
+			,0,0,0,0,0,0,0,0
+			,getdate(),0
+			);
+		</foreach>
+
+	</update>
+	<update id="updateTeamDailyList" parameterType="map">
+		<foreach collection="totlist" item="list" separator=";">
+			merge into kcc2022_esoom.kbl_data.team_daily_list A
+			using
+			(
+			select #{list.season_code} AS season_code
+			,#{list.game_code} AS game_code
+			,#{list.game_no} AS game_no
+			,#{list.team_code} AS team_code
+			,#{list.score} AS score
+			,#{list.home_away} AS home_away
+			,#{list.away_team} AS away_team
+			) B
+			on A.season_code = B.season_code
+			and A.game_code = B.game_code
+			and A.game_no = B.game_no
+			and A.team_code = B.team_code
+			and A.game_no = B.game_no
+			WHEN MATCHED THEN
+			UPDATE set
+			A.score = B.score
+			WHEN not MATCHED THEN
+			INSERT (
+			season_code
+			,game_code
+			,game_no
+			,team_code
+			,home_away
+			,away_team
+			,play_min
+			,play_sec
+			,fg,fg_a,ft,ft_a,threep,threep_a,dk,dk_a,pp,pp_a,o_r,d_r
+			,t_r,a_s,s_t,b_s,gd,tto,t_o,wft,woft,idf,tf,bf,ef,foul_tot,tfb,fb,p_score
+			,score
+			,foulout,win,loss,draw,inout,inout1,r_count,s_count,pd_score,md_score
+			,inputtime
+			)
+			values (
+			B.season_code
+			,B.game_code
+			,B.game_no
+			,B.team_code
+			,B.home_away
+			,B.away_team
+			,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+			,B.score
+			,0,0,0,0,0,0,0,0,0,0
+			,getdate()
+			);
+		</foreach>
+
+	</update>
+	<update id="updateState" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_MEMBER
+		set chk_state = 'N'
+		where
+		num= #{num}
+
+	</update>
+	<update id="changePwd" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_MEMBER
+		set sha_pwd = #{pwd}
+		where
+		num= #{num}
+
+	</update>
+	<update id="changeChkDel" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_FREE
+		set chk_del = #{chkDel}
+		where
+		num = #{num}
+
+	</update>
+	<update id="changeYn" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_POPUP
+		set main_chk = #{main_chk}
+		where
+		num =
+		#{num}
+
+	</update>
+	<update id="changeUseYn" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		set use_yn = #{use_yn}
+		where
+		num =
+		#{num}
+
+	</update>
+	<update id="orderSave" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_POPUP
+		set [order] = #{order}
+		where
+		num = #{num}
+
+	</update>
+	<update id="bannerOrderSave" parameterType="map">
+		update
+		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		set banner_order = #{order}
+		where
+		num
+		= #{num}
+
+	</update>
+	<select id="pCoachProfile" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_PLAYER
+		where
+		num = #{num}
+	</select>
+	<select id="mediaMap" resultType="map">
+		select *
+		,CONVERT(char(10),sdate ,23) s_day
+		,SUBSTRING(CONVERT(char(8),sdate ,24),0,3) s_time
+		,SUBSTRING(CONVERT(char(8),sdate ,24),4,2) s_minute
+		,CONVERT(char(10),edate ,23) e_day
+		,SUBSTRING(CONVERT(char(8),edate ,24),0,3) e_time
+		,SUBSTRING(CONVERT(char(8),edate ,24),4,2) e_minute
+		,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
+		from kcc2022_esoom.egis.TBL_NEWS
+		where
+		num = #{num}
+	</select>
+	<select id="freeMap" resultType="map">
+		select *,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
+		,kcc2022_esoom.egis.FN_MASK_NAME(writer) maskName
+		from kcc2022_esoom.egis.TBL_FREE
+		where
+		num = #{num}
+	</select>
+	<select id="lastMediaMap" resultType="map">
+		select top 1 * from
+		kcc2022_esoom.egis.TBL_NEWS order by num desc
+	</select>
+	<select id="memberMap" resultType="map">
+		select *
+		,kcc2022_esoom.egis.FN_MASK_NAME(name) maskName
+		,CONVERT(char(10),reg_date ,23) regDate
+		,SUBSTRING(CONVERT(char(19),logindate ,20),0,17) loginDate
+		from kcc2022_esoom.egis.TBL_MEMBER
+		where
+		1=1
+		<if test="num != null">
+			and num = #{num}
+		</if>
+		<if test="id != null">
+			and id = #{id}
+		</if>
+
+	</select>
+	<select id="kccAdMap" resultType="map">
+		select * from
+		kcc2022_esoom.egis.tbl_kccad
+		where
+		num = #{num}
+	</select>
+	<select id="popupMap" resultType="map">
+		select num
+		,subject
+		,pop_img
+		,pop_img2
+		,map_chk
+		,map_target
+		,main_chk
+		,[order]
+		,CONVERT(char(10),sdate ,23) s_day
+		,SUBSTRING(CONVERT(char(8),sdate ,24),0,3) s_time
+		,SUBSTRING(CONVERT(char(8),sdate ,24),4,2) s_minute
+		,CONVERT(char(10),edate ,23) e_day
+		,SUBSTRING(CONVERT(char(8),edate ,24),0,3) e_time
+		,SUBSTRING(CONVERT(char(8),edate ,24),4,2) e_minute
+		from kcc2022_esoom.egis.TBL_POPUP
+		where
+		num = #{num}
+	</select>
+	<select id="mainGoodsMap" resultType="map">
+		select *
+		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where
+		num = #{num}
+	</select>
+	<select id="mainSlideMap" resultType="map">
+		select * from
+		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		where
+		num = #{num}
+	</select>
+	<select id="pProfileCheck" resultType="map">
+		select * from kcc2022_esoom.egis.TBL_PLAYER
+		where 1=1
+		<if test="num != null">
+			and num != #{num}
+		</if>
+		and pl_no = #{pl_no}
+		and pl_check != 'N'
+	</select>
+	<select id="noticeList" resultType="map">
+		select 
+		ROW_NUMBER() OVER (ORDER BY num) AS rownum,
+		*,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date from
+		kcc2022_esoom.egis.TBL_NEWS
+		where 1=1
+		and part = 'notice'
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		<if test="flag != null">
+			and flag=#{flag}
+		</if>
+		order by num desc
+	</select>
+	<select id="mainsildeList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,title
+		,img1
+		,use_yn
+		,banner_order
+		,FORMAT(reg_date, 'yyyy-MM-dd HH:mm') AS reg_date
+		from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		) A
+		ORDER BY use_yn desc,-banner_order desc,num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="mainGoodsList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,goods_nm
+		,goods_img
+		,FORMAT(goods_price, 'N0') goods_price
+		,category
+		,view_order
+		,show_yn
+		,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS wdate
+		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where category = #{category}
+		) A
+		ORDER BY show_yn desc,-view_order desc,num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="topNoticeList" resultType="map">
+		select *,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
+		 from
+		kcc2022_esoom.egis.TBL_NEWS
+		where 1=1
+		and part = 'notice'
+		and wtype = 'Y'
+		and flag = 'N'
+		order by num desc
+	</select>
+	<select id="topFreeList" resultType="map">
+		select a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
+		,(SELECT COUNT(*)
+		FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+		WHERE b.info_num = a.num) AS tail_count
+		from
+		kcc2022_esoom.egis.TBL_FREE a
+		where 1=1
+		<if test="chk_del != null">
+			<if test='chk_del != "all"'>
+				and a.chk_del = #{chk_del}
+			</if>
+		</if>
+		and a.flag = 'Y'
+		order by a.num desc
+	</select>
+	<select id="freeList" resultType="map">
+		SELECT *
+		FROM (
+		select
+		ROW_NUMBER() OVER (ORDER BY a.num) AS rownum, 
+		a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date,
+					kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					(SELECT COUNT(*)
+				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     WHERE b.info_num = a.num) AS tail_count
+					 from kcc2022_esoom.egis.TBL_FREE a 
+					where 1=1 
+					<if test="sdate != null and edate !=null">
+						<if test='sdate != "" and edate !=""'>
+							and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+						</if>
+					</if>
+					<if test="chk_del != null">
+						<if test='chk_del != "all"'>
+							and a.chk_del = #{chk_del}
+						</if>
+					</if>
+					<if test="keyWord != null">
+						<if test='keyWord != ""'>
+							and (
+							<trim suffixOverrides="or">
+							<if test='title =="Y"'> 
+						        CONTAINS(a.subject, #{keyWord}) or 
+						    </if>
+						    <if test='content =="Y"'>
+						        CONTAINS(a.content, #{keyWord}) or
+						    </if>
+						    <if test='writer =="Y"'>
+						        CONTAINS(a.writer, #{keyWord}) or
+						    </if>
+							<if test='tail =="Y"'>
+							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+							</if>
+							<if test='tailWriter =="Y"'>
+							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+							</if>
+							</trim>
+							)
+						</if>
+					</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="popupList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,subject
+		,pop_img
+		,main_chk
+		,[order]
+		,SUBSTRING(CONVERT(char(19),sdate ,20),0,17) sdate
+		,SUBSTRING(CONVERT(char(19),edate ,20),0,17) edate
+		,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
+		from kcc2022_esoom.egis.TBL_POPUP
+		) A
+		ORDER BY main_chk desc,-[order] desc,num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="freeTailList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,info_num
+		,kcc2022_esoom.egis.FN_MASK_NAME(writer) writer
+		,id
+		,writer as writer2
+		,content
+		,CONVERT(char(10),wdate ,23) wdate
+		,FORMAT(wdate , 'yyyy-MM-dd HH:mm') AS formatted_date
+		from kcc2022_esoom.egis.TBL_FREE_TAIL
+		where info_num = #{num}
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="memberList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
+		,id
+		,kcc2022_esoom.egis.FN_MASK_NAME(name) name
+		,CONVERT(char(10),reg_date ,23) reg_date
+		,CONVERT(char(16),logindate ,120) logindate
+		,chk_state
+		from kcc2022_esoom.egis.TBL_MEMBER
+		where 1=1
+		<if test="chk_state != null">
+			<if test='chk_state == "Y"'>
+				and (chk_state = 'Y' or chk_state ='S')
+			</if>
+			<if test='chk_state == "N"'>
+				and (chk_state = 'N' or chk_state ='O')
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				<if test="select != null">
+					<if test='select == "memberName"'>
+						and name like CONCAT('%', #{keyWord}, '%')
+					</if>
+					<if test='select == "memberId"'>
+						and id like CONCAT('%', #{keyWord}, '%')
+					</if>
+				</if>
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="cKccAdList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,title
+		,thumbnail
+		,thumbnail_original
+		,downfile
+		,downfile_original
+		,CONVERT(char(10),regdate,23) regdate
+		,adgroup
+		,addr
+		,mvideo
+		from kcc2022_esoom.egis.tbl_kccad
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and title like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		<if test="select != null">
+			<if test='select != "all"'>
+				and adgroup = #{select}
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getKccAdListCount" resultType="int">
+		select count(*) from (
+		select num
+		,title
+		,thumbnail
+		,thumbnail_original
+		,downfile
+		,downfile_original
+		,CONVERT(char(10),regdate,23) regdate
+		,adgroup
+		,addr
+		,mvideo
+		from kcc2022_esoom.egis.tbl_kccad
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and title like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		<if test="select != null">
+			<if test='select != "all"'>
+				and adgroup = #{select}
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getFreeTailListCount" resultType="int">
+		select count(*)
+		from (
+		select *
+		from kcc2022_esoom.egis.TBL_FREE_TAIL
+		where info_num = #{num}
+		) A
+	</select>
+	<select id="getMemberListCount" resultType="int">
+		select count(*) from (
+		select *
+		from kcc2022_esoom.egis.TBL_MEMBER
+		where 1=1
+		<if test="chk_state != null">
+			<if test='chk_state == "Y"'>
+				and (chk_state = 'Y' or chk_state ='S')
+			</if>
+			<if test='chk_state == "N"'>
+				and (chk_state = 'N' or chk_state ='O')
+			</if>
+		</if>
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				<if test="select != null">
+					<if test='select == "memberName"'>
+						and name like CONCAT('%', #{keyWord}, '%')
+					</if>
+					<if test='select == "memberId"'>
+						and id like CONCAT('%', #{keyWord}, '%')
+					</if>
+				</if>
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getFreeListCount" resultType="int">
+		select count(*) from (
+		select a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date,
+					kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					(SELECT COUNT(*)
+				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     WHERE b.info_num = a.num) AS tail_count
+					 from kcc2022_esoom.egis.TBL_FREE a 
+					where 1=1 
+					<if test="sdate != null and edate !=null">
+						<if test='sdate != "" and edate !=""'>
+							and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+						</if>
+					</if>
+					<if test="chk_del != null">
+						<if test='chk_del != "all"'>
+							and a.chk_del = #{chk_del}
+						</if>
+					</if>
+					<if test="keyWord != null">
+						<if test='keyWord != ""'>
+							and (
+							<trim suffixOverrides="or">
+							<if test='title =="Y"'> 
+						        CONTAINS(a.subject, #{keyWord}) or 
+						    </if>
+						    <if test='content =="Y"'>
+						        CONTAINS(a.content, #{keyWord}) or
+						    </if>
+						    <if test='writer =="Y"'>
+						        CONTAINS(a.writer, #{keyWord}) or
+						    </if>
+							<if test='tail =="Y"'>
+							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+							</if>
+							<if test='tailWriter =="Y"'>
+							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+							</if>
+							</trim>
+							)
+						</if>
+					</if>
+		) A
+	</select>
+	<select id="getMainsildeListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		) A
+	</select>
+	<select id="getUseynCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		where use_yn = 'Y'
+		and num != #{num}
+		) A
+	</select>
+	<select id="mainGoodsCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where show_yn = 'Y'
+		and num != #{num}
+		and category = #{category}
+		) A
+	</select>
+	<select id="mainChkCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_POPUP
+		where main_chk = 'Y'
+		and num != #{num}
+		) A
+	</select>
+	<select id="getNoticeListCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_NEWS
+		where 1=1
+		and part = 'notice'
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		<if test="flag != null">
+			and flag = #{flag}
+		</if>
+		) A
+	</select>
+	<select id="getEventListCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_NEWS
+		where 1=1
+		and part = 'event'
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		<if test='state == "ing"'>
+			and GETDATE() BETWEEN sdate and edate
+		</if>
+		<if test='state == "end"'>
+				<![CDATA[and GETDATE()  > edate]]>
+		</if>
+
+		) A
+	</select>
+	<select id="getTotalProposalListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_CONTACT
+		) A
+	</select>
+	<select id="getTotalFreeListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_FREE
+		) A
+	</select>
+	<select id="getTotalNoticeListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_NEWS
+		where 1=1
+		and part = #{part}
+		) A
+	</select>
+	<select id="getTotalNewsListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_NEWS
+		where 1=1
+		and part = #{part}
+		and linkurl != ''
+		and linkurl LIKE '%https://%'  
+		<![CDATA[and LEN(linkurl) >= 8]]>
+		) A
+	</select>
+	<select id="getTotalWallpaperCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_WALLPAPER
+		) A
+	</select>
+	<select id="getProposalListCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_CONTACT
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getWallpaperCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_WALLPAPER
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and subject like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getTotalMemberListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_MEMBER
+		) A
+	</select>
+	<select id="getTotalMainGoodsListCount" resultType="int">
+		select
+		count(*) from (
+		select * from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		) A
+	</select>
+	<select id="getTotalKccAdListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.tbl_kccad
+		) A
+	</select>
+	<select id="getPopupListCount" resultType="int">
+		select count(*) from (
+		select * from kcc2022_esoom.egis.TBL_POPUP
+		) A
+	</select>
+	<select id="getMainGoodsListCount" resultType="int">
+		select count(*)
+		from (
+		select * from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where category = #{category}
+		) A
+	</select>
+	<update id="playerMerge" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_PLAYER A
+		using
+		(
+		select #{num} AS num
+		,#{pl_no} AS pl_no
+		,#{pl_name} AS pl_name
+		,#{pl_pos_code} AS pl_pos_code
+		,#{pl_postion} AS pl_postion
+		,#{pl_ename} AS pl_ename
+		,#{pl_birthday} AS pl_birthday
+		,#{pl_height} AS pl_height
+		,#{pl_weight} AS pl_weight
+		,#{pl_show} AS pl_show
+		,#{pl_check} AS pl_check
+		,#{pl_school} AS pl_school
+		,#{pl_order} AS pl_order
+		,#{pl_career} AS pl_career
+		,#{pl_prize} AS pl_prize
+		,#{pl_webmain} AS pl_webmain
+		,#{pl_back} AS pl_back
+		,#{pl_foot} AS pl_foot
+		,#{pl_rank} AS pl_rank
+		,#{pl_sns_code} AS pl_sns_code
+		,#{pl_sns_url} AS pl_sns_url
+		,#{pl_webdetail} AS pl_webdetail
+		,#{pl_actioncut_1} AS pl_actioncut_1
+		,#{pl_actioncut_2} AS pl_actioncut_2
+		,#{pl_actioncut_3} AS pl_actioncut_3
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.pl_no = B.pl_no
+		,A.pl_name = B.pl_name
+		,A.pl_pos_code = B.pl_pos_code
+		,A.pl_postion = B.pl_postion
+		,A.pl_ename = B.pl_ename
+		,A.pl_birthday = B.pl_birthday
+		,A.pl_height = B.pl_height
+		,A.pl_weight = B.pl_weight
+		,A.pl_show = B.pl_show
+		,A.pl_school = B.pl_school
+		,A.pl_order = B.pl_order
+		,A.pl_career = B.pl_career
+		,A.pl_prize = B.pl_prize
+		,A.pl_webmain = B.pl_webmain
+		,A.pl_back = B.pl_back
+		,A.pl_foot = B.pl_foot
+		,A.pl_rank = B.pl_rank
+		,A.pl_sns_code = B.pl_sns_code
+		,A.pl_sns_url = B.pl_sns_url
+		,A.pl_webdetail = B.pl_webdetail
+		,A.pl_actioncut_1 = B.pl_actioncut_1
+		,A.pl_actioncut_2 = B.pl_actioncut_2
+		,A.pl_actioncut_3 = B.pl_actioncut_3
+		WHEN not MATCHED THEN
+		INSERT (
+		pl_no
+		,pl_name
+		,pl_pos_code
+		,pl_postion
+		,pl_ename
+		,pl_birthday
+		,pl_height
+		,pl_weight
+		,pl_show
+		,pl_check
+		,pl_school
+		,pl_order
+		,pl_career
+		,pl_prize
+		,pl_webmain
+		,pl_back
+		,pl_foot
+		,pl_rank
+		,pl_sns_code
+		,pl_sns_url
+		,pl_webdetail
+		,pl_actioncut_1
+		,pl_actioncut_2
+		,pl_actioncut_3
+		)
+		values (
+		B.pl_no
+		,B.pl_name
+		,B.pl_pos_code
+		,B.pl_postion
+		,B.pl_ename
+		,B.pl_birthday
+		,B.pl_height
+		,B.pl_weight
+		,B.pl_show
+		,B.pl_check
+		,B.pl_school
+		,B.pl_order
+		,B.pl_career
+		,B.pl_prize
+		,B.pl_webmain
+		,B.pl_back
+		,B.pl_foot
+		,B.pl_rank
+		,B.pl_sns_code
+		,B.pl_sns_url
+		,B.pl_webdetail
+		,B.pl_actioncut_1
+		,B.pl_actioncut_2
+		,B.pl_actioncut_3
+		);
+
+	</update>
+	<update id="mediaMerge" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_NEWS A
+		using
+		(
+		select #{num} AS num
+		,#{subject} AS subject
+		,#{content} AS content
+		,#{summary} AS summary
+		,#{visited} AS visited
+		,#{flag} AS flag
+		,#{part} AS part
+		,#{wtype} AS wtype
+		,#{linkurl} AS linkurl
+		,#{etc1} AS etc1
+		,#{game_date} AS game_date
+		,#{game_date_nm} AS game_date_nm
+		,#{keyword_tag} AS keyword_tag
+		,#{tags} AS tags
+		,#{tags_nm} AS tags_nm
+		,#{sdate} AS sdate
+		,#{edate} AS edate
+		,#{img1} AS img1
+		,#{img2} AS img2
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.subject = B.subject
+		,A.content = B.content
+		,A.summary = B.summary
+		,A.visited = B.visited
+		,A.flag = B.flag
+		,A.part = B.part
+		,A.wtype = B.wtype
+		,A.linkurl = B.linkurl
+		,A.etc1 = B.etc1
+		,A.game_date = B.game_date
+		,A.game_date_nm = B.game_date_nm
+		,A.keyword_tag = B.keyword_tag
+		,A.tags = B.tags
+		,A.tags_nm = B.tags_nm
+		,A.sdate = B.sdate
+		,A.edate = B.edate
+		,A.img1 = B.img1
+		,A.img2 = B.img2
+		WHEN not MATCHED THEN
+		INSERT (
+		subject
+		,content
+		,summary
+		,visited
+		,flag
+		,part
+		,linkurl
+		,wtype
+		,etc1
+		,game_date
+		,game_date_nm
+		,keyword_tag
+		,tags
+		,tags_nm
+		,sdate
+		,edate
+		,img1
+		,img2
+		,wdate
+		)
+		values (
+		B.subject
+		,B.content
+		,B.summary
+		,B.visited
+		,B.flag
+		,B.part
+		,B.linkurl
+		,B.wtype
+		,B.etc1
+		,B.game_date
+		,B.game_date_nm
+		,B.keyword_tag
+		,B.tags
+		,B.tags_nm
+		,B.sdate
+		,B.edate
+		,B.img1
+		,B.img2
+		,getdate()
+		);
+
+	</update>
+	<update id="mergeWallpaper" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_WALLPAPER A
+		using
+		(
+		select #{num} AS num
+		,#{subject} AS subject
+		,#{year} AS year
+		,#{month} AS month
+		,#{year_month} AS year_month
+		,#{img1} AS img1
+		,#{img1_org} AS img1_org
+		,#{img2} AS img2
+		,#{img2_org} AS img2_org
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.subject = B.subject
+		,A.year = B.year
+		,A.month = B.month
+		,A.year_month = B.year_month
+		,A.img1 = B.img1
+		,A.img1_org = B.img1_org
+		,A.img2 = B.img2
+		,A.img2_org = B.img2_org
+		WHEN not MATCHED THEN
+		INSERT (
+		subject
+		,year
+		,month
+		,year_month
+		,img1
+		,img1_org
+		,img2
+		,img2_org
+		,wdate
+		)
+		values (
+		B.subject
+		,B.year
+		,B.month
+		,B.year_month
+		,B.img1
+		,B.img1_org
+		,B.img2
+		,B.img2_org
+		,getdate()
+		);
+
+	</update>
+	<update id="mergeFree" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_FREE A
+		using
+		(
+		select #{num} AS num
+		,#{subject} AS subject
+		,#{content} AS content
+		,#{flag} AS flag
+		,#{id} AS id
+		,#{writer} AS writer
+		,#{ip} AS ip
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.subject = B.subject
+		,A.content = B.content
+		,A.flag = B.flag
+		WHEN not MATCHED THEN
+		INSERT (
+		subject
+		,content
+		,flag
+		,id
+		,writer
+		,ip
+		,wdate
+		,chk_del
+		,visited
+		,ref
+		,step
+		,ansnum
+		,tn
+		,pn
+		,recommend
+		)
+		values (
+		B.subject
+		,B.content
+		,B.flag
+		,B.id
+		,B.writer
+		,B.ip
+		,getdate()
+		,'N'
+		,0
+		,0
+		,0
+		,0
+		,0
+		,0
+		,0
+		);
+
+	</update>
+	<update id="mergeKccAd" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.tbl_kccad A
+		using
+		(
+		select #{num} AS num
+		,#{title} AS title
+		,#{adgroup} AS adgroup
+		,#{addr} AS addr
+		,#{mvideo} AS mvideo
+		,#{thumbnail} AS thumbnail
+		,#{thumbnail_original} AS thumbnail_original
+		,#{downfile} AS downfile
+		,#{downfile_original} AS downfile_original
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.title = B.title
+		,A.adgroup = B.adgroup
+		,A.addr = B.addr
+		,A.mvideo = B.mvideo
+		,A.thumbnail = B.thumbnail
+		,A.thumbnail_original = B.thumbnail_original
+		,A.downfile = B.downfile
+		,A.downfile_original = B.downfile_original
+		WHEN not MATCHED THEN
+		INSERT (
+		title
+		,adgroup
+		,addr
+		,mvideo
+		,thumbnail
+		,thumbnail_original
+		,downfile
+		,downfile_original
+		,regdate
+		)
+		values (
+		B.title
+		,B.adgroup
+		,B.addr
+		,B.mvideo
+		,B.thumbnail
+		,B.thumbnail_original
+		,B.downfile
+		,B.downfile_original
+		,getdate()
+		);
+
+	</update>
+	<update id="mergePopup" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_POPUP A
+		using
+		(
+		select #{num} AS num
+		,#{subject} AS subject
+		,#{map_chk} AS map_chk
+		,#{map_target} AS map_target
+		,#{map_url} AS map_url
+		,#{order} AS [order]
+		,#{main_chk} AS main_chk
+		,#{sdate} AS sdate
+		,#{edate} AS edate
+		,#{pop_img} AS pop_img
+		,#{pop_img2} AS pop_img2
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.subject = B.subject
+		,A.map_chk = B.map_chk
+		,A.map_target = B.map_target
+		,A.map_url = B.map_url
+		,A.[order] = B.[order]
+		,A.main_chk = B.main_chk
+		,A.sdate = B.sdate
+		,A.edate = B.edate
+		,A.pop_img = B.pop_img
+		,A.pop_img2 = B.pop_img2
+		WHEN not MATCHED THEN
+		INSERT (
+		subject
+		,map_chk
+		,map_target
+		,map_url
+		,[order]
+		,main_chk
+		,sdate
+		,edate
+		,pop_img
+		,pop_img2
+		,wdate
+		)
+		values (
+		B.subject
+		,B.map_chk
+		,B.map_target
+		,B.map_url
+		,B.[order]
+		,B.main_chk
+		,B.sdate
+		,B.edate
+		,B.pop_img
+		,B.pop_img2
+		,getdate()
+		);
+
+	</update>
+	<update id="mergeMainSlide" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_MAIN_BANNER A
+		using
+		(
+		select #{num} AS num
+		,#{title} AS title
+		,#{links} AS links
+		,#{use_yn} AS use_yn
+		,#{banner_order} AS banner_order
+		,#{img1} AS img1
+		,#{img2} AS img2
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.title = B.title
+		,A.links = B.links
+		,A.use_yn = B.use_yn
+		,A.banner_order = B.banner_order
+		,A.img1 = B.img1
+		,A.img2 = B.img2
+		WHEN not MATCHED THEN
+		INSERT (
+		title
+		,links
+		,use_yn
+		,banner_order
+		,img1
+		,img2
+		,reg_date
+		)
+		values (
+		B.title
+		,B.links
+		,B.use_yn
+		,B.banner_order
+		,B.img1
+		,B.img2
+		,getdate()
+		);
+
+	</update>
+	<update id="mediaPhotoMerge" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_NEWS_PHOTO A
+		using
+		(
+		select #{num} AS num
+		,#{photofile} AS photofile
+		,#{tags_nm} AS tagname
+		,#{tags} AS tagcode
+		,#{info_num} AS info_num
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.photofile = B.photofile
+		,A.tagname = B.tagname
+		,A.tagcode = B.tagcode
+		WHEN not MATCHED THEN
+		INSERT (
+		photofile
+		,tagname
+		,tagcode
+		,info_num
+		,wdate
+		)
+		values (
+		B.photofile
+		,B.tagname
+		,B.tagcode
+		,B.info_num
+		,getdate()
+		);
+
+	</update>
+	<update id="mergeMainGoods" parameterType="map">
+		merge into
+		kcc2022_esoom.egis.TBL_MAIN_GOODS A
+		using
+		(
+		select #{num} AS num
+		,#{goods_nm} AS goods_nm
+		,#{goods_price} AS goods_price
+		,#{goods_link} AS goods_link
+		,#{category} AS category
+		,#{view_order} AS view_order
+		,#{show_yn} AS show_yn
+		,#{goods_img} AS goods_img
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.goods_nm = B.goods_nm
+		,A.goods_price = B.goods_price
+		,A.goods_link = B.goods_link
+		,A.category = B.category
+		,A.view_order = B.view_order
+		,A.show_yn = B.show_yn
+		,A.goods_img = B.goods_img
+		WHEN not MATCHED THEN
+		INSERT (
+		goods_nm
+		,goods_price
+		,goods_link
+		,category
+		,view_order
+		,show_yn
+		,goods_img
+		,wdate
+		)
+		values (
+		B.goods_nm
+		,B.goods_price
+		,B.goods_link
+		,B.category
+		,B.view_order
+		,B.show_yn
+		,B.goods_img
+		,getdate()
+		);
+
+	</update>
+	<update id="mergeTeamDailyRank" parameterType="map">
+		MERGE INTO kcc2022_esoom.kbl_data.team_daily_rank A
+USING
+(
+    SELECT #{season_code} AS season_code,
+           #{game_code} AS game_code,
+           #{game_date} AS game_date,
+           #{team_code} AS team_code,
+           #{play_min} AS play_min,
+           #{play_sec} AS play_sec,
+           #{fg} AS fg,
+           #{fg_a} AS fg_a,
+           #{ft} AS ft,
+           #{ft_a} AS ft_a,
+           #{threep} AS threep,
+           #{threep_a} AS threep_a,
+           #{dk} AS dk,
+           #{dk_a} AS dk_a,
+           #{pp} AS pp,
+           #{pp_a} AS pp_a,
+           #{o_r} AS o_r,
+           #{d_r} AS d_r,
+           #{t_r} AS t_r,
+           #{a_s} AS a_s,
+           #{s_t} AS s_t,
+           #{b_s} AS b_s,
+           #{gd} AS gd,
+           #{tto} AS tto,
+           #{t_o} AS t_o,
+           #{wft} AS wft,
+           #{woft} AS woft,
+           #{tf} AS tf,
+           #{bf} AS bf,
+           #{ef} AS ef,
+           #{foul_tot} AS foul_tot,
+           #{tfb} AS tfb,
+           #{fb} AS fb,
+           #{p_score} AS p_score,
+           #{score} AS score,
+           #{foulout} AS foulout,
+           #{rank} AS rank,
+           #{t_win} AS t_win,
+           #{t_loss} AS t_loss,
+           #{t_draw} AS t_draw,
+           #{game_count} AS game_count,
+           #{win} AS win,
+           #{loss} AS loss,
+           #{draw} AS draw,
+           #{inout} AS inout,
+           #{inout1} AS inout1,
+           #{win_rate} AS win_rate,
+           #{game_flag} AS game_flag,
+           #{conti_win} AS conti_win,
+           #{conti_loss} AS conti_loss,
+           #{conti_date} AS conti_date,
+           #{win_diff} AS win_diff,
+           #{inputtime} AS inputtime,
+           #{wl_three} AS wl_three
+) B
+ON A.season_code = B.season_code
+AND A.game_code = B.game_code
+AND A.game_date = B.game_date
+AND A.team_code = B.team_code
+WHEN MATCHED THEN
+UPDATE SET
+    A.play_min = B.play_min,
+    A.play_sec = B.play_sec,
+    A.fg = B.fg,
+    A.fg_a = B.fg_a,
+    A.ft = B.ft,
+    A.ft_a = B.ft_a,
+    A.threep = B.threep,
+    A.threep_a = B.threep_a,
+    A.dk = B.dk,
+    A.dk_a = B.dk_a,
+    A.pp = B.pp,
+    A.pp_a = B.pp_a,
+    A.o_r = B.o_r,
+    A.d_r = B.d_r,
+    A.t_r = B.t_r,
+    A.a_s = B.a_s,
+    A.s_t = B.s_t,
+    A.b_s = B.b_s,
+    A.gd = B.gd,
+    A.tto = B.tto,
+    A.t_o = B.t_o,
+    A.wft = B.wft,
+    A.woft = B.woft,
+    A.tf = B.tf,
+    A.bf = B.bf,
+    A.ef = B.ef,
+    A.foul_tot = B.foul_tot,
+    A.tfb = B.tfb,
+    A.fb = B.fb,
+    A.p_score = B.p_score,
+    A.score = B.score,
+    A.foulout = B.foulout,
+    A.rank = B.rank,
+    A.t_win = B.t_win,
+    A.t_loss = B.t_loss,
+    A.t_draw = B.t_draw,
+    A.game_count = B.game_count,
+    A.win = B.win,
+    A.loss = B.loss,
+    A.draw = B.draw,
+    A.inout = B.inout,
+    A.inout1 = B.inout1,
+    A.win_rate = B.win_rate,
+    A.game_flag = B.game_flag,
+    A.conti_win = B.conti_win,
+    A.conti_loss = B.conti_loss,
+    A.conti_date = B.conti_date,
+    A.win_diff = B.win_diff,
+    A.inputtime = B.inputtime,
+    A.wl_three = B.wl_three
+WHEN NOT MATCHED THEN
+INSERT (
+    season_code,
+    game_code,
+    game_date,
+    team_code,
+    play_min,
+    play_sec,
+    fg,
+    fg_a,
+    ft,
+    ft_a,
+    threep,
+    threep_a,
+    dk,
+    dk_a,
+    pp,
+    pp_a,
+    o_r,
+    d_r,
+    t_r,
+    a_s,
+    s_t,
+    b_s,
+    gd,
+    tto,
+    t_o,
+    wft,
+    woft,
+    tf,
+    bf,
+    ef,
+    foul_tot,
+    tfb,
+    fb,
+    p_score,
+    score,
+    foulout,
+    rank,
+    t_win,
+    t_loss,
+    t_draw,
+    game_count,
+    win,
+    loss,
+    draw,
+    inout,
+    inout1,
+    win_rate,
+    game_flag,
+    conti_win,
+    conti_loss,
+    conti_date,
+    win_diff,
+    inputtime,
+    wl_three
+)
+VALUES (
+    B.season_code,
+    B.game_code,
+    B.game_date,
+    B.team_code,
+    B.play_min,
+    B.play_sec,
+    B.fg,
+    B.fg_a,
+    B.ft,
+    B.ft_a,
+    B.threep,
+    B.threep_a,
+    B.dk,
+    B.dk_a,
+    B.pp,
+    B.pp_a,
+    B.o_r,
+    B.d_r,
+    B.t_r,
+    B.a_s,
+    B.s_t,
+    B.b_s,
+    B.gd,
+    B.tto,
+    B.t_o,
+    B.wft,
+    B.woft,
+    B.tf,
+    B.bf,
+    B.ef,
+    B.foul_tot,
+    B.tfb,
+    B.fb,
+    B.p_score,
+    B.score,
+    B.foulout,
+    B.rank,
+    B.t_win,
+    B.t_loss,
+    B.t_draw,
+    B.game_count,
+    B.win,
+    B.loss,
+    B.draw,
+    B.inout,
+    B.inout1,
+    B.win_rate,
+    B.game_flag,
+    B.conti_win,
+    B.conti_loss,
+    B.conti_date,
+    B.win_diff,
+    B.inputtime,
+    B.wl_three
+);
+	</update>
+	<insert id="insertSearchKeyword" parameterType="map">
+		insert into kcc2022_esoom.egis.TBL_SEARCH_KEYWORD values
+		<foreach collection="list" item="list" separator=",">
+			(
+			#{list.search_keyword}, #{list.view_order}
+			)
+		</foreach>
+	</insert>
+	<insert id="insertFreeTail" parameterType="map">
+		insert into kcc2022_esoom.egis.TBL_FREE_TAIL values
+		(
+		#{info_num},#{id},#{writer},#{content},#{ip},getdate()
+		)
+	</insert>
+	<insert id="insertTeamSchedule" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.team_schedule values
+		(
+		#{season_code},#{game_code},#{game_no},#{game_date},#{week_seq}
+		,#{week_day},#{game_start},#{home_away},#{home_team},#{away_team},#{stadium_code}
+		,#{tv_play},#{radio_play},#{game_hoi},#{game_chasu},#{game_round},#{remark},#{inputtime}
+		)
+	</insert>
+	<insert id="insertTeamDailyRank" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.team_daily_rank values
+		(
+		#{season_code},#{game_code},#{game_date},#{team_code}
+		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
+		,#{threep},#{threep_a},#{dk},#{dk_a},#{pp},#{pp_a},#{o_r}
+		,#{d_r},#{t_r},#{a_s},#{s_t},#{b_s},#{gd},#{tto}
+		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{bf},#{ef}
+		,#{foul_tot},#{tfb},#{fb},#{p_score},#{score},#{foulout},#{rank}
+		,#{t_win},#{t_loss},#{t_draw},#{game_count},#{win},#{loss},#{draw}
+		,#{inout},#{inout1},#{win_rate},#{game_flag},#{conti_win},#{conti_loss},#{conti_date}
+		,#{win_diff},#{inputtime},#{wl_three}
+		)
+	</insert>
+	<insert id="insertTeamQuarterList" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.team_quarter_list values
+		(
+		#{season_code},#{game_code},#{game_no},#{team_code},#{home_away},#{quarter_gu},#{away_team}
+		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
+		,#{threep},#{threep_a},#{dk},#{dk_a},#{pp},#{pp_a},#{o_r}
+		,#{d_r},#{t_r},#{a_s},#{s_t},#{b_s},#{gd},#{tto}
+		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{bf},#{ef}
+		,#{foul_tot},#{tfb},#{fb},#{p_score},#{score},#{foulout}
+		,#{inout},#{inout1},#{r_count},#{s_count},#{pd_score},#{md_score}
+		,#{opertime},#{inputtime},#{fo}
+		)
+	</insert>
+	<insert id="insertTeamDailyList" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.team_daily_list values
+		(
+		#{season_code},#{game_code},#{game_no},#{team_code},#{home_away},#{away_team}
+		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
+		,#{threep},#{threep_a},#{dk},#{dk_a},#{pp},#{pp_a},#{o_r}
+		,#{d_r},#{t_r},#{a_s},#{s_t},#{b_s},#{gd},#{tto}
+		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{bf},#{ef}
+		,#{foul_tot},#{tfb},#{fb},#{p_score},#{score},#{foulout}
+		,#{win},#{loss},#{draw}
+		,#{inout},#{inout1},#{r_count},#{s_count},#{pd_score},#{md_score}
+		,#{inputtime}
+		)
+	</insert>
+	<insert id="insertPlayerDailyList" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.player_daily_list values
+		(
+		#{season_code},#{game_code},#{game_no},#{team_code},#{home_away},#{back_num},#{player_no},#{pos},#{away_team}
+		,#{start_flag},#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
+		,#{threep},#{threep_a},#{dk},#{dk_a},#{pp},#{pp_a},#{o_r}
+		,#{d_r},#{a_s},#{s_t},#{b_s},#{gd}
+		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{ef}
+		,#{foul_tot},#{fb},#{p_score},#{score}
+		,#{inout},#{inout1}
+		,#{inputtime},#{fo}
+		)
+	</insert>
+	<insert id="insertTeamSum" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.team_sum values
+		(
+		#{season_code},#{game_code},#{team_code},#{quarter_gu},#{game_count}
+		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
+		,#{threep},#{threep_a},#{dk},#{dk_a},#{pp},#{pp_a},#{o_r}
+		,#{d_r},#{t_r},#{a_s},#{s_t},#{b_s},#{gd},#{tto}
+		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{bf},#{ef}
+		,#{foul_tot},#{tfb},#{fb},#{p_score},#{score},#{foulout}
+		,#{rank},#{win},#{loss},#{draw}
+		,#{inout},#{inout1}
+		,#{inputtime}
+		)
+	</insert>
+	<insert id="insertPlayerSum" parameterType="map">
+		insert into kcc2022_esoom.kbl_data.player_sum values
+		(
+		#{season_code},#{game_code},#{quarter_gu},#{player_no},#{game_count},#{start_count}
+		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
+		,#{threep},#{threep_a},#{dk},#{dk_a},#{pp},#{pp_a},#{o_r}
+		,#{d_r},#{a_s},#{s_t},#{b_s},#{gd}
+		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{ef}
+		,#{foul_tot},#{fb},#{p_score},#{score},#{foulout}
+		,#{inout},#{inout1}
+		,#{inputtime}
+		)
+	</insert>
+	<insert id="insertEventTail" parameterType="map">
+		insert into kcc2022_esoom.egis.TBL_NEWS_TAIL values
+		(
+		#{info_num},#{id},#{writer},#{content},#{ip},getdate(),#{part}
+		)
+	</insert>
+	<delete id="deleteWallpaper" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_WALLPAPER
+		where num = #{num}
+	</delete>
+	<delete id="deleteSearchKeyword" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_SEARCH_KEYWORD
+	</delete>
+	<delete id="deleteTeamSchedule" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.team_schedule
+		where season_code = #{season_code}
+	</delete>
+	<delete id="deleteTeamDailyRank" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.team_daily_rank
+		where season_code =
+		#{season_code}
+	</delete>
+	<delete id="deleteTeamQuarterList" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.team_quarter_list
+		where season_code =
+		#{season_code}
+		and game_code = #{game_code}
+		and game_no = #{game_no}
+	</delete>
+	<delete id="deleteTeamSum" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.team_sum
+		where season_code = #{season_code}
+		and
+		game_code = #{game_code}
+	</delete>
+	<delete id="deletePlayerSum" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.player_sum
+		where season_code = #{season_code}
+		and game_code = #{game_code}
+	</delete>
+	<delete id="deleteTeamDailyList" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.team_daily_list
+		where season_code =
+		#{season_code}
+		and game_code = #{game_code}
+		and game_no = #{game_no}
+	</delete>
+	<delete id="deletePlayerDailyList" parameterType="map">
+		delete from
+		kcc2022_esoom.kbl_data.player_daily_list
+		where season_code =
+		#{season_code}
+		and game_code = #{game_code}
+		and game_no = #{game_no}
+	</delete>
+	<delete id="deleteTail" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_NEWS_TAIL
+		where num = #{num}
+	</delete>
+	<delete id="deleteFreeTail" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_FREE_TAIL
+		where num = #{num}
+	</delete>
+	<delete id="deleteFree" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_FREE
+		where num = #{num}
+	</delete>
+	<delete id="deleteMember" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_MEMBER
+		where num = #{num}
+	</delete>
+	<delete id="deletePlayer" parameterType="map">
+		delete from
+		kcc2022_esoom.egis.TBL_PLAYER
+		where num = #{num}
+	</delete>
+	<delete id="deleteNews" parameterType="map">
+		delete
+		kcc2022_esoom.egis.TBL_NEWS
+		where num = #{num}
+	</delete>
+	<delete id="deleteKccAd" parameterType="map">
+		delete
+		kcc2022_esoom.egis.tbl_kccad
+		where num = #{num}
+	</delete>
+	<delete id="deletePopup" parameterType="map">
+		delete
+		kcc2022_esoom.egis.TBL_POPUP
+		where num = #{num}
+	</delete>
+	<delete id="deleteMainSlide" parameterType="map">
+		delete
+		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		where num = #{num}
+	</delete>
+	<delete id="deleteMainGoods" parameterType="map">
+		delete
+		kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where num = #{num}
+	</delete>
+</mapper>

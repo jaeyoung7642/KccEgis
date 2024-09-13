@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MainGoodsMapper">
+<select id="mainGoodsBHome" resultType="map">
+		select *,FORMAT(goods_price, '#,##0') AS format_price
+		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where show_yn = 'Y'
+		and category = 'B'
+		order by view_order,num desc 
+	</select>
+<select id="mainGoodsCHome" resultType="map">
+		select *,FORMAT(goods_price, '#,##0') AS format_price
+		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		where show_yn = 'Y'
+		and category = 'C'
+		order by view_order,num desc 
+	</select>
+</mapper>

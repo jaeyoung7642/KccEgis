@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeamScheduleMapper">
+<select id="prevTeamScheduleHome" resultType="map">
+		select top 1 A.* from (	
+		select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+			SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
+			SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+			SUBSTRING(t1.game_date,7,2) AS game_date_dd,	
+			isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+			from kcc2022_esoom.kbl_data.team_schedule t1 
+				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where t1.season_code='43' 
+		and (t1.home_team= 60 or t1.away_team= 60)
+		<![CDATA[and t1.game_date < (SELECT CONVERT(date,GETDATE()))]]>
+		) A
+		order by A.game_date desc
+	</select>
+<select id="teamScheduleHome" resultType="map">
+		select top 2 A.* from (	
+		select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+			SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
+			SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+			SUBSTRING(t1.game_date,7,2) AS game_date_dd,
+			CONVERT(DATETIME, t1.game_date +' '+ SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2), 112) game_date_all,
+			isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+			from kcc2022_esoom.kbl_data.team_schedule t1 
+				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where t1.season_code='43' 
+		and (t1.home_team= 60 or t1.away_team= 60)
+		<![CDATA[and t1.game_date >= '20240404']]>
+		) A
+		order by A.game_date
+	</select>
+<select id="selectDateList" resultType="map">
+		select LEFT(game_date, 4) AS year,
+	    SUBSTRING(game_date, 5, 2) AS month,
+	    LEFT(game_date, 6) AS yearMonth
+	    from kcc2022_esoom.kbl_data.team_schedule
+	    where season_code =#{season_code}
+	    GROUP BY LEFT(game_date, 4),  SUBSTRING(game_date, 5, 2),LEFT(game_date, 6)
+	    ORDER BY year, month,yearMonth
+	</select>
+<select id="selectSeasonList" resultType="map">
+		select * from kcc2022_esoom.kbl_data.code_season
+		where season_name_2 ='1군시즌'
+		<![CDATA[and season_code > 1]]>
+        order by season_code desc
+	</select>
+<select id="scheduleCalendar" resultType="map">
+			select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+				SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
+				SUBSTRING(t1.game_date,0,5) AS game_date_yy,
+				SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+				SUBSTRING(t1.game_date,7,2) AS game_date_dd,
+				CONVERT(DATETIME, t1.game_date +' '+ SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2), 112) game_date_all,
+				isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+				isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+				SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+				t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+				from kcc2022_esoom.kbl_data.team_schedule t1 
+					inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+					inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+					inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+					left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+					left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+					left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+					left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+				where 1=1 
+		<if test="season_month != null">
+			and t1.game_date like CONCAT('%', #{season_month}, '%')
+		</if>
+			and (t1.home_team= 60 or t1.away_team= 60)
+	</select>
+<select id="scheduleList" resultType="map">
+		SELECT * 
+			FROM (	
+					select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+			SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
+			SUBSTRING(t1.game_date,0,5) AS game_date_yy,
+			SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+			SUBSTRING(t1.game_date,7,2) AS game_date_dd,
+			CONVERT(DATETIME, t1.game_date +' '+ SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2), 112) game_date_all,
+			isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+			from kcc2022_esoom.kbl_data.team_schedule t1 
+				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where 1=1 
+		<if test="season_code != null">
+			and t1.season_code = #{season_code}
+		</if>
+		<if test="game_code != null">
+			and t1.game_code = #{game_code}
+		</if>
+		<if test="season_month != null">
+			<if test='season_month != "all"'>
+			and t1.game_date like CONCAT('%', #{season_month}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "0"'>
+				and t1.game_round = #{round}
+			</if>
+		</if>
+		<if test="ha != null">
+			<if test='ha == "1"'>
+				and (t1.home_team= 60 or t1.away_team= 60)
+			</if>
+			<if test='ha == "2"'>
+				and t1.home_team= 60 
+			</if>
+			<if test='ha == "3"'>
+				and t1.away_team= 60
+			</if>
+		</if>
+					) A 
+			ORDER BY game_date
+			OFFSET (#{currentPage}-1)*#{limit} ROWS
+			FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getScheduleListCount" resultType="int">
+		select count(*) from (
+		select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+			SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
+			SUBSTRING(t1.game_date,0,5) AS game_date_yy,
+			SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+			SUBSTRING(t1.game_date,7,2) AS game_date_dd,
+			CONVERT(DATETIME, t1.game_date +' '+ SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2), 112) game_date_all,
+			isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+			from kcc2022_esoom.kbl_data.team_schedule t1 
+				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where 1=1 
+		<if test="season_code != null">
+			and t1.season_code = #{season_code}
+		</if>
+		<if test="game_code != null">
+			and t1.game_code = #{game_code}
+		</if>
+		<if test="season_month != null">
+			<if test='season_month != "all"'>
+			and t1.game_date like CONCAT('%', #{season_month}, '%')
+			</if>
+		</if>
+		<if test="round != null">
+			<if test='round != "0"'>
+				and t1.game_round = #{round}
+			</if>
+		</if>
+		<if test="ha != null">
+			<if test='ha == "1"'>
+				and (t1.home_team= 60 or t1.away_team= 60)
+			</if>
+			<if test='ha == "2"'>
+				and t1.home_team= 60 
+			</if>
+			<if test='ha == "3"'>
+				and t1.away_team= 60
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getWinLossCount" resultType="int">
+		select count(*) from kcc2022_esoom.kbl_data.team_daily_list
+		where 1=1
+		<if test='season_code != ""'>
+		and season_code = ${season_code}
+		</if>
+		and team_code = ${team_code} 
+		and away_team = ${away_code}
+		<if test='win_loss == "win"'>
+			and win = 1
+		</if>
+		<if test='win_loss == "loss"'>
+			and loss = 1
+		</if>
+	</select>
+	<select id="scheduleDetail" resultType="map">
+		select t1.season_code, t1.game_no, t1.game_code, t1.away_team, t1.home_team, t1.game_date, 
+		SUBSTRING(t1.game_date,0,5) AS game_date_yy,
+		SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+		SUBSTRING(t1.game_date,7,2) AS game_date_dd,
+		isnull(t3.play_min, 0) play_min, t2.stadium_code, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+		SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+		from kcc2022_esoom.kbl_data.team_schedule t1 
+			inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+			inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+			inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+			left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+			left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+			left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+			left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+		where 
+		t1.season_code= #{season_code}
+		and t1.game_code = #{game_code}
+		and t1.game_no = #{game_no} 
+	</select>
+	<select id="quarterList" resultType="map">
+		select * from kcc2022_esoom.kbl_data.team_quarter_list
+		where
+		season_code =   #{season_code}
+		and game_code = #{game_code}
+		and game_no   = #{game_no}
+	</select>
+	<select id="teamDailyMap" resultType="map">
+		select *, ROUND((convert(float,fg)/convert(float,fg_a) * 100), 1) AS fgp,
+		ROUND((convert(float,ft)/convert(float,ft_a) * 100), 1) AS ftp,
+		ROUND((convert(float,threep)/convert(float,threep_a) * 100), 1) AS threepp,
+		(o_r + d_r) r_tot 
+		from kcc2022_esoom.kbl_data.team_daily_list
+		where
+		season_code =   #{season_code}
+		and game_code = #{game_code}
+		and game_no   = #{game_no}
+		and team_code   = #{team_code}
+	</select>
+	<select id="roundAvgList" resultType="map">
+		select 
+   			ROUND((convert(float,fg)/nullif(convert(float,row_count), 0)), 1) AS fg
+       		  ,ROUND((convert(float,fg_a)/nullif(convert(float,row_count), 0)), 1) AS fg_a
+       		  ,fgp
+       		  ,ROUND((convert(float,ft)/nullif(convert(float,row_count), 0)), 1) AS ft
+       		  ,ROUND((convert(float,ft_a)/nullif(convert(float,row_count), 0)), 1) AS ft_a
+       		  ,ftp
+       		  ,ROUND((convert(float,threep)/nullif(convert(float,row_count), 0)), 1) AS threep
+       		  ,ROUND((convert(float,threep_a)/nullif(convert(float,row_count), 0)), 1) AS threep_a
+       		  ,threepp
+       		  ,ROUND((convert(float,pp)/nullif(convert(float,row_count), 0)), 1) AS pp
+       		  ,ROUND((convert(float,pp_a)/nullif(convert(float,row_count), 0)), 1) AS pp_a
+       		  ,ppp
+       		  ,ROUND((convert(float,o_r)/nullif(convert(float,row_count), 0)), 1) AS o_r
+       		  ,ROUND((convert(float,d_r)/nullif(convert(float,row_count), 0)), 1) AS d_r
+       		  ,ROUND((convert(float,o_r + d_r)/nullif(convert(float,row_count), 0)), 1) AS r_tot
+  			  ,ROUND((convert(float,b_s)/nullif(convert(float,row_count), 0)), 1) AS b_s
+       		  ,ROUND((convert(float,t_o)/nullif(convert(float,row_count), 0)), 1) AS t_o
+       		  ,ROUND((convert(float,foul_tot)/nullif(convert(float,row_count), 0) ), 1) AS foul_tot
+       		  ,pts
+       		  ,row_count
+		      ,game_round
+			  from
+		   (SELECT 
+		    SUM(a.fg) AS fg,
+		    SUM(a.fg_a) AS fg_a,
+		    ROUND((convert(float,SUM(a.fg))/nullif(convert(float,SUM(a.fg_a)), 0) * 100), 1) AS fgp,
+		    SUM(a.ft) AS ft,
+		    SUM(a.ft_a) AS ft_a,
+		    ROUND((convert(float,SUM(a.ft))/nullif(convert(float,SUM(a.ft_a)), 0) * 100), 1) AS ftp,
+		    SUM(a.threep) AS threep,
+		    SUM(a.threep_a) AS threep_a,
+		    ROUND((convert(float,SUM(a.threep))/nullif(convert(float,SUM(a.threep_a)), 0) * 100), 1) AS threepp,
+		    SUM(a.pp) AS pp,
+		    SUM(a.pp_a) AS pp_a,
+		    ROUND((convert(float,SUM(a.pp))/nullif(convert(float,SUM(a.pp_a)), 0) * 100), 1) AS ppp,
+		    SUM(a.o_r) AS o_r,
+		    SUM(a.d_r) AS d_r,
+		    (SUM(a.o_r) + SUM(a.d_r)) AS r_tot,
+		    SUM(a.t_o) AS t_o,
+		    SUM(a.b_s) AS b_s,
+		    SUM(a.foul_tot) AS foul_tot,
+		    ROUND((convert(float,SUM(a.score))/nullif(convert(float,(SELECT COUNT(*) 
+		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     JOIN kcc2022_esoom.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
+		     WHERE a_sub.team_code ='60'
+		       AND a_sub.season_code ='43'
+		       AND b_sub.season_code = '43'
+		       AND b_sub.game_code = '01'
+		       AND a_sub.game_code = '01'
+		       AND b_sub.game_round = b.game_round 
+		    )), 0)), 1) AS pts,
+		    SUM(a.score) score,
+		    (SELECT COUNT(*) 
+		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     JOIN kcc2022_esoom.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
+		     WHERE a_sub.team_code ='60'
+		       AND a_sub.season_code ='43'
+		       AND b_sub.season_code = '43'
+		       AND b_sub.game_code = '01'
+		       AND a_sub.game_code = '01'
+		       AND b_sub.game_round = b.game_round 
+		    ) AS row_count,
+		    b.game_round
+		FROM kcc2022_esoom.kbl_data.team_daily_list a
+		JOIN kcc2022_esoom.kbl_data.team_schedule b ON a.game_no = b.game_no
+		WHERE a.team_code ='60'
+		  AND a.season_code ='43'
+		  AND b.season_code = '43'
+		  AND b.game_code = '01'
+		  AND a.game_code = '01'
+		GROUP BY b.game_round) A
+		order by ${str} ${sort}
+	</select>
+	<select id="roundList" resultType="map">
+		SELECT 
+		    SUM(a.fg) AS fg,
+		    SUM(a.fg_a) AS fg_a,
+		    ROUND((convert(float,SUM(a.fg))/nullif(convert(float,SUM(a.fg_a)), 0) * 100), 1) AS fgp,
+		    SUM(a.ft) AS ft,
+		    SUM(a.ft_a) AS ft_a,
+		    ROUND((convert(float,SUM(a.ft))/nullif(convert(float,SUM(a.ft_a)), 0) * 100), 1) AS ftp,
+		    SUM(a.threep) AS threep,
+		    SUM(a.threep_a) AS threep_a,
+		    ROUND((convert(float,SUM(a.threep))/nullif(convert(float,SUM(a.threep_a)), 0) * 100), 1) AS threepp,
+		    SUM(a.pp) AS pp,
+		    SUM(a.pp_a) AS pp_a,
+		    ROUND((convert(float,SUM(a.pp))/nullif(convert(float,SUM(a.pp_a)), 0) * 100), 1) AS ppp,
+		    SUM(a.o_r) AS o_r,
+		    SUM(a.d_r) AS d_r,
+		    (SUM(a.o_r) + SUM(a.d_r)) AS r_tot,
+		    SUM(a.t_o) AS t_o,
+		    SUM(a.b_s) AS b_s,
+		    SUM(a.foul_tot) AS foul_tot,
+		    SUM(a.score) AS pts,
+		    (SELECT COUNT(*) 
+		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     JOIN kcc2022_esoom.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
+		     WHERE a_sub.team_code ='60'
+		       AND a_sub.season_code ='43'
+		       AND b_sub.season_code = '43'
+		       AND b_sub.game_code = '01'
+		       AND a_sub.game_code = '01'
+		       AND b_sub.game_round = b.game_round 
+		    ) AS row_count,
+		    b.game_round
+		FROM kcc2022_esoom.kbl_data.team_daily_list a
+		JOIN kcc2022_esoom.kbl_data.team_schedule b ON a.game_no = b.game_no
+		WHERE a.team_code ='60'
+		  AND a.season_code ='43'
+		  AND b.season_code = '43'
+		  AND b.game_code = '01'
+		  AND a.game_code = '01'
+		GROUP BY b.game_round
+		order by ${str} ${sort}
+	</select>
+	<select id="teamAndteamList" resultType="map">
+		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
+		from kcc2022_esoom.kbl_data.team_daily_list a
+		WHERE a.season_code ='43'
+		and a.team_code ='60'
+		and a.game_code ='01'
+		<if test='team_code != null'>
+		and a.away_team = #{team_code}
+		</if>
+		GROUP BY a.away_team
+	</select>
+	<select id="teamAndteamListPrev" resultType="map">
+		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
+		from kcc2022_esoom.kbl_data.team_daily_list a
+		WHERE a.season_code ='41'
+		and a.team_code ='60'
+		and a.game_code ='01'
+		<if test='team_code != null'>
+		and a.away_team = #{team_code}
+		</if>
+		GROUP BY a.away_team
+	</select>
+	<select id="teamAndteamListTotal" resultType="map">
+		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
+		from kcc2022_esoom.kbl_data.team_daily_list a
+		WHERE a.team_code ='60'
+		and a.game_code ='01'
+		<if test='team_code != null'>
+		and a.away_team = #{team_code}
+		</if>
+		GROUP BY a.away_team
+	</select>
+	<select id="teamAndteamWlThreeList" resultType="map">
+		select top 3 CASE win
+	        WHEN '0' THEN '패'
+	        WHEN '1' THEN '승' 
+	        END as win
+	        from kcc2022_esoom.kbl_data.team_daily_list 
+		where team_code = '60'
+		and away_team =#{team_code}
+		and season_code ='43'
+		order by inputtime desc
+	</select>
+	<select id="teamAndteamDataList" resultType="map">
+		select 
+   			ROUND((convert(float,fg)/nullif(convert(float,row_count), 0)), 1) AS fg
+       		  ,ROUND((convert(float,fg_a)/nullif(convert(float,row_count), 0)), 1) AS fg_a
+       		  ,fgp
+       		  ,ROUND((convert(float,ft)/nullif(convert(float,row_count), 0)), 1) AS ft
+       		  ,ROUND((convert(float,ft_a)/nullif(convert(float,row_count), 0)), 1) AS ft_a
+       		  ,ftp
+       		  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
+       		  ,ROUND((convert(float,threep)/nullif(convert(float,row_count), 0)), 1) AS threep
+       		  ,ROUND((convert(float,threep_a)/nullif(convert(float,row_count), 0)), 1) AS threep_a
+       		  ,threepp
+       		  ,ROUND((convert(float,pp)/nullif(convert(float,row_count), 0)), 1) AS pp
+       		  ,ROUND((convert(float,pp_a)/nullif(convert(float,row_count), 0)), 1) AS pp_a
+       		  ,ppp
+       		  ,ROUND((convert(float,o_r)/nullif(convert(float,row_count), 0)), 1) AS o_r
+       		  ,ROUND((convert(float,d_r)/nullif(convert(float,row_count), 0)), 1) AS d_r
+       		  ,ROUND((convert(float,o_r + d_r)/nullif(convert(float,row_count), 0)), 1) AS r_tot
+  			  ,ROUND((convert(float,b_s)/nullif(convert(float,row_count), 0)), 1) AS b_s
+  			  ,ROUND((convert(float,a_s)/nullif(convert(float,row_count), 0)), 1) AS a_s
+  			  ,ROUND((convert(float,s_t)/nullif(convert(float,row_count), 0)), 1) AS s_t
+       		  ,ROUND((convert(float,t_o)/nullif(convert(float,row_count), 0)), 1) AS t_o
+       		  ,ROUND((convert(float,foul_tot)/nullif(convert(float,row_count), 0) ), 1) AS foul_tot
+       		  ,pts
+       		  ,row_count
+			  from
+		   (SELECT 
+		    SUM(a.fg) AS fg,
+		    SUM(a.fg_a) AS fg_a,
+		    ROUND((convert(float,SUM(a.fg))/nullif(convert(float,SUM(a.fg_a)), 0) * 100), 1) AS fgp,
+		    SUM(a.ft) AS ft,
+		    SUM(a.ft_a) AS ft_a,
+		    ROUND((convert(float,SUM(a.ft))/nullif(convert(float,SUM(a.ft_a)), 0) * 100), 1) AS ftp,
+		    SUM(a.threep) AS threep,
+		    SUM(a.threep_a) AS threep_a,
+		    ROUND((convert(float,SUM(a.threep))/nullif(convert(float,SUM(a.threep_a)), 0) * 100), 1) AS threepp,
+		    SUM(a.pp) AS pp,
+		    SUM(a.pp_a) AS pp_a,
+		    ROUND((convert(float,SUM(a.pp))/nullif(convert(float,SUM(a.pp_a)), 0) * 100), 1) AS ppp,
+		    SUM(a.o_r) AS o_r,
+		    SUM(a.d_r) AS d_r,
+		    (SUM(a.o_r) + SUM(a.d_r)) AS r_tot,
+		    SUM(a.t_o) AS t_o,
+		    SUM(a.b_s) AS b_s,
+		    SUM(a.a_s) AS a_s,
+		    SUM(a.s_t) AS s_t,
+		    SUM(a.foul_tot) AS foul_tot,
+		    ROUND((convert(float,SUM(a.score))/nullif(convert(float,(SELECT COUNT(*) 
+		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     WHERE a_sub.team_code =#{team_code}
+		       AND a_sub.season_code ='43'
+		       AND a_sub.game_code = '01'
+		       and a_sub.away_team = #{away_team}
+		    )), 0)), 1) AS pts,
+		    SUM(a.score) score,
+		    (SELECT COUNT(*) 
+		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     WHERE a_sub.team_code =#{team_code}
+		       AND a_sub.season_code ='43'
+		       AND a_sub.game_code = '01'
+		       and a_sub.away_team = #{away_team}
+		    ) AS row_count
+		FROM kcc2022_esoom.kbl_data.team_daily_list a
+		WHERE a.team_code =#{team_code}
+		  AND a.season_code ='43'
+		  AND a.game_code = '01'
+		  and a.away_team = #{away_team}
+		GROUP BY a.away_team) A
+	</select>
+	<select id="teamAndteamRecordList" resultType="map">
+		select a.*,FORMAT(CONVERT(DATE, b.game_date, 112), 'yyyy.MM.dd') AS game_date
+		,(a.o_r + a.d_r) AS r_tot
+		,ROUND((convert(float,a.fg)/nullif(convert(float,a.fg_a), 0) * 100), 1) AS fgp
+		,ROUND((convert(float,a.ft)/nullif(convert(float,a.fg_a), 0) * 100), 1) AS ftp
+		,ROUND((convert(float,a.threep)/nullif(convert(float,a.threep_a), 0) * 100), 1) AS threepp
+		,ROUND((convert(float,a.pp)/nullif(convert(float,a.pp_a), 0) * 100), 1) AS ppp
+		,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
+		from kcc2022_esoom.kbl_data.team_daily_list a, kcc2022_esoom.kbl_data.team_schedule b
+		where a.season_code = b.season_code 
+		and a.game_code  = b.game_code 
+		and a.game_no  = b.game_no 
+		and a.game_code = '01'
+		and a.season_code = '43'
+		and a.team_code = #{team_code}
+		and a.away_team = #{away_team}
+	</select>
+</mapper>

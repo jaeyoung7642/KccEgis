@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- properties -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+		<list>
+			<value>classpath:jdbc.properties</value>
+		</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+	<util:properties id="aes" location="classpath:aes.properties" />
+	<!-- DB -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<!-- <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="${jdbc.driverClassName}" 
+		/> <property name="url" value="${jdbc.url}" /> <property name="username" 
+		value="${jdbc.username}"/> <property name="password" value="${jdbc.password}" 
+		/> </bean> <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+		<constructor-arg ref="dataSourceSpied" /> <property name="logFormatter"> 
+		<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> <property name="loggingType" 
+		value="MULTI_LINE" /> <property name="sqlPrefix" value="SQL : "/> </bean> 
+		</property> </bean> -->
+	<!-- log 확인용 -->
+	<!-- <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="org.mariadb.jdbc.Driver" 
+		/> <property name="url" value="jdbc:mariadb://localhost:3306/pro?allowMultiQueries=true" 
+		/> <property name="username" value="root"/> <property name="password" value="iea0630!" 
+		/> </bean> <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+		<constructor-arg ref="dataSourceSpied" /> <property name="logFormatter"> 
+		<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> <property name="loggingType" 
+		value="MULTI_LINE" /> <property name="sqlPrefix" value="SQL : "/> </bean> 
+		</property> </bean> -->
+
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:/mybatis-config.xml"></property>
+	</bean>
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
+	<!-- 비밀번호암호화 -->
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- 파일업로드 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="104857600" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+	<!-- 메일 서버 관련 정보 설정 -->
+	   	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+	     	<property name="host" value="smtp.gmail.com" />
+	     	<!-- google SMTP 메일 서버 포트 -->
+	     	<property name="port" value="587" /> 
+	     	
+	     	<!-- 자신의 메일, 비밀번호 설정 -->
+	 		<property name="username" value="kccegis.adm@gmail.com"/> 
+	 		<!-- Google의 경우 계정 비밀번호가 아니라 2단계 인증을 거친 후 얻게 되는 16자리 비밀번호로 설정해야 한다-->
+	 		<property name="password" value="ecspshydowqmguwy"/> 
+	 		
+	 		<!-- 메일 전달 프로토콜 세부 속성 설정 -->
+			<property name="javaMailProperties">
+				<props>
+					<prop key="mail.transport.protocol">smtp</prop>
+					<prop key="mail.smtp.auth">true</prop>
+					<prop key="mail.smtp.starttls.enable">true</prop>
+					<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+					<prop key="mail.debug">true</prop>
+				</props>
+			</property>
+		</bean>
+</beans>

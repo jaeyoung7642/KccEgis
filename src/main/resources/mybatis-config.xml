@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	
+ <mappers>
+ 	<mapper resource="mappers/admin/AdminMapper.xml"></mapper>
+ 	<mapper resource="mappers/MainSlideMapper.xml"></mapper>
+ 	<mapper resource="mappers/MainGoodsMapper.xml"></mapper>
+ 	<mapper resource="mappers/NewsMapper.xml"></mapper>
+ 	<mapper resource="mappers/TeamRankMapper.xml"></mapper>
+ 	<mapper resource="mappers/TeamScheduleMapper.xml"></mapper>
+ 	<mapper resource="mappers/PlayerMapper.xml"></mapper>
+ 	<mapper resource="mappers/MemberMapper.xml"></mapper>
+ 	<mapper resource="mappers/FanzoneMapper.xml"></mapper>
+ 	<mapper resource="mappers/ClubMapper.xml"></mapper>
+ 	<mapper resource="mappers/EtcMapper.xml"></mapper>
+  </mappers>
+</configuration>
