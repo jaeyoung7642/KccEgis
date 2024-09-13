@@ -53,7 +53,7 @@
 					<ul class="location p_hide">
 						<li class="home"><span class="blind">홈</span></li>
 						<li>GAME</li>
-						<li>경기일정/결과</li>
+						<li>티켓팅</li>
 					</ul>
 
 					<!-- title -->

@@ -622,7 +622,7 @@ public class ScheduleController {
 			Map<String,Object> tempMap = new HashMap<String, Object>();
 			tempMap.put("seasonCode", m.get("season_code"));
 			tempMap.put("seasonCodeNm", m.get("season_name_1")+"시즌");
-			if(season_code.equals(m.get("season_code"))) {
+			if(season_code.equals(m.get("season_code").toString())) {
 				mv.addObject("seasonCodeNm", m.get("season_name_1"));
 			}
 			m.putAll(tempMap);

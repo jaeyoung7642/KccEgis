@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=1270, initial-scale=0.3">
+	<meta name="viewport" content="width=1270, initial-scale=1">
 	<title>KCC EGIS 관리자</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/admin/assets/font/font.css" />
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/common.css">
@@ -52,8 +52,14 @@ function searchval(){
     var writerChecked = document.getElementById('writer').checked;
     var tailChecked = document.getElementById('tail').checked;
     var tailWriterChecked = document.getElementById('tailWriter').checked;
+    var keyWord = document.getElementById('keyWord').value;
     var form = $("#freeSearchForm");
-    if(keyWord !=""){
+    if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
+    	if(keyWord == ''){
+    		alert('검색어를 입력해주세요.');
+    	}
+    }
+    if(keyWord != ''){
 	    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
 	    	alert('검색항목을 한개 이상 체크해주세요.');
 	    }else{

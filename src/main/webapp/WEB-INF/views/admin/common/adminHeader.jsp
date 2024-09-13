@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=1270, initial-scale=0.3">
+	<meta name="viewport" content="width=1270, initial-scale=1">
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/admin/assets/font/font.css" />
 	
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/common.css">

@@ -1,3 +1,6 @@
+const isIphone = /iPhone/.test(navigator.userAgent);
+const isAndroid = /Android/.test(navigator.userAgent);
+const isAndroidTablet = isAndroid && !/Mobile/.test(navigator.userAgent);
 const $document = $(document);
 const $window = $(window);
 const $html = $('html');
@@ -69,6 +72,13 @@ const loaderClose = () => {
 }
 
 function commonInit() {
+	// 디바이스에 따른 메타태그 적용
+	const $viewportMeta = $('meta[name="viewport"]');
+
+	if (isIphone || isAndroid && !isAndroidTablet) {
+		$viewportMeta.attr('content', 'width=1270, initial-scale=0.3');
+	} 
+
 	// 브라우저 높이 계산
 	function setScreenSize() {
 		let barWh; 
@@ -111,9 +121,9 @@ function commonInit() {
 		$dateForm.datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
-	        changeYear: true,
+      changeYear: true,
 			yearRange: 'c-20:c+20',
-			showMonthAfterYear: true,
+			showMonthAfterYear:true,
 			monthNamesShort: ['1 월','2 월','3 월','4 월','5 월','6 월','7 월','8 월','9 월','10 월','11 월','12 월'],
 			dayNamesMin: ['일', '월','화','수','목','금','토'],
 		});

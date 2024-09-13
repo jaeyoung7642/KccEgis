@@ -53,7 +53,7 @@
 					<ul class="location p_hide">
 						<li class="home"><span class="blind">홈</span></li>
 						<li>PLAYER</li>
-						<li>코칭스탭</li>
+						<li>선수</li>
 					</ul>
 
 					<!-- title -->

@@ -34,9 +34,19 @@
 	    var writerChecked = document.getElementById('writer').checked;
 	    var tailChecked = document.getElementById('tail').checked;
 	    var tailWriterChecked = document.getElementById('tailWriter').checked;
+	    var keyWord = document.getElementById('keyWord').value;
 	    var form = $("#freeSearchForm");
-	    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
-	    	alert('검색항목을 한개 이상 체크해주세요.');
+	    if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
+	    	if(keyWord == ''){
+	    		alert('검색어를 입력해주세요.');
+	    	}
+	    }
+	    if(keyWord != ''){
+		    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
+		    	alert('검색항목을 한개 이상 체크해주세요.');
+		    }else{
+		    	form.submit();
+		    }
 	    }else{
 	    	form.submit();
 	    }
