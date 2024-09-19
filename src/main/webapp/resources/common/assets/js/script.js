@@ -26,7 +26,37 @@ function headerEvt() {
 function footerEvt() {
 	siteLink();
 }
+function disabledGame(){
+		const roundSelect = document.getElementById('round');
+	    const gameSelect = document.getElementById('game');
+
+	    // 라운드 선택 시 게임 선택 비활성화
+	    if (roundSelect.value) {
+	        gameSelect.disabled = true;
+			$("#game").val("all");
+	    } else {
+	        gameSelect.disabled = false;
+	    }
+	    customSelect();
+	}
+function disabledRound(){
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
+
+    // 라운드 선택 시 게임 선택 비활성화
+    if (gameSelect.value) {
+    	roundSelect.disabled = true;
+    	$("#round").val("all");
+    } else {
+    	roundSelect.disabled = false;
+    }
+    customSelect();
+}
 function searchReset() {
+		const roundSelect = document.getElementById('round');
+	    const gameSelect = document.getElementById('game');
+	    gameSelect.disabled = false;
+	    roundSelect.disabled = false;
 		$("#sdate").val("");
 		$("#edate").val("");
 		$("#keyWord").val("");

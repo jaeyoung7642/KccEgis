@@ -430,7 +430,7 @@
 								<div class="info">
 									<p class="name">이호현</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song01.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -447,11 +447,11 @@
 								<div class="info">
 									<p class="name">최준용</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song02.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
-										<a href="/resources/common/download/cheer_song/theme2324_song02_1.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -468,11 +468,11 @@
 								<div class="info">
 									<p class="name">허웅</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song03_1.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
-										<a href="/resources/common/download/cheer_song/theme2324_song03_2.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -489,7 +489,7 @@
 								<div class="info">
 									<p class="name">김동현</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song05.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -506,7 +506,7 @@
 								<div class="info">
 									<p class="name">송동훈</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song06.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -523,7 +523,7 @@
 								<div class="info">
 									<p class="name">정창영</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song07.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -540,7 +540,7 @@
 								<div class="info">
 									<p class="name">전태영</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song09.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -557,7 +557,7 @@
 								<div class="info">
 									<p class="name">이주영</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song10.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -574,7 +574,7 @@
 								<div class="info">
 									<p class="name">전준범</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song17.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -591,7 +591,7 @@
 								<div class="info">
 									<p class="name">이근휘</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song19.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -608,7 +608,7 @@
 								<div class="info">
 									<p class="name">여준형</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song21.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -625,7 +625,7 @@
 								<div class="info">
 									<p class="name">정배권</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song23.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -642,7 +642,7 @@
 								<div class="info">
 									<p class="name">에피스톨라</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song25.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -659,7 +659,7 @@
 								<div class="info">
 									<p class="name">이승현</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song33.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -676,7 +676,7 @@
 								<div class="info">
 									<p class="name">송교창</p>
 									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song55.wav" class="el_btn" download>
+										<a href="#" class="el_btn" onclick="loginForm()">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>

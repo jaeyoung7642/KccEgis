@@ -316,7 +316,7 @@
 													<c:if test="${teamScheduleList.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
 													</c:if>
-													<c:if test="${prevTeamSchedule.away_team == '60' }">
+													<c:if test="${teamScheduleList.away_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
 													</c:if>
 												</div>
@@ -337,7 +337,7 @@
 													</c:if>
 												</div>
 												<c:if test="${teamScheduleList.home_team == '60' }">
-												<p class="name">${prevTeamSchedule.away_team_name }</p>
+												<p class="name">${teamScheduleList.away_team_name }</p>
 												</c:if>
 												<c:if test="${teamScheduleList.away_team == '60' }">
 												<p class="name">${teamScheduleList.home_team_name }</p>

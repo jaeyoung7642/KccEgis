@@ -98,7 +98,6 @@
 						<form action="" class="forms">
 							<div class="frm_group">
 								<select class="frm_select max240 m155" aria-label="시즌 선택" name="season_code" onchange="changeSeason(this.value)">
-									<option value="45">2024-2025시즌</option>
 									<c:forEach items="${selectSeasonList}" var="selectSeasonList" varStatus="status">
 											<option value="${selectSeasonList.seasonCode}" <c:if test="${selectSeasonList.seasonCode eq season_code}">selected</c:if>>${selectSeasonList.seasonCodeNm}</option>
 										</c:forEach>

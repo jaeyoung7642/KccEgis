@@ -468,15 +468,16 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 					 ,ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg
 					 ,(CONVERT(FLOAT, a.b_s) / a.game_count) as avg2
 					</if>
-			         ,(a.o_r + a.d_r) as r_tot,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			         ,(a.o_r + a.d_r) as r_tot,b.kname AS pl_name,b.back_num AS pl_back
+			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.kbl_data.player b
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
-			          AND a.player_no = b.pl_no
 			          and a.game_code = #{game_code}
-			          and b.pl_check = 'Y'
-			          and b.pl_show = 'Y'
+			          and a.season_code = b.season_code 
+					and a.player_no = b.player_no 
+					and b.team_code = '60'
+					and b.pos in ('FD','C','GD')
 			    ) AS A
 	</select>
 	<select id="coachList" resultType="map">

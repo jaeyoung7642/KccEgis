@@ -236,19 +236,18 @@ public class ScheduleController {
 			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", currentMap.get("home_team"));
 			Map<String,Object> currentData = teamRankService.getTeamRank(paramMap2);
-			currentMap.put("home_team_wl_three", currentData.get("wl_three"));
+			if(currentData != null) {
+				currentMap.put("home_team_wl_three", currentData.get("wl_three"));
+			}
 			paramMap2.put("away_code", currentMap.get("away_team"));
 			
 			//현재시즌 전적
 			paramMap2.put("win_loss", "win");
-			System.out.println(paramMap2.toString());
 			int winCnt = teamScheduleService.getWinLossCount(paramMap2);
-			System.out.println("winCnt========"+winCnt);
 			currentMap.put("home_team_win", winCnt);
 			currentMap.put("away_team_loss", winCnt);
 			paramMap2.put("win_loss", "loss");
 			int lossCnt = teamScheduleService.getWinLossCount(paramMap2);
-			System.out.println("lossCnt========"+lossCnt);
 			currentMap.put("home_team_loss", lossCnt);
 			currentMap.put("away_team_win", lossCnt);
 			
@@ -278,7 +277,9 @@ public class ScheduleController {
 			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", currentMap.get("away_team"));
 			currentData = teamRankService.getTeamRank(paramMap2);
-			currentMap.put("away_team_wl_three", currentData.get("wl_three"));
+			if(currentData != null) {
+				currentMap.put("away_team_wl_three", currentData.get("wl_three"));
+			}
 			
 			Map<String,Object> nextMap = teamScheduleList.get(1);
 			mv.addObject("currentMap",currentMap);
@@ -289,7 +290,9 @@ public class ScheduleController {
 			//홈팀최근전적
 			paramMap2.put("team_code", currentMap.get("home_team"));
 			Map<String,Object> currentData = teamRankService.getTeamRank(paramMap2);
-			currentMap.put("home_team_wl_three", currentData.get("wl_three"));
+			if(currentData != null) {
+				currentMap.put("home_team_wl_three", currentData.get("wl_three"));
+			}
 			paramMap2.put("away_code", currentMap.get("away_team"));
 			
 			//현재시즌 전적
@@ -328,7 +331,9 @@ public class ScheduleController {
 			//어웨이팀최근전적
 			paramMap2.put("team_code", currentMap.get("away_team"));
 			currentData = teamRankService.getTeamRank(paramMap2);
-			currentMap.put("away_team_wl_three", currentData.get("wl_three"));
+			if(currentData != null) {
+				currentMap.put("away_team_wl_three", currentData.get("wl_three"));
+			}
 			mv.addObject("currentMap",currentMap);
 		}else {//예정 경기가 없을때
 			
@@ -368,9 +373,6 @@ public class ScheduleController {
 		}
 		cal.set(Integer.parseInt(selectYear), Integer.parseInt(selectMonth)-1, endDay);
 		int endDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-		System.out.println("startDay==============================="+startDay);
-		System.out.println("endDay==============================="+endDay);
-		System.out.println("endDayOfWeek==============================="+endDayOfWeek);
 		
 		mv.addObject("prevTeamSchedule",prevTeamSchedule);
 		mv.addObject("playerBirthList",playerBirthList);

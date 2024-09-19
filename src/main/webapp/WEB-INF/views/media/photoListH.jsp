@@ -128,7 +128,7 @@
 							</div>
 							<div class="row row2">
 								<div class="col grow">
-									<select class="frm_select mdm" aria-label="라운드 선택" name="round" id="round">
+									<select class="frm_select mdm" aria-label="라운드 선택" name="round" id="round" onchange="disabledGame()">
 										<option data-display="라운드 선택" hidden></option>
 										<option value="all" <c:if test="${round eq 'all'}">selected</c:if>>라운드 선택</option>
 										<option value="1" <c:if test="${round eq '1'}">selected</c:if>>1라운드</option>
@@ -138,7 +138,7 @@
 										<option value="5" <c:if test="${round eq '5'}">selected</c:if>>5라운드</option>
 										<option value="6" <c:if test="${round eq '6'}">selected</c:if>>6라운드</option>
 									</select>
-									<select class="frm_select mdm rt" aria-label="경기 선택" name="game" id="game">
+									<select class="frm_select mdm rt" aria-label="경기 선택" name="game" id="game" onchange="disabledRound()">
 										<option data-display="경기 선택" hidden></option>
 										<c:forEach items="${selectGame}" var="selectGame">
 											<option value="${selectGame.gameCd}" <c:if test="${game eq selectGame.gameCd}">selected</c:if>>${selectGame.gameNm}</option>
@@ -173,6 +173,7 @@
 					<!-- 검색 -->
 
 					<p class="el_desc_md2 mt10 pml17">라운드, 경기일자, 선수명 검색은 24-25시즌 데이터부터 지원합니다.</p>
+					<p class="el_desc_md2 mt10 pml17">라운드와 경기 선택 조건은 각각 하나의 설정만 가능합니다.</p>
 					
 					<!-- 게시판 리스트 -->
 					<article class="mt50">
