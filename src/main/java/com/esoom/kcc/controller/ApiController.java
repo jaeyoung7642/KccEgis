@@ -124,7 +124,7 @@ public class ApiController {
 	@RequestMapping(value = "/teamDailyRankApi", method = RequestMethod.GET)
 	public String teamDailyRankApi() throws IOException, ParseException ,Exception{
 		String result = "true";
-		String season_code = "43";
+		String season_code = "45";
 		int cnt = 0;
 		StringBuilder urlBuilder = new StringBuilder("http://kblapi.esoom.co.kr/api/rank.php"); /*URL*/
 		URL url = new URL(urlBuilder.toString());

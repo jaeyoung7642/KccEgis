@@ -5,7 +5,7 @@
 
 <mapper namespace="MemberMapper">
 <select id="duplicateMember" resultType="int">
-		select count(*) from kcc2022_esoom.egis.TBL_MEMBER 
+		select count(*) from KCC_EGIS.egis.TBL_MEMBER 
 		where 1=1 
 		<if test="member_id != null">
 			and id = #{member_id}
@@ -18,7 +18,7 @@
 		</if>
 </select>
 <select id="getMember" resultType="map">
-		select * from kcc2022_esoom.egis.TBL_MEMBER 
+		select * from KCC_EGIS.egis.TBL_MEMBER 
 		where 1=1
 		<if test="member_id != null"> 
 			and id = #{member_id}
@@ -29,8 +29,8 @@
 		and chk_state = 'S'
 </select>
 <select id="findId" resultType="map">
-		select *,kcc2022_esoom.egis.FN_MASK_ID(id) as id2
-		 from kcc2022_esoom.egis.TBL_MEMBER 
+		select *,KCC_EGIS.egis.FN_MASK_ID(id) as id2
+		 from KCC_EGIS.egis.TBL_MEMBER 
 		where 1=1
 		and name = #{name}
 		and jumin = #{jumin}
@@ -38,8 +38,8 @@
 		and chk_state = 'S'
 </select>
 <select id="findPwd" resultType="map">
-		select *,kcc2022_esoom.egis.FN_MASK_ID(id) as id2
-		 from kcc2022_esoom.egis.TBL_MEMBER 
+		select *,KCC_EGIS.egis.FN_MASK_ID(id) as id2
+		 from KCC_EGIS.egis.TBL_MEMBER 
 		where 1=1
 		and name = #{name}
 		and id = #{member_id}
@@ -48,7 +48,7 @@
 </select>
 	
 <insert id="insertMember" parameterType="map">
-		insert into kcc2022_esoom.egis.TBL_MEMBER (
+		insert into KCC_EGIS.egis.TBL_MEMBER (
 			 id, sha_pwd, name, jumin, zipcode, addr, daddr, email, tel
 			,chk_email, chk_sms ,chk_grade , chk_state ,reg_date ,login_date,logindate,out_date
 			,pwd_date,ip,sex,di,player_no
@@ -59,14 +59,14 @@
 		)
 </insert>	
 <update id="updatePlayerNo" parameterType="map">
-		update kcc2022_esoom.egis.TBL_MEMBER
+		update KCC_EGIS.egis.TBL_MEMBER
 		set player_no = #{player_no}
 		where
 		num = #{num}
 		
 	</update>
 <update id="updateMember" parameterType="map">
-		update kcc2022_esoom.egis.TBL_MEMBER
+		update KCC_EGIS.egis.TBL_MEMBER
 		set tel = #{tel}
 			,jumin = #{jumin}
 			,email = #{email}
@@ -81,7 +81,7 @@
 		
 	</update>
 <update id="deleteMember" parameterType="map">
-		update kcc2022_esoom.egis.TBL_MEMBER
+		update KCC_EGIS.egis.TBL_MEMBER
 		set chk_state = 'N'
 		   ,out_date = GETDATE()
 		   ,delete_reason = #{delete_reason}
@@ -89,7 +89,7 @@
 		num = #{num}
 	</update>
 <update id="loginUpdate" parameterType="map">
-		update kcc2022_esoom.egis.TBL_MEMBER
+		update KCC_EGIS.egis.TBL_MEMBER
 		set login_date = CONVERT(VARCHAR(10), GETDATE(), 120)
 		    ,logindate = getdate()
 		where
@@ -98,7 +98,7 @@
 <select id="duplicateDi" resultType="map">
 		<![CDATA[
 		SELECT * 
-		FROM kcc2022_esoom.egis.TBL_MEMBER 
+		FROM KCC_EGIS.egis.TBL_MEMBER 
 		WHERE 1=1
 		  AND di = #{di}
 		  AND out_date >= DATEADD(DAY, -30, GETDATE())

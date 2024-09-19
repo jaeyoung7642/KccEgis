@@ -171,7 +171,7 @@
 	String client_id = "605a8ef0-4a9a-459a-95af-212b06a8b275";
 	String productID = "2101979031";
     
-    String returnURL = "http://123.143.147.76:8081/joinForm4";
+    String returnURL = "https://kcctemp.esoom.co.kr/joinForm4";
     //URL의 경우 프로토콜(http/https)부터 사용바랍니다. 다를 경우 CORS 오류가 발생 할 수 있습니다.
     //예) http://localhost/checkplus_success.jsp
     

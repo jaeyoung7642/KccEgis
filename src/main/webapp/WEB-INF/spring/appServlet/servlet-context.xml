@@ -15,7 +15,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/ckeditor/**" location="/resources/ckeditor/" />
-	<resources mapping="/resources/common/images/upload/**" location="D:/apache-tomcat-9.0.89/upload/" />
+	<resources mapping="/resources/common/images/upload/**" location="C:/www/apache-tomcat-9.0.93/upload/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -24,10 +24,10 @@
 	<context:component-scan base-package="com.esoom.kcc" />
 	<interceptors>
 		<interceptor>
-			<mapping path="/esoomkccegis"/>
-			<mapping path="/esoomkccegis/*"/>
-			<exclude-mapping path="/esoomkccegis/adminLoginForm"/>
-			<exclude-mapping path="/esoomkccegis/adminLogin"/>
+			<mapping path="/kccadm"/>
+			<mapping path="/kccadm/*"/>
+			<exclude-mapping path="/kccadm/adminLoginForm"/>
+			<exclude-mapping path="/kccadm/adminLogin"/>
 			<exclude-mapping path="/resources/**"/>
 			<beans:bean class="com.esoom.kcc.intercepter.AdminLoginIntercepter" />
 		</interceptor>

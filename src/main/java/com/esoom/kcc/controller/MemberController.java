@@ -212,8 +212,10 @@ public class MemberController {
 		String client_id = "605a8ef0-4a9a-459a-95af-212b06a8b275";
 		String productID = "2101979031";
 	    
-	    //개발용
-		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult";
+	    //운영용
+		String returnURL = "https://kcctemp.esoom.co.kr/niceResult";
+		//개발용
+//		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult";
 
 //		String returnURL = "http://123.143.147.76:8081/niceResult";
 	    //URL의 경우 프로토콜(http/https)부터 사용바랍니다. 다를 경우 CORS 오류가 발생 할 수 있습니다.
@@ -932,8 +934,10 @@ public class MemberController {
 		String client_id = "605a8ef0-4a9a-459a-95af-212b06a8b275";
 		String productID = "2101979031";
 	    
-	    //개발용
-		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult2";
+	    //운영용
+		String returnURL = "https://kcctemp.esoom.co.kr/niceResult2";
+		//개발용
+//		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult2";
 
 //		String returnURL = "http://123.143.147.76:8081/niceResult2";
 	    //URL의 경우 프로토콜(http/https)부터 사용바랍니다. 다를 경우 CORS 오류가 발생 할 수 있습니다.

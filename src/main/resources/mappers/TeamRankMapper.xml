@@ -8,21 +8,22 @@
 		select top 1 season_code,game_code,rank,team_code,
 		game_count,t_win,t_loss,conti_win,conti_loss,format(win_rate, '##0.##') win_rate,win_diff 
 		from 
-		kcc2022_esoom.kbl_data.team_daily_rank
+		KCC_EGIS.kbl_data.team_daily_rank
 		where
 		team_code = '60'
-		and game_date = (select MAX(game_date) from kcc2022_esoom.kbl_data.team_daily_rank where game_code = '01')  
+		and game_date = (select MAX(game_date) from KCC_EGIS.kbl_data.team_daily_rank where game_code = '01')  
+		and season_code ='45'
 	</select>
 <select id="getTeamRank" resultType="map">
 		select season_code,game_code,rank,team_code,
 		game_count,t_win,t_loss,conti_win,conti_loss,format(win_rate, '##0.##') win_rate,win_diff 
 		,wl_three
 		from 
-		kcc2022_esoom.kbl_data.team_daily_rank
+		KCC_EGIS.kbl_data.team_daily_rank
 		where 1=1
 		and team_code = #{team_code}
 		and season_code = #{season_code}
-		and game_date = (select MAX(game_date) from kcc2022_esoom.kbl_data.team_daily_rank where season_code=#{season_code} and game_code='01')
+		and game_date = (select MAX(game_date) from KCC_EGIS.kbl_data.team_daily_rank where season_code=#{season_code} and game_code='01')
 	</select>
 <select id="teamRankList" resultType="map">
 		select A.*,B.team_name_1 
@@ -32,12 +33,12 @@
 		    t1.game_count, t1.t_win, t1.t_loss, t1.conti_win, t1.conti_loss,
 		    FORMAT(t1.win_rate, '##0.##') AS win_rate, t1.win_diff, t1.wl_three , max_conti_win , max_conti_loss
 		FROM 
-		    kcc2022_esoom.kbl_data.team_daily_rank t1
+		    KCC_EGIS.kbl_data.team_daily_rank t1
 		JOIN (
 		    SELECT 
 		        team_code, MAX(conti_win) AS max_conti_win , MAX(conti_loss) AS max_conti_loss
 		    FROM 
-		        kcc2022_esoom.kbl_data.team_daily_rank
+		        KCC_EGIS.kbl_data.team_daily_rank
 		    WHERE 
 		        season_code = #{season_code}
 		        and game_code = '01'
@@ -48,10 +49,10 @@
 		    t1.season_code = #{season_code}
 		    AND t1.game_date = (
 		        SELECT MAX(game_date) 
-		        FROM kcc2022_esoom.kbl_data.team_daily_rank 
+		        FROM KCC_EGIS.kbl_data.team_daily_rank 
 		        WHERE season_code = #{season_code}
 		        and game_code = '01'
-		    ) )A ,kcc2022_esoom.kbl_data.code_team B
+		    ) )A ,KCC_EGIS.kbl_data.code_team B
 		    where A.season_code = B.season_code
 				and A.team_code = B.team_code
 				and A.game_code = '01'
@@ -63,7 +64,7 @@
 			    SELECT *, ROW_NUMBER() OVER (ORDER BY A.category_data DESC) AS rn
 			    FROM (
 			        SELECT a.*,a.score as category_data,'득점' as cate
-			        FROM kcc2022_esoom.kbl_data.team_sum a
+			        FROM KCC_EGIS.kbl_data.team_sum a
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
@@ -77,7 +78,7 @@
 			    SELECT *, ROW_NUMBER() OVER (ORDER BY A.category_data DESC) AS rn
 			    FROM (
 			        SELECT a.*,(o_r+d_r) as category_data,'리바운드' as cate
-			        FROM kcc2022_esoom.kbl_data.team_sum a
+			        FROM KCC_EGIS.kbl_data.team_sum a
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
@@ -91,7 +92,7 @@
 			    SELECT *, ROW_NUMBER() OVER (ORDER BY A.category_data DESC) AS rn
 			    FROM (
 			        SELECT a.*, a_s as category_data,'어시스트' as cate
-			        FROM kcc2022_esoom.kbl_data.team_sum a
+			        FROM KCC_EGIS.kbl_data.team_sum a
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
@@ -105,7 +106,7 @@
 			    SELECT *, ROW_NUMBER() OVER (ORDER BY A.category_data DESC) AS rn
 			    FROM (
 			        SELECT a.*,a.s_t as category_data,'스틸' as cate
-			        FROM kcc2022_esoom.kbl_data.team_sum a
+			        FROM KCC_EGIS.kbl_data.team_sum a
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
@@ -119,7 +120,7 @@
 			    SELECT *, ROW_NUMBER() OVER (ORDER BY A.category_data DESC) AS rn
 			    FROM (
 			        SELECT a.*,a.b_s as category_data,'블록' as cate
-			        FROM kcc2022_esoom.kbl_data.team_sum a
+			        FROM KCC_EGIS.kbl_data.team_sum a
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
@@ -171,7 +172,7 @@
        		  ,fb 
        		  ,p_score 
        		  ,score AS pts
-       from kcc2022_esoom.kbl_data.team_sum 
+       from KCC_EGIS.kbl_data.team_sum 
        where quarter_gu ='XX'
        and game_code = '01'
        and team_code = '60'
@@ -218,7 +219,7 @@
        		  ,p_score 
        		  ,score 
        		  ,ROUND((convert(float,score)/convert(float,game_count)), 1) AS pts
-       from kcc2022_esoom.kbl_data.team_sum 
+       from KCC_EGIS.kbl_data.team_sum 
        where quarter_gu ='XX'
        and game_code = '01'
        and team_code = '60'

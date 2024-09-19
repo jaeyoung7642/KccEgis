@@ -43,7 +43,7 @@ import com.esoom.kcc.service.AdminService;
 import com.esoom.kcc.service.CommonService;
 
 @Controller
-@RequestMapping("/esoomkccegis")
+@RequestMapping("/kccadm")
 public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -53,7 +53,7 @@ public class AdminController {
 	private CommonService commonService;
 	@Autowired
     private AesUtil aesUtil;
-	@Autowired
+	@Autowired 
 	private ShaUtil shaUtil;
 	@Autowired
 	private IpUtil ipUtil;
@@ -111,12 +111,12 @@ public class AdminController {
 					System.out.println("7");
 					session.setMaxInactiveInterval(30 * 60);
 					session.setAttribute("user", userInfo);
-					mv.setViewName("redirect:/esoomkccegis/fFreeList");
+					mv.setViewName("redirect:/kccadm/fFreeList");
 				}else {
 					System.out.println("2");
 					session.setMaxInactiveInterval(30 * 60);
 					session.setAttribute("user", userInfo);
-					mv.setViewName("redirect:/esoomkccegis/gScheduleList");
+					mv.setViewName("redirect:/kccadm/gScheduleList");
 				}
 			} else {// 비밀번호가 틀렸을 경우
 				System.out.println("3");
@@ -133,7 +133,7 @@ public class AdminController {
 	@RequestMapping(value = "/adminLogout", method = RequestMethod.GET)
 	public ModelAndView logout(ModelAndView mv, HttpSession session) {
 		session.invalidate();
-		mv.setViewName("redirect:/esoomkccegis/adminLoginForm");
+		mv.setViewName("redirect:/kccadm/adminLoginForm");
 		return mv;
 	}
 	@RequestMapping(value = "/gScheduleList", method = RequestMethod.GET)
@@ -193,7 +193,7 @@ public class AdminController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("season_code", season_code != null ? season_code : "43");
+		paramMap.put("season_code", season_code != null ? season_code : "45");
 		paramMap.put("game_code", game_code != null ?game_code:"01");
 		paramMap.put("game_no", game_no);
 		//장소셋팅
@@ -348,7 +348,7 @@ public class AdminController {
 	@RequestMapping(value = "/gDailyRank", method = RequestMethod.GET)
 	public ModelAndView gDailyRank(ModelAndView mv,HttpServletRequest request) throws Exception{
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("season_code", "43");
+		paramMap.put("season_code", "45");
 		paramMap.put("game_code", "01");
 		List<Map<String, Object>> DailyRankList = service.DailyRankList(paramMap);
 		if(DailyRankList != null) {
@@ -646,11 +646,11 @@ public class AdminController {
 //			 redirectView.setExposeModelAttributes(false);
 //			 mv.setView(redirectView);
 			 if("a".equals(pl_pos_code)||"b".equals(pl_pos_code)) {//감독,코치
-					mv.setViewName("redirect:/esoomkccegis/pCoachProfileWrite?num="+num);
+					mv.setViewName("redirect:/kccadm/pCoachProfileWrite?num="+num);
 				}else if("c".equals(pl_pos_code)||"f".equals(pl_pos_code)||"g".equals(pl_pos_code)||"s".equals(pl_pos_code)) {//선수
-					mv.setViewName("redirect:/esoomkccegis/pPlayerProfileWrite?num="+num);
+					mv.setViewName("redirect:/kccadm/pPlayerProfileWrite?num="+num);
 				}else {//지원스탭
-					mv.setViewName("redirect:/esoomkccegis/pSupportstaffpfileWrite?num="+num);
+					mv.setViewName("redirect:/kccadm/pSupportstaffpfileWrite?num="+num);
 				}
 			 mv.addObject("msg", "중복된 코드입니다.코드를 변경해주세요.");
 			 return mv;
@@ -710,11 +710,11 @@ public class AdminController {
 			if (result > 0) {
 				
 				if("a".equals(pl_pos_code)||"b".equals(pl_pos_code)) {//감독,코치
-					mv.setViewName("redirect:/esoomkccegis/pCoachProfileList");
+					mv.setViewName("redirect:/kccadm/pCoachProfileList");
 				}else if("c".equals(pl_pos_code)||"f".equals(pl_pos_code)||"g".equals(pl_pos_code)||"s".equals(pl_pos_code)) {//선수
-					mv.setViewName("redirect:/esoomkccegis/pPlayerProfileList");
+					mv.setViewName("redirect:/kccadm/pPlayerProfileList");
 				}else {//지원스탭
-					mv.setViewName("redirect:/esoomkccegis/pSupportstaffProfileList");
+					mv.setViewName("redirect:/kccadm/pSupportstaffProfileList");
 				}
 			} else {
 				mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
@@ -953,13 +953,13 @@ public class AdminController {
 		 int result = service.mediaMerge(paramMap);
 			if (result > 0) {
 				if("news".equals(part)) {//뉴스
-					mv.setViewName("redirect:/esoomkccegis/mNewsList");
+					mv.setViewName("redirect:/kccadm/mNewsList");
 				}else if("movie".equals(part)) {//영상
-					mv.setViewName("redirect:/esoomkccegis/mMovieList");
+					mv.setViewName("redirect:/kccadm/mMovieList");
 				}else if("notice".equals(part)) {//공지사항
-					mv.setViewName("redirect:/esoomkccegis/fNoticeList");
+					mv.setViewName("redirect:/kccadm/fNoticeList");
 				}else if("event".equals(part)) {//이벤트
-					mv.setViewName("redirect:/esoomkccegis/fEventList");
+					mv.setViewName("redirect:/kccadm/fEventList");
 				}
 			} else {
 				mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
@@ -1088,10 +1088,10 @@ public class AdminController {
 					mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 					mv.setViewName("admin/fanzone/mPhotoList");
 				}else {
-					mv.setViewName("redirect:/esoomkccegis/mPhotoList");
+					mv.setViewName("redirect:/kccadm/mPhotoList");
 				}
 			}else {
-				mv.setViewName("redirect:/esoomkccegis/mPhotoList");
+				mv.setViewName("redirect:/kccadm/mPhotoList");
 			}
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
@@ -2109,7 +2109,7 @@ public class AdminController {
 		 paramMap.put("list", searchKeywordList);
 		 int result = service.insertSearchKeyword(paramMap);
 		 if (result > 0) {
-				mv.setViewName("redirect:/esoomkccegis/mSearchWrite");
+				mv.setViewName("redirect:/kccadm/mSearchWrite");
 			} else {
 				mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 				mv.setViewName("admin/media/mSearchWrite");
@@ -2164,7 +2164,7 @@ public class AdminController {
 		}
 		int result = service.mergeKccAd(paramMap);
 		if (result > 0) {
-			mv.setViewName("redirect:/esoomkccegis/cKccAdList");
+			mv.setViewName("redirect:/kccadm/cKccAdList");
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/media/cKccAdList");
@@ -2219,7 +2219,7 @@ public class AdminController {
 		}
 		int result = service.mergeWallpaper(paramMap);
 		if (result > 0) {
-			mv.setViewName("redirect:/esoomkccegis/fWallpaperList");
+			mv.setViewName("redirect:/kccadm/fWallpaperList");
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/fanzone/fWallpaperList");
@@ -2246,7 +2246,7 @@ public class AdminController {
 		
 		int result = service.mergeFree(paramMap);
 		if (result > 0) {
-			mv.setViewName("redirect:/esoomkccegis/fFreeList");
+			mv.setViewName("redirect:/kccadm/fFreeList");
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/fanzone/fFreeList");
@@ -2311,7 +2311,7 @@ public class AdminController {
 		}
 		int result = service.mergePopup(paramMap);
 		if (result > 0) {
-			mv.setViewName("redirect:/esoomkccegis/ePopupList");
+			mv.setViewName("redirect:/kccadm/ePopupList");
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/etc/ePopupList");
@@ -2362,7 +2362,7 @@ public class AdminController {
 		}
 		int result = service.mergeMainSlide(paramMap);
 		if (result > 0) {
-			mv.setViewName("redirect:/esoomkccegis/eMainSlideList");
+			mv.setViewName("redirect:/kccadm/eMainSlideList");
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/etc/eMainSlideList");
@@ -2404,7 +2404,7 @@ public class AdminController {
 		}
 		int result = service.mergeMainGoods(paramMap);
 		if (result > 0) {
-			mv.setViewName("redirect:/esoomkccegis/eMainGoodsList");
+			mv.setViewName("redirect:/kccadm/eMainGoodsList");
 		} else {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/etc/eMainGoodsList");
@@ -2535,7 +2535,7 @@ public class AdminController {
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/etc/gScheduleList");
 		}
-		mv.setViewName("redirect:/esoomkccegis/gScheduleList");
+		mv.setViewName("redirect:/kccadm/gScheduleList");
 		return mv;
 	}
 	@RequestMapping(value = "/ePopupList", method = RequestMethod.GET)

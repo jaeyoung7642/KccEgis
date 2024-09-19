@@ -186,12 +186,22 @@
 							</div>
 							
 							<div class="record">
+								<c:if test="${empty teamRank}">
+								<p class="ranking">NO.<span class="num">0</span></p>
+								<ul class="record_list">
+									<li>0승 0패</li>
+									<li>승률 0.0</li>
+									<li>승차 0.0</li>
+								</ul>
+								</c:if>
+								<c:if test="${not empty teamRank}">
 								<p class="ranking">NO.<span class="num">${teamRank.rank }</span></p>
 								<ul class="record_list">
 									<li>${teamRank.t_win}승 ${teamRank.t_loss}패</li>
 									<li>승률 ${teamRank.win_rate }</li>
 									<li>승차 ${teamRank.win_diff }</li>
 								</ul>
+								</c:if>
 							</div>
 							<a href="teamRank" class="el_btn btn_more" aria-label="더보기"><span class="el_ico more w"></span></a>
 							

@@ -44,7 +44,7 @@ public class ScheduleController {
 	
 	@RequestMapping(value = "/scheduleList", method = RequestMethod.GET)
 	public ModelAndView schduleList(ModelAndView mv,
-			@RequestParam(value = "season_code", defaultValue = "43") String season_code,
+			@RequestParam(value = "season_code", defaultValue = "45") String season_code,
 			@RequestParam(value = "season_month", defaultValue = "all") String season_month,
 			@RequestParam(value = "game_code", defaultValue = "01") String game_code,
 			@RequestParam(value = "round", defaultValue = "0") String round,
@@ -82,7 +82,7 @@ public class ScheduleController {
 			Map<String,Object> currentMap = teamScheduleList.get(0);
 			System.out.println("currentMap========================="+currentMap.toString());
 			//홈팀최근전적
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", currentMap.get("home_team"));
 			Map<String,Object> currentData = teamRankService.getTeamRank(paramMap2);
 			if(currentData != null) {
@@ -123,7 +123,7 @@ public class ScheduleController {
 			currentMap.put("away_team_win_total", lossCnt);
 			
 			//어웨이팀최근전적
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", currentMap.get("away_team"));
 			currentData = teamRankService.getTeamRank(paramMap2);
 			if(currentData != null) {
@@ -145,7 +145,7 @@ public class ScheduleController {
 			paramMap2.put("away_code", currentMap.get("away_team"));
 
 			//현재시즌 전적
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("win_loss", "win");
 			int winCnt = teamScheduleService.getWinLossCount(paramMap2);
 			currentMap.put("home_team_win", winCnt);
@@ -233,7 +233,7 @@ public class ScheduleController {
 			Map<String,Object> currentMap = teamScheduleList.get(0);
 			System.out.println("currentMap========================="+currentMap.toString());
 			//홈팀최근전적
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", currentMap.get("home_team"));
 			Map<String,Object> currentData = teamRankService.getTeamRank(paramMap2);
 			currentMap.put("home_team_wl_three", currentData.get("wl_three"));
@@ -275,7 +275,7 @@ public class ScheduleController {
 			currentMap.put("away_team_win_total", lossCnt);
 			
 			//어웨이팀최근전적
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", currentMap.get("away_team"));
 			currentData = teamRankService.getTeamRank(paramMap2);
 			currentMap.put("away_team_wl_three", currentData.get("wl_three"));
@@ -293,7 +293,7 @@ public class ScheduleController {
 			paramMap2.put("away_code", currentMap.get("away_team"));
 			
 			//현재시즌 전적
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("win_loss", "win");
 			int winCnt = teamScheduleService.getWinLossCount(paramMap2);
 			currentMap.put("home_team_win", winCnt);
@@ -613,7 +613,7 @@ public class ScheduleController {
 	}
 	@RequestMapping(value = "/teamRank", method = RequestMethod.GET)
 	public ModelAndView teamRank(ModelAndView mv,
-			@RequestParam(value = "season_code", defaultValue = "43") String season_code)throws Exception {
+			@RequestParam(value = "season_code", defaultValue = "45") String season_code)throws Exception {
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		//셀렉트 init
@@ -640,7 +640,7 @@ public class ScheduleController {
 	}
 	@RequestMapping(value = "/playerRank", method = RequestMethod.GET)
 	public ModelAndView playerRank(ModelAndView mv,
-			@RequestParam(value = "season_code", defaultValue = "43") String season_code,
+			@RequestParam(value = "season_code", defaultValue = "45") String season_code,
 			@RequestParam(value = "game_code", defaultValue = "01") String game_code,
 			@RequestParam(value = "category", defaultValue = "point") String category)throws Exception {
 		
@@ -713,7 +713,7 @@ public class ScheduleController {
 			@RequestParam(value = "player_no", defaultValue ="290788") String player_no,
 			@RequestParam(value = "game_round", defaultValue ="1") String game_round,
 			@RequestParam(value = "game_code", defaultValue ="01") String game_code,
-			@RequestParam(value = "season_code", defaultValue ="43") String season_code,
+			@RequestParam(value = "season_code", defaultValue ="45") String season_code,
 			@RequestParam(value = "category", defaultValue ="avg") String category,
 			@RequestParam(value = "str", defaultValue ="pl_back") String str,
 			@RequestParam(value = "sort", defaultValue ="ASC") String sort)throws Exception {
@@ -791,7 +791,7 @@ public class ScheduleController {
 	@RequestMapping(value = "/selectSeasonSrot", method = RequestMethod.GET)
 	public ModelAndView selectSeasonSrot(ModelAndView mv,
 			@RequestParam(value = "game_code", defaultValue ="01") String game_code,
-			@RequestParam(value = "season_code", defaultValue ="43") String season_code,
+			@RequestParam(value = "season_code", defaultValue ="45") String season_code,
 			@RequestParam(value = "category", defaultValue ="avg") String category,
 			@RequestParam(value = "str", defaultValue ="pl_back") String str,
 			@RequestParam(value = "sort", defaultValue ="ASC") String sort)throws Exception {
@@ -983,10 +983,10 @@ public class ScheduleController {
 			Map<String, Object> result = new HashMap<String, Object>();
 			Map<String, Object> paramMap2 = new HashMap<String, Object>();
 			Map<String, Object> kccParamMap = new HashMap<String, Object>();
-			paramMap2.put("season_code", "43");
+			paramMap2.put("season_code", "45");
 			paramMap2.put("team_code", team_code);
 			paramMap2.put("away_team", "60");
-			kccParamMap.put("season_code", "43");
+			kccParamMap.put("season_code", "45");
 			kccParamMap.put("team_code", "60");
 			kccParamMap.put("away_team", team_code);
 			Map<String,Object> kccRank = teamRankService.getTeamRank(kccParamMap);
@@ -1200,10 +1200,10 @@ public class ScheduleController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		Map<String, Object> kccParamMap = new HashMap<String, Object>();
-		paramMap.put("season_code", "43");
+		paramMap.put("season_code", "45");
 		paramMap.put("team_code", team_code);
 		paramMap.put("away_team", "60");
-		kccParamMap.put("season_code", "43");
+		kccParamMap.put("season_code", "45");
 		kccParamMap.put("team_code", "60");
 		kccParamMap.put("away_team", team_code);
 		Map<String,Object> kccRank = teamRankService.getTeamRank(kccParamMap);

@@ -13,7 +13,7 @@
 			  ,banner_order
 			  ,CONVERT(char(10),reg_date,23) reg_date 
 			  ,links
-		from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		from KCC_EGIS.egis.TBL_MAIN_BANNER
 		where use_yn = 'Y'
 		order by banner_order,num desc 
 	</select>

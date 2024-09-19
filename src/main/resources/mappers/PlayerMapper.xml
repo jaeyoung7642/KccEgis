@@ -7,16 +7,16 @@
 <select id="playerRankHome" resultType="map">
 		SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -29,16 +29,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (B.o_r + B.d_r)>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -51,16 +51,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when E.a_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -80,14 +80,14 @@
        ELSE ''
    END AS pl_pos_code_ename,
    REPLACE(pl_birthday, '-', '.') AS format_birthday
-    from kcc2022_esoom.egis.TBL_PLAYER 
+    from KCC_EGIS.egis.TBL_PLAYER 
 		where
 		pl_no = #{pl_no}
 		and pl_check ='Y'
 		and pl_show = 'Y'
 	</select>
 <select id="getPlayer2" resultType="map">
-		select top 1 * from kcc2022_esoom.egis.TBL_PLAYER 
+		select top 1 * from KCC_EGIS.egis.TBL_PLAYER 
 		where
 		pl_no = #{pl_no}
 		and pl_check ='Y'
@@ -100,8 +100,8 @@
 		A.gd,A.t_o,A.wft,A.woft,A.idf,A.tf,A.ef,A.foul_tot,A.fb,A.p_score,A.score,A.inout,A.inout1,A.fo,
 		((A.score+A.s_t+A.b_s+A.d_r)+(A.o_r+A.a_s+A.gd)*1.5+(convert(float,A.play_min)/4))-((A.t_o*1.5)+(A.fg_a-A.fg)+(A.threep_a-A.threep)*0.9+(A.ft_a-A.ft)*0.8) as mvp
 		from 
-		kcc2022_esoom.kbl_data.player_daily_list A
-		,kcc2022_esoom.kbl_data.player B
+		KCC_EGIS.kbl_data.player_daily_list A
+		,KCC_EGIS.kbl_data.player B
 		where
 		A.season_code = B.season_code
 		and A.player_no = B.player_no
@@ -115,7 +115,7 @@
 	   order by A.mvp DESC,A.play_min,A.play_sec
 	</select>
 <select id="playerBirthList" resultType="map">
-		select *,SUBSTRING(pl_birthday,6,2) AS pl_birthday_mm from kcc2022_esoom.egis.TBL_PLAYER
+		select *,SUBSTRING(pl_birthday,6,2) AS pl_birthday_mm from KCC_EGIS.egis.TBL_PLAYER
 		where pl_check ='Y'
 		and pl_show = 'Y'
 		and pl_pos_code in ('c','f','g','s')
@@ -127,8 +127,8 @@
 		A.threep,A.threep_a,A.dk,A.dk_a,A.pp,A.pp_a,A.o_r,A.d_r,(A.o_r + A.d_r) r_tot,A.a_s,A.s_t,A.b_s,
 		A.gd,A.t_o,A.wft,A.woft,A.idf,A.tf,A.ef,A.foul_tot,A.fb,A.p_score,A.score,A.inout,A.inout1,A.fo
 		from 
-		kcc2022_esoom.kbl_data.player_daily_list A
-		,kcc2022_esoom.kbl_data.player B
+		KCC_EGIS.kbl_data.player_daily_list A
+		,KCC_EGIS.kbl_data.player B
 		where
 		A.season_code = B.season_code
 		and A.player_no = B.player_no
@@ -147,8 +147,8 @@
 	        A.start_flag, ISNULL(A.play_min, 0) play_min, ISNULL(A.play_sec, 0) play_sec, A.fg, A.fg_a, A.ft, A.ft_a,
 	        A.threep, A.threep_a, A.dk, A.dk_a, A.pp, A.pp_a, A.o_r, A.d_r, (A.o_r + A.d_r) r_tot, A.a_s, A.s_t, A.b_s,
 	        A.gd, A.t_o, A.wft, A.woft, A.idf, A.tf, A.ef, A.foul_tot, A.fb, A.p_score, A.score, A.inout, A.inout1, A.fo
-	    FROM kcc2022_esoom.kbl_data.player_daily_list A
-	    JOIN kcc2022_esoom.kbl_data.player B ON A.season_code = B.season_code AND A.player_no = B.player_no
+	    FROM KCC_EGIS.kbl_data.player_daily_list A
+	    JOIN KCC_EGIS.kbl_data.player B ON A.season_code = B.season_code AND A.player_no = B.player_no
 	    WHERE A.season_code = #{season_code}
 	      AND A.game_code = #{game_code}
 	      AND A.game_no = #{game_no}
@@ -164,8 +164,8 @@
 	        A.start_flag, ISNULL(A.play_min, 0) play_min, ISNULL(A.play_sec, 0) play_sec, A.fg, A.fg_a, A.ft, A.ft_a,
 	        A.threep, A.threep_a, A.dk, A.dk_a, A.pp, A.pp_a, A.o_r, A.d_r, (A.o_r + A.d_r) r_tot, A.a_s, A.s_t, A.b_s,
 	        A.gd, A.t_o, A.wft, A.woft, A.idf, A.tf, A.ef, A.foul_tot, A.fb, A.p_score, A.score, A.inout, A.inout1, A.fo
-	    FROM kcc2022_esoom.kbl_data.player_daily_list A
-	    JOIN kcc2022_esoom.kbl_data.player B ON A.season_code = B.season_code AND A.player_no = B.player_no
+	    FROM KCC_EGIS.kbl_data.player_daily_list A
+	    JOIN KCC_EGIS.kbl_data.player B ON A.season_code = B.season_code AND A.player_no = B.player_no
 	    WHERE A.season_code = #{season_code}
 	      AND A.game_code = #{game_code}
 	      AND A.game_no = #{game_no}
@@ -181,8 +181,8 @@
 	        A.start_flag, ISNULL(A.play_min, 0) play_min, ISNULL(A.play_sec, 0) play_sec, A.fg, A.fg_a, A.ft, A.ft_a,
 	        A.threep, A.threep_a, A.dk, A.dk_a, A.pp, A.pp_a, A.o_r, A.d_r, (A.o_r + A.d_r) r_tot, A.a_s, A.s_t, A.b_s,
 	        A.gd, A.t_o, A.wft, A.woft, A.idf, A.tf, A.ef, A.foul_tot, A.fb, A.p_score, A.score, A.inout, A.inout1, A.fo
-	    FROM kcc2022_esoom.kbl_data.player_daily_list A
-	    JOIN kcc2022_esoom.kbl_data.player B ON A.season_code = B.season_code AND A.player_no = B.player_no
+	    FROM KCC_EGIS.kbl_data.player_daily_list A
+	    JOIN KCC_EGIS.kbl_data.player B ON A.season_code = B.season_code AND A.player_no = B.player_no
 	    WHERE A.season_code = #{season_code}
 	      AND A.game_code = #{game_code}
 	      AND A.game_no = #{game_no}
@@ -195,16 +195,16 @@
 	<select id="playerRankListTop" resultType="map">
 	    SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -217,16 +217,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (B.o_r + B.d_r)>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -239,16 +239,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when E.a_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -261,16 +261,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when G.s_t>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when G.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 50)/54 then 0 else 1 end) asc
 				,G.avg DESC, G.play_min, G.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.s_t) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'STEAL' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -283,15 +283,15 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
-				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 30)/54 then 0 else 1 end) asc
 				,I.avg DESC, I.play_min, I.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'BLOCK' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -305,16 +305,16 @@
 	<select id="playerRankListCategory" resultType="map">
 	    SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -327,16 +327,16 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (B.o_r + B.d_r)>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -349,16 +349,16 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when E.a_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -371,16 +371,16 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when G.s_t>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when G.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 50)/54 then 0 else 1 end) asc
 				,G.avg DESC, G.play_min, G.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.s_t) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'STEAL' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -393,15 +393,15 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
-				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 30)/54 then 0 else 1 end) asc
 				,I.avg DESC, I.play_min, I.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'BLOCK' as cate
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '43'
+			          AND a.season_code = '45'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -416,33 +416,33 @@
 	SELECT *,ROW_NUMBER() OVER 
 (ORDER BY 
 <if test='category == "point"'>
-(case when A.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc,  -- 득점순위일 경우
 </if>
 <if test='category == "rebound"'>
-(case when A.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (A.o_r + A.d_r)>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when (A.o_r + A.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc,  -- 리바운드순위일 경우
 </if>
 <if test='category == "assist"'>
-(case when A.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.a_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc,  -- 어시스트순위일 경우
 </if>
 <if test='category == "steal"'>
-(case when A.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.s_t>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 50)/54 then 0 else 1 end) asc,  -- 스틸순위일 경우
 </if>
 <if test='category == "block"'>
-(case when A.game_count>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.b_s>=(select game_count from kcc2022_esoom.kbl_data.team_sum where season_code ='43' and team_code = '60'
+				when A.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 30)/54 then 0 else 1 end) asc,  -- 블록순위일 경우
 </if>
 A.avg2 DESC, A.play_min, A.play_sec) AS rn
@@ -469,7 +469,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 					 ,(CONVERT(FLOAT, a.b_s) / a.game_count) as avg2
 					</if>
 			         ,(a.o_r + a.d_r) as r_tot,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0
@@ -482,14 +482,14 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 	<select id="coachList" resultType="map">
 	select *,
 	REPLACE(pl_birthday, '-', '.') AS format_birthday
-	 from kcc2022_esoom.egis.TBL_PLAYER
+	 from KCC_EGIS.egis.TBL_PLAYER
 	where 1=1
 	and pl_show = 'Y'
 	and pl_pos_code in ('a','b','m','t','j','i')
 	order by pl_order
 	</select>
 	<select id="playerList" resultType="map">
-	select * from kcc2022_esoom.egis.TBL_PLAYER
+	select * from KCC_EGIS.egis.TBL_PLAYER
 	where pl_check ='Y'
 	and pl_show = 'Y'
 	and pl_pos_code in ('f','g','c')
@@ -503,7 +503,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 	       WHEN pl_pos_code = 'g' THEN 'GUARD'
 	       ELSE ''
 	   END AS pl_pos_code_ename 
-	from kcc2022_esoom.egis.TBL_PLAYER
+	from KCC_EGIS.egis.TBL_PLAYER
 	where pl_check ='Y'
 	and pl_show = 'Y'
 	and pl_pos_code in ('f','g','c')
@@ -518,7 +518,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
        WHEN pl_pos_code = 'g' THEN 'GUARD'
        ELSE ''
    END AS pl_pos_code_ename
-	 from kcc2022_esoom.egis.TBL_PLAYER
+	 from KCC_EGIS.egis.TBL_PLAYER
 	where pl_check ='Y'
 	and pl_show = 'Y'
 	<if test='pl_pos_code == "all"'>
@@ -542,7 +542,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			  ,ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1) AS ft
 			  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
 			  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
-	    from kcc2022_esoom.kbl_data.player_sum
+	    from KCC_EGIS.kbl_data.player_sum
 			where season_code =#{season_code}
 			and quarter_gu ='XX'
 			and game_code = '01'
@@ -555,7 +555,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			  ,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
 			  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
 			  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
-	    from kcc2022_esoom.kbl_data.player_sum
+	    from KCC_EGIS.kbl_data.player_sum
 			where season_code =#{season_code}
 			and quarter_gu ='XX'
 			and game_code = '01'
@@ -574,11 +574,11 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			  ,ROUND((convert(float,sum(s_t))/nullif(convert(float,sum(game_count)), 0)), 1) AS s_t
 			  ,ROUND((convert(float,sum(score))/nullif(convert(float,sum(game_count)), 0)), 1) AS score
 			  ,ROUND((convert(float,sum(fg)+sum(threep))/nullif(convert(float,sum(fg_a)+sum(threep_a)), 0) * 100), 1) AS ygp
-			from kcc2022_esoom.kbl_data.player_sum 
+			from KCC_EGIS.kbl_data.player_sum 
 			where player_no =#{player_no}
 			and game_code ='01'
 			and quarter_gu ='XX'
-			and season_code in ((select season_code from kcc2022_esoom.kbl_data.code_season
+			and season_code in ((select season_code from KCC_EGIS.kbl_data.code_season
 			where season_name_2 ='1군시즌'))
 	</select>
 	<select id="playerTabRecordTotalMap" resultType="map">
@@ -594,11 +594,11 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			  ,sum(s_t) AS s_t
 			  ,sum(score) AS score
 			  ,ROUND((convert(float,sum(fg)+sum(threep))/nullif(convert(float,sum(fg_a)+sum(threep_a)), 0) * 100), 1) AS ygp
-			from kcc2022_esoom.kbl_data.player_sum 
+			from KCC_EGIS.kbl_data.player_sum 
 			where player_no =#{player_no}
 			and game_code ='01'
 			and quarter_gu ='XX'
-			and season_code in ((select season_code from kcc2022_esoom.kbl_data.code_season
+			and season_code in ((select season_code from KCC_EGIS.kbl_data.code_season
 			where season_name_2 ='1군시즌'))
 	</select>
 	<select id="prevSeasonList" resultType="map">
@@ -614,7 +614,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			ROUND((CONVERT(float, ft) / ISNULL(NULLIF(CONVERT(float, game_count), 0), 1)), 1) AS ft,
 			ROUND((CONVERT(float, ft) / ISNULL(NULLIF(CONVERT(float, ft_a), 0), 1) * 100), 1) AS ftp,
 			ROUND((CONVERT(float, fg + threep) / ISNULL(NULLIF(CONVERT(float, fg_a + threep_a), 0), 1) * 100), 1) AS ygp
-	    from kcc2022_esoom.kbl_data.player_sum
+	    from KCC_EGIS.kbl_data.player_sum
 			where season_code ='41'
 			and quarter_gu ='XX'
 			and game_code = '01'
@@ -633,8 +633,8 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			  ,ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1) AS ft
 			  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
 			  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
-	    from kcc2022_esoom.kbl_data.player_sum
-			where season_code ='43'
+	    from KCC_EGIS.kbl_data.player_sum
+			where season_code ='45'
 			and quarter_gu ='XX'
 			and game_code = '01'
 			and player_no = #{player_no}
@@ -645,12 +645,12 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 	        WHEN '1' THEN 'W' 
 	        END as win
         ,c.score as team_score
-		,(select score from kcc2022_esoom.kbl_data.team_daily_list where season_code=a.season_code and game_code=a.game_code and game_no=a.game_no and <![CDATA[team_code<>'60']]>) as vsteam_score
+		,(select score from KCC_EGIS.kbl_data.team_daily_list where season_code=a.season_code and game_code=a.game_code and game_no=a.game_no and <![CDATA[team_code<>'60']]>) as vsteam_score
 		,b.game_round,FORMAT(CONVERT(DATE, b.game_date, 112), 'yyyy.MM.dd') AS game_date,a.*,(a.o_r+a.d_r) as r_tot 
-		from kcc2022_esoom.kbl_data.player_daily_list a,
-		kcc2022_esoom.kbl_data.team_schedule b,
-		kcc2022_esoom.kbl_data.team_daily_list c
-		WHERE a.season_code ='43'
+		from KCC_EGIS.kbl_data.player_daily_list a,
+		KCC_EGIS.kbl_data.team_schedule b,
+		KCC_EGIS.kbl_data.team_daily_list c
+		WHERE a.season_code ='45'
 		and a.team_code ='60'
 		and a.player_no =#{player_no}
 		and a.game_code = '01'
@@ -664,80 +664,83 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		and a.team_code = c.team_code
 	</select>
 	<select id="seasonSearchAvgList" resultType="map">
-				select b.pl_name,b.pl_back 
+				select b.kname AS pl_name
+				,b.back_num AS pl_back 
 		      ,a.player_no 
-			  ,season_code
-			  ,game_code 
-			  ,game_count 
-			  ,play_min 
-			  ,play_sec
-			  ,ROUND((convert(float,fg)/nullif(convert(float,game_count), 0)), 1) AS fg
-			  ,ROUND((convert(float,fg_a)/nullif(convert(float,game_count), 0)), 1) AS fg_a
+			  ,a.season_code
+			  ,a.game_code 
+			  ,a.game_count 
+			  ,a.play_min 
+			  ,a.play_sec
+			  ,ISNULL(ROUND((convert(float,fg)/nullif(convert(float,game_count), 0)), 1),0.0) AS fg
+			  ,ISNULL(ROUND((convert(float,fg_a)/nullif(convert(float,game_count), 0)), 1),0.0) AS fg_a
 			  ,ISNULL(ROUND((convert(float, fg) / NULLIF(convert(float, fg_a), 0) * 100),1),0.0) AS fgp
-			  ,ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1) AS ft
-			  ,ROUND((convert(float,ft_a)/nullif(convert(float,game_count), 0)), 1) AS ft_a
+			  ,ISNULL(ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1),0.0) AS ft
+			  ,ISNULL(ROUND((convert(float,ft_a)/nullif(convert(float,game_count), 0)), 1),0.0) AS ft_a
 			  ,ISNULL(ROUND((convert(float, ft) / NULLIF(convert(float, ft_a), 0) * 100),1),0.0) AS ftp
-			  ,ROUND((convert(float,threep)/nullif(convert(float,game_count), 0)), 1) AS threep
-			  ,ROUND((convert(float,threep_a)/nullif(convert(float,game_count), 0)), 1) AS threep_a
+			  ,ISNULL(ROUND((convert(float,threep)/nullif(convert(float,game_count), 0)), 1),0.0) AS threep
+			  ,ISNULL(ROUND((convert(float,threep_a)/nullif(convert(float,game_count), 0)), 1),0.0) AS threep_a
 			  ,ISNULL(ROUND((convert(float, threep) / NULLIF(convert(float, threep_a), 0) * 100),1),0.0) AS threepp
-			  ,ROUND((convert(float,pp)/nullif(convert(float,game_count), 0)), 1) AS pp
-			  ,ROUND((convert(float,pp_a)/nullif(convert(float,game_count), 0)), 1) AS pp_a
+			  ,ISNULL(ROUND((convert(float,pp)/nullif(convert(float,game_count), 0)), 1),0.0) AS pp
+			  ,ISNULL(ROUND((convert(float,pp_a)/nullif(convert(float,game_count), 0)), 1),0.0) AS pp_a
 			  ,ISNULL(ROUND((convert(float, pp) / NULLIF(convert(float, pp_a), 0) * 100),1),0.0) AS ppp
-			  ,ROUND((convert(float,o_r)/nullif(convert(float,game_count), 0)), 1) AS o_r
-			  ,ROUND((convert(float,d_r)/nullif(convert(float,game_count), 0)), 1) AS d_r
-			  ,ROUND((convert(float,o_r + d_r)/nullif(convert(float,game_count), 0)), 1) AS r_tot
-			  ,ROUND((convert(float,a_s)/nullif(convert(float,game_count), 0)), 1) AS a_s
-			  ,ROUND((convert(float,b_s)/nullif(convert(float,game_count), 0)), 1) AS b_s
-			  ,ROUND((convert(float,t_o)/nullif(convert(float,game_count), 0)), 1) AS t_o
-			  ,ROUND((convert(float,foul_tot)/nullif(convert(float,game_count), 0)), 1) AS foul_tot
-			  ,ROUND((convert(float,score)/nullif(convert(float,game_count), 0)), 1) AS pts
-			  from kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+			  ,ISNULL(ROUND((convert(float,o_r)/nullif(convert(float,game_count), 0)), 1),0.0) AS o_r
+			  ,ISNULL(ROUND((convert(float,d_r)/nullif(convert(float,game_count), 0)), 1),0.0) AS d_r
+			  ,ISNULL(ROUND((convert(float,o_r + d_r)/nullif(convert(float,game_count), 0)), 1),0.0) AS r_tot
+			  ,ISNULL(ROUND((convert(float,a_s)/nullif(convert(float,game_count), 0)), 1),0.0) AS a_s
+			  ,ISNULL(ROUND((convert(float,b_s)/nullif(convert(float,game_count), 0)), 1),0.0) AS b_s
+			  ,ISNULL(ROUND((convert(float,t_o)/nullif(convert(float,game_count), 0)), 1),0.0) AS t_o
+			  ,ISNULL(ROUND((convert(float,foul_tot)/nullif(convert(float,game_count), 0)), 1),0.0) AS foul_tot
+			  ,ISNULL(ROUND((convert(float,score)/nullif(convert(float,game_count), 0)), 1),0.0) AS pts
+			  from KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.kbl_data.player b
 		where quarter_gu ='XX'
-		and game_code =#{game_code}
-		and season_code =#{season_code}
-		and a.player_no = b.pl_no 
-		and b.pl_check ='Y'
-		and b.pl_show = 'Y'
-		and b.pl_pos_code in ('c','f','g')
+		and a.game_code =#{game_code}
+		and a.season_code =#{season_code}
+		and a.season_code = b.season_code 
+		and a.player_no = b.player_no 
+		and b.team_code = '60'
+		and b.pos in ('FD','C','GD')
 		<if test='str == "pl_back"'>
-		ORDER BY CAST(b.pl_back AS INT)
+		ORDER BY CAST(b.back_num AS INT)
 		</if>
 		<if test='str != "pl_back"'>
 			ORDER BY ${str} ${sort}
 		</if>
 	</select>
 	<select id="seasonSearchTotalList" resultType="map">
-		select b.pl_name,b.pl_back ,a.*
+		select b.kname AS pl_name
+		,b.back_num AS pl_back 
+		,a.*
 		,ISNULL(ROUND((convert(float, fg) / NULLIF(convert(float, fg_a), 0) * 100),1),0.0) AS fgp
 		,ISNULL(ROUND((convert(float, threep) / NULLIF(convert(float, threep_a), 0) * 100),1),0.0) AS threepp
 		,ISNULL(ROUND((convert(float, pp) / NULLIF(convert(float, pp_a), 0) * 100),1),0.0) AS ppp
 		,(o_r + d_r) r_tot
 		,ISNULL(ROUND((convert(float, ft) / NULLIF(convert(float, ft_a), 0) * 100),1),0.0) AS ftp
 		,score AS pts
-	from kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.egis.TBL_PLAYER b
+	from KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.kbl_data.player b
 	where quarter_gu ='XX'
-	and game_code =#{game_code}
-	and season_code =#{season_code}
-	and a.player_no = b.pl_no 
-	and b.pl_check ='Y'
-	and b.pl_show = 'Y'
-	and b.pl_pos_code in ('c','f','g')
+	and a.game_code =#{game_code}
+	and a.season_code =#{season_code}
+	and a.season_code = b.season_code 
+	and a.player_no = b.player_no 
+	and b.team_code = '60'
+	and b.pos in ('FD','C','GD')
 	<if test='str == "pl_back"'>
-		ORDER BY CAST(b.pl_back AS INT)
+		ORDER BY CAST(b.back_num AS INT)
 	</if>
 	<if test='str != "pl_back"'>
 		ORDER BY ${str} ${sort}
 	</if>
 	</select>
 	<select id="getPlayerSum" resultType="map">
-		select *,(o_r+d_r) r_tot from kcc2022_esoom.kbl_data.player_sum 
+		select *,(o_r+d_r) r_tot from KCC_EGIS.kbl_data.player_sum 
 		where quarter_gu ='XX'
 		and game_code ='01'
-		and season_code ='43'
+		and season_code ='45'
 		and player_no = #{player_no}
 	</select>
 	<select id="playerSeasonList" resultType="map">
-		select * from kcc2022_esoom.kbl_data.player_sum
+		select * from KCC_EGIS.kbl_data.player_sum
 		where quarter_gu ='XX'
 		and game_code ='01'
 		and player_no = #{player_no}
@@ -746,11 +749,11 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		SELECT 
 		    SUBSTRING(b.game_date, 1, 6) AS year_month 
 		FROM 
-		    kcc2022_esoom.kbl_data.player_daily_list a,
-		    kcc2022_esoom.kbl_data.team_schedule b
+		    KCC_EGIS.kbl_data.player_daily_list a,
+		    KCC_EGIS.kbl_data.team_schedule b
 		WHERE 1=1
 		    and a.player_no = #{player_no}
-		    AND a.season_code = '43'
+		    AND a.season_code = '45'
 		    AND a.game_code = '01'
 		    AND a.season_code = b.season_code 
 		    AND a.game_code = b.game_code 
@@ -762,11 +765,11 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 	</select>
 	<select id="playerYearMonthList" resultType="map">
 		select FORMAT(CONVERT(DATE, b.game_date, 112), 'yyyy.MM.dd') AS game_date,a.*,(a.o_r+a.d_r) AS r_tot
-		from kcc2022_esoom.kbl_data.player_daily_list a,
-		kcc2022_esoom.kbl_data.team_schedule b 
+		from KCC_EGIS.kbl_data.player_daily_list a,
+		KCC_EGIS.kbl_data.team_schedule b 
 		where 1=1
 		and a.player_no = #{player_no}
-		and a.season_code ='43'
+		and a.season_code ='45'
 		and a.game_code = '01'
 		and a.season_code = b.season_code 
 		and a.game_code  = b.game_code 
@@ -775,14 +778,14 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		order by b.game_date desc
 	</select>
 	<select id="getLikePlayerImg" resultType="map">
-		select * from kcc2022_esoom.egis.TBL_LIKE_PLAYER_PHOTO
+		select * from KCC_EGIS.egis.TBL_LIKE_PLAYER_PHOTO
 		where
 		id = #{id}
 		and player_no = #{player_no}
 		
 	</select>
 	<update id="updateLikePlayer" parameterType="map">
-		merge into kcc2022_esoom.egis.TBL_LIKE_PLAYER_PHOTO A
+		merge into KCC_EGIS.egis.TBL_LIKE_PLAYER_PHOTO A
 	using 
 		(
 			select #{id} AS id
@@ -807,7 +810,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 					);
 	</update>
 	<delete id="deleteLikePlayer" parameterType="map">
-		delete from kcc2022_esoom.egis.TBL_LIKE_PLAYER_PHOTO
+		delete from KCC_EGIS.egis.TBL_LIKE_PLAYER_PHOTO
 		where player_no = #{player_no}
 		and id = #{id}
 	</delete>

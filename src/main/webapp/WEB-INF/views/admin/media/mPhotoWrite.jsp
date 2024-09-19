@@ -411,7 +411,7 @@
 			}
 			$.ajax({
 			   	 type : "POST",            // HTTP method type(GET, POST) 형식이다.
-			        url : "/esoomkccegis/gameList",      // 컨트롤러에서 대기중인 URL 주소이다.
+			        url : "/kccadm/gameList",      // 컨트롤러에서 대기중인 URL 주소이다.
 			        data : {
 			       	 "game_round":game_round,
 			       	 "type":type

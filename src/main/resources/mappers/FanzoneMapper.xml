@@ -7,9 +7,9 @@
 	<select id="topNoticeList" resultType="map">
 		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_NEWS_TAIL b
+				     FROM KCC_EGIS.egis.TBL_NEWS_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-	    from kcc2022_esoom.egis.TBL_NEWS a
+	    from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1 
 		and part = 'notice'
 		and wtype = 'Y'
@@ -22,9 +22,9 @@
 					select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
 					ROW_NUMBER() OVER (ORDER BY a.num) AS rownum,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_NEWS_TAIL b
+				     FROM KCC_EGIS.egis.TBL_NEWS_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-					 from kcc2022_esoom.egis.TBL_NEWS a 
+					 from KCC_EGIS.egis.TBL_NEWS a 
 					where 1=1 
 					and a.part = 'notice'
 					and a.flag = 'N'
@@ -51,7 +51,7 @@
 					        ELSE 'E'
 					    END AS event_status
 					]]>					    
-					FROM kcc2022_esoom.egis.TBL_NEWS a
+					FROM KCC_EGIS.egis.TBL_NEWS a
 					where 1=1 
 					and a.part = 'event'
 					and a.flag = 'N'
@@ -73,12 +73,12 @@
 		SELECT * 
 			FROM (	
 					select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
-					kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
 					ROW_NUMBER() OVER (ORDER BY a.num) AS rownum,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-					 from kcc2022_esoom.egis.TBL_FREE a 
+					 from KCC_EGIS.egis.TBL_FREE a 
 					where 1=1 
 					and a.chk_del = 'N'
 					<if test="sdate != null and edate !=null">
@@ -100,10 +100,10 @@
 						        CONTAINS(a.writer, #{keyWord}) or
 						    </if>
 							<if test='tail =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
 							</if>
 							<if test='tailWriter =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
 							</if>
 							</trim>
 							)
@@ -116,19 +116,19 @@
 	</select>
 	<select id="mypageFreeList" resultType="map">
 		select top 8 a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
-		kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+		KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
 		ROW_NUMBER() OVER (ORDER BY a.num) AS rownum,
 		(SELECT COUNT(*)
-	     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+	     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 	     WHERE b.info_num = a.num) AS tail_count
-		 from kcc2022_esoom.egis.TBL_FREE a 
+		 from KCC_EGIS.egis.TBL_FREE a 
 		where 1=1 
 		and a.chk_del = 'N'
 		and a.id = #{member_id}
 	</select>
 	<select id="getFreeListCount" resultType="int">
 		select count(*) from (
-		select a.* from kcc2022_esoom.egis.TBL_FREE a 
+		select a.* from KCC_EGIS.egis.TBL_FREE a 
 					where 1=1 
 					and a.chk_del = 'N'
 					<if test="sdate != null and edate !=null">
@@ -150,10 +150,10 @@
 						        CONTAINS(a.writer, #{keyWord}) or
 						    </if>
 							<if test='tail =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
 							</if>
 							<if test='tailWriter =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
 							</if>
 							</trim>
 							)
@@ -163,7 +163,7 @@
 	</select>
 	<select id="getNoticeListCount" resultType="int">
 		select count(*) from (
-		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date from kcc2022_esoom.egis.TBL_NEWS a 
+		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date from KCC_EGIS.egis.TBL_NEWS a 
 		where 1=1 
 		and a.part = 'notice'
 		and a.flag = 'N'
@@ -176,7 +176,7 @@
 	</select>
 	<select id="getEventListCount" resultType="int">
 		select count(*) from (
-		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date from kcc2022_esoom.egis.TBL_NEWS a 
+		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date from KCC_EGIS.egis.TBL_NEWS a 
 		where 1=1 
 		and a.part = 'event'
 		and a.flag = 'N'
@@ -193,44 +193,44 @@
 	<select id="topFreeList" resultType="map">
 		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-		 from kcc2022_esoom.egis.TBL_FREE a
+		 from KCC_EGIS.egis.TBL_FREE a
 		where 1=1 
 		and a.flag = 'Y'
 		and a.chk_del = 'N'
 		order by a.num desc
 	</select>
 	<update id="visitedUpdate" parameterType="map">
-		update kcc2022_esoom.egis.TBL_FREE
+		update KCC_EGIS.egis.TBL_FREE
 		set visited = visited +1
 		where
 		num = #{num}
 	</update>
 	<select id="getFreeDetail" resultType="map">
 		select *,FORMAT(wdate, 'yyyy.MM.dd') AS reg_date,
-		kcc2022_esoom.egis.FN_MASK_ID(id) as id2,
-    	kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2
-		 from kcc2022_esoom.egis.TBL_FREE
+		KCC_EGIS.egis.FN_MASK_ID(id) as id2,
+    	KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
+		 from KCC_EGIS.egis.TBL_FREE
 		where num = #{num}
 	</select>
 	<select id="getFreeTailListCount" resultType="int">
 		select count(*) from (
 			select *,FORMAT(wdate , 'yyyy.MM.dd') AS formatted_date,
 		    FORMAT(wdate, 'HH:mm:ss') AS formatted_time
-		    from kcc2022_esoom.egis.TBL_FREE_TAIL
+		    from KCC_EGIS.egis.TBL_FREE_TAIL
 			where info_num = #{num}
 		) A 
 	</select>
 	<select id="getWallpaperListCount" resultType="int">
 		select count(*) from (
-			select * from kcc2022_esoom.egis.TBL_WALLPAPER
+			select * from KCC_EGIS.egis.TBL_WALLPAPER
 		) A 
 	</select>
 	<select id="wallpaperList" resultType="map">
 		SELECT * 
 			FROM (
-				select * from kcc2022_esoom.egis.TBL_WALLPAPER
+				select * from KCC_EGIS.egis.TBL_WALLPAPER
 				) A
 		ORDER BY year_month desc
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
@@ -241,9 +241,9 @@
 			FROM (
 				select *,FORMAT(wdate , 'yyyy.MM.dd') AS formatted_date,
 			    FORMAT(wdate, 'HH:mm') AS formatted_time,
-			    kcc2022_esoom.egis.FN_MASK_ID(id) as id2,
-			    kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2
-			    from kcc2022_esoom.egis.TBL_FREE_TAIL
+			    KCC_EGIS.egis.FN_MASK_ID(id) as id2,
+			    KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
+			    from KCC_EGIS.egis.TBL_FREE_TAIL
 				where info_num = #{num}
 				) A
 		ORDER BY num desc
@@ -252,12 +252,12 @@
 	</select>
 	<select id="nextFreeDetail" resultType="map">
 		select TOP 1 a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
-					kcc2022_esoom.egis.FN_MASK_ID(id) as id2,
-			    	kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					KCC_EGIS.egis.FN_MASK_ID(id) as id2,
+			    	KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-					 from kcc2022_esoom.egis.TBL_FREE a 
+					 from KCC_EGIS.egis.TBL_FREE a 
 					where 1=1 
 					and a.chk_del = 'N'
 					<![CDATA[and a.num > #{num}]]>
@@ -265,30 +265,30 @@
 	</select>
 	<select id="prevFreeDetail" resultType="map">
 		select TOP 1 a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
-					kcc2022_esoom.egis.FN_MASK_ID(id) as id2,
-			    	kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					KCC_EGIS.egis.FN_MASK_ID(id) as id2,
+			    	KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-					 from kcc2022_esoom.egis.TBL_FREE a 
+					 from KCC_EGIS.egis.TBL_FREE a 
 					where 1=1 
 					and a.chk_del = 'N'
 					<![CDATA[and a.num < #{num}]]>
 					ORDER BY a.num DESC
 	</select>
 	<insert id="contentWrite" parameterType="map">
-		insert into kcc2022_esoom.egis.TBL_FREE_TAIL (
+		insert into KCC_EGIS.egis.TBL_FREE_TAIL (
 			 info_num, id, writer, content, ip, wdate  
 		)values(
 			 #{num}, #{id}, #{name}, #{content}, #{ip}, getdate()
 		)
 </insert>
 <delete id="contentDelete" parameterType="map">
-		delete from kcc2022_esoom.egis.TBL_FREE_TAIL
+		delete from KCC_EGIS.egis.TBL_FREE_TAIL
 		where num = #{num}
 	</delete>
 	<update id="mergeFree" parameterType="map">
-		merge into kcc2022_esoom.egis.TBL_FREE A
+		merge into KCC_EGIS.egis.TBL_FREE A
 	using 
 		(
 			select #{num} AS num 
@@ -340,7 +340,7 @@
 					);
 	</update>
 	<update id="freeDelete" parameterType="map">
-		update kcc2022_esoom.egis.TBL_FREE
+		update KCC_EGIS.egis.TBL_FREE
 		set chk_del = 'Y'
 		where
 		num= #{num}

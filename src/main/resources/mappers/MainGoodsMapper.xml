@@ -6,14 +6,14 @@
 <mapper namespace="MainGoodsMapper">
 <select id="mainGoodsBHome" resultType="map">
 		select *,FORMAT(goods_price, '#,##0') AS format_price
-		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		from KCC_EGIS.egis.TBL_MAIN_GOODS
 		where show_yn = 'Y'
 		and category = 'B'
 		order by view_order,num desc 
 	</select>
 <select id="mainGoodsCHome" resultType="map">
 		select *,FORMAT(goods_price, '#,##0') AS format_price
-		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		from KCC_EGIS.egis.TBL_MAIN_GOODS
 		where show_yn = 'Y'
 		and category = 'C'
 		order by view_order,num desc 

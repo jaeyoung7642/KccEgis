@@ -20,7 +20,7 @@ public class AdminLoginIntercepter extends HandlerInterceptorAdapter {
 		if(session.getAttribute("user") != null) {
 			return true;
 		}else {
-			request.getRequestDispatcher("/esoomkccegis/adminLoginForm").forward(request, response);
+			request.getRequestDispatcher("/kccadm/adminLoginForm").forward(request, response);
 			return false;
 		}
 	}

@@ -100,7 +100,7 @@
 
 				<h3 class="heading">팝업</h3>
 
-				<form action="/esoomkccegis/mergePopup" enctype="multipart/form-data" method="post" id="popForm">
+				<form action="/kccadm/mergePopup" enctype="multipart/form-data" method="post" id="popForm">
 					<input type="hidden" name="num" id="num" value="${result.num }">
 					<div class="board_write">
 						<table class="tbl type1">

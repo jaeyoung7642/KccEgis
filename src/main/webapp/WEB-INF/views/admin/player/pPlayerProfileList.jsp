@@ -21,7 +21,7 @@
 function showYn(num,show){
 	$.ajax({
    	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
-        url : "/esoomkccegis/changeShow",      // 컨트롤러에서 대기중인 URL 주소이다.
+        url : "/kccadm/changeShow",      // 컨트롤러에서 대기중인 URL 주소이다.
         data : {
        	 "plNo":num,
        	 "show" : show

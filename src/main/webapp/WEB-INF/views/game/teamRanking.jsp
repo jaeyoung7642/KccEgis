@@ -98,6 +98,7 @@
 						<form action="" class="forms">
 							<div class="frm_group">
 								<select class="frm_select max240 m155" aria-label="시즌 선택" name="season_code" onchange="changeSeason(this.value)">
+									<option value="45">2024-2025시즌</option>
 									<c:forEach items="${selectSeasonList}" var="selectSeasonList" varStatus="status">
 											<option value="${selectSeasonList.seasonCode}" <c:if test="${selectSeasonList.seasonCode eq season_code}">selected</c:if>>${selectSeasonList.seasonCodeNm}</option>
 										</c:forEach>
@@ -121,6 +122,119 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${empty teamRankList}">
+										<tr class="point">
+										<td>1</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_60.png" alt="">
+												</div>
+												<span>부산 KCC</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_16.png" alt="">
+												</div>
+												<span>원주 DB</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_50.png" alt="">
+												</div>
+												<span>창원 LG</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_06.png" alt="">
+												</div>
+												<span>수원 KT</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_55.png" alt="">
+												</div>
+												<span>서울 SK</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_10.png" alt="">
+												</div>
+												<span>울산 현대모비스</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_64.png" alt="">
+												</div>
+												<span>대구 한국가스공사</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_66.png" alt="">
+												</div>
+												<span>고양 소노</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_70.png" alt="">
+												</div>
+												<span>안양 정관장</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>10 </td>
+										<td>
+											<div class="team_name">
+												<div class="el_logo sm p_hide">
+													<img src="/resources/common/images/game/team_logo/45/logo_35.png" alt="">
+												</div>
+												<span>서울 삼성</span>
+											</div>
+										</td>
+									</tr>
+									</c:if>
+									<c:if test="${not empty teamRankList}">
 									<c:forEach items="${teamRankList}" var="teamRankList" varStatus="status">
 									<tr <c:if test="${teamRankList.team_code == '60' }"> class="point" </c:if>>
 										<td>${teamRankList.rank}</td>
@@ -134,6 +248,7 @@
 										</td>
 									</tr>
 									</c:forEach>
+									</c:if>
 								</tbody>
 							</table>
 						</div>
@@ -164,6 +279,109 @@
 										</tr>
 									</thead>
 									<tbody>
+										<c:if test="${empty teamRankList}">
+										<tr class="point">
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>0</td>
+											<td>0</td>
+											<td>0.00</td>
+											<td>0.0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										</c:if>
+										<c:if test="${not empty teamRankList}">
 										<c:forEach items="${teamRankList}" var="teamRankList" varStatus="status">
 										<tr <c:if test="${teamRankList.team_code == '60' }"> class="point" </c:if>>
 											<td>${teamRankList.t_win}</td>
@@ -176,6 +394,7 @@
 											<td>${teamRankList.max_conti_loss}</td>
 										</tr>
 										</c:forEach>
+										</c:if>
 									</tbody>
 								</table>
 							</div>
@@ -201,9 +420,42 @@
 						</div>
 						<div class="col rank_area">
 							<ul class="bl_card_list col5">
-								<c:forEach items="${teamCategoryRankList}" var="teamCategoryRankList" varStatus="status">
+								<c:if test="${empty teamCategoryRankList}">
 									<li class="item">
 										<div class="box box1">
+											<p class="tit">득점</p>
+											<p class="score">0</p>
+										</div>
+									</li>
+									<li class="item">
+										<div class="box box2">
+											<p class="tit">리바운드</p>
+											<p class="score">0</p>
+										</div>
+									</li>
+									<li class="item">
+										<div class="box box3">
+											<p class="tit">어시스트</p>
+											<p class="score">0</p>
+										</div>
+									</li>
+									<li class="item">
+										<div class="box box4">
+											<p class="tit">스틸</p>
+											<p class="score">0</p>
+										</div>
+									</li>
+									<li class="item">
+										<div class="box box5">
+											<p class="tit">블록</p>
+											<p class="score">0</p>
+										</div>
+									</li>
+								</c:if>
+								<c:if test="${not empty teamCategoryRankList}">
+								<c:forEach items="${teamCategoryRankList}" var="teamCategoryRankList" varStatus="status">
+									<li class="item">
+										<div class="box box${status.index+1}">
 											<p class="tit">${teamCategoryRankList.cate }</p>
 											<p class="score">${teamCategoryRankList.category_data }</p>
 										</div>
@@ -218,6 +470,7 @@
 										</c:if>
 									</li>
 								</c:forEach>
+								</c:if>
 							</ul>
 						</div>
 					</article>

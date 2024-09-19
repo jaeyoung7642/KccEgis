@@ -5,14 +5,14 @@
 
 <mapper namespace="EtcMapper">
 <insert id="insertProposal" parameterType="map">
-		insert into kcc2022_esoom.egis.TBL_CONTACT (
+		insert into KCC_EGIS.egis.TBL_CONTACT (
 			 subject,content,id,writer,email,ip,wdate
 		)values(
 			 #{subject}, #{content}, #{id}, #{writer}, #{email}, #{ip}, getdate()
 		)
 </insert>
 <select id="mainPopup" resultType="map">
-		select * from kcc2022_esoom.egis.TBL_POPUP
+		select * from KCC_EGIS.egis.TBL_POPUP
 		where main_chk  = 'Y'
 		order by [order]
 	</select>

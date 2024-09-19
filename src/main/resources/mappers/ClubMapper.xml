@@ -5,19 +5,19 @@
 
 <mapper namespace="ClubMapper">
 <select id="kccadList" resultType="map">
-		select * from kcc2022_esoom.egis.tbl_kccad
+		select * from KCC_EGIS.egis.tbl_kccad
 		where adgroup = #{adgroup}
 	</select>
 <select id="selectSeasonList" resultType="map">
-		select * from kcc2022_esoom.kbl_data.code_season
+		select * from KCC_EGIS.kbl_data.code_season
 		where season_name_2 ='1군시즌'
 		<![CDATA[and  (#{syear} <= SUBSTRING(season_name_1,0,5) and SUBSTRING(season_name_1,0,5) <= #{eyear})]]>    
         order by season_code desc
 	</select>
 <select id="playerRecordList" resultType="map">
 		select b.kname ,b.back_num ,a.*,(a.o_r + a.d_r) r_tot
-		from kcc2022_esoom.kbl_data.player_sum a,
-		kcc2022_esoom.kbl_data.player b
+		from KCC_EGIS.kbl_data.player_sum a,
+		KCC_EGIS.kbl_data.player b
 		where quarter_gu ='XX'
 		and a.season_code = b.season_code 
 		and a.player_no  = b.player_no 

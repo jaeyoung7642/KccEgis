@@ -14,15 +14,15 @@
 			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
 			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
 			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-			from kcc2022_esoom.kbl_data.team_schedule t1 
-				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
-			where t1.season_code='43' 
+			from KCC_EGIS.kbl_data.team_schedule t1 
+				inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where t1.season_code='45' 
 		and (t1.home_team= 60 or t1.away_team= 60)
 		<![CDATA[and t1.game_date < (SELECT CONVERT(date,GETDATE()))]]>
 		) A
@@ -39,17 +39,17 @@
 			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
 			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
 			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-			from kcc2022_esoom.kbl_data.team_schedule t1 
-				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
-			where t1.season_code='43' 
+			from KCC_EGIS.kbl_data.team_schedule t1 
+				inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where t1.season_code='45' 
 		and (t1.home_team= 60 or t1.away_team= 60)
-		<![CDATA[and t1.game_date >= '20240404']]>
+		<![CDATA[and t1.game_date > (SELECT CONVERT(date,GETDATE()))]]>
 		) A
 		order by A.game_date
 	</select>
@@ -57,15 +57,15 @@
 		select LEFT(game_date, 4) AS year,
 	    SUBSTRING(game_date, 5, 2) AS month,
 	    LEFT(game_date, 6) AS yearMonth
-	    from kcc2022_esoom.kbl_data.team_schedule
+	    from KCC_EGIS.kbl_data.team_schedule
 	    where season_code =#{season_code}
 	    GROUP BY LEFT(game_date, 4),  SUBSTRING(game_date, 5, 2),LEFT(game_date, 6)
 	    ORDER BY year, month,yearMonth
 	</select>
 <select id="selectSeasonList" resultType="map">
-		select * from kcc2022_esoom.kbl_data.code_season
+		select * from KCC_EGIS.kbl_data.code_season
 		where season_name_2 ='1군시즌'
-		<![CDATA[and season_code > 1]]>
+		<![CDATA[and season_code > 5]]>
         order by season_code desc
 	</select>
 <select id="scheduleCalendar" resultType="map">
@@ -79,14 +79,14 @@
 				isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
 				SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
 				t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-				from kcc2022_esoom.kbl_data.team_schedule t1 
-					inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-					inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-					inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-					left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-					left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-					left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-					left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+				from KCC_EGIS.kbl_data.team_schedule t1 
+					inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+					inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+					inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+					left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+					left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+					left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+					left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
 				where 1=1 
 		<if test="season_month != null">
 			and t1.game_date like CONCAT('%', #{season_month}, '%')
@@ -106,14 +106,14 @@
 			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
 			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
 			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-			from kcc2022_esoom.kbl_data.team_schedule t1 
-				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			from KCC_EGIS.kbl_data.team_schedule t1 
+				inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
 			where 1=1 
 		<if test="season_code != null">
 			and t1.season_code = #{season_code}
@@ -159,14 +159,14 @@
 			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
 			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
 			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-			from kcc2022_esoom.kbl_data.team_schedule t1 
-				inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-				inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-				inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-				left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-				left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-				left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			from KCC_EGIS.kbl_data.team_schedule t1 
+				inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
 			where 1=1 
 		<if test="season_code != null">
 			and t1.season_code = #{season_code}
@@ -198,7 +198,7 @@
 		) A
 	</select>
 	<select id="getWinLossCount" resultType="int">
-		select count(*) from kcc2022_esoom.kbl_data.team_daily_list
+		select count(*) from KCC_EGIS.kbl_data.team_daily_list
 		where 1=1
 		<if test='season_code != ""'>
 		and season_code = ${season_code}
@@ -221,21 +221,21 @@
 		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
 		SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
 		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-		from kcc2022_esoom.kbl_data.team_schedule t1 
-			inner join kcc2022_esoom.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-			inner join kcc2022_esoom.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-			inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-			left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-			left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-			left outer join kcc2022_esoom.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-			left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+		from KCC_EGIS.kbl_data.team_schedule t1 
+			inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+			inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+			inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+			left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+			left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+			left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+			left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
 		where 
 		t1.season_code= #{season_code}
 		and t1.game_code = #{game_code}
 		and t1.game_no = #{game_no} 
 	</select>
 	<select id="quarterList" resultType="map">
-		select * from kcc2022_esoom.kbl_data.team_quarter_list
+		select * from KCC_EGIS.kbl_data.team_quarter_list
 		where
 		season_code =   #{season_code}
 		and game_code = #{game_code}
@@ -246,7 +246,7 @@
 		ROUND((convert(float,ft)/convert(float,ft_a) * 100), 1) AS ftp,
 		ROUND((convert(float,threep)/convert(float,threep_a) * 100), 1) AS threepp,
 		(o_r + d_r) r_tot 
-		from kcc2022_esoom.kbl_data.team_daily_list
+		from KCC_EGIS.kbl_data.team_daily_list
 		where
 		season_code =   #{season_code}
 		and game_code = #{game_code}
@@ -297,32 +297,32 @@
 		    SUM(a.b_s) AS b_s,
 		    SUM(a.foul_tot) AS foul_tot,
 		    ROUND((convert(float,SUM(a.score))/nullif(convert(float,(SELECT COUNT(*) 
-		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
-		     JOIN kcc2022_esoom.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
+		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
+		     JOIN KCC_EGIS.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
 		     WHERE a_sub.team_code ='60'
-		       AND a_sub.season_code ='43'
-		       AND b_sub.season_code = '43'
+		       AND a_sub.season_code ='45'
+		       AND b_sub.season_code = '45'
 		       AND b_sub.game_code = '01'
 		       AND a_sub.game_code = '01'
 		       AND b_sub.game_round = b.game_round 
 		    )), 0)), 1) AS pts,
 		    SUM(a.score) score,
 		    (SELECT COUNT(*) 
-		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
-		     JOIN kcc2022_esoom.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
+		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
+		     JOIN KCC_EGIS.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
 		     WHERE a_sub.team_code ='60'
-		       AND a_sub.season_code ='43'
-		       AND b_sub.season_code = '43'
+		       AND a_sub.season_code ='45'
+		       AND b_sub.season_code = '45'
 		       AND b_sub.game_code = '01'
 		       AND a_sub.game_code = '01'
 		       AND b_sub.game_round = b.game_round 
 		    ) AS row_count,
 		    b.game_round
-		FROM kcc2022_esoom.kbl_data.team_daily_list a
-		JOIN kcc2022_esoom.kbl_data.team_schedule b ON a.game_no = b.game_no
+		FROM KCC_EGIS.kbl_data.team_daily_list a
+		JOIN KCC_EGIS.kbl_data.team_schedule b ON a.game_no = b.game_no
 		WHERE a.team_code ='60'
-		  AND a.season_code ='43'
-		  AND b.season_code = '43'
+		  AND a.season_code ='45'
+		  AND b.season_code = '45'
 		  AND b.game_code = '01'
 		  AND a.game_code = '01'
 		GROUP BY b.game_round) A
@@ -350,21 +350,21 @@
 		    SUM(a.foul_tot) AS foul_tot,
 		    SUM(a.score) AS pts,
 		    (SELECT COUNT(*) 
-		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
-		     JOIN kcc2022_esoom.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
+		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
+		     JOIN KCC_EGIS.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
 		     WHERE a_sub.team_code ='60'
-		       AND a_sub.season_code ='43'
-		       AND b_sub.season_code = '43'
+		       AND a_sub.season_code ='45'
+		       AND b_sub.season_code = '45'
 		       AND b_sub.game_code = '01'
 		       AND a_sub.game_code = '01'
 		       AND b_sub.game_round = b.game_round 
 		    ) AS row_count,
 		    b.game_round
-		FROM kcc2022_esoom.kbl_data.team_daily_list a
-		JOIN kcc2022_esoom.kbl_data.team_schedule b ON a.game_no = b.game_no
+		FROM KCC_EGIS.kbl_data.team_daily_list a
+		JOIN KCC_EGIS.kbl_data.team_schedule b ON a.game_no = b.game_no
 		WHERE a.team_code ='60'
-		  AND a.season_code ='43'
-		  AND b.season_code = '43'
+		  AND a.season_code ='45'
+		  AND b.season_code = '45'
 		  AND b.game_code = '01'
 		  AND a.game_code = '01'
 		GROUP BY b.game_round
@@ -372,8 +372,8 @@
 	</select>
 	<select id="teamAndteamList" resultType="map">
 		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
-		from kcc2022_esoom.kbl_data.team_daily_list a
-		WHERE a.season_code ='43'
+		from KCC_EGIS.kbl_data.team_daily_list a
+		WHERE a.season_code ='45'
 		and a.team_code ='60'
 		and a.game_code ='01'
 		<if test='team_code != null'>
@@ -383,7 +383,7 @@
 	</select>
 	<select id="teamAndteamListPrev" resultType="map">
 		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
-		from kcc2022_esoom.kbl_data.team_daily_list a
+		from KCC_EGIS.kbl_data.team_daily_list a
 		WHERE a.season_code ='41'
 		and a.team_code ='60'
 		and a.game_code ='01'
@@ -394,7 +394,7 @@
 	</select>
 	<select id="teamAndteamListTotal" resultType="map">
 		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
-		from kcc2022_esoom.kbl_data.team_daily_list a
+		from KCC_EGIS.kbl_data.team_daily_list a
 		WHERE a.team_code ='60'
 		and a.game_code ='01'
 		<if test='team_code != null'>
@@ -407,10 +407,10 @@
 	        WHEN '0' THEN '패'
 	        WHEN '1' THEN '승' 
 	        END as win
-	        from kcc2022_esoom.kbl_data.team_daily_list 
+	        from KCC_EGIS.kbl_data.team_daily_list 
 		where team_code = '60'
 		and away_team =#{team_code}
-		and season_code ='43'
+		and season_code ='45'
 		order by inputtime desc
 	</select>
 	<select id="teamAndteamDataList" resultType="map">
@@ -461,23 +461,23 @@
 		    SUM(a.s_t) AS s_t,
 		    SUM(a.foul_tot) AS foul_tot,
 		    ROUND((convert(float,SUM(a.score))/nullif(convert(float,(SELECT COUNT(*) 
-		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     WHERE a_sub.team_code =#{team_code}
-		       AND a_sub.season_code ='43'
+		       AND a_sub.season_code ='45'
 		       AND a_sub.game_code = '01'
 		       and a_sub.away_team = #{away_team}
 		    )), 0)), 1) AS pts,
 		    SUM(a.score) score,
 		    (SELECT COUNT(*) 
-		     FROM kcc2022_esoom.kbl_data.team_daily_list a_sub
+		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     WHERE a_sub.team_code =#{team_code}
-		       AND a_sub.season_code ='43'
+		       AND a_sub.season_code ='45'
 		       AND a_sub.game_code = '01'
 		       and a_sub.away_team = #{away_team}
 		    ) AS row_count
-		FROM kcc2022_esoom.kbl_data.team_daily_list a
+		FROM KCC_EGIS.kbl_data.team_daily_list a
 		WHERE a.team_code =#{team_code}
-		  AND a.season_code ='43'
+		  AND a.season_code ='45'
 		  AND a.game_code = '01'
 		  and a.away_team = #{away_team}
 		GROUP BY a.away_team) A
@@ -490,12 +490,12 @@
 		,ROUND((convert(float,a.threep)/nullif(convert(float,a.threep_a), 0) * 100), 1) AS threepp
 		,ROUND((convert(float,a.pp)/nullif(convert(float,a.pp_a), 0) * 100), 1) AS ppp
 		,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
-		from kcc2022_esoom.kbl_data.team_daily_list a, kcc2022_esoom.kbl_data.team_schedule b
+		from KCC_EGIS.kbl_data.team_daily_list a, KCC_EGIS.kbl_data.team_schedule b
 		where a.season_code = b.season_code 
 		and a.game_code  = b.game_code 
 		and a.game_no  = b.game_no 
 		and a.game_code = '01'
-		and a.season_code = '43'
+		and a.season_code = '45'
 		and a.team_code = #{team_code}
 		and a.away_team = #{away_team}
 	</select>

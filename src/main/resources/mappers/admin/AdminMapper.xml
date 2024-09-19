@@ -6,7 +6,7 @@
 <mapper namespace="AdminMapper">
 	<select id="getAdmin" resultType="map">
 		SELECT * FROM
-		kcc2022_esoom.egis.TBL_ADMIN
+		KCC_EGIS.egis.TBL_ADMIN
 		WHERE id = #{id}
 	</select>
 	<select id="gScheduleList" resultType="map">
@@ -17,26 +17,26 @@
 		t1.game_start,
 		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS
 		away_team_name
-		from kcc2022_esoom.kbl_data.team_schedule t1
-		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		from KCC_EGIS.kbl_data.team_schedule t1
+		inner join KCC_EGIS.kbl_data.code_stadium t2 on
 		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		inner join KCC_EGIS.kbl_data.code_team t7 on
 		t1.home_team=t7.team_code and t1.season_code=t7.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code
 		and t1.season_code=t8.season_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t3 on
 		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
 		t1.game_no=t3.game_no and t1.game_code=t3.game_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t4 on
 		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
 		t1.game_no=t4.game_no and t1.game_code=t4.game_code
-		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		left outer join KCC_EGIS.kbl_data.game_info t5 on
 		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
 		t1.game_code=t5.game_code
-		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
-		where t1.season_code='43'
+		where t1.season_code='45'
 		<if test="season != null">
 			and t1.game_code = #{season}
 		</if>
@@ -70,12 +70,12 @@
 		order by t1.game_date DESC
 	</select>
 	<!-- <select id="gScheduleList" resultType="map"> select A.*, B.stadium_name_1, 
-		C.team_name_1 AS home_team_name, D.team_name_1 AS away_team_name from kcc2022_esoom.kbl_data.team_schedule 
-		A ,kcc2022_esoom.kbl_data.code_stadium B ,(select A.*,B.team_name_1 from 
-		kcc2022_esoom.kbl_data.team_schedule A,kcc2022_esoom.kbl_data.code_team B 
+		C.team_name_1 AS home_team_name, D.team_name_1 AS away_team_name from KCC_EGIS.kbl_data.team_schedule 
+		A ,KCC_EGIS.kbl_data.code_stadium B ,(select A.*,B.team_name_1 from 
+		KCC_EGIS.kbl_data.team_schedule A,KCC_EGIS.kbl_data.code_team B 
 		where 1=1 and A.season_code =43 and (A.home_team =60 or A.away_team =60) 
 		and A.home_team = B.team_code and A.season_code = B.season_code) AS C ,(select 
-		A.*,B.team_name_1 from kcc2022_esoom.kbl_data.team_schedule A,kcc2022_esoom.kbl_data.code_team 
+		A.*,B.team_name_1 from KCC_EGIS.kbl_data.team_schedule A,KCC_EGIS.kbl_data.code_team 
 		B where 1=1 and A.season_code =43 and (A.home_team =60 or A.away_team =60) 
 		and A.away_team = B.team_code and A.season_code = B.season_code) AS D where 
 		1=1 and A.season_code = 43 and (A.home_team =60 or A.away_team =60) and A.season_code 
@@ -91,26 +91,26 @@
 		t1.game_start,
 		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS
 		away_team_name
-		from kcc2022_esoom.kbl_data.team_schedule t1
-		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		from KCC_EGIS.kbl_data.team_schedule t1
+		inner join KCC_EGIS.kbl_data.code_stadium t2 on
 		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		inner join KCC_EGIS.kbl_data.code_team t7 on
 		t1.home_team=t7.team_code and t1.season_code=t7.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code
 		and t1.season_code=t8.season_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t3 on
 		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
 		t1.game_no=t3.game_no and t1.game_code=t3.game_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t4 on
 		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
 		t1.game_no=t4.game_no and t1.game_code=t4.game_code
-		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		left outer join KCC_EGIS.kbl_data.game_info t5 on
 		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
 		t1.game_code=t5.game_code
-		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
-		where t1.season_code='43'
+		where t1.season_code='45'
 		<if test="season != null">
 			and t1.game_code = #{season}
 		</if>
@@ -145,19 +145,19 @@
 	</select>
 	<select id="stadiumList" resultType="map">
 		select * from
-		kcc2022_esoom.kbl_data.code_stadium
+		KCC_EGIS.kbl_data.code_stadium
 		where
 		season_code = #{season_code}
 	</select>
 	<select id="teamList" resultType="map">
 		select * from
-		kcc2022_esoom.kbl_data.code_team
+		KCC_EGIS.kbl_data.code_team
 		where
 		season_code = #{season_code}
 	</select>
 	<select id="quarterList" resultType="map">
 		select * from
-		kcc2022_esoom.kbl_data.team_quarter_list
+		KCC_EGIS.kbl_data.team_quarter_list
 		where
 		season_code =
 		#{season_code}
@@ -170,14 +170,14 @@
 		A.game_count,A.t_win,A.t_loss,A.conti_win,A.conti_loss,format(A.win_rate,
 		'##0.##') win_rate,A.win_diff
 		from
-		kcc2022_esoom.kbl_data.team_daily_rank A,
-		kcc2022_esoom.kbl_data.code_team B
+		KCC_EGIS.kbl_data.team_daily_rank A,
+		KCC_EGIS.kbl_data.code_team B
 		where
 		A.season_code =B.season_code
 		and A.team_code = B.team_code
 		and A.season_code =#{season_code}
 		and A.game_code = #{game_code}
-		and A.game_date =(select MAX(game_date) from kcc2022_esoom.kbl_data.team_daily_rank where game_code = '01')
+		and A.game_date =(select MAX(game_date) from KCC_EGIS.kbl_data.team_daily_rank where game_code = '01')
 		order by rank
 	</select>
 	<select id="playerDailyList" resultType="map">
@@ -189,8 +189,8 @@
 		A.d_r) r_tot,A.a_s,A.s_t,A.b_s,
 		A.gd,A.t_o,A.wft,A.woft,A.idf,A.tf,A.ef,A.foul_tot,A.fb,A.p_score,A.score,A.inout,A.inout1,A.fo
 		from
-		kcc2022_esoom.kbl_data.player_daily_list A
-		,kcc2022_esoom.kbl_data.player B
+		KCC_EGIS.kbl_data.player_daily_list A
+		,KCC_EGIS.kbl_data.player B
 		where
 		A.season_code = B.season_code
 		and A.player_no = B.player_no
@@ -213,23 +213,23 @@
 		isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start,
 		t1.week_day, t6.tv_play, t7.team_name_1 AS
 		home_team_name,t8.team_name_1 AS away_team_name
-		from kcc2022_esoom.kbl_data.team_schedule t1
-		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		from KCC_EGIS.kbl_data.team_schedule t1
+		inner join KCC_EGIS.kbl_data.code_stadium t2 on
 		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		inner join KCC_EGIS.kbl_data.code_team t7 on
 		t1.home_team=t7.team_code and t1.season_code=t7.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code
 		and t1.season_code=t8.season_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t3 on
 		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
 		t1.game_no=t3.game_no and t1.game_code=t3.game_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t4 on
 		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
 		t1.game_no=t4.game_no and t1.game_code=t4.game_code
-		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		left outer join KCC_EGIS.kbl_data.game_info t5 on
 		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
 		t1.game_code=t5.game_code
-		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
 		where
@@ -239,7 +239,7 @@
 		#{game_no}
 	</select>
 	<select id="getCoachProfileListCount" resultType="int">
-		select count(*) from kcc2022_esoom.egis.TBL_PLAYER
+		select count(*) from KCC_EGIS.egis.TBL_PLAYER
 		where 1=1
 		<if test="keyWord != null">
 			<if test='select == "all"'>
@@ -275,7 +275,7 @@
 		</if>
 	</select>
 	<select id="getNewsListCount" resultType="int">
-		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select count(*) from (select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'news'
 		and linkurl != ''
@@ -311,7 +311,7 @@
 	</select>
 	<select id="coachProfileList" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_PLAYER
+		KCC_EGIS.egis.TBL_PLAYER
 		where
 		pl_pos_code in ('a','b')
 		order by
@@ -319,14 +319,14 @@
 	</select>
 	<select id="pSupportstaffProfileList" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_PLAYER
+		KCC_EGIS.egis.TBL_PLAYER
 		where
 		pl_pos_code in ('m','t','j','i')
 		order by
 		pl_show desc,pl_order,num DESC
 	</select>
 	<select id="playerProfileList" resultType="map">
-		select * from kcc2022_esoom.egis.TBL_PLAYER
+		select * from KCC_EGIS.egis.TBL_PLAYER
 		where 1=1
 		<if test="keyWord != null">
 			<if test='select == "all"'>
@@ -359,7 +359,7 @@
 		order by pl_show desc,pl_order,num DESC
 	</select>
 	<select id="movieList2" resultType="map">
-		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'movie'
 		<if test="etc1 != null">
@@ -398,7 +398,7 @@
 	<select id="movieList" resultType="map">
 		SELECT *
 		FROM (
-		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'movie'
 		<if test="etc1 != null">
@@ -440,7 +440,7 @@
 		SELECT *
 		FROM (
 		select a.*, CONVERT(char(10),a.wdate,23) wdateformat
-		 from kcc2022_esoom.egis.TBL_NEWS a
+		 from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'gallery'
 		<if test="etc1 != null">
@@ -464,7 +464,7 @@
 		FETCH NEXT #{limit} ROWS ONLY
 	</select>
 	<select id="photoList" resultType="map">
-		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'photo'
 		<if test="etc1 != null">
@@ -485,7 +485,7 @@
 		<if test="player != null">
 			<if test='player != "all"'>
 				and a.num in (select info_num from
-				kcc2022_esoom.egis.TBL_NEWS_PHOTO where tagcode like CONCAT('%',
+				KCC_EGIS.egis.TBL_NEWS_PHOTO where tagcode like CONCAT('%',
 				#{player}, '%'))
 			</if>
 		</if>
@@ -509,7 +509,7 @@
 		,ROW_NUMBER() OVER (ORDER BY a.num) AS rownum
 		,SUBSTRING(CONVERT(char(19),a.sdate ,20),0,17) sdateFormat
 		,SUBSTRING(CONVERT(char(19),a.edate ,20),0,17) edateFormat
-		from kcc2022_esoom.egis.TBL_NEWS a
+		from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'event'
 		<if test="keyWord != null">
@@ -534,9 +534,9 @@
 		select num
 		,info_num
 		,id
-		,kcc2022_esoom.egis.FN_MASK_NAME(writer) writer
+		,KCC_EGIS.egis.FN_MASK_NAME(writer) writer
 		,content
-		from kcc2022_esoom.egis.TBL_NEWS_TAIL
+		from KCC_EGIS.egis.TBL_NEWS_TAIL
 		where
 		info_num = #{num}
 		) A
@@ -548,12 +548,12 @@
 		select count(*)
 		from (
 		select *
-		from kcc2022_esoom.egis.TBL_NEWS_TAIL
+		from KCC_EGIS.egis.TBL_NEWS_TAIL
 		where info_num = #{num}
 		) A
 	</select>
 	<select id="getMovieListCount" resultType="int">
-		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select count(*) from (select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'movie'
 		<if test="etc1 != null">
@@ -590,7 +590,7 @@
 		) A
 	</select>
 	<select id="getPhotoListCount" resultType="int">
-		select count(*) from (select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select count(*) from (select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = #{part}
 		<if test="etc1 != null">
@@ -630,7 +630,7 @@
 		SELECT *
 		FROM (
 		select a.*,ROW_NUMBER() OVER (ORDER BY num) AS rownum 
-		from kcc2022_esoom.egis.TBL_NEWS a
+		from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'news'
 		and linkurl != ''
@@ -670,7 +670,7 @@
 		SELECT *
 		FROM (
 		select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date from
-		kcc2022_esoom.egis.TBL_WALLPAPER a
+		KCC_EGIS.egis.TBL_WALLPAPER a
 		where 1=1
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
@@ -686,7 +686,7 @@
 		SELECT *
 		FROM (
 		select a.*,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date from
-		kcc2022_esoom.egis.TBL_CONTACT a
+		KCC_EGIS.egis.TBL_CONTACT a
 		where 1=1
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
@@ -700,18 +700,18 @@
 	</select>
 	<select id="proposalDetail" resultType="map">
 		select *,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date from
-		kcc2022_esoom.egis.TBL_CONTACT
+		KCC_EGIS.egis.TBL_CONTACT
 		where
 		num = #{num}
 	</select>
 	<select id="wallpaperMap" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_WALLPAPER
+		KCC_EGIS.egis.TBL_WALLPAPER
 		where
 		num = #{num}
 	</select>
 	<select id="newsList2" resultType="map">
-		select a.* from kcc2022_esoom.egis.TBL_NEWS a
+		select a.* from KCC_EGIS.egis.TBL_NEWS a
 		where 1=1
 		and a.part = 'news'
 		<if test="keyWord != null">
@@ -744,14 +744,14 @@
 	</select>
 	<select id="searchKeywordList" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_SEARCH_KEYWORD
+		KCC_EGIS.egis.TBL_SEARCH_KEYWORD
 		order by view_order,num desc
 	</select>
 	<select id="getRoundDate" resultType="map">
 		select max(game_date)
 		last_game_date,MIN(game_date) first_game_date from
-		kcc2022_esoom.kbl_data.team_schedule
-		WHERE season_code = '43'
+		KCC_EGIS.kbl_data.team_schedule
+		WHERE season_code = '45'
 		and
 		(home_team ='60' or away_team ='60')
 		and game_round = #{round}
@@ -764,26 +764,26 @@
 		t1.game_start,
 		t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS
 		away_team_name
-		from kcc2022_esoom.kbl_data.team_schedule t1
-		inner join kcc2022_esoom.kbl_data.code_stadium t2 on
+		from KCC_EGIS.kbl_data.team_schedule t1
+		inner join KCC_EGIS.kbl_data.code_stadium t2 on
 		t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t7 on
+		inner join KCC_EGIS.kbl_data.code_team t7 on
 		t1.home_team=t7.team_code and t1.season_code=t7.season_code
-		inner join kcc2022_esoom.kbl_data.code_team t8 on t1.away_team=t8.team_code
+		inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code
 		and t1.season_code=t8.season_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t3 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t3 on
 		t1.away_team=t3.team_code and t1.season_code=t3.season_code and
 		t1.game_no=t3.game_no and t1.game_code=t3.game_code
-		left outer join kcc2022_esoom.kbl_data.team_daily_list t4 on
+		left outer join KCC_EGIS.kbl_data.team_daily_list t4 on
 		t1.home_team=t4.team_code and t1.season_code=t4.season_code and
 		t1.game_no=t4.game_no and t1.game_code=t4.game_code
-		left outer join kcc2022_esoom.kbl_data.game_info t5 on
+		left outer join KCC_EGIS.kbl_data.game_info t5 on
 		t1.season_code=t5.season_code and t1.game_no=t5.game_no and
 		t1.game_code=t5.game_code
-		left outer join kcc2022_esoom.kbl_data.team_schedule_onair t6 on
+		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
-		where t1.season_code='43'
+		where t1.season_code='45'
 		and (t1.home_team= 60 or t1.away_team= 60)
 		<if test="game_round != null">
 			and t1.game_round = #{game_round}
@@ -795,7 +795,7 @@
 	</select>
 	<select id="playerList" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_PLAYER
+		KCC_EGIS.egis.TBL_PLAYER
 		where 1=1
 		and pl_show ='Y'
 		and pl_pos_code
@@ -804,7 +804,7 @@
 	</select>
 	<select id="newsPhotoList" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_NEWS_PHOTO
+		KCC_EGIS.egis.TBL_NEWS_PHOTO
 		where 1=1
 		and info_num =#{num}
 		order by
@@ -812,7 +812,7 @@
 	</select>
 	<update id="changeShow" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_PLAYER
+		KCC_EGIS.egis.TBL_PLAYER
 		set pl_show = #{show}
 		where
 		pl_no =
@@ -821,7 +821,7 @@
 	</update>
 	<update id="updateTeamSchedule" parameterType="map">
 		update
-		kcc2022_esoom.kbl_data.team_schedule
+		KCC_EGIS.kbl_data.team_schedule
 		set game_start =
 		#{game_start},game_date=#{game_date},stadium_code=#{stadium_code}
 		where
@@ -833,7 +833,7 @@
 	</update>
 	<update id="updateTeamScheduleOnair" parameterType="map">
 		merge into
-		kcc2022_esoom.kbl_data.team_schedule_onair A
+		KCC_EGIS.kbl_data.team_schedule_onair A
 		using
 		(
 		select #{season_code} AS season_code
@@ -864,7 +864,7 @@
 	</update>
 	<update id="updateTeamQuaterList" parameterType="map">
 		<foreach collection="list" item="list" separator=";">
-			merge into kcc2022_esoom.kbl_data.team_quarter_list A
+			merge into KCC_EGIS.kbl_data.team_quarter_list A
 			using
 			(
 			select #{list.season_code} AS season_code
@@ -920,7 +920,7 @@
 	</update>
 	<update id="updateTeamDailyList" parameterType="map">
 		<foreach collection="totlist" item="list" separator=";">
-			merge into kcc2022_esoom.kbl_data.team_daily_list A
+			merge into KCC_EGIS.kbl_data.team_daily_list A
 			using
 			(
 			select #{list.season_code} AS season_code
@@ -972,7 +972,7 @@
 	</update>
 	<update id="updateState" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_MEMBER
+		KCC_EGIS.egis.TBL_MEMBER
 		set chk_state = 'N'
 		where
 		num= #{num}
@@ -980,7 +980,7 @@
 	</update>
 	<update id="changePwd" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_MEMBER
+		KCC_EGIS.egis.TBL_MEMBER
 		set sha_pwd = #{pwd}
 		where
 		num= #{num}
@@ -988,7 +988,7 @@
 	</update>
 	<update id="changeChkDel" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_FREE
+		KCC_EGIS.egis.TBL_FREE
 		set chk_del = #{chkDel}
 		where
 		num = #{num}
@@ -996,7 +996,7 @@
 	</update>
 	<update id="changeYn" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_POPUP
+		KCC_EGIS.egis.TBL_POPUP
 		set main_chk = #{main_chk}
 		where
 		num =
@@ -1005,7 +1005,7 @@
 	</update>
 	<update id="changeUseYn" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		KCC_EGIS.egis.TBL_MAIN_BANNER
 		set use_yn = #{use_yn}
 		where
 		num =
@@ -1014,7 +1014,7 @@
 	</update>
 	<update id="orderSave" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_POPUP
+		KCC_EGIS.egis.TBL_POPUP
 		set [order] = #{order}
 		where
 		num = #{num}
@@ -1022,7 +1022,7 @@
 	</update>
 	<update id="bannerOrderSave" parameterType="map">
 		update
-		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		KCC_EGIS.egis.TBL_MAIN_BANNER
 		set banner_order = #{order}
 		where
 		num
@@ -1031,7 +1031,7 @@
 	</update>
 	<select id="pCoachProfile" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_PLAYER
+		KCC_EGIS.egis.TBL_PLAYER
 		where
 		num = #{num}
 	</select>
@@ -1044,27 +1044,27 @@
 		,SUBSTRING(CONVERT(char(8),edate ,24),0,3) e_time
 		,SUBSTRING(CONVERT(char(8),edate ,24),4,2) e_minute
 		,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
-		from kcc2022_esoom.egis.TBL_NEWS
+		from KCC_EGIS.egis.TBL_NEWS
 		where
 		num = #{num}
 	</select>
 	<select id="freeMap" resultType="map">
 		select *,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
-		,kcc2022_esoom.egis.FN_MASK_NAME(writer) maskName
-		from kcc2022_esoom.egis.TBL_FREE
+		,KCC_EGIS.egis.FN_MASK_NAME(writer) maskName
+		from KCC_EGIS.egis.TBL_FREE
 		where
 		num = #{num}
 	</select>
 	<select id="lastMediaMap" resultType="map">
 		select top 1 * from
-		kcc2022_esoom.egis.TBL_NEWS order by num desc
+		KCC_EGIS.egis.TBL_NEWS order by num desc
 	</select>
 	<select id="memberMap" resultType="map">
 		select *
-		,kcc2022_esoom.egis.FN_MASK_NAME(name) maskName
+		,KCC_EGIS.egis.FN_MASK_NAME(name) maskName
 		,CONVERT(char(10),reg_date ,23) regDate
 		,SUBSTRING(CONVERT(char(19),logindate ,20),0,17) loginDate
-		from kcc2022_esoom.egis.TBL_MEMBER
+		from KCC_EGIS.egis.TBL_MEMBER
 		where
 		1=1
 		<if test="num != null">
@@ -1077,7 +1077,7 @@
 	</select>
 	<select id="kccAdMap" resultType="map">
 		select * from
-		kcc2022_esoom.egis.tbl_kccad
+		KCC_EGIS.egis.tbl_kccad
 		where
 		num = #{num}
 	</select>
@@ -1096,24 +1096,24 @@
 		,CONVERT(char(10),edate ,23) e_day
 		,SUBSTRING(CONVERT(char(8),edate ,24),0,3) e_time
 		,SUBSTRING(CONVERT(char(8),edate ,24),4,2) e_minute
-		from kcc2022_esoom.egis.TBL_POPUP
+		from KCC_EGIS.egis.TBL_POPUP
 		where
 		num = #{num}
 	</select>
 	<select id="mainGoodsMap" resultType="map">
 		select *
-		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		from KCC_EGIS.egis.TBL_MAIN_GOODS
 		where
 		num = #{num}
 	</select>
 	<select id="mainSlideMap" resultType="map">
 		select * from
-		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		KCC_EGIS.egis.TBL_MAIN_BANNER
 		where
 		num = #{num}
 	</select>
 	<select id="pProfileCheck" resultType="map">
-		select * from kcc2022_esoom.egis.TBL_PLAYER
+		select * from KCC_EGIS.egis.TBL_PLAYER
 		where 1=1
 		<if test="num != null">
 			and num != #{num}
@@ -1125,7 +1125,7 @@
 		select 
 		ROW_NUMBER() OVER (ORDER BY num) AS rownum,
 		*,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date from
-		kcc2022_esoom.egis.TBL_NEWS
+		KCC_EGIS.egis.TBL_NEWS
 		where 1=1
 		and part = 'notice'
 		<if test="keyWord != null">
@@ -1147,7 +1147,7 @@
 		,use_yn
 		,banner_order
 		,FORMAT(reg_date, 'yyyy-MM-dd HH:mm') AS reg_date
-		from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		from KCC_EGIS.egis.TBL_MAIN_BANNER
 		) A
 		ORDER BY use_yn desc,-banner_order desc,num desc
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
@@ -1164,7 +1164,7 @@
 		,view_order
 		,show_yn
 		,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS wdate
-		from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		from KCC_EGIS.egis.TBL_MAIN_GOODS
 		where category = #{category}
 		) A
 		ORDER BY show_yn desc,-view_order desc,num desc
@@ -1174,7 +1174,7 @@
 	<select id="topNoticeList" resultType="map">
 		select *,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
 		 from
-		kcc2022_esoom.egis.TBL_NEWS
+		KCC_EGIS.egis.TBL_NEWS
 		where 1=1
 		and part = 'notice'
 		and wtype = 'Y'
@@ -1184,10 +1184,10 @@
 	<select id="topFreeList" resultType="map">
 		select a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
 		,(SELECT COUNT(*)
-		FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+		FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 		WHERE b.info_num = a.num) AS tail_count
 		from
-		kcc2022_esoom.egis.TBL_FREE a
+		KCC_EGIS.egis.TBL_FREE a
 		where 1=1
 		<if test="chk_del != null">
 			<if test='chk_del != "all"'>
@@ -1203,11 +1203,11 @@
 		select
 		ROW_NUMBER() OVER (ORDER BY a.num) AS rownum, 
 		a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date,
-					kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-					 from kcc2022_esoom.egis.TBL_FREE a 
+					 from KCC_EGIS.egis.TBL_FREE a 
 					where 1=1 
 					<if test="sdate != null and edate !=null">
 						<if test='sdate != "" and edate !=""'>
@@ -1233,10 +1233,10 @@
 						        CONTAINS(a.writer, #{keyWord}) or
 						    </if>
 							<if test='tail =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
 							</if>
 							<if test='tailWriter =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
 							</if>
 							</trim>
 							)
@@ -1258,7 +1258,7 @@
 		,SUBSTRING(CONVERT(char(19),sdate ,20),0,17) sdate
 		,SUBSTRING(CONVERT(char(19),edate ,20),0,17) edate
 		,FORMAT(wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
-		from kcc2022_esoom.egis.TBL_POPUP
+		from KCC_EGIS.egis.TBL_POPUP
 		) A
 		ORDER BY main_chk desc,-[order] desc,num desc
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
@@ -1269,13 +1269,13 @@
 		FROM (
 		select num
 		,info_num
-		,kcc2022_esoom.egis.FN_MASK_NAME(writer) writer
+		,KCC_EGIS.egis.FN_MASK_NAME(writer) writer
 		,id
 		,writer as writer2
 		,content
 		,CONVERT(char(10),wdate ,23) wdate
 		,FORMAT(wdate , 'yyyy-MM-dd HH:mm') AS formatted_date
-		from kcc2022_esoom.egis.TBL_FREE_TAIL
+		from KCC_EGIS.egis.TBL_FREE_TAIL
 		where info_num = #{num}
 		) A
 		ORDER BY num desc
@@ -1288,11 +1288,11 @@
 		select num
 		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
 		,id
-		,kcc2022_esoom.egis.FN_MASK_NAME(name) name
+		,KCC_EGIS.egis.FN_MASK_NAME(name) name
 		,CONVERT(char(10),reg_date ,23) reg_date
 		,CONVERT(char(16),logindate ,120) logindate
 		,chk_state
-		from kcc2022_esoom.egis.TBL_MEMBER
+		from KCC_EGIS.egis.TBL_MEMBER
 		where 1=1
 		<if test="chk_state != null">
 			<if test='chk_state == "Y"'>
@@ -1332,7 +1332,7 @@
 		,adgroup
 		,addr
 		,mvideo
-		from kcc2022_esoom.egis.tbl_kccad
+		from KCC_EGIS.egis.tbl_kccad
 		where 1=1
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
@@ -1361,7 +1361,7 @@
 		,adgroup
 		,addr
 		,mvideo
-		from kcc2022_esoom.egis.tbl_kccad
+		from KCC_EGIS.egis.tbl_kccad
 		where 1=1
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
@@ -1379,14 +1379,14 @@
 		select count(*)
 		from (
 		select *
-		from kcc2022_esoom.egis.TBL_FREE_TAIL
+		from KCC_EGIS.egis.TBL_FREE_TAIL
 		where info_num = #{num}
 		) A
 	</select>
 	<select id="getMemberListCount" resultType="int">
 		select count(*) from (
 		select *
-		from kcc2022_esoom.egis.TBL_MEMBER
+		from KCC_EGIS.egis.TBL_MEMBER
 		where 1=1
 		<if test="chk_state != null">
 			<if test='chk_state == "Y"'>
@@ -1413,11 +1413,11 @@
 	<select id="getFreeListCount" resultType="int">
 		select count(*) from (
 		select a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date,
-					kcc2022_esoom.egis.FN_MASK_NAME(writer) writer2,
+					KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
 					(SELECT COUNT(*)
-				     FROM kcc2022_esoom.egis.TBL_FREE_TAIL b
+				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
 				     WHERE b.info_num = a.num) AS tail_count
-					 from kcc2022_esoom.egis.TBL_FREE a 
+					 from KCC_EGIS.egis.TBL_FREE a 
 					where 1=1 
 					<if test="sdate != null and edate !=null">
 						<if test='sdate != "" and edate !=""'>
@@ -1443,10 +1443,10 @@
 						        CONTAINS(a.writer, #{keyWord}) or
 						    </if>
 							<if test='tail =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
 							</if>
 							<if test='tailWriter =="Y"'>
-							a.num in (select distinct info_num FROM kcc2022_esoom.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
 							</if>
 							</trim>
 							)
@@ -1457,19 +1457,19 @@
 	<select id="getMainsildeListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		select * from KCC_EGIS.egis.TBL_MAIN_BANNER
 		) A
 	</select>
 	<select id="getUseynCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_MAIN_BANNER
+		select * from KCC_EGIS.egis.TBL_MAIN_BANNER
 		where use_yn = 'Y'
 		and num != #{num}
 		) A
 	</select>
 	<select id="mainGoodsCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		select * from KCC_EGIS.egis.TBL_MAIN_GOODS
 		where show_yn = 'Y'
 		and num != #{num}
 		and category = #{category}
@@ -1477,14 +1477,14 @@
 	</select>
 	<select id="mainChkCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_POPUP
+		select * from KCC_EGIS.egis.TBL_POPUP
 		where main_chk = 'Y'
 		and num != #{num}
 		) A
 	</select>
 	<select id="getNoticeListCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_NEWS
+		select * from KCC_EGIS.egis.TBL_NEWS
 		where 1=1
 		and part = 'notice'
 		<if test="keyWord != null">
@@ -1499,7 +1499,7 @@
 	</select>
 	<select id="getEventListCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_NEWS
+		select * from KCC_EGIS.egis.TBL_NEWS
 		where 1=1
 		and part = 'event'
 		<if test="keyWord != null">
@@ -1519,19 +1519,19 @@
 	<select id="getTotalProposalListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_CONTACT
+		select * from KCC_EGIS.egis.TBL_CONTACT
 		) A
 	</select>
 	<select id="getTotalFreeListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_FREE
+		select * from KCC_EGIS.egis.TBL_FREE
 		) A
 	</select>
 	<select id="getTotalNoticeListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_NEWS
+		select * from KCC_EGIS.egis.TBL_NEWS
 		where 1=1
 		and part = #{part}
 		) A
@@ -1539,7 +1539,7 @@
 	<select id="getTotalNewsListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_NEWS
+		select * from KCC_EGIS.egis.TBL_NEWS
 		where 1=1
 		and part = #{part}
 		and linkurl != ''
@@ -1550,12 +1550,12 @@
 	<select id="getTotalWallpaperCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_WALLPAPER
+		select * from KCC_EGIS.egis.TBL_WALLPAPER
 		) A
 	</select>
 	<select id="getProposalListCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_CONTACT
+		select * from KCC_EGIS.egis.TBL_CONTACT
 		where 1=1
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
@@ -1566,7 +1566,7 @@
 	</select>
 	<select id="getWallpaperCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_WALLPAPER
+		select * from KCC_EGIS.egis.TBL_WALLPAPER
 		where 1=1
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
@@ -1578,36 +1578,36 @@
 	<select id="getTotalMemberListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_MEMBER
+		select * from KCC_EGIS.egis.TBL_MEMBER
 		) A
 	</select>
 	<select id="getTotalMainGoodsListCount" resultType="int">
 		select
 		count(*) from (
-		select * from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		select * from KCC_EGIS.egis.TBL_MAIN_GOODS
 		) A
 	</select>
 	<select id="getTotalKccAdListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.tbl_kccad
+		select * from KCC_EGIS.egis.tbl_kccad
 		) A
 	</select>
 	<select id="getPopupListCount" resultType="int">
 		select count(*) from (
-		select * from kcc2022_esoom.egis.TBL_POPUP
+		select * from KCC_EGIS.egis.TBL_POPUP
 		) A
 	</select>
 	<select id="getMainGoodsListCount" resultType="int">
 		select count(*)
 		from (
-		select * from kcc2022_esoom.egis.TBL_MAIN_GOODS
+		select * from KCC_EGIS.egis.TBL_MAIN_GOODS
 		where category = #{category}
 		) A
 	</select>
 	<update id="playerMerge" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_PLAYER A
+		KCC_EGIS.egis.TBL_PLAYER A
 		using
 		(
 		select #{num} AS num
@@ -1719,7 +1719,7 @@
 	</update>
 	<update id="mediaMerge" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_NEWS A
+		KCC_EGIS.egis.TBL_NEWS A
 		using
 		(
 		select #{num} AS num
@@ -1810,7 +1810,7 @@
 	</update>
 	<update id="mergeWallpaper" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_WALLPAPER A
+		KCC_EGIS.egis.TBL_WALLPAPER A
 		using
 		(
 		select #{num} AS num
@@ -1861,7 +1861,7 @@
 	</update>
 	<update id="mergeFree" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_FREE A
+		KCC_EGIS.egis.TBL_FREE A
 		using
 		(
 		select #{num} AS num
@@ -1917,7 +1917,7 @@
 	</update>
 	<update id="mergeKccAd" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.tbl_kccad A
+		KCC_EGIS.egis.tbl_kccad A
 		using
 		(
 		select #{num} AS num
@@ -1968,7 +1968,7 @@
 	</update>
 	<update id="mergePopup" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_POPUP A
+		KCC_EGIS.egis.TBL_POPUP A
 		using
 		(
 		select #{num} AS num
@@ -2027,7 +2027,7 @@
 	</update>
 	<update id="mergeMainSlide" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_MAIN_BANNER A
+		KCC_EGIS.egis.TBL_MAIN_BANNER A
 		using
 		(
 		select #{num} AS num
@@ -2070,7 +2070,7 @@
 	</update>
 	<update id="mediaPhotoMerge" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_NEWS_PHOTO A
+		KCC_EGIS.egis.TBL_NEWS_PHOTO A
 		using
 		(
 		select #{num} AS num
@@ -2104,7 +2104,7 @@
 	</update>
 	<update id="mergeMainGoods" parameterType="map">
 		merge into
-		kcc2022_esoom.egis.TBL_MAIN_GOODS A
+		KCC_EGIS.egis.TBL_MAIN_GOODS A
 		using
 		(
 		select #{num} AS num
@@ -2150,7 +2150,7 @@
 
 	</update>
 	<update id="mergeTeamDailyRank" parameterType="map">
-		MERGE INTO kcc2022_esoom.kbl_data.team_daily_rank A
+		MERGE INTO KCC_EGIS.kbl_data.team_daily_rank A
 USING
 (
     SELECT #{season_code} AS season_code,
@@ -2379,7 +2379,7 @@ VALUES (
 );
 	</update>
 	<insert id="insertSearchKeyword" parameterType="map">
-		insert into kcc2022_esoom.egis.TBL_SEARCH_KEYWORD values
+		insert into KCC_EGIS.egis.TBL_SEARCH_KEYWORD values
 		<foreach collection="list" item="list" separator=",">
 			(
 			#{list.search_keyword}, #{list.view_order}
@@ -2387,13 +2387,13 @@ VALUES (
 		</foreach>
 	</insert>
 	<insert id="insertFreeTail" parameterType="map">
-		insert into kcc2022_esoom.egis.TBL_FREE_TAIL values
+		insert into KCC_EGIS.egis.TBL_FREE_TAIL values
 		(
 		#{info_num},#{id},#{writer},#{content},#{ip},getdate()
 		)
 	</insert>
 	<insert id="insertTeamSchedule" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.team_schedule values
+		insert into KCC_EGIS.kbl_data.team_schedule values
 		(
 		#{season_code},#{game_code},#{game_no},#{game_date},#{week_seq}
 		,#{week_day},#{game_start},#{home_away},#{home_team},#{away_team},#{stadium_code}
@@ -2401,7 +2401,7 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertTeamDailyRank" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.team_daily_rank values
+		insert into KCC_EGIS.kbl_data.team_daily_rank values
 		(
 		#{season_code},#{game_code},#{game_date},#{team_code}
 		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
@@ -2415,7 +2415,7 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertTeamQuarterList" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.team_quarter_list values
+		insert into KCC_EGIS.kbl_data.team_quarter_list values
 		(
 		#{season_code},#{game_code},#{game_no},#{team_code},#{home_away},#{quarter_gu},#{away_team}
 		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
@@ -2428,7 +2428,7 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertTeamDailyList" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.team_daily_list values
+		insert into KCC_EGIS.kbl_data.team_daily_list values
 		(
 		#{season_code},#{game_code},#{game_no},#{team_code},#{home_away},#{away_team}
 		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
@@ -2442,7 +2442,7 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertPlayerDailyList" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.player_daily_list values
+		insert into KCC_EGIS.kbl_data.player_daily_list values
 		(
 		#{season_code},#{game_code},#{game_no},#{team_code},#{home_away},#{back_num},#{player_no},#{pos},#{away_team}
 		,#{start_flag},#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
@@ -2455,7 +2455,7 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertTeamSum" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.team_sum values
+		insert into KCC_EGIS.kbl_data.team_sum values
 		(
 		#{season_code},#{game_code},#{team_code},#{quarter_gu},#{game_count}
 		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
@@ -2469,7 +2469,7 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertPlayerSum" parameterType="map">
-		insert into kcc2022_esoom.kbl_data.player_sum values
+		insert into KCC_EGIS.kbl_data.player_sum values
 		(
 		#{season_code},#{game_code},#{quarter_gu},#{player_no},#{game_count},#{start_count}
 		,#{play_min},#{play_sec},#{fg},#{fg_a},#{ft},#{ft_a}
@@ -2482,34 +2482,34 @@ VALUES (
 		)
 	</insert>
 	<insert id="insertEventTail" parameterType="map">
-		insert into kcc2022_esoom.egis.TBL_NEWS_TAIL values
+		insert into KCC_EGIS.egis.TBL_NEWS_TAIL values
 		(
 		#{info_num},#{id},#{writer},#{content},#{ip},getdate(),#{part}
 		)
 	</insert>
 	<delete id="deleteWallpaper" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_WALLPAPER
+		KCC_EGIS.egis.TBL_WALLPAPER
 		where num = #{num}
 	</delete>
 	<delete id="deleteSearchKeyword" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_SEARCH_KEYWORD
+		KCC_EGIS.egis.TBL_SEARCH_KEYWORD
 	</delete>
 	<delete id="deleteTeamSchedule" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.team_schedule
+		KCC_EGIS.kbl_data.team_schedule
 		where season_code = #{season_code}
 	</delete>
 	<delete id="deleteTeamDailyRank" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.team_daily_rank
+		KCC_EGIS.kbl_data.team_daily_rank
 		where season_code =
 		#{season_code}
 	</delete>
 	<delete id="deleteTeamQuarterList" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.team_quarter_list
+		KCC_EGIS.kbl_data.team_quarter_list
 		where season_code =
 		#{season_code}
 		and game_code = #{game_code}
@@ -2517,20 +2517,20 @@ VALUES (
 	</delete>
 	<delete id="deleteTeamSum" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.team_sum
+		KCC_EGIS.kbl_data.team_sum
 		where season_code = #{season_code}
 		and
 		game_code = #{game_code}
 	</delete>
 	<delete id="deletePlayerSum" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.player_sum
+		KCC_EGIS.kbl_data.player_sum
 		where season_code = #{season_code}
 		and game_code = #{game_code}
 	</delete>
 	<delete id="deleteTeamDailyList" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.team_daily_list
+		KCC_EGIS.kbl_data.team_daily_list
 		where season_code =
 		#{season_code}
 		and game_code = #{game_code}
@@ -2538,7 +2538,7 @@ VALUES (
 	</delete>
 	<delete id="deletePlayerDailyList" parameterType="map">
 		delete from
-		kcc2022_esoom.kbl_data.player_daily_list
+		KCC_EGIS.kbl_data.player_daily_list
 		where season_code =
 		#{season_code}
 		and game_code = #{game_code}
@@ -2546,52 +2546,52 @@ VALUES (
 	</delete>
 	<delete id="deleteTail" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_NEWS_TAIL
+		KCC_EGIS.egis.TBL_NEWS_TAIL
 		where num = #{num}
 	</delete>
 	<delete id="deleteFreeTail" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_FREE_TAIL
+		KCC_EGIS.egis.TBL_FREE_TAIL
 		where num = #{num}
 	</delete>
 	<delete id="deleteFree" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_FREE
+		KCC_EGIS.egis.TBL_FREE
 		where num = #{num}
 	</delete>
 	<delete id="deleteMember" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_MEMBER
+		KCC_EGIS.egis.TBL_MEMBER
 		where num = #{num}
 	</delete>
 	<delete id="deletePlayer" parameterType="map">
 		delete from
-		kcc2022_esoom.egis.TBL_PLAYER
+		KCC_EGIS.egis.TBL_PLAYER
 		where num = #{num}
 	</delete>
 	<delete id="deleteNews" parameterType="map">
 		delete
-		kcc2022_esoom.egis.TBL_NEWS
+		KCC_EGIS.egis.TBL_NEWS
 		where num = #{num}
 	</delete>
 	<delete id="deleteKccAd" parameterType="map">
 		delete
-		kcc2022_esoom.egis.tbl_kccad
+		KCC_EGIS.egis.tbl_kccad
 		where num = #{num}
 	</delete>
 	<delete id="deletePopup" parameterType="map">
 		delete
-		kcc2022_esoom.egis.TBL_POPUP
+		KCC_EGIS.egis.TBL_POPUP
 		where num = #{num}
 	</delete>
 	<delete id="deleteMainSlide" parameterType="map">
 		delete
-		kcc2022_esoom.egis.TBL_MAIN_BANNER
+		KCC_EGIS.egis.TBL_MAIN_BANNER
 		where num = #{num}
 	</delete>
 	<delete id="deleteMainGoods" parameterType="map">
 		delete
-		kcc2022_esoom.egis.TBL_MAIN_GOODS
+		KCC_EGIS.egis.TBL_MAIN_GOODS
 		where num = #{num}
 	</delete>
 </mapper>
