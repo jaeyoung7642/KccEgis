@@ -48,7 +48,7 @@
    				$('#contentPageArea').html(result);
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 		
@@ -58,7 +58,7 @@
 		var content = $("#content").val();
 		var part = "notice";
 		if(content ==""){
-			alert("댓글을 입력해주세요.");
+			alertPop("댓글을 입력해주세요.");
 			return;
 		}else{
 			$.ajax({
@@ -73,11 +73,11 @@
 				        if(res==1){
 				        	contentPage(1);
 				        }else{
-				       	 alert("댓글 작성에 실패했습니다.");
+				        	alertPop("댓글 작성에 실패했습니다.");
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   });
 		}
@@ -94,11 +94,11 @@
 				        if(res==1){
 				        	contentPage(1);
 				        }else{
-				       	 alert("삭제에 실패했습니다.");
+				        	alertPop("삭제에 실패했습니다.");
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   });
 	            
@@ -169,9 +169,13 @@
 							<input type="text" id="Url" value="" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; border: 0; padding: 0; opacity: 0;" readonly>
 						</div>
 						<div class="bbs_info_wrap md">
+						<c:if test="${eventDetail.sdate_format == '1900.01.01' }">
+							<span class="bbs_info view">${eventDetail.visited }</span>
+						</c:if>
+						<c:if test="${eventDetail.sdate_format != '1900.01.01' }">
 							<span class="bbs_info date type2">${eventDetail.sdate_format} ~ ${eventDetail.edate_format}</span>
 							<span class="bbs_info view">${eventDetail.visited}</span>
-
+						</c:if>
 							<div class="dropdown sns_share">
 								<button type="button" class="drop_btn el_btn btn_share" aria-expanded="false" aria-label="SNS 공유 리스트"></button>
 								<div class="drop_content bubble">
@@ -216,6 +220,7 @@
 									<button type="button" onclick="loginForm()" class="el_btn frm_btn black">댓글 작성</button>
 									</c:if>
 								</div>
+								<c:if test="${not empty tailList}">
 								<h5 class="tit">댓글</h5>
 								<div class="comments">
 									<c:forEach items="${tailList}" var="tailList">
@@ -236,7 +241,6 @@
 									</c:forEach>
 									<!-- //row -->
 								</div>
-								<c:if test="${not empty tailList}">
 								<!-- pagination -->
 								<div class="pagination">
 								<!-- 맨처음 -->

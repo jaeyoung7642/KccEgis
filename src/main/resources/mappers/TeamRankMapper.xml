@@ -137,41 +137,41 @@
        		  ,game_count 
        		  ,play_min 
        		  ,play_sec 
-       		  ,fg 
-       		  ,fg_a 
-       		  ,ROUND((convert(float,fg)/nullif(convert(float,fg_a), 0) * 100), 1) AS fgp
-       		  ,ft 
-       		  ,ft_a 
-       		  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
-       		  ,threep 
-       		  ,threep_a 
-       		  ,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
-       		  ,dk
-       		  ,dk_a 
-       		  ,pp
-       		  ,pp_a
-       		  ,ROUND((convert(float,pp)/nullif(convert(float,pp_a), 0)), 1) AS ppp
-       		  ,o_r 
-       		  ,d_r 
-       		  ,(o_r + d_r) r_tot
-       		  ,t_r 
-       		  ,a_s 
-       		  ,s_t 
-       		  ,b_s 
-       		  ,gd
-       		  ,tto
-       		  ,t_o 
-       		  ,wft 
-       		  ,woft 
-       		  ,idf
-       		  ,tf 
-       		  ,bf 
-       		  ,ef 
-       		  ,foul_tot 
-       		  ,tfb 
-       		  ,fb 
-       		  ,p_score 
-       		  ,score AS pts
+       		  ,ISNULL(fg, 0) AS fg,
+		    ISNULL(fg_a, 0) AS fg_a,
+		    ISNULL(ROUND((ISNULL(convert(float, fg), 0) / NULLIF(convert(float, fg_a), 0) * 100), 1), 0.0) AS fgp,
+		    ISNULL(ft, 0) AS ft,
+		    ISNULL(ft_a, 0) AS ft_a,
+		    ISNULL(ROUND((ISNULL(convert(float, ft), 0) / NULLIF(convert(float, ft_a), 0) * 100), 1), 0.0) AS ftp,
+		    ISNULL(threep, 0) AS threep,
+		    ISNULL(threep_a, 0) AS threep_a,
+		    ISNULL(ROUND((ISNULL(convert(float, threep), 0) / NULLIF(convert(float, threep_a), 0) * 100), 1), 0.0) AS threepp,
+		    ISNULL(dk, 0) AS dk,
+		    ISNULL(dk_a, 0) AS dk_a,
+		    ISNULL(pp, 0) AS pp,
+		    ISNULL(pp_a, 0) AS pp_a,
+		    ISNULL(ROUND((ISNULL(convert(float, pp), 0) / NULLIF(convert(float, pp_a), 0)), 1), 0.0) AS ppp,
+		    ISNULL(o_r, 0) AS o_r,
+		    ISNULL(d_r, 0) AS d_r,
+		    (ISNULL(o_r, 0) + ISNULL(d_r, 0)) AS r_tot,
+		    ISNULL(t_r, 0) AS t_r,
+		    ISNULL(a_s, 0) AS a_s,
+		    ISNULL(s_t, 0) AS s_t,
+		    ISNULL(b_s, 0) AS b_s,
+		    ISNULL(gd, 0) AS gd,
+		    ISNULL(tto, 0) AS tto,
+		    ISNULL(t_o, 0) AS t_o,
+		    ISNULL(wft, 0) AS wft,
+		    ISNULL(woft, 0) AS woft,
+		    ISNULL(idf, 0) AS idf,
+		    ISNULL(tf, 0) AS tf,
+		    ISNULL(bf, 0) AS bf,
+		    ISNULL(ef, 0) AS ef,
+		    ISNULL(foul_tot, 0) AS foul_tot,
+		    ISNULL(tfb, 0) AS tfb,
+		    ISNULL(fb, 0) AS fb,
+		    ISNULL(p_score, 0) AS p_score,
+		    ISNULL(score, 0) AS pts
        from KCC_EGIS.kbl_data.team_sum 
        where quarter_gu ='XX'
        and game_code = '01'
@@ -186,39 +186,39 @@
        		  ,game_count 
        		  ,play_min 
        		  ,play_sec
-       		  ,ROUND((convert(float,fg)/nullif(convert(float,game_count), 0)), 1) AS fg
-       		  ,ROUND((convert(float,fg_a)/nullif(convert(float,game_count), 0)), 1) AS fg_a
-       		  ,ROUND((convert(float,fg)/nullif(convert(float,fg_a), 0) * 100), 1) AS fgp
-       		  ,ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1) AS ft
-       		  ,ROUND((convert(float,ft_a)/nullif(convert(float,game_count), 0)), 1) AS ft_a
-       		  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
-       		  ,ROUND((convert(float,threep)/nullif(convert(float,game_count), 0)), 1) AS threep
-       		  ,ROUND((convert(float,threep_a)/nullif(convert(float,game_count), 0)), 1) AS threep_a
-       		  ,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
-       		  ,ROUND((convert(float,pp)/nullif(convert(float,game_count), 0)), 1) AS pp
-       		  ,ROUND((convert(float,pp_a)/nullif(convert(float,game_count), 0)), 1) AS pp_a
-       		  ,ROUND((convert(float,pp)/nullif(convert(float,pp_a), 0) * 100), 1) AS ppp
-       		  ,ROUND((convert(float,o_r)/nullif(convert(float,game_count), 0)), 1) AS o_r
-       		  ,ROUND((convert(float,d_r)/nullif(convert(float,game_count), 0)), 1) AS d_r
-       		  ,ROUND((convert(float,o_r + d_r)/nullif(convert(float,game_count), 0)), 1) AS r_tot
-       		  ,a_s 
-       		  ,s_t 
-       		  ,ROUND((convert(float,b_s)/nullif(convert(float,game_count), 0)), 1) AS b_s
-       		  ,gd
-       		  ,tto
-       		  ,ROUND((convert(float,t_o)/nullif(convert(float,game_count), 0)), 1) AS t_o
-       		  ,wft 
-       		  ,woft 
-       		  ,idf
-       		  ,tf 
-       		  ,bf 
-       		  ,ef 
-       		  ,ROUND((convert(float,foul_tot)/nullif(convert(float,game_count), 0) * 100), 1) AS foul_tot
-       		  ,tfb 
-       		  ,fb 
-       		  ,p_score 
-       		  ,score 
-       		  ,ROUND((convert(float,score)/convert(float,game_count)), 1) AS pts
+       		  ,ISNULL(ROUND((CONVERT(float, fg) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS fg,
+			    ISNULL(ROUND((CONVERT(float, fg_a) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS fg_a,
+			    ISNULL(ROUND((CONVERT(float, fg) / NULLIF(CONVERT(float, fg_a), 0) * 100), 1), 0.0) AS fgp,
+			    ISNULL(ROUND((CONVERT(float, ft) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS ft,
+			    ISNULL(ROUND((CONVERT(float, ft_a) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS ft_a,
+			    ISNULL(ROUND((CONVERT(float, ft) / NULLIF(CONVERT(float, ft_a), 0) * 100), 1), 0.0) AS ftp,
+			    ISNULL(ROUND((CONVERT(float, threep) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS threep,
+			    ISNULL(ROUND((CONVERT(float, threep_a) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS threep_a,
+			    ISNULL(ROUND((CONVERT(float, threep) / NULLIF(CONVERT(float, threep_a), 0) * 100), 1), 0.0) AS threepp,
+			    ISNULL(ROUND((CONVERT(float, pp) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS pp,
+			    ISNULL(ROUND((CONVERT(float, pp_a) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS pp_a,
+			    ISNULL(ROUND((CONVERT(float, pp) / NULLIF(CONVERT(float, pp_a), 0) * 100), 1), 0.0) AS ppp,
+			    ISNULL(ROUND((CONVERT(float, o_r) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS o_r,
+			    ISNULL(ROUND((CONVERT(float, d_r) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS d_r,
+			    ISNULL(ROUND((CONVERT(float, o_r + d_r) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS r_tot,
+			    ISNULL(a_s, 0) AS a_s,
+			    ISNULL(s_t, 0) AS s_t,
+			    ISNULL(ROUND((CONVERT(float, b_s) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS b_s,
+			    ISNULL(gd, 0) AS gd,
+			    ISNULL(tto, 0) AS tto,
+			    ISNULL(ROUND((CONVERT(float, t_o) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS t_o,
+			    ISNULL(wft, 0) AS wft,
+			    ISNULL(woft, 0) AS woft,
+			    ISNULL(idf, 0) AS idf,
+			    ISNULL(tf, 0) AS tf,
+			    ISNULL(bf, 0) AS bf,
+			    ISNULL(ef, 0) AS ef,
+			    ISNULL(ROUND((CONVERT(float, foul_tot) / NULLIF(CONVERT(float, game_count), 0) * 100), 1), 0.0) AS foul_tot,
+			    ISNULL(tfb, 0) AS tfb,
+			    ISNULL(fb, 0) AS fb,
+			    ISNULL(p_score, 0) AS p_score,
+			    ISNULL(score, 0) AS score,
+			    ISNULL(ROUND((CONVERT(float, score) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS pts
        from KCC_EGIS.kbl_data.team_sum 
        where quarter_gu ='XX'
        and game_code = '01'

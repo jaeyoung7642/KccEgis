@@ -43,7 +43,7 @@
    	         chartScrollMotion();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}
@@ -62,7 +62,7 @@
    	         chartScrollMotion();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}
@@ -81,7 +81,7 @@
    	         chartScrollMotion();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax 
 	}
@@ -98,7 +98,7 @@
    	         chartScrollMotion();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax 
 	}
@@ -119,7 +119,7 @@
    	      		customSelect();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax 
 	});
@@ -155,7 +155,7 @@
 					<ul class="location p_hide">
 						<li class="home"><span class="blind">홈</span></li>
 						<li>PLAYER</li>
-						<li>코칭스탭</li>
+						<li>선수</li>
 					</ul>
 
 					<!-- title -->
@@ -169,7 +169,8 @@
 							<div class="swiper-wrapper">
 								<a href="coachList" class="swiper-slide snb_link"><span>코칭스탭</span></a>  <!-- 해당페이지에 current 추가 -->
 								<a href="playerList" class="swiper-slide snb_link current"><span>선수</span></a>
-								<a href="cheer" class="swiper-slide snb_link"><span>응원단</span></a>
+								<!-- <a href="cheer" class="swiper-slide snb_link"><span>응원단</span></a> -->
+								<a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>응원단</span></a>
 								<a href="cheer_song" class="swiper-slide snb_link"><span>응원가</span></a>
 							</div>
 						</div>
@@ -369,11 +370,11 @@
 								        if(res==1){
 									        
 								        }else{
-								       	 alert("변경에 실패했습니다.");
+								        	alertPop("변경에 실패했습니다.");
 								        }
 							        },
 							        error: function() {
-										alert("서버 오류!!");
+										alert("서버에 문제가 있습니다.");
 									}
 							   });
 						}else{
@@ -387,11 +388,11 @@
 								        if(res==1){
 									        
 								        }else{
-								       	 alert("변경에 실패했습니다.");
+								        	alertPop("변경에 실패했습니다.");
 								        }
 							        },
 							        error: function() {
-										alert("서버 오류!!");
+										alert("서버에 문제가 있습니다.");
 									}
 							   });
 						}
@@ -702,7 +703,7 @@
 						<script src="/resources/common/assets/js/echarts.min.js" defer></script> <!-- 차트있을 때 추가 -->
 						</c:if>
 						<c:if test="${empty selectSeason}">
-							<div class="mt30-15 no_data white hmd no_data">관련 게시물이 없습니다.</div>
+							<div class="mt30-15 no_data white hmd no_data">해당 선수의 기록이 없습니다.</div>
 						</c:if>
 					</article>
 					<!-- //시즌 기록 -->
@@ -713,11 +714,14 @@
 							<h5 class="el_heading lv2">최근 경기 기록</h5> 
 							<form action="" class="forms">
 								<div class="frm_group">
+									<!-- (게시물 없을 경우) -->
+									<c:if test="${not empty selectYearMonth}">
 									<select class="frm_select max240 m155" aria-label="월 선택" onchange="changeYearMonth(this.value)">
 										<c:forEach items="${selectYearMonth}" var="selectYearMonth" varStatus="status">
 											<option value="${selectYearMonth.dateCode}">${selectYearMonth.dateCodeNm}</option>
 										</c:forEach>
 									</select>
+									</c:if>
 								</div>
 							</form>
 						</div>
@@ -801,7 +805,9 @@
 								</div>
 							</div>
 							<!-- (게시물 없을 경우) -->
-							<!-- <div class="no_post">검색된 결과가 없습니다.</div> -->
+							<c:if test="${empty playerYearMonthList}">
+							<div class="no_post">첫 경기 이후 데이터가 출력됩니다.</div>
+							</c:if>
 						</div>
 						<!-- //비교 테이블 -->
 					</article>

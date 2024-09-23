@@ -33,7 +33,7 @@
 	    var fileNameOrg = $(element).data('file-org');
 	    
 	    if (fileName === "" || fileName === null) {
-	        alert('파일이 없습니다.');
+	    	alertPop('파일이 없습니다.');
 	        return false;
 	    }
 	    
@@ -145,6 +145,7 @@
 								<div class="info">
 									<p>${kccadList.title }</p>
 								</div>
+								<c:if test="${adgroup != 'HOMECC'}">
 								<!-- overlay -->
 								<div class="overlay">
 									<div class="cont">
@@ -156,6 +157,7 @@
 									</div>
 								</div>
 								<!-- //overlay -->
+								</c:if>
 							</div>
 						</li>
 						<!-- //item -->

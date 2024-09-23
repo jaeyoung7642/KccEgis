@@ -72,7 +72,9 @@ public class CommonController {
 						//로컬	
 //						String uploadPath = req.getSession().getServletContext().getRealPath("/resources/common/images/upload"); // 저장경로
 						//개발	
-						String uploadPath = "D:\\apache-tomcat-9.0.89\\upload"; // 저장경로
+//						String uploadPath = "D:\\apache-tomcat-9.0.89\\upload"; // 저장경로
+						//운영
+						String uploadPath = "C:\\www\\apache-tomcat-9.0.93\\upload\\"; // 저장경로
 						System.out.println("uploadPath:" + uploadPath);
 
 						File uploadFile = new File(uploadPath);
@@ -138,7 +140,9 @@ public class CommonController {
 		//로컬
 //		filePath = "C:\\Users\\user\\kccEgis\\KccEgis\\src\\main\\webapp\\resources\\common\\images\\upload\\";
 		//개발
-		filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+//		filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+		//운영
+		filePath = "C:\\www\\apache-tomcat-9.0.93\\upload\\";
 		if(!"".equals(filePathTail)) {
 			filePath = filePath +filePathTail+ "\\";
 		}

@@ -219,7 +219,7 @@
 						</div>
 
 						<ul class="el_desc_list no_mg txt_black">
-							<li>경로우대(만65세 이상), 장애인 복지카드 50%할인/1인 1매(일반석에 한함)</li>
+							<li>경로우대(만65세 이상), 장애인 복지카드 50%할인 / 1인 1매(일반석에 한함)</li>
 							<li>청소년은 36개월 이상부터 초,중,고 학생에 한함(학생증 제시 요망)</li>
 							<li>36개월 이하의 경우 좌석을 점유 할 경우 티켓 구매 필수</li>
 							<li>문화누리카드40%(일반석에 한함)</li> 
@@ -263,7 +263,7 @@
 							<tbody>
 								<tr class="h50">
 									<td scope="row" class="dth1 txt_lt">온라인</td>
-									<td class="txt_lt"><a href="TICKET" target="_blank" rel="noreferrer" aria-label="(새창열림)" class="siteLink">https://egis.kdl.or.kr/</a></td>
+									<td class="txt_lt"><a href="TICKET" target="_blank" rel="noreferrer" aria-label="(새창열림)" class="siteLink">https://egis.kbl.or.kr</a></td>
 									<td class="txt_lt bd_rt">24시간 운영</td>
 									<td rowspan="3" class="txt_lt rds_rt no_bd_lt p_hide">
 										<ul class="el_desc_list mg txt_black">
@@ -361,7 +361,7 @@
 										기자석
 									</li>
 									<li class="item">
-										<span class="box c1"></span>
+										<span class="box c8"></span>
 										일반석
 									</li>
 									<li class="item">
@@ -379,7 +379,7 @@
 								</div>
 								<ul class="info_list type1">
 									<li class="item">
-										<span class="box c1"></span>
+										<span class="box c8"></span>
 										일반석(비지정석)
 									</li>
 								</ul>

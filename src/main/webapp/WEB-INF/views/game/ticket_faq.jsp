@@ -97,13 +97,10 @@
 						
 							<dd class="content accordion_cont">
 								<div class="inner">
-									<p> 티켓예매는 KBL WEB 및 KBL APP 을 통해서만 가능합니다.</p>
-										
-										<ol class="ol_list">
-											<li> KBL WEB : KBL 홈페이지 내 KCC이지스 예매 페이지에서 회원가입 및 로그인 후 예매 가능합니다. 
-											(링크 : <a href="https://egis.kbl.or.kr" target="_blank">https://egis.kbl.or.kr)</a></li>
-											<li> KBL APP : 회원가입 및 로그인 후 예매 가능합니다.</li>
-										</ol>
+									<p> 티켓예매는 KBL WEB 및 KBL APP 을 통해서만 가능합니다.<br>
+										KBL WEB : KBL 홈페이지 내 KCC이지스 예매 페이지에서 회원가입 및 로그인 후 예매 가능합니다.(링크 : <a href="https://egis.kbl.or.kr" target="_blank">https://egis.kbl.or.kr)</a><br>
+										KBL APP : 회원가입 및 로그인 후 예매 가능합니다.
+									</p>
 								</div>
 							</dd>
 						</dl>

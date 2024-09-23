@@ -87,6 +87,7 @@
 									<td>
 										<select class="frm_select m400" aria-label="계열사 구분" name="adgroup" id="adgroup">
 											<option value="all" <c:if test="${result.adgroup eq 'all'}">selected</c:if>>계열사</option>
+											<option value="미출력" <c:if test="${result.adgroup eq '미출력'}">selected</c:if>>미출력</option>
 											<option value="기업PR" <c:if test="${result.adgroup eq '기업PR'}">selected</c:if>>기업PR</option>
 											<option value="KCC창호" <c:if test="${result.adgroup eq 'KCC창호'}">selected</c:if>>KCC창호</option>
 											<option value="숲으로" <c:if test="${result.adgroup eq '숲으로'}">selected</c:if>>숲으로</option>

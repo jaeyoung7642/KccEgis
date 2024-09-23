@@ -12,6 +12,7 @@
 	<button type="button" onclick="loginForm()" class="el_btn frm_btn black">댓글 작성</button>
 	</c:if>
 </div>
+<c:if test="${not empty tailList}">
 <h5 class="tit">댓글</h5>
 <div class="comments" id="tailfocus">
 	<c:forEach items="${tailList}" var="tailList">
@@ -33,7 +34,6 @@
 	<!-- //row -->
 	</div>
 </div>
-<c:if test="${not empty tailList}">
 <!-- pagination -->
 <div class="pagination">
 	<!-- 맨처음 -->

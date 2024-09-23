@@ -57,6 +57,7 @@
 					<form action="cKccAdList" class="forms frm_group">
 						<select class="frm_select sm m140" aria-label="검색 구분" name="select">
 							<option value="all" <c:if test="${select eq 'all'}">selected</c:if>>계열사</option>
+							<option value="미출력" <c:if test="${select eq '미출력'}">selected</c:if>>미출력</option>
 							<option value="기업PR" <c:if test="${select eq '기업PR'}">selected</c:if>>기업PR</option>
 							<option value="KCC창호" <c:if test="${select eq 'KCC창호'}">selected</c:if>>KCC창호</option>
 							<option value="숲으로" <c:if test="${select eq '숲으로'}">selected</c:if>>숲으로</option>

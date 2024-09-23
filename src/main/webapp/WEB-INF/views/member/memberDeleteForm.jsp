@@ -43,18 +43,18 @@
 					url: 'deleteMember',
 					success:function(result){
 						if(result.deleteMsg != ''){
-							alert(result.deleteMsg);
+							alertPop(result.deleteMsg);
 						}else{
 							location.href="/deleteResult";
 						}
 			         },
 			         error:function(){
-			            alert('서버에 문제가 있어욤!');
+			            alert("서버에 문제가 있습니다.");
 			         }
 				});//ajax
 			}
 		}else{
-			alert("필수값을 입력해주세요.");
+			alertPop("필수값을 입력해주세요.");
 		}
 	}
 	

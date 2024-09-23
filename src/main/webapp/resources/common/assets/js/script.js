@@ -65,7 +65,10 @@ function searchReset() {
 		$("#player").val("all");
 		customSelect();
 	}
-
+function alertPop(msg){
+	$('.openAlert').trigger('click');
+	alertPopup(msg);
+}
 function updateCountdown() {
   var target = 	$("#game_date_0");
   if(target.val() == null || target.val() ==''){

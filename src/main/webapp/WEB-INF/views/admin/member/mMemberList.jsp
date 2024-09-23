@@ -63,8 +63,9 @@
 					<form action="mMemberList" class="forms frm_group">
 						<select class="frm_select sm m140" aria-label="탈퇴 여부" name="chk_state" id="chk_state" onchange="chkStateSelect(this.value)">
 							<option value="all" <c:if test="${chk_state eq 'all'}">selected</c:if>>전체</option>
-							<option value="Y" <c:if test="${chk_state eq 'Y'}">selected</c:if>>가입</option>
+							<option value="S" <c:if test="${chk_state eq 'S'}">selected</c:if>>가입</option>
 							<option value="N" <c:if test="${chk_state eq 'N'}">selected</c:if>>탈퇴</option>
+							<option value="O" <c:if test="${chk_state eq 'O'}">selected</c:if>>임시탈퇴</option>
 						</select>
 						<select class="frm_select sm m140" aria-label="검색 조건" name="select" id="searchOption">
 							<option value="memberName" <c:if test="${select eq 'memberName'}">selected</c:if>>회원명</option>
@@ -106,8 +107,9 @@
 							<td>${member.reg_date}</td>
 							<td>${member.logindate}</td>
 							<td>
-								<c:if test="${member.chk_state == 'Y' || member.chk_state == 'S'}">가입</c:if>
-								<c:if test="${member.chk_state == 'N' || member.chk_state == 'O'}">탈퇴</c:if>
+								<c:if test="${member.chk_state == 'S'}">가입</c:if>
+								<c:if test="${member.chk_state == 'N'}">탈퇴</c:if>
+								<c:if test="${member.chk_state == 'O'}">임시탈퇴</c:if>
 							</td>
 						</tr>
 					</c:forEach>

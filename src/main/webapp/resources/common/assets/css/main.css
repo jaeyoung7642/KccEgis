@@ -276,6 +276,7 @@ body {background: var(--primary);}
 .game_content .broad {font-size: var(--size14-8); line-height: 1; font-weight: var(--font-rg); opacity: 0.6; margin-top: 3.7856em;}
 .game_footer {grid-area: footer; height: calc(var(--h) * 0.2053); display: flex; justify-content: center; align-items: center}
 .game_footer p {font-size: var(--size16-10); line-height: 1; opacity: 0.6;}
+.game_list .item .no_game {position: absolute; inset: 0;}
 
 @media (min-width: 1401px) {
 	.game_list .inner {display: grid; gap: min(2.344vw, 45px); grid-template-columns: repeat(3, 1fr);} 

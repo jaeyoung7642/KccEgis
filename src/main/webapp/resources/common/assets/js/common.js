@@ -20,6 +20,7 @@ $(function() {
 	sliders();
 	tabsEvent();
 	accordionEvent();
+	modal();
 });
 
 // breakpoint
@@ -66,6 +67,7 @@ const dimToggle = (state) => {
 		}
 		
 		noscroll(false);
+		
 		$('.dim').fadeIn(dur);
 	} else {
 		$('.dim').fadeOut(dur);
@@ -107,6 +109,16 @@ const fetchData = (json) => {
 	return fetch(json)
 		.then(res => res.json())
 		.catch(err => console.error('Error fetching data:', err));
+}
+
+const loaderClose = () => {
+	if ($('.loading').length === 0) return;
+
+	$('.loading').fadeOut(dur);
+
+	setTimeout(() => {
+		$('.loading').remove();
+	}, dur);
 }
 
 function smoothScroll() {
@@ -871,4 +883,70 @@ function accordionEvent() {
 			}
 		}
 	});
+}
+
+// modal
+function modal() {
+	let targetBtn;
+	
+	if ($('.modal.open').length > 0) {
+		openModal();
+	}
+
+	$document.on('click', '.openModal', (e) => {
+		const $this = e.currentTarget;
+		e.preventDefault();
+
+		openModal($this);
+		targetBtn = $this;
+	});
+
+	$document.on('click', '.closeModal, .dim', (e) => {
+		const $this = e.currentTarget;
+		e.preventDefault();
+
+		closeModal($this);
+
+		if (targetBtn) {
+			targetBtn.focus();
+			targetBtn = null;
+		}
+	});
+
+	// 키보드 esc 닫기
+	$document.on('keydown', (e) => { 
+		if (!$('.modal.open').length === 0) return;
+
+		if (e.keyCode == 27) { 
+			closeModal(e.target);
+		}
+	});
+
+	function openModal(el) {
+		const target = $(el).data('target');
+
+		$(target).attr('tabindex', '0').fadeIn(dur).addClass('open').focus();
+		keyFocus();
+		dimToggle(true);
+	}
+
+	function closeModal(el) {
+		const $target = el.className === '.closeModal' ? $(el).parents('.modal') : $('.modal.open');
+
+		if (!$target.hasClass('open')) return;
+
+		$target.attr('tabindex', '-1').fadeOut(dur);
+		dimToggle(false);
+
+		setTimeout(() => {
+			$target.removeClass('open');
+		}, dur);
+		
+	}
+}
+
+function alertPopup(msg) {
+	const $popup = $('.alertPopup');
+	
+	$popup.find('.alert_msg').html(msg);
 }

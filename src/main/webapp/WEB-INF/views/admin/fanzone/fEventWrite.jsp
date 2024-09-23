@@ -38,7 +38,7 @@
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   }); 			
 		} else {
@@ -63,7 +63,7 @@
 			        }
 		        },
 		        error: function() {
-					alert("서버 오류!!");
+					alert("서버에 문제가 있습니다.");
 				}
 		   }); 
 		}
@@ -169,6 +169,33 @@
 											<label class="frm_radio type1">
 												<input type="radio" name="flag" value="Y" checked>
 												미출력
+											</label>
+										</c:if>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">진행여부</th>
+									<td>
+										<div class="frm_group gap14">
+										<c:if test="${result.etc2 != null }">
+											<label class="frm_radio type1">
+												<input type="radio" name="etc2" value="N" <c:if test="${result.etc2 == 'N'}">checked</c:if>>
+												진행중
+											</label>
+											<label class="frm_radio type1">
+												<input type="radio" name="etc2" value="Y" <c:if test="${result.etc2 == 'Y'}">checked</c:if>>
+												종료
+											</label>
+										</c:if>
+										<c:if test="${result.etc2 == null }">
+											<label class="frm_radio type1">
+												<input type="radio" name="etc2" value="N">
+												진행중
+											</label>
+											<label class="frm_radio type1">
+												<input type="radio" name="etc2" value="Y" checked>
+												종료
 											</label>
 										</c:if>
 										</div>

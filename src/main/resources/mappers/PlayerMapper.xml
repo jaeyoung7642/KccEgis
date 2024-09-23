@@ -469,7 +469,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 					 ,(CONVERT(FLOAT, a.b_s) / a.game_count) as avg2
 					</if>
 			         ,(a.o_r + a.d_r) as r_tot,b.kname AS pl_name,b.back_num AS pl_back
-			        FROM kcc2022_esoom.kbl_data.player_sum a,kcc2022_esoom.kbl_data.player b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.kbl_data.player b
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = #{season_code}
 			          AND a.game_count != 0

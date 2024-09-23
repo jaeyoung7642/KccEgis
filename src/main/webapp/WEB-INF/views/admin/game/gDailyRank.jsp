@@ -39,7 +39,7 @@ function teamDailyRankApi(){
 	        },
 	        error: function() {
 	        	loaderClose();
-				alert("서버 오류!!");
+				alert("서버에 문제가 있습니다.");
 			}
 	   }); 
 	}

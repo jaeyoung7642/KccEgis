@@ -35,7 +35,7 @@ function changeYn(num,main_chk){
 	        }
         },
         error: function() {
-			alert("서버 오류!!");
+			alert("서버에 문제가 있습니다.");
 		}
    });
 }
@@ -66,7 +66,7 @@ function changeYn(num,main_chk){
 			        }
 		        },
 		        error: function() {
-					alert("서버 오류!!");
+					alert("서버에 문제가 있습니다.");
 				}
 		   });
 	}

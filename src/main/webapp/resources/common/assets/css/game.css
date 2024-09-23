@@ -30,6 +30,7 @@
 .game_card_list .record_list + .el_btn {margin-top: 10px;}
 .game_card_list .footer {grid-area: footer;}
 .game_card_list .item.lg .day {font-size: var(--size27-16);}
+.game_card_list .item .no_game {position: absolute; inset: 0;}
 
 @media (min-width: 1025px) {
 	.game_card_list {--fa: 1.3; display: grid; grid-template-columns: min-content auto min-content; gap: min(1.042vw * var(--fa), 20px);}
@@ -580,6 +581,7 @@
 .ticket_seatmap .box.c5 {--bg: #EF7DAF;}
 .ticket_seatmap .box.c6 {--bg: #53C5DA;}
 .ticket_seatmap .box.c7 {--bg: #29ABE2;}
+.ticket_seatmap .box.c8 {--bg: #2A3B8F;}
 
 @media (min-width: 1025px) {
 	.ticket_seatmap {display: flex; align-items: center; padding: 0 min(1.667vw, 32px); gap: min(3.906vw * var(--fa1), 75px);}

@@ -13,6 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
@@ -213,7 +214,7 @@ public class MemberController {
 		String productID = "2101979031";
 	    
 	    //운영용
-		String returnURL = "https://kcctemp.esoom.co.kr/niceResult";
+		String returnURL = "https://kccegis.com/niceResult";
 		//개발용
 //		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult";
 
@@ -310,6 +311,21 @@ public class MemberController {
 		String yyyy = birthdate.substring(0,4);
 		String mm = birthdate.substring(4, 6);
 		String dd = birthdate.substring(6, 8);
+		 // LocalDate 객체 생성
+        LocalDate birthDate = LocalDate.of(Integer.parseInt(yyyy), Integer.parseInt(mm), Integer.parseInt(dd));
+        LocalDate today = LocalDate.now();
+        // 만나이 계산
+        int age = today.getYear() - birthDate.getYear();
+        // 생일이 지나지 않았으면 만나이 -1
+        if (today.isBefore(birthDate.plusYears(age))) {
+            age--;
+        }
+        // 만나이가 14세 미만인지 확인
+        if (age < 14) {
+        	mv.addObject("msg", "만 14세 미만은 가입하실 수 없습니다.\n만 14세 미만의 회원은 보호자 정보로 인증을 해주세요.");
+			mv.setViewName("redirect:/joinForm1");
+			return mv;
+        }
 		String fistNum = mobileno.substring(0, 3); // '010'
         String middleNum = mobileno.substring(3, 7); // '0000'
         String lastNum = mobileno.substring(7, 11);  // '0000'
@@ -935,7 +951,7 @@ public class MemberController {
 		String productID = "2101979031";
 	    
 	    //운영용
-		String returnURL = "https://kcctemp.esoom.co.kr/niceResult2";
+		String returnURL = "https://kccegis.com/niceResult2";
 		//개발용
 //		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult2";
 

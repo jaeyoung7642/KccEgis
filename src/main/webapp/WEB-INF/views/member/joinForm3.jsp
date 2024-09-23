@@ -101,7 +101,7 @@
    			    }
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}
@@ -128,11 +128,11 @@
 	   			    }
 	   	         },
 	   	         error:function(){
-	   	            alert('서버에 문제가 있어욤!');
+	   	            alert("서버에 문제가 있습니다.");
 	   	         }
 	   		});//ajax
 		}else{
-		 	alert('올바른 아이디 형식이 아닙니다.');
+			alertPop('올바른 아이디 형식이 아닙니다.');
 		}
 	}
 	function member_id_val(){
@@ -197,7 +197,7 @@
    			    }
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}
@@ -223,7 +223,7 @@
 	   			    }
 	   	         },
 	   	         error:function(){
-	   	            alert('서버에 문제가 있어욤!');
+	   	            alert("서버에 문제가 있습니다.");
 	   	         }
 	   		});//ajax
 		}else{
@@ -233,38 +233,34 @@
 	function joinCheck(){
 		var form = $("#joinForm");
 		if(!idcheck){
-			alert("아이디를 확인해주세요.");
+			alertPop("아이디를 확인해주세요.");
 			return false;	
 		}
 		if(!idduplicate){
-			alert("아이디 중복확인을 해주세요.");
+			alertPop("아이디 중복확인을 해주세요.");
 			return false;
 		}
 		if(!pwdcheck){
-			alert("비밀번호를 확인해주세요.");
+			alertPop("비밀번호를 확인해주세요.");
 			return false;
 		}
 		if($("#email_domain").val() == '' || $("#email_id").val() == ''){
-			alert("이메일을 입력 해주세요.");
+			alertPop("이메일을 입력 해주세요.");
 			return false;
 		}
 		if(!emailduplicate){
-			alert("이메일 중복확인을 해주세요.");
+			alertPop("이메일 중복확인을 해주세요.");
 			return false;
 		}
 		if($("#zipcode").val() == '' || $("#addr").val() == '' || $("#daddr").val() == ''){
-			alert("주소를 입력해 주세요.");
-			return false;
-		}
-		if($("#player_no").val() == ''){
-			alert("선호선수를 등록해 주세요.");
+			alertPop("주소를 입력해 주세요.");
 			return false;
 		}
 		if($("#member_id").val() != '' && $("#member_pwd").val() != '' && $("#member_pwd2").val() != '' && $("#email_id").val() != ''
-				&& $("#email_domain").val() != '' && $("#zipcode").val() != ''&& $("#addr").val() != ''&& $("#daddr").val() != ''&& $("#player_no").val() != ''){
+				&& $("#email_domain").val() != '' && $("#zipcode").val() != ''&& $("#addr").val() != ''&& $("#daddr").val() != ''){
 			form.submit();
 		}else{
-			alert("필수항목을 입력해주세요.");
+			alertPop("필수항목을 입력해주세요.");
 			return false;
 		}
 	}
@@ -330,20 +326,20 @@
 										<input type="text" class="frm_input pmax370" aria-label="이름" readonly value="${name}" name="name">
 									</div>
 									<div class="row">
-										<div class="frm_group gap10">
-											<input type="text" class="frm_input pmax370" name="member_id" id="member_id" aria-label="아이디" placeholder="아이디 입력" required onkeyup="idKeyup(this)">
+										<div class="frm_group gap10 pmax370 req">
+											<input type="text" class="frm_input" name="member_id" id="member_id" aria-label="아이디" placeholder="아이디 입력" required onkeyup="idKeyup(this)">
 											<button type="button" class="el_btn frm_btn blue openModal" id="duplicateIdBtn" data-target="#checkPopup" onclick="duplicateId()" disabled>중복 확인</button>
 											<p class="el_desc_frm">영문소문자와 숫자 조합 6~12자</p>
 										</div>
 									</div>
 									<div class="row">
-										<div class="frm_group gap10b m_column">
+										<div class="frm_group gap10b m_column req">
 											<input type="password" class="frm_input pmax370" name="member_pwd" id="member_pwd" aria-label="비밀번호" placeholder="비밀번호 입력" required onkeyup="pwdKeyup(this)">
 											<p class="el_desc_frm">영문소문자+숫자+특수문자 조합 6~12자</p>
 										</div>
 									</div>
 									<div class="row">
-										<div class="frm_group gap10b m_column">
+										<div class="frm_group gap10b m_column req">
 											<input type="password" class="frm_input pmax370" id="member_pwd2" aria-label="비밀번호 확인" placeholder="비밀번호 확인" required onkeyup="pwdKeyup2(this)">
 										</div>
 											<!-- 에러 메시지 -->
@@ -357,7 +353,7 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="frm_group gap11 pmax370">
+										<div class="frm_group gap11 pmax370 req">
 											<select class="frm_select" aria-label="태어난 해 선택" name="yyyy">
 												<c:forEach var="i" begin="1945" end="2001">
 									                <c:choose>
@@ -430,7 +426,7 @@
 									</div>
 									<div class="row">
 										<div class="frm_email">
-											<div class="col frm_group gap10b">
+											<div class="col frm_group gap10b req">
 												<input type="text" class="frm_input" id="email_id" name="email_id" aria-label="이메일 아이디" placeholder="이메일 입력"  required oninput="emailChange()">
 												<span class="txt">@</span>
 												<input type="text" class="frm_input email_input" id="email_domain" name="email_domain" aria-label="이메일 도메인" required oninput="emailChange()">
@@ -472,7 +468,7 @@
 								    </script>
 									<div class="row">
 										<div class="frm_address">
-											<div class="frm_group gap10b">
+											<div class="frm_group gap10b req">
 												<input type="text" id="zipcode" name="zipcode" class="frm_input max116" aria-label="우편번호" placeholder="우편번호 입력"  required readonly>
 												<button type="button" class="el_btn frm_btn gray" onclick="searchAddress()">우편번호 찾기</button>
 											</div>

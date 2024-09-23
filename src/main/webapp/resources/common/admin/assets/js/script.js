@@ -260,29 +260,57 @@ function onInputDateHandler(a) {
             return;
         }
 	}
-	function updateState(num){
-	if (confirm("정말 탈퇴처리 하시겠습니까?") == true) {
-        	$.ajax({
-		   	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
-		        url : "/kccadm/updateState",      // 컨트롤러에서 대기중인 URL 주소이다.
-		        data : {
-		       	 "num":num
-		        },            // Json 형식의 데이터이다.
-		        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-			        if(res==1){
-			        	location.href = 'mMemberList';
-			        }else{
-			       	 alert("변경에 실패했습니다.");
-			        }
-		        },
-		        error: function() {
-					alert("서버 오류!!");
-				}
-		   });
-            
-        } else {
-
-            return;
+	function updateState(num,str){
+		if(str == 'S'){
+			if (confirm("정말 복구 하시겠습니까?") == true) {
+	        	$.ajax({
+			   	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
+			        url : "/kccadm/updateState",      // 컨트롤러에서 대기중인 URL 주소이다.
+			        data : {
+			       	 "num":num,
+			       	 "str" : str
+			        },            // Json 형식의 데이터이다.
+			        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+				        if(res==1){
+				        	location.href = 'mMemberList';
+				        }else{
+				       	 alert("변경에 실패했습니다.");
+				        }
+			        },
+			        error: function() {
+						alert("서버 오류!!");
+					}
+			   });
+	            
+	        } else {
+	
+	            return;
+	        }
+		}else{
+			if (confirm("정말 탈퇴처리 하시겠습니까?") == true) {
+		        	$.ajax({
+				   	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
+				        url : "/kccadm/updateState",      // 컨트롤러에서 대기중인 URL 주소이다.
+				        data : {
+				       	 "num":num,
+				       	 "str" : str
+				        },            // Json 형식의 데이터이다.
+				        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+					        if(res==1){
+					        	location.href = 'mMemberList';
+					        }else{
+					       	 alert("변경에 실패했습니다.");
+					        }
+				        },
+				        error: function() {
+							alert("서버 오류!!");
+						}
+				   });
+		            
+		        } else {
+		
+		            return;
+		        }
         }
 	}
 	function resetSearch() {

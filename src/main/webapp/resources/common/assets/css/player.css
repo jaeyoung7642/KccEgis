@@ -258,7 +258,7 @@
 	.player_view_top .favorite {margin-top: 15px;}
 } 
 
-.player_view_top .player::after {content: ""; position: absolute; left: 0; bottom: 0; width: min(35.104vw * 1.4, 674px);aspect-ratio: 1/0.73591; z-index: -1; background: url('../../images/img/player_view_bg.webp') no-repeat center/contain; transform: translate(var(--bgx), var(--bgy));} /* 674 */
+.player_view_top .player::after {content: ""; position: absolute; left: 0; bottom: 0; width: min(35.104vw * 1.4, 674px); z-index: -1; background: url('../../images/img/player_view_bg.webp') no-repeat center/contain; transform: translate(var(--bgx), var(--bgy));} /* 674 */
 .player_view_top .player .el_photo {width: min(26.042vw * var(--fa2), 500px); --py: -22.134%; overflow: visible; position: absolute; left: 0; top: 0;}
 
 .player_view_top .info {width: min(15.156vw * var(--fa1), 291px);}
@@ -274,6 +274,7 @@
 
 @media (min-width: 1025px) {
 	.player_view_top .info {margin-top: 50px;}
+	.player_view_top .player::after {height: 100%;}
 	.player_view_top .profile_box {padding: 8px min(1.563vw * var(--fa1), 30px);}
 	.player_view_top .profile_box dl {padding: min(1.042vw * var(--fa2), 20px) min(1.042vw * var(--fa1), 20px);}
 }
@@ -281,7 +282,7 @@
 @media (max-width: 1024px) { 
 	.player_view_top .player {padding-right: min(8vw, 20px); --bgx: 3.467%; --bgy: -1.556%;}
 	.player_view_top .player .el_photo {--pscl: .98; --px: -10.62%; --py: -19.756%; width: 72.8%; max-width: 21rem; min-width: 273px; height: 100%;}
-	.player_view_top .player::after {width: 93.067%; max-width: 26.846rem; min-width: 349px; bottom: auto; top: 0; background-image: url('../../images/img/player_view_bg@2x.webp');} 
+	.player_view_top .player::after {width: 93.067%; aspect-ratio: 1/0.73591; max-width: 26.846rem; min-width: 349px; bottom: auto; top: 0; background-image: url('../../images/img/player_view_bg@2x.webp');} 
 	.player_view_top .info {width: 48.41%; max-width: 300px;} /* 167 */
 	.player_view_top .info .el_pos {font-size: var(--size20); margin-bottom: 0.1em;}
 	.player_view_top .info .el_pos .num {font-size: var(--size32);}
@@ -291,7 +292,7 @@
 
 @media (max-width: 360px) { 
 	.player_view_top .player {--bgx: -50%;}
-	.player_view_top .player::after {left: 50%;}
+	.player_view_top .player::after {left: 50%; }
 }
 
 

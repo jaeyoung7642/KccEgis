@@ -32,7 +32,7 @@
 		var fileName = $(element).data('file');
 	    var fileNameOrg = $(element).data('file-org');
 		if(fileName=="" || fileName ==null){
-			alert('파일이 없습니다.');
+			alertPop('파일이 없습니다.');
 			return false;
 		}
 		location.href="/filedown?fileName="+fileName+"&fileNameOrg="+fileNameOrg+"&filePathTail=wallpaper";
@@ -41,7 +41,7 @@
 		var fileName = $(element).data('file');
 	    var fileNameOrg = $(element).data('file-org');
 		if(fileName=="" || fileName ==null){
-			alert('파일이 없습니다.');
+			alertPop('파일이 없습니다.');
 			return false;
 		}
 		location.href="/filedown?fileName="+fileName+"&fileNameOrg="+fileNameOrg+"&filePathTail=wallpaper";

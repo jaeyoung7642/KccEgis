@@ -44,17 +44,17 @@ function login(){
 				url: 'login',
 				success:function(result){
 					if(result.loginMsg != ''){
-						alert(result.loginMsg);
+						alertPop(result.loginMsg);
 					}else{
 						$('#loginBtn').click();
 					}
 		         },
 		         error:function(){
-		            alert('서버에 문제가 있어욤!');
+		            alert("서버에 문제가 있습니다.");
 		         }
 			});//ajax
 	}else{
-		alert('아이디와 비밀번호를 입력해주세요.');
+		alertPop('아이디와 비밀번호를 입력해주세요.');
 	}
 }
 </script>

@@ -48,7 +48,7 @@
 		   	         	swipeEvent();
 		   	         },
 		   	         error:function(){
-		   	            alert('서버에 문제가 있어욤!');
+		   	            alert('서버에 문제가 있습니다.');
 		   	         }
 		   		});//ajax
 		}else{
@@ -88,7 +88,7 @@
 		   	          });
 	   	         },
 	   	         error:function(){
-	   	            alert('서버에 문제가 있어욤!');
+	   	            alert('서버에 문제가 있습니다.');
 	   	         }
 	   		});//ajax
 		}
@@ -107,7 +107,7 @@
    	         	customSelect();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}
@@ -127,7 +127,7 @@
    	         	swipeEvent();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}
@@ -736,6 +736,9 @@
 								</table>
 							</div>
 						</div>
+						<c:if test="${empty seasonSearchList}">
+							<div class="no_post">첫 경기 이후 데이터가 출력됩니다.</div>
+						</c:if>
 					</div>
 					<!-- 기록 테이블 -->
 				</div>

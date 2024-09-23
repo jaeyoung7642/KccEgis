@@ -458,9 +458,10 @@ public class AdminController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/updateState", method = RequestMethod.GET)
-	public String updateState(int num,ModelAndView mv)throws Exception {
+	public String updateState(int num,ModelAndView mv,String str)throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("num", num);
+		paramMap.put("str", str);
 		int result=service.updateState(paramMap);
 		return String.valueOf(result);
 	}
@@ -895,6 +896,7 @@ public class AdminController {
 		 String wtype = request.getParameter("wtype");
 		 String linkurl = request.getParameter("linkurl");
 		 String etc1 = request.getParameter("etc1");
+		 String etc2 = request.getParameter("etc2");
 		 String game_date = (request.getParameter("game_date") != null ? request.getParameter("game_date").replace("-", "") : "");
 		 String game_date_nm = request.getParameter("game_date_nm");
 		 String keyword_tag = request.getParameter("keyword_tag");
@@ -919,6 +921,7 @@ public class AdminController {
 		 paramMap.put("wtype", wtype);
 		 paramMap.put("linkurl", linkurl);
 		 paramMap.put("etc1", etc1);
+		 paramMap.put("etc2", etc2);
 		 paramMap.put("game_date", game_date);
 		 paramMap.put("game_date_nm", game_date_nm);
 		 paramMap.put("keyword_tag", keyword_tag);

@@ -59,7 +59,7 @@
   	                });
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 		
@@ -68,7 +68,7 @@
 		var num = $("#num").val();
 		var content = $("#content").val();
 		if(content ==""){
-			alert("댓글을 입력해주세요.");
+			alertPop("댓글을 입력해주세요.");
 			return;
 		}else{
 			$.ajax({
@@ -82,11 +82,11 @@
 				        if(res==1){
 				        	contentPage(1);
 				        }else{
-				       	 alert("댓글 작성에 실패했습니다.");
+				        	alertPop("댓글 작성에 실패했습니다.");
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가있습니다.");
 					}
 			   });
 		}
@@ -103,11 +103,11 @@
 				        if(res==1){
 				        	contentPage(1);
 				        }else{
-				       	 alert("삭제에 실패했습니다.");
+				        	alertPop("삭제에 실패했습니다.");
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   });
 	            
@@ -128,11 +128,11 @@
 				        if(res==1){
 				        	location.href="/freeList";
 				        }else{
-				       	 alert("삭제에 실패했습니다.");
+				        	alertPop("삭제에 실패했습니다.");
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가있습니다.");
 					}
 			   });
 	            
@@ -259,6 +259,7 @@
 									<button type="button" onclick="loginForm()" class="el_btn frm_btn black">댓글 작성</button>
 									</c:if>
 								</div>
+								<c:if test="${not empty tailList}">
 								<h5 class="tit">댓글</h5>
 								<div class="comments" id="tailfocus">
 									<c:forEach items="${tailList}" var="tailList">
@@ -284,7 +285,6 @@
 									</c:forEach>
 									<!-- //row -->
 								</div>
-								<c:if test="${not empty tailList}">
 								<!-- pagination -->
 								<div class="pagination">
 								<!-- 맨처음 -->

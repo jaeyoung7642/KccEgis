@@ -519,9 +519,10 @@
 		</if>
 		<if test='state == "ing"'>
 			and GETDATE() BETWEEN sdate and edate
+			and etc2 = 'N'
 		</if>
 		<if test='state == "end"'>
-						<![CDATA[and GETDATE()  > edate]]>
+			<![CDATA[and (GETDATE()  > edate or etc2 ='Y')]]>
 		</if>
 		) A
 		ORDER BY num desc
@@ -973,7 +974,7 @@
 	<update id="updateState" parameterType="map">
 		update
 		KCC_EGIS.egis.TBL_MEMBER
-		set chk_state = 'N'
+		set chk_state = #{str}
 		where
 		num= #{num}
 
@@ -1062,7 +1063,7 @@
 	<select id="memberMap" resultType="map">
 		select *
 		,KCC_EGIS.egis.FN_MASK_NAME(name) maskName
-		,CONVERT(char(10),reg_date ,23) regDate
+		,SUBSTRING(CONVERT(char(19),regDate ,20),0,17) regDate
 		,SUBSTRING(CONVERT(char(19),logindate ,20),0,17) loginDate
 		from KCC_EGIS.egis.TBL_MEMBER
 		where
@@ -1295,11 +1296,8 @@
 		from KCC_EGIS.egis.TBL_MEMBER
 		where 1=1
 		<if test="chk_state != null">
-			<if test='chk_state == "Y"'>
-				and (chk_state = 'Y' or chk_state ='S')
-			</if>
-			<if test='chk_state == "N"'>
-				and (chk_state = 'N' or chk_state ='O')
+			<if test='chk_state != "all"'>
+				and chk_state = #{chk_state}
 			</if>
 		</if>
 		<if test="keyWord != null">
@@ -1389,11 +1387,8 @@
 		from KCC_EGIS.egis.TBL_MEMBER
 		where 1=1
 		<if test="chk_state != null">
-			<if test='chk_state == "Y"'>
-				and (chk_state = 'Y' or chk_state ='S')
-			</if>
-			<if test='chk_state == "N"'>
-				and (chk_state = 'N' or chk_state ='O')
+			<if test='chk_state != "all"'>
+				and chk_state = #{chk_state}
 			</if>
 		</if>
 		<if test="keyWord != null">
@@ -1509,9 +1504,10 @@
 		</if>
 		<if test='state == "ing"'>
 			and GETDATE() BETWEEN sdate and edate
+			and etc2 = 'N'
 		</if>
 		<if test='state == "end"'>
-				<![CDATA[and GETDATE()  > edate]]>
+			<![CDATA[and (GETDATE()  > edate or etc2 ='Y')]]>
 		</if>
 
 		) A
@@ -1732,6 +1728,7 @@
 		,#{wtype} AS wtype
 		,#{linkurl} AS linkurl
 		,#{etc1} AS etc1
+		,#{etc2} AS etc2
 		,#{game_date} AS game_date
 		,#{game_date_nm} AS game_date_nm
 		,#{keyword_tag} AS keyword_tag
@@ -1754,6 +1751,7 @@
 		,A.wtype = B.wtype
 		,A.linkurl = B.linkurl
 		,A.etc1 = B.etc1
+		,A.etc2 = B.etc2
 		,A.game_date = B.game_date
 		,A.game_date_nm = B.game_date_nm
 		,A.keyword_tag = B.keyword_tag
@@ -1774,6 +1772,7 @@
 		,linkurl
 		,wtype
 		,etc1
+		,etc2
 		,game_date
 		,game_date_nm
 		,keyword_tag
@@ -1795,6 +1794,7 @@
 		,B.linkurl
 		,B.wtype
 		,B.etc1
+		,B.etc2
 		,B.game_date
 		,B.game_date_nm
 		,B.keyword_tag

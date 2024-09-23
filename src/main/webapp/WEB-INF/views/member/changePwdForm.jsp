@@ -40,7 +40,7 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-            alert(msg);
+        	alertPop(msg);
         }
     }
 	var pwdcheck = false;
@@ -73,13 +73,13 @@
 	function updateCheck(){
 		var form = $("#updateForm");
 		if(!pwdcheck){
-			alert("비밀번호를 확인해주세요.");
+			alertPop("비밀번호를 확인해주세요.");
 			return false;
 		}
 		if($("#member_pwd").val() != '' && $("#member_pwd2").val() != '' && $("#member_pwd3").val() != ''){
 			form.submit();
 		}else{
-			alert("비밀번호를 입력해주세요.");
+			alertPop("비밀번호를 입력해주세요.");
 			return false;
 		}
 	}

@@ -137,7 +137,6 @@
 												<div class="frm_file">
 													<label>
 														<input type="file" aria-label="파일등록" id="p_file_${status.index }" name="files">
-														<input type="hidden" name="photofile_bf" value="${photoList.photofile}">
 														<c:if test="${photoList.photofile != null && photoList.photofile != ''}">
 															<span class="frm_input gray w268">${photoList.photofile }</span>
 														</c:if>
@@ -145,6 +144,7 @@
 															<span class="frm_input gray w268">사진을 첨부하세요.</span>
 														</c:if>
 													</label>
+														<input type="hidden" name="photofile_bf" value="${photoList.photofile}">
 													<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 												</div>
 											</div>
@@ -428,7 +428,7 @@
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   });
 		});

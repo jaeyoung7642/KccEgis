@@ -37,7 +37,7 @@ function showYn(num,chkDel){
 		        }
 	        },
 	        error: function() {
-				alert("서버 오류!!");
+				alert("서버에 문제가 있습니다.");
 			}
 	   });
 	}else{
@@ -448,7 +448,7 @@ function searchReset() {
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   });
 		});
@@ -473,7 +473,7 @@ function searchReset() {
 				        }
 			        },
 			        error: function() {
-						alert("서버 오류!!");
+						alert("서버에 문제가 있습니다.");
 					}
 			   });
 		});

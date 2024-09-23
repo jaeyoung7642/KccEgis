@@ -40,7 +40,7 @@
   	      		changeSeason2(val);
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}
@@ -65,7 +65,7 @@
    	         	swipeEvent();
    			},
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}

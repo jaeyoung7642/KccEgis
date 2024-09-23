@@ -8,7 +8,6 @@ $(function() {
 	customSelect();
 	formsEvent();
 	chartScrollMotion();
-	modal();
 	checkAll();
 	includeHtml();
 	lazyLoad();
@@ -437,8 +436,8 @@ function datePicker() {
 		showMonthAfterYear:true,
 		showOtherMonths: true,
 		changeMonth: true,
-		yearRange: 'c-20:c+20',
     changeYear: true,
+		yearRange: 'c-20:c+20',
 		//monthNames: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 		monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 		dayNamesMin: ['일', '월','화','수','목','금','토'],
@@ -666,67 +665,6 @@ function lazyLoad() {
 
 	const observer = new IntersectionObserver(updateImage, { threshold: 0.01 });
 	$lazyImages.each((_, image) => observer.observe(image));
-}
-
-// modal
-function modal() {
-	let targetBtn;
-	
-	if ($('.modal.open').length > 0) {
-		openModal();
-	}
-
-	$document.on('click', '.openModal', (e) => {
-		const $this = e.currentTarget;
-		e.preventDefault();
-
-		openModal($this);
-		targetBtn = $this;
-	});
-
-	$document.on('click', '.closeModal, .dim', (e) => {
-		const $this = e.currentTarget;
-		e.preventDefault();
-		
-		closeModal($this);
-
-		if (targetBtn) {
-			targetBtn.focus();
-			targetBtn = null;
-		}
-	});
-
-	// 키보드 esc 닫기
-	$document.on('keydown', (e) => { 
-		if (!$('.modal.open').length === 0) return;
-
-		if (e.keyCode == 27) { 
-			closeModal(e.target);
-		}
-	});
-
-	function openModal(el) {
-		const target = $(el).data('target');
-
-		$(target).attr('tabindex', '0').fadeIn(dur).addClass('open').focus();
-		keyFocus();
-		dimToggle(true);
-	}
-
-	function closeModal(el) {
-		const $target = el.className === '.closeModal' ? $(el).parents('.modal') : $('.modal.open');
-
-		if (!$target.hasClass('open')) return;
-
-
-		$target.attr('tabindex', '-1').fadeOut(dur);
-		dimToggle(false);
-
-		setTimeout(() => {
-			$target.removeClass('open');
-		}, dur);
-		
-	}
 }
 
 // 체크박스 

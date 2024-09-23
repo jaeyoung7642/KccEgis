@@ -58,7 +58,7 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-            alert(msg);
+        	alertPop(msg);
         }
     }
 	</script>
@@ -116,7 +116,7 @@
 								</div>
 							</div>
 
-							<p class="el_desc_lg mt40">※ 만 14세 미만의 회원은<br class="xm_show"> 보호자 정보로 인증을 해주세요.</p>
+							<p class="el_desc_lg mt40">※ 만 14세 이상부터 회원가입이 가능합니다.</p>
 
 							<div class="member_footer type2 mt40">
 								<div class="btn_area">

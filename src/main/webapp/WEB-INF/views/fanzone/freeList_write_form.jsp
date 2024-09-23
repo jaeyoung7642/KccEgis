@@ -49,7 +49,7 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-            alert(msg);
+        	alertPop(msg);
         }
     }
     function onSubmit(e) {

@@ -37,13 +37,13 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alert('등록된 영상이 없습니다.');
+					alertPop('등록된 영상이 없습니다.');
 				}else{
 					location.href = "movieListHDetail?num="+result.num;
 				}
 			},
 			error : function() {
-				alert('서버에 문제가 있어욤!');
+				alert("서버에 문제가 있습니다.");
 			}
 		});
 	} 
@@ -57,13 +57,13 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alert('등록된 사진이 없습니다.');
+					alertPop('등록된 사진이 없습니다.');
 				}else{
 					location.href = "photoListHDetail?num="+result.num;
 				}
 			},
 			error : function() {
-				alert('서버에 문제가 있어욤!');
+				alert("서버에 문제가 있습니다.");
 			}
 		});
 	} 
@@ -223,6 +223,15 @@
 							<div class="swiper-wrapper inner">
 								<!-- slide -->
 								<div class="swiper-slide item">
+									<c:if test="${empty prevTeamSchedule}">
+									<div class="el_img no_game">
+										<picture>
+											<source srcset="/resources/common/images/game/main_game_mo.png" media="(max-width: 1024px)">
+											<img src="/resources/common/images/game/main_game_pc.jpg" alt="">
+										</picture>
+									</div>
+									</c:if>
+									<c:if test="${not empty prevTeamSchedule}">
 									<div class="game_header">
 										<p class="day"><em>${prevTeamSchedule.game_date_mm }</em>월 <em>${prevTeamSchedule.game_date_dd }</em>일(${prevTeamSchedule.week_day }) ${prevTeamSchedule.game_start_format }</p>
 										<c:if test="${prevTeamSchedule.home_team == '60' }">
@@ -292,6 +301,7 @@
 											<a href="#" class="el_btn btn1 type2" onclick="photo_detail(${prevTeamSchedule.game_date})"><span class="el_ico ico_photo_w"></span> 사진</a>
 										</div>
 									</div>
+									</c:if>
 								</div>
 								<!-- //slide -->
 								<c:forEach items="${teamScheduleList}" var="teamScheduleList" varStatus="status">

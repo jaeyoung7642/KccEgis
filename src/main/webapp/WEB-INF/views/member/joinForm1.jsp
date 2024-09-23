@@ -30,18 +30,36 @@
 	function joinSubmit(){
 		var check1 = $("input[name='check1']:checked").val();
 		if(check1 != 'Y'){
-			alert('이용약관에 동의해 주세요.');
+			alertPop('이용약관에 동의해 주세요.');
 			return;
 		}
 		var check2 = $("input[name='check2']:checked").val();
 		if(check2 != 'Y'){
-			alert('개인정보 수집 및 이용에 동의해주세요.');
+			alertPop('개인정보 수집 및 이용에 동의해주세요.');
 			return;
 		}
 		var form = $("#myForm");
 		form.submit();
 	}
-	
+	window.onload = function() {
+        // URL에서 'msg' 파라미터 읽기
+        var msg = getQueryParam('msg') || '';
+
+        // URL 디코딩
+        msg = decodeURIComponent(msg).trim();
+
+        // 콘솔에서 값 확인
+        console.log('msg:', msg);
+
+        // 메시지가 있을 경우 알림 표시
+        if (msg !== '') {
+        	alertPop(msg);
+        }
+    }
+	function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
 	</script>
 </head>
 <body class="page-sub">
@@ -91,7 +109,7 @@
 								<!-- 이용약관 동의 -->
 								<article class="article">
 									<dl class="agree_list">
-										<dt class="tit">이용약관 동의 <span class="sm req">[필수]</span></dt>
+										<dt class="tit"><span class="sm req">[필수]</span>이용약관 동의</dt>
 										<dd class="cont">
 											<div class="terms_area" data-lenis-prevent>
 												<!-- 내용 -->
@@ -111,11 +129,11 @@
 								<!-- 개인정보 수집 및 이용 동의 -->
 								<article class="article">
 									<dl class="agree_list dropdown">
-										<dt class="tit">개인정보 수집 및 이용 동의 <span class="sm req">[필수]</span></dt>
+										<dt class="tit"><span class="sm req">[필수]</span> 개인정보 수집•이용 동의서 </dt>
 										<dd class="cont">
 											<div class="terms_area auto">
 												<!-- 내용 -->
-												<p>구단 홈페이지 회원가입을 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다. 수집된 개인정보는 다음의 목적 이외의 용도로는 사용되지 않으며, 향후 이용 목적이 변경될 경우 사전에 동의를 구합니다.</p>
+												<p>구단 홈페이지 회원가입을 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오.</p>
 
 												<p class="terms_tit lv2">개인정보 수집 및 이용 내역</p>
 												
@@ -137,37 +155,30 @@
 																</thead>
 																<tbody>
 																	<tr>
-																		<td>아이디, 비밀번호, 성명, 이메일 주소, 휴대전화번호, 생년월일, 성별, 암호화된 동일인 식별정보(CI), 만 14세 미만 아동)법정대리인의 성명, 생년월일, 성별, 내외국인 구분, 통신사명, 휴대전화번호, 중복가입확인정보(DI)</td>
+																		<td>아이디, 비밀번호, 성명, 이메일 주소, 휴대전화번호, 생년월일, 성별, 암호화된 동일인 식별정보(CI),주소 </td>
 																		<td>회원가입 및 관리</td>
 																		<td>홈페이지 회원 탈퇴 시까지</td>
 																	</tr>
 																	<tr>
-																		<td>아이디, 비밀번호, 성명, 이메일 주소, 전화번호</td>
-																		<td>이벤트 등 서비스 제공</td>
-																		<td>서비스 기간 종료 및 법률상 보존 기한</td>
+																		<td>아이디, 비밀번호, 성명, 이메일 주소, 휴대전화 번호, 주소</td>
+																		<td>서비스 제공</td>
+																		<td>서비스 공급 완료 시까지</td>
 																	</tr>
 																</tbody>
 															</table>
 														</div>
 													</div>
 												</div>
-												<p>※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부한 경우 홈페이지 이용에 제한을 받을 수 있습니다. </p>
+												<p>※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다.<br> 그러나 동의를 거부한 경우 홈페이지 이용에 제한을 받을 수 있습니다. </p>
 												<!-- //내용 -->
 											</div>
 										</dd>
+										<p>위와 같이 개인정보를 수집•이용하는데 동의하십니까?</p>
 										<dd class="forms"> 
 											<label class="frm_checkbox type1">
 												<input type="checkbox" class="js_check_each" required name="check2" value="Y">
-												<span>개인정보 수집 및 이용에 동의합니다.</span>
+												<span>개인정보 수집•이용에 동의합니다. (필수)</span>
 											</label>
-
-											<button type="button" class="el_btn sm line2 drop_btn">개인정보 수집ㆍ이용상세 내용 보기
-											</button>
-										</dd>
-										<dd class="cont drop_content no_abs">
-											<div class="terms_area" data-lenis-prevent>
-													<%@ include file="../common/agree_02.jsp" %>
-											</div>
 										</dd>
 									</dl>
 								</article>
@@ -175,13 +186,14 @@
 								<!-- 광고ㆍ마케팅 정보 활용 동의 -->
 								<article class="article">
 									<dl class="agree_list">
-										<dt class="tit">광고ㆍ마케팅 정보 활용 동의 <span class="sm no_req">[선택]</span></dt>
+										<dt class="tit"><span class="sm no_req">[선택]</span> 광고성 목적의 개인정보 수집•이용 동의서</dt>
 										<dd class="cont">
 											<div class="terms_area auto">
 												<!-- 내용 -->
-												<p>마케팅 및 광고 정보 수신 여부 및 마케팅을 위한 개인정보 수집 이용을 거부하실 수 있으며, 거부 시에도 홈페이지 이용에는 아무런 제약이 없습니다. 다만, KCC이지스에서 제공하는 이벤트 및 각종 소식, 혜택 등의 정보를 받으실 수 없습니다.</p>
+												<p>아래와 같이 구단의 이벤트 관련 정보 안내 목적으로 개인정보를 수집•이용하고자 합니다.<br>
+												내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오.</p>
 
-												<p class="terms_tit lv2">개인정보 수집 및 이용 내역</p>
+												<p class="terms_tit lv2">개인정보 수집•이용 내역</p>
 												
 												<div class="swipearea">
 													<div class="inner">
@@ -201,27 +213,24 @@
 																</thead>
 																<tbody>
 																	<tr>
-																		<td>아이디, 비밀번호, 성명, 이메일 주소, 휴대전화번호, 생년월일, 성별, 암호화된 동일인 식별정보(CI), 만 14세 미만 아동)법정대리인의 성명, 생년월일, 성별, 내외국인 구분, 통신사명, 휴대전화번호, 중복가입확인정보(DI)</td>
-																		<td>회원가입 및 관리</td>
-																		<td>홈페이지 회원 탈퇴 시까지</td>
-																	</tr>
-																	<tr>
-																		<td>아이디, 비밀번호, 성명, 이메일 주소, 전화번호</td>
-																		<td>이벤트 등 서비스 제공</td>
-																		<td>서비스 기간 종료 및 법률상 보존 기한</td>
+																		<td>아이디, 성명, 이메일주소, 휴대전화번호, 성별, 생년월일, 주소</td>
+																		<td>구단의 이벤트 관련 정보 안내</td>
+																		<td>동의 철회 시 광고성 서비스 차단, <br>홈페이지 회원 탈퇴 시 파기</td>
 																	</tr>
 																</tbody>
 															</table>
 														</div>
 													</div>
 												</div>
+												<p>※ 위의 개인정보 수집•이용에 대한 동의를 거부할 권리가 있습니다.<br> 동의를 거부하셔도 홈페이지 이용에는 아무런 제약이 없습니다. <br>다만, 구단에서 제공하는 이벤트 관련 정보를 받으실 수 없습니다.</p>
 												<!-- //내용 -->
 											</div>
 										</dd>
+										<p>위와 같이 개인정보를 수집•이용하는데 동의하십니까?</p>
 										<dd class="forms"> 
 											<label class="frm_checkbox type1">
 												<input type="checkbox" class="js_check_each" name="check3" value="Y">
-												<span>동의합니다.</span>
+												<span>개인정보 수집•이용에 동의합니다. (선택)</span>
 											</label> 
 										</dd>
 									</dl>

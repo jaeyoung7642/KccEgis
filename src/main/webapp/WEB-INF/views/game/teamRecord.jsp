@@ -49,7 +49,7 @@
 		   	         	swipeEvent();
 		   	         },
 		   	         error:function(){
-		   	            alert('서버에 문제가 있어욤!');
+		   	            alert('서버에 문제가 있습니다.');
 		   	         }
 		   		});//ajax
 		}else{
@@ -90,7 +90,7 @@
 		   	          });
 	   	         },
 	   	         error:function(){
-	   	            alert('서버에 문제가 있어욤!');
+	   	            alert('서버에 문제가 있습니다.');
 	   	         }
 	   		});//ajax
 		}
@@ -109,9 +109,10 @@
 				}
    	            $('#seasonRecord').html(result);
    	         	swipeEvent();
+   	         	fillEmptyCellsWithZero();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}
@@ -125,7 +126,7 @@
    	         	swipeEvent();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}
@@ -183,7 +184,7 @@
 					$(".otherTeamNm").text(selectedText);
 	   	         },
 	   	         error:function(){
-	   	            alert('서버에 문제가 있어욤!');
+	   	            alert('서버에 문제가 있습니다.');
 	   	         }
 	   		});//ajax
 		}
@@ -202,9 +203,10 @@
    					$(".remove").removeAttr("disabled");
    				}
    	            $('#seasonRecord').html(result);
+   	         	fillEmptyCellsWithZero();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
 	}
@@ -222,11 +224,26 @@
    					$(".remove").attr("disabled", true);
    				}
    	            $('#seasonRecord').html(result);
+   	         	fillEmptyCellsWithZero();
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert('서버에 문제가 있습니다.');
    	         }
    		});//ajax
+	}
+	function fillEmptyCellsWithZero() {
+	    // seasonRecord ID를 가진 요소를 찾음
+	    const seasonRecord = document.getElementById('seasonRecord');
+	    
+	    // seasonRecord 내의 tbody에서 모든 td 요소를 찾음
+	    const tds = seasonRecord.querySelectorAll('tbody td');
+
+	    // 각 td를 반복하여 비어 있는 경우 0으로 설정
+	    tds.forEach(td => {
+	        if (!td.textContent.trim()) { // 텍스트가 비어 있거나 공백일 경우
+	            td.textContent = '0'; // 0으로 설정
+	        }
+	    });
 	}
 	</script>
 </head>
@@ -252,6 +269,7 @@ window.onload = function() {
     if($("#teamSelect").val()==''){
 	    $(".selectTeamShow").css("display","none");
     }
+    fillEmptyCellsWithZero();
 };
 </script>
 	<div id="wrap">

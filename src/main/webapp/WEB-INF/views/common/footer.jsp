@@ -36,4 +36,20 @@
 			</div>
 		</div>
 	</div>
+		<!-- 알럿 -->
+		<button type="button" hidden class="openModal openAlert" data-target="#alertPopup"></button>
+		<div id="alertPopup" tabindex="-1" class="alert alertPopup modal" data-focus="alert">
+			<div class="modal_module">
+				<div class="modal_content">
+					<div class="modal_body">
+						<p class="alert_msg md"></p>
+						<div class="btn_area gap10b mt30-26">
+							<a href="#" class="el_btn frm_btn blue closeModal">확인</a>
+						</div>
+					</div>
+					<button type="button" class="el_btn close closeModal" data-focus-next="alert"></button>
+				</div>
+			</div>
+		</div>
+		<!--  알럿 -->
 </footer> 

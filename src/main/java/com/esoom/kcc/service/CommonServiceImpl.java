@@ -41,8 +41,9 @@ public class CommonServiceImpl implements CommonService {
 		//로컬 경로
 //		String filePath = "C:\\Users\\user\\kccEgis\\KccEgis\\src\\main\\webapp\\resources\\common\\images\\upload\\";
 		//개발 경로
-		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
-		
+//		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+		//운영
+		String filePath = "C:\\www\\apache-tomcat-9.0.93\\upload\\";
 		String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
@@ -66,7 +67,9 @@ public class CommonServiceImpl implements CommonService {
 		//로컬 경로
 //		String filePath = "C:\\Users\\user\\kccEgis\\KccEgis\\src\\main\\webapp\\resources\\common\\images\\upload\\";
 		//개발 경로
-		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+//		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+		//운영
+		String filePath = "C:\\www\\apache-tomcat-9.0.93\\upload\\";
 		filePath = filePath +filePathTail+ "\\";
 		System.out.println("filePath==================="+filePath);
 		String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
@@ -92,7 +95,9 @@ public class CommonServiceImpl implements CommonService {
 		//로컬 경로
 //		String filePath = "C:\\Users\\user\\kccEgis\\KccEgis\\src\\main\\webapp\\resources\\common\\images\\upload\\";
 		//개발 경로
-		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+//		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+		//운영
+		String filePath = "C:\\www\\apache-tomcat-9.0.93\\upload\\";
 		filePath = filePath +filePathTail+ "\\";
 		System.out.println("filePath==================="+filePath);
 		String url = "/resources/common/images/upload/"+filePathTail+"/";
@@ -119,7 +124,9 @@ public class CommonServiceImpl implements CommonService {
 		//로컬 경로
 //		String filePath = "C:\\Users\\user\\kccEgis\\KccEgis\\src\\main\\webapp\\resources\\common\\images\\upload\\";
 		//개발 경로
-		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+//		String filePath = "D:\\apache-tomcat-9.0.89\\upload\\";
+		//운영
+		String filePath = "C:\\www\\apache-tomcat-9.0.93\\upload\\";
 		String url = "/resources/common/images/upload/";
 		String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자

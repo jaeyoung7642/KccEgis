@@ -35,15 +35,15 @@
 		var mm = $("#mm").val(); 
 		var dd = $("#dd").val(); 
 		if(member_name == ''){
-			alert('이름을 입력해주세요.');
+			alertPop('이름을 입력해주세요.');
 			return;
 		}
 		if(email_id == '' || email_domain == ''){
-			alert('이메일을 입력해주세요.');
+			alertPop('이메일을 입력해주세요.');
 			return;
 		}
 		if(yyyy == '' || mm == '' || dd == ''){
-			alert('생년월일을 입력해주세요.');
+			alertPop('생년월일을 입력해주세요.');
 			return;
 		}
 		$.ajax({
@@ -66,7 +66,7 @@
    				}
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}
@@ -76,15 +76,15 @@
 		var email_id2 = $("#email_id2").val();
 		var email_domain2 = $("#email_domain2").val();
 		if(member_id == ''){
-			alert('아이디를 입력해주세요.');
+			alertPop('아이디를 입력해주세요.');
 			return;
 		}
 		if(member_name == ''){
-			alert('이름을 입력해주세요.');
+			alertPop('이름을 입력해주세요.');
 			return;
 		}
 		if(email_id == '' || email_domain == ''){
-			alert('이메일을 입력해주세요.');
+			alertPop('이메일을 입력해주세요.');
 			return;
 		}
 		$.ajax({
@@ -101,12 +101,12 @@
    					$("#findPwdMsg").show();
    					$("#findPwdMsg").html(result.msg);
    				}else{
-   					alert("메일이 발송되었습니다.")
+   					alertPop("메일이 발송되었습니다.")
    					location.href = "loginForm";
    				}
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}

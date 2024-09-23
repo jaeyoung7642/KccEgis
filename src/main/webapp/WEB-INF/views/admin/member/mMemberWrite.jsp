@@ -40,7 +40,7 @@
 				}
 			},
 			error: function() {
-				alert("서버 오류!!");
+				alert("서버에 문제가 있습니다.");
 			}
 		});
 	}
@@ -110,7 +110,7 @@
 									<td>
 										<div class="frm_group">
 										<input type="password" class="frm_input" id="pwd" name="pwd">
-										<button type="button" class="el_btn md line" onclick="updatePwd()">비밀번호 강제 변경</button>
+										<button type="button" class="el_btn md line" onclick="updatePwd()">비밀번호<br>강제변경</button>
 										</div>
 									</td>
 									<th scope="row">생년월일</th>
@@ -149,11 +149,11 @@
 									</td>
 								</tr>
 								<tr>
-									<th scope="row">가입일</th>
+									<th scope="row">가입일시</th>
 									<td>
 										${result.regDate }
 									</td>
-									<th scope="row">최종방문일</th>
+									<th scope="row">최종방문일시</th>
 									<td>
 										${result.loginDate }
 									</td>
@@ -166,8 +166,9 @@
 									</td>
 									<th scope="row">상태</th>
 									<td>
-										<c:if test="${result.chk_state == 'Y' || result.chk_state == 'S'}">가입</c:if>
-										<c:if test="${result.chk_state == 'N' || result.chk_state == 'O'}">탈퇴</c:if>
+										<c:if test="${result.chk_state == 'S'}">가입</c:if>
+										<c:if test="${result.chk_state == 'N'}">탈퇴</c:if>
+										<c:if test="${result.chk_state == 'O'}">임시탈퇴</c:if>
 									</td>
 								</tr>
 							</tbody>
@@ -176,8 +177,14 @@
 
 					<div class="btn_area mt40">
 						<button type="button" class="el_btn md line" onclick="location.href='mMemberList'">목록</button>
-						<button type="button" class="el_btn md line" onclick="deleteMember(${result.num })">삭제</button>
-						<button type="button" class="el_btn md line" onclick="updateState(${result.num })">탈퇴</button>
+					<c:if test="${result.chk_state == 'S'}">
+						<button type="button" class="el_btn md line" onclick="updateState(${result.num },'O')">임시탈퇴</button>
+						<button type="button" class="el_btn md line" onclick="updateState(${result.num },'N')">탈퇴</button>
+					</c:if>
+					<c:if test="${result.chk_state == 'O'}">
+						<button type="button" class="el_btn md line" onclick="updateState(${result.num },'S')">복구</button>
+						<button type="button" class="el_btn md line" onclick="updateState(${result.num },'N')">탈퇴</button>
+					</c:if>
 					</div>
 				</form>
 			

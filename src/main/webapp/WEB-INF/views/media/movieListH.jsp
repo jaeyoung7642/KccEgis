@@ -44,7 +44,7 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-            alert(msg);
+        	alertPop(msg);
         }
     }
 	</script>
@@ -120,7 +120,7 @@
 									</span>
 									<span class="txt"><span>-</span></span>
 									<span class="frm_date rt">
-										<input type="text" class="frm_input mdm date rt" aria-label="종료 일" name="edate" id="edate" value="${edate}" readonly>
+										<input type="text" class="frm_input mdm date rt" aria-label="종료 일" placeholder="기간 설정" name="edate" id="edate" value="${edate}" readonly>
 									</span>
 								</div>
 								<input type="text" class="frm_input mdm col shrink w367" aria-label="검색어" placeholder="검색어 입력 (제목 기반 제공)" name="keyWord" id="keyWord" value="${keyWord}">

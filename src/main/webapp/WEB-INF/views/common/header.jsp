@@ -55,7 +55,8 @@
 								<ul class="sub_list">
 									<li><a href="coachList" class="sub_link">코칭스탭</a></li>
 									<li><a href="playerList" class="sub_link">선수</a></li>
-									<li><a href="cheer" class="sub_link">응원단</a></li>
+									<!-- <li><a href="cheer" class="sub_link">응원단</a></li> -->
+									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li>
 									<li><a href="cheer_song" class="sub_link">응원가</a></li>
 								</ul>
 							</div>
@@ -82,11 +83,11 @@
 							</div>
 						</li> 
 						<li class="gnb_li hasSub">
-							<a href="#" class="gnb_link">YOUTH</a>
+							<a href="#" class="gnb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">YOUTH</a>
 							<div class="gnb_sub">
 								<ul class="sub_list">
-									<li><a href="#" class="sub_link">JR.KCC 소개</a></li>
-									<li><a href="#" class="sub_link">강사진 소개</a></li>
+									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">JR.KCC 소개</a></li>
+									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">강사진 소개</a></li>
 								</ul>
 							</div>
 						</li> 
@@ -196,7 +197,8 @@
 								<li><a href="playerList?pos_code=s" class="dth3_link">- 군복무</a>
 							</ul>
 						</li>
-						<li><a href="cheer" class="dth2_link">응원단</a></li>
+						<!-- <li><a href="cheer" class="dth2_link">응원단</a></li> -->
+						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li>
 						<li><a href="cheer_song" class="dth2_link">응원가</a></li>
 					</ul>
 				</li> 
@@ -228,10 +230,10 @@
 					</ul>
 				</li> 
 				<li class="dth1">
-					<a href="#" class="dth1_link">YOUTH</a>
+					<a href="#" class="dth1_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">YOUTH</a>
 					<ul class="dth2">
-						<li><a href="#" class="dth2_link">JR.KCC 소개</a></li>
-						<li><a href="#" class="dth2_link">강사진소개</a></li>
+						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">JR.KCC 소개</a></li>
+						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">강사진소개</a></li>
 					</ul>
 				</li> 
 				<li class="dth1">

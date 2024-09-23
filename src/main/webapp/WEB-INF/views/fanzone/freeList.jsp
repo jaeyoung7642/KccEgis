@@ -28,6 +28,12 @@
 	<script src="/resources/common/assets/js/gsap.min.js" defer></script> <!-- main only -->
 	<script src="/resources/common/assets/js/ScrollTrigger.min.js" defer></script> <!-- main only -->
 	<script>
+	function handleKeyPress(event) {
+	    if (event.key === 'Enter') {
+	        // Enter 키가 눌렸을 때 searchval 함수 호출
+	        searchval();
+	    }
+	}
 	function searchval(){
 		var titleChecked = document.getElementById('title').checked;
 	    var contentChecked = document.getElementById('content').checked;
@@ -38,17 +44,19 @@
 	    var form = $("#freeSearchForm");
 	    if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
 	    	if(keyWord == ''){
-	    		alert('검색어를 입력해주세요.');
+	    		alertPop('검색어를 입력해주세요.');
 	    	}
 	    }
 	    if(keyWord != ''){
 		    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
-		    	alert('검색항목을 한개 이상 체크해주세요.');
+		    	alertPop('검색항목을 한개 이상 체크해주세요.');
 		    }else{
 		    	form.submit();
+		    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
 		    }
 	    }else{
 	    	form.submit();
+	    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
 	    }
 	}
 	function loginForm(){
@@ -175,7 +183,7 @@
 								</div>
 
 								<div class="col shrink pmax484">
-									<input type="text" class="frm_input mdm" aria-label="검색" placeholder="검색어 " id="keyWord" name="keyWord" value="${keyWord}">
+									<input type="text" class="frm_input mdm" aria-label="검색" placeholder="검색어 " id="keyWord" name="keyWord" value="${keyWord}" onkeypress="handleKeyPress(event)">
 									<button type="button" class="el_btn frm_btn black mdm shrink" onclick="searchval()">검색</button>
 									<a href="#" class="el_btn refresh" onclick="resetSearch()" aria-label="새로고침"></a>
 								</div>

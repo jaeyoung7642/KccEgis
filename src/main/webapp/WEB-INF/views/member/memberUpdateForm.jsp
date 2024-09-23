@@ -41,7 +41,7 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-            alert(msg);
+        	alertPop(msg);
         }
     }
 	var emailduplicate = true;
@@ -101,7 +101,7 @@
    			    }
    	         },
    	         error:function(){
-   	            alert('서버에 문제가 있어욤!');
+   	            alert("서버에 문제가 있습니다.");
    	         }
    		});//ajax
 	}
@@ -129,28 +129,28 @@
 	   			    }
 	   	         },
 	   	         error:function(){
-	   	            alert('서버에 문제가 있어욤!');
+	   	            alert("서버에 문제가 있습니다.");
 	   	         }
 	   		});//ajax
 		}else{
-		 	alert('올바른 이메일 형식이 아닙니다.');
+			alertPop('올바른 이메일 형식이 아닙니다.');
 		}
 	}
 	function updateCheck(){
 		var form = $("#updateForm");
 		if($("#member_pwd").val() == ''){
-			alert("비밀번호를 입력해주세요.");
+			alertPop("비밀번호를 입력해주세요.");
 			return false;
 		}
 		if(!emailduplicate){
-			alert("이메일 중복확인을 해주세요.");
+			alertPop("이메일 중복확인을 해주세요.");
 			return false;
 		}
 		if($("#member_id").val() != '' && $("#member_pwd").val() != '' && $("#email_id").val() != ''
 				&& $("#email_domain").val() != '' && $("#zipcode").val() != ''&& $("#addr").val() != ''&& $("#daddr").val() != ''&& $("#player_no").val() != ''){
 			form.submit();
 		}else{
-			alert("필수항목을 입력해주세요.");
+			alertPop("필수항목을 입력해주세요.");
 			return false;
 		}
 	}

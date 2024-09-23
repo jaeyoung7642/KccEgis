@@ -113,8 +113,13 @@
 									</div>
 									<p class="bbs_tit txt_line2">${eventList.subject }</p>
 									<p class="bbs_info_wrap">
+										<c:if test="${eventList.sdate_format == '1900.01.01' }">
+										<span class="bbs_info view">${eventList.visited }</span>
+										</c:if>
+										<c:if test="${eventList.sdate_format != '1900.01.01' }">
 										<span class="bbs_info date">${eventList.sdate_format } ~ ${eventList.edate_format }</span>
 										<span class="bbs_info view">${eventList.visited }</span>
+										</c:if>
 									</p>
 								</a>
 							</li>

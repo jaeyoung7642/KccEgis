@@ -48,7 +48,7 @@
 				$('#season_month').nextAll().find('.list').attr('data-lenis-prevent', true); */
 			},
 			error : function() {
-				alert('서버에 문제가 있어욤!');
+				alert('서버에 문제가 있습니다.');
 			}
 		});
 	}
@@ -62,13 +62,13 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alert('등록된 영상이 없습니다.');
+					alertPop('등록된 영상이 없습니다.');
 				}else{
 					location.href = "movieListHDetail?num="+result.num;
 				}
 			},
 			error : function() {
-				alert('서버에 문제가 있어욤!');
+				alert('서버에 문제가 있습니다.');
 			}
 		});
 	} 
@@ -82,13 +82,13 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alert('등록된 사진이 없습니다.');
+					alertPop('등록된 사진이 없습니다.');
 				}else{
 					location.href = "photoListHDetail?num="+result.num;
 				}
 			},
 			error : function() {
-				alert('서버에 문제가 있어욤!');
+				alert('서버에 문제가 있습니다.');
 			}
 		});
 	} 
@@ -148,6 +148,14 @@
 						
 						<!-- slide --> 
 						<div class="item bl_card p_hide">
+						<c:if test="${empty prevTeamSchedule}">
+						<div class="el_img no_game">
+							<picture>
+								<img src="/resources/common/images/game/sub_game.png" alt="">
+							</picture>
+						</div>
+						</c:if>
+						<c:if test="${not empty prevTeamSchedule}">
 							<div class="header">
 								<p class="day">${prevTeamSchedule.game_date_format}(${prevTeamSchedule.week_day }) ${prevTeamSchedule.game_start_format }</p>
 								<c:if test="${prevTeamSchedule.home_team == '60' }">
@@ -211,6 +219,7 @@
 								<a href="#" class="el_btn btn1" onclick="movie_detail(${prevTeamSchedule.game_date})"><span class="el_ico ico_video"></span> 영상</a>
 								<a href="#" class="el_btn btn1" onclick="photo_detail(${prevTeamSchedule.game_date})"><span class="el_ico ico_photo"></span> 사진</a>
 							</div>
+							</c:if>
 						</div>
 						<!-- //slide -->
 						<c:if test="${teamScheduleListSize == 2 }">
@@ -356,8 +365,8 @@
 							</div>
 							<div class="footer btn_area">
 								<c:if test="${nextMap.home_team == '60' }">
-								<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 siteLink "><span class="el_ico ico_ticket"></span> 티켓예매</a>
 								<a href="teamRecord?team_code=${nextMap.away_team}#TEAMRECORD" class="el_btn btn1"><span class="el_ico ico_record"></span> 기록비교</a>
+								<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 siteLink "><span class="el_ico ico_ticket"></span> 티켓예매</a>
 								</c:if>
 								<c:if test="${nextMap.away_team == '60' }">
 								<a href="teamRecord?team_code=${nextMap.home_team}#TEAMRECORD" class="el_btn btn1"><span class="el_ico ico_record"></span> 기록비교</a>
@@ -690,11 +699,12 @@
 			  							</c:when>
 			  							<c:otherwise>
 			  							<div class="state broad">
-			  							<c:if test="${scheduleList.tv_play == '' || scheduleList.tv_play == null }">
+			  							<%-- <c:if test="${scheduleList.tv_play == '' || scheduleList.tv_play == null }">
 			  								중계방송<br> 
 											미정
 			  							</c:if> 
-			  								${scheduleList.tv_play }
+			  								${scheduleList.tv_play } --%>
+			  							tvN SPORTS, TVING	
 										</div>
 			  							</c:otherwise>
 			  							</c:choose>
@@ -710,8 +720,8 @@
 					  				</c:when>
 					  				<c:otherwise>
 									<c:if test="${scheduleList.home_team == '60' }">
-					  					<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 siteLink xm_hide"><span class="el_ico ico_ticket"></span> 티켓예매</a>
 										<a href="teamRecord?team_code=${scheduleList.away_team }#TEAMRECORD" class="el_btn btn1"><span class="el_ico ico_record"></span> 기록비교</a>
+					  					<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 siteLink xm_hide"><span class="el_ico ico_ticket"></span> 티켓예매</a>
 									</c:if>
 									<c:if test="${scheduleList.away_team == '60' }">
 										<a href="teamRecord?team_code=${scheduleList.home_team }#TEAMRECORD" class="el_btn btn1"><span class="el_ico ico_record"></span> 기록비교</a>

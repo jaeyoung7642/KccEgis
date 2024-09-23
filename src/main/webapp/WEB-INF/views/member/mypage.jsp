@@ -41,7 +41,7 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-            alert(msg);
+        	alertPop(msg);
         }
     }
 	
@@ -162,19 +162,34 @@
 									<li class="item">
 										<div class="box box1">
 											<p class="tit">득점</p>
+											<c:if test="${playerSumMap.score != null}">
 											<p class="score">${playerSumMap.score}</p>
+											</c:if>
+											<c:if test="${playerSumMap.score == null}">
+											<p class="score">-</p>
+											</c:if>
 										</div>
 									</li>
 									<li class="item">
 										<div class="box box2">
 											<p class="tit">리바운드</p>
-											<p class="score">${playerSumMap.r_tot }</p>
+											<c:if test="${playerSumMap.r_tot != null}">
+											<p class="score">${playerSumMap.r_tot}</p>
+											</c:if>
+											<c:if test="${playerSumMap.r_tot == null}">
+											<p class="score">-</p>
+											</c:if>
 										</div>
 									</li>
 									<li class="item">
 										<div class="box box3">
 											<p class="tit">어시스트</p>
-											<p class="score">${playerSumMap.a_s } </p>
+											<c:if test="${playerSumMap.a_s != null}">
+											<p class="score">${playerSumMap.a_s}</p>
+											</c:if>
+											<c:if test="${playerSumMap.a_s == null}">
+											<p class="score">-</p>
+											</c:if>
 										</div>
 									</li>
 								</ul>
@@ -185,6 +200,18 @@
 						<article class="mypage_media">
 							<ul class="bl_grid_list pcol3 mcol2 media_list">
 								<c:forEach items="${playerMediaList}" var="playerMediaList" varStatus="status">
+									<c:if test="${playerMediaList.part == 'news'}">
+										<li class="item">
+											<a href="${playerMediaList.linkurl}" class="el_thumb rds el_img media" target="_blank" rel="noreferrer" aria-label="기사 보러 가기(새창열림)">
+												<c:if test="${playerMediaList.img1 != null && playerMediaList.img1 != ''}">
+													<img src="/resources/common/images/upload/news/${playerMediaList.img1 }" alt="" >
+												</c:if>
+												<c:if test="${playerMediaList.img1 == null || playerMediaList.img1 == ''}">
+													<span class="no_img md"></span><!-- 대체이미지 -->
+												</c:if>
+											</a>
+										</li>  
+									</c:if>
 									<c:if test="${playerMediaList.part == 'photo'}">  
 										<li class="item">
 										<c:if test="${playerMediaList.etc1 == 'H'}">  
@@ -378,15 +405,15 @@
 							        if(res==1){
 							        	location.reload();
 							        }else{
-							       	 alert("변경에 실패했습니다.");
+							        	alertPop("변경에 실패했습니다.");
 							        }
 						        },
 						        error: function() {
-									alert("서버 오류!!");
+									alert("서버에 문제가 있습니다.");
 								}
 						   });
 					}else{
-						alert('선택된선수가 없습니다.');
+						alertPop('선택된선수가 없습니다.');
 					}
 				}
 			</script>

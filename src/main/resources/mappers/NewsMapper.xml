@@ -36,9 +36,11 @@
 	</select>
 <select id="getPlayerMediaList" resultType="map">
 		select top 6 * from KCC_EGIS.egis.TBL_NEWS 
-		where part in ('movie','photo') 
+		where part in ('movie','photo','news') 
 		AND (
 	        (part = 'movie' AND tags LIKE CONCAT('%', #{player_no}, '%'))
+	        OR
+	        (part = 'news' AND tags LIKE CONCAT('%', #{player_no}, '%'))
 	        OR
 	        (part = 'photo' AND num IN (
 	            SELECT info_num
