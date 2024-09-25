@@ -955,6 +955,48 @@ public class ScheduleController {
 			@RequestParam(value = "str", defaultValue ="game_round") String str,
 			@RequestParam(value = "sort", defaultValue ="ASC") String sort,
 			@RequestParam(value = "team_code", defaultValue ="") String team_code)throws Exception {
+			String otherTeamNm = "";
+			String otherTeamNm2 = "";
+		if(!"".equals(team_code)) {
+				switch(team_code) {
+				case "06":
+					otherTeamNm = "수원 KT";
+					otherTeamNm2 = "KT";
+					break;
+				case "10":
+					otherTeamNm = "울산 현대모비스";
+					otherTeamNm2 = "현대모비스";
+					break;
+				case "16":
+					otherTeamNm = "원주 DB";
+					otherTeamNm2 = "DB";
+					break;
+				case "35":
+					otherTeamNm = "서울 삼성";
+					otherTeamNm2 = "삼성";
+					break;
+				case "50":
+					otherTeamNm = "창원 LG";
+					otherTeamNm2 = "LG";
+					break;
+				case "55":
+					otherTeamNm = "서울 SK";
+					otherTeamNm2 = "SK";
+					break;
+				case "64":
+					otherTeamNm = "대구 한국가스공사";
+					otherTeamNm2 = "한국가스공사";
+					break;
+				case "66":
+					otherTeamNm = "고양 소노";
+					otherTeamNm2 = "소노";
+					break;
+				case "70":
+					otherTeamNm = "안양 정관장";
+					otherTeamNm2 = "정관장";
+					break;
+		}
+		}
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		//시즌별기록
 		List<Map<String,Object>> selectSeasonList = teamScheduleService.selectSeasonList(paramMap);
@@ -1083,6 +1125,8 @@ public class ScheduleController {
 			mv.addObject("teamAndteamRecordList", teamAndteamRecordList);
 			mv.addObject("team_code", team_code);
 		}
+		mv.addObject("otherTeamNm", otherTeamNm);
+		mv.addObject("otherTeamNm2", otherTeamNm2);
 		mv.addObject("row_count", row_count);
 		mv.addObject("season_gu", season_gu);
 		mv.addObject("seasonResultList", seasonResultList);

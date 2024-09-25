@@ -133,6 +133,11 @@
 								<p>글로벌 응용소재화학기업</p>
 							</div>
 						</a>
+						<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="bnn ticket siteLink">
+							<div class="bnn_box">
+								<p>KCC 이지스 티켓예매</p>
+							</div>
+						</a>
 					</div>
 					<!-- //header banner -->
 				</div>
@@ -192,8 +197,8 @@
 							<ul class="dth3">
 								<li><a href="playerList" class="dth3_link">- 전체</a>
 								<li><a href="playerList?pos_code=g" class="dth3_link">- 가드</a>
-								<li><a href="playerList?pos_code=f" class="dth3_link">- 센터</a>
-								<li><a href="playerList?pos_code=c" class="dth3_link">- 포워드</a>
+								<li><a href="playerList?pos_code=f" class="dth3_link">- 포워드</a>
+								<li><a href="playerList?pos_code=c" class="dth3_link">- 센터</a>
 								<li><a href="playerList?pos_code=s" class="dth3_link">- 군복무</a>
 							</ul>
 						</li>

@@ -414,3 +414,26 @@ select.frm_select {display: none;}
 
 .dim {position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,.4); z-index: 900; display: none;}
 
+/* datepicker */
+.ui-datepicker {--dgap: 10px; width: 320px; min-height: 303px; border-radius: 12px; padding: 12px 25px 15px; background: #fff; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.12); display: none; z-index: 10 !important;}
+.ui-datepicker-header {height: 36px; display: grid; grid-template-areas: "prev tit next"; grid-template-columns: min-content minmax(0, auto) min-content; justify-content: center; align-items: end; margin-bottom: 10px;}
+.ui-datepicker-prev {grid-area: prev; margin-right: 10px;}
+.ui-datepicker-next {grid-area: next; margin-left: 10px;}
+.ui-datepicker-title {grid-area: tit; color: var(--dark01); font-weight: var(--font-bd); display: flex; align-items: flex-end;}
+.ui-datepicker-year, .ui-datepicker-month {line-height: 1; display: inline-flex; justify-content: center; align-items: center; text-align: center; font-size: 18px; height: 26px; cursor: pointer; background: url('../../images/common/ico_arrow_down2.svg') no-repeat right -4px center/24px auto; padding: 0 24px 0 5px; border: none; border-bottom: 1px solid #E6E6E6;}
+.ui-datepicker-month {margin-left: 10px;}
+.ui-datepicker-prev, .ui-datepicker-next {width: 24px; height: 26px; position: relative; cursor: pointer;}
+:is(.ui-datepicker-prev, .ui-datepicker-next) .ui-icon {position: absolute; inset: 0; font-size: 0; background-repeat: no-repeat; background-position: center; background-size: contain;}
+.ui-datepicker-prev .ui-icon {background-image: url('../../images/common/ico_arrow_left3.svg');}
+.ui-datepicker-next .ui-icon {background-image: url('../../images/common/ico_arrow_right2.svg');}
+.ui-datepicker-calendar {display: block;}
+.ui-datepicker-calendar :is(thead, tbody) {display: flex; flex-direction: column; gap: var(--dgap);}
+.ui-datepicker-calendar thead {margin-bottom: var(--dgap);}
+.ui-datepicker-calendar tr {display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--dgap); height: 30px;}
+.ui-datepicker-calendar :is(th, td) {font-size: 14px; font-weight: var(--font-md); text-align: center; display: inline-flex; justify-content: center; align-items: center;}
+.ui-datepicker-calendar th {color: #7289A3;}
+.ui-datepicker-calendar .ui-datepicker-week-end:first-child {font-weight: var(--font-bd); color: #00297F;}
+.ui-datepicker-other-month {color: var(--gray03) !important; font-weight: var(--font-rg) !important;}
+.ui-state-default {display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; border-radius: 4px;}
+.ui-state-highlight {background: #ECF1F7;}
+.ui-state-active {background: #00297F; color: #fff;}

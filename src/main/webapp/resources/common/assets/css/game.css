@@ -23,10 +23,12 @@
 .game_card_list .content .score {font-size: var(--size24-20); font-weight: var(--font-bd); color: var(--grayblue01);}
 .game_card_list .content .score span:not(.num) {display: inline-block;}
 .game_card_list .content .state.record {display: flex; flex-direction: column; justify-content: center; padding-top: 21px; padding-top: clamp(17.5px, 4.667vw * 0.6, 21px);}
-.game_card_list .record_list {text-align: left; font-weight: var(--font-bd); color: var(--grayblue02); display: flex; flex-direction: column; gap: 2px;}
+.game_card_list .record_list {display: table; font-weight: var(--font-bd); color: var(--grayblue02);}
+.game_card_list .record_list > li {display: table-row;}
+.game_card_list .record_list > li > span {display: table-cell; padding: 1px 5px; text-align: right;}
+.game_card_list .record_list > li > span:last-child {padding-right: 0;}
+.game_card_list .record_list .tit {padding-left: 0; padding-right: 8px;}
 .game_card_list .record_list .present {color: var(--darkblue02);}
-.game_card_list .record_list > li {display: flex; gap: 10px;}
-.game_card_list .record_list .tit {margin-right: 3px;}
 .game_card_list .record_list + .el_btn {margin-top: 10px;}
 .game_card_list .footer {grid-area: footer;}
 .game_card_list .item.lg .day {font-size: var(--size27-16);}
@@ -532,6 +534,23 @@
 	.p_record_content .ranking {--rowg: 10px; grid-template-areas: "profile player" "profile tables" "btns forms"; grid-template-columns: min-content auto;}
 	.p_record_content .tbl_rank :is(th, td) {height: max(var(--size25), 5.215vw);}
 	.p_record_content .chart {height: auto;} /* 375 - 290 */ 
+}
+
+/* 용어정리 팝업 */ 
+.termsInfoPopup {--pmax: 654px;}
+.termsInfoPopup .content {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));}
+.termsInfoPopup .tbl {font-size: 14px; white-space: nowrap;}
+.termsInfoPopup .tbl thead th {border-left-color: var(--grayblue07) !important;}
+.termsInfoPopup .tbl .col1 {width: 103px;}
+.termsInfoPopup .modal_body {max-height: 400px;}
+
+@media (min-width: 768px) {
+	.termsInfoPopup .tbl + .tbl :is(th, td) {border-left: 1px solid var(--gray05) ;}
+}
+
+@media (max-width: 767px ) { 
+	.termsInfoPopup .content {grid-template-columns: 100%;}
+	.termsInfoPopup .tbl .col1 {width: 7.385rem; width: 34.91%;} /* 96 */
 }
 
 /* 티켓안내 */

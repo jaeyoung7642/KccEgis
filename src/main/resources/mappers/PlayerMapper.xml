@@ -531,31 +531,32 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 	ORDER BY CAST(pl_back AS INT) 
 	</select>
 	<select id="playerRecordAvgMap" resultType="map">
-		select ROUND((convert(float,score)/nullif(convert(float,game_count), 0)), 1) AS score
-			  ,ROUND((convert(float,o_r + d_r)/nullif(convert(float,game_count), 0)), 1) AS r_tot
-			  ,ROUND((convert(float,a_s)/nullif(convert(float,game_count), 0)), 1) AS a_s
-			  ,ROUND((convert(float,s_t)/nullif(convert(float,game_count), 0)), 1) AS s_t
-			  ,ROUND((convert(float,b_s)/nullif(convert(float,game_count), 0)), 1) AS b_s
-			  ,ROUND((convert(float,fg)/nullif(convert(float,game_count), 0)), 1) AS fg
-			  ,ROUND((convert(float,fg)/nullif(convert(float,fg_a), 0) * 100), 1) AS fgp
-			  ,ROUND((convert(float,threep)/nullif(convert(float,game_count), 0)), 1) AS threep
-			  ,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
-			  ,ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1) AS ft
-			  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
-			  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
-	    from KCC_EGIS.kbl_data.player_sum
-			where season_code =#{season_code}
-			and quarter_gu ='XX'
-			and game_code = '01'
-			and player_no = #{player_no}
+		SELECT 
+		    ISNULL(ROUND(convert(float, score) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS score,
+		    ISNULL(ROUND(convert(float, o_r + d_r) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS r_tot,
+		    ISNULL(ROUND(convert(float, a_s) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS a_s,
+		    ISNULL(ROUND(convert(float, s_t) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS s_t,
+		    ISNULL(ROUND(convert(float, b_s) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS b_s,
+		    ISNULL(ROUND(convert(float, fg) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS fg,
+		    ISNULL(ROUND(convert(float, fg) / NULLIF(convert(float, fg_a), 0), 1) * 100, 0.0) AS fgp,
+		    ISNULL(ROUND(convert(float, threep) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS threep,
+		    ISNULL(ROUND(convert(float, threep) / NULLIF(convert(float, threep_a), 0), 1) * 100, 0.0) AS threepp,
+		    ISNULL(ROUND(convert(float, ft) / NULLIF(convert(float, game_count), 0), 1), 0.0) AS ft,
+		    ISNULL(ROUND(convert(float, ft) / NULLIF(convert(float, ft_a), 0), 1) * 100, 0.0) AS ftp,
+		    ISNULL(ROUND(convert(float, fg + threep) / NULLIF(convert(float, fg_a + threep_a), 0), 1) * 100, 0.0) AS ygp
+		FROM KCC_EGIS.kbl_data.player_sum
+		WHERE season_code = #{season_code}
+		  AND quarter_gu = 'XX'
+		  AND game_code = '01'
+		  AND player_no = #{player_no}
 	</select>
 	<select id="playerRecordTotalMap" resultType="map">
 		select * 
 			  ,(o_r + d_r) AS r_tot
-			  ,ROUND((convert(float,fg)/nullif(convert(float,fg_a), 0) * 100), 1) AS fgp
-			  ,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
-			  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
-			  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
+			  ,ISNULL(ROUND((convert(float, fg) / NULLIF(convert(float, fg_a), 0) * 100), 1), 0.0) AS fgp
+			  ,ISNULL(ROUND((convert(float, threep) / NULLIF(convert(float, threep_a), 0) * 100), 1), 0.0) AS threepp
+			  ,ISNULL(ROUND((convert(float, ft) / NULLIF(convert(float, ft_a), 0) * 100), 1), 0.0) AS ftp
+			  ,ISNULL(ROUND((convert(float, fg + threep) / NULLIF(convert(float, fg_a + threep_a), 0) * 100), 1), 0.0) AS ygp
 	    from KCC_EGIS.kbl_data.player_sum
 			where season_code =#{season_code}
 			and quarter_gu ='XX'
@@ -616,29 +617,30 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			ROUND((CONVERT(float, ft) / ISNULL(NULLIF(CONVERT(float, ft_a), 0), 1) * 100), 1) AS ftp,
 			ROUND((CONVERT(float, fg + threep) / ISNULL(NULLIF(CONVERT(float, fg_a + threep_a), 0), 1) * 100), 1) AS ygp
 	    from KCC_EGIS.kbl_data.player_sum
-			where season_code ='41'
+			where season_code ='43'
 			and quarter_gu ='XX'
 			and game_code = '01'
 			and player_no = #{player_no}
 	</select>
 	<select id="seasonList" resultType="map">
-		select ROUND((convert(float,score)/nullif(convert(float,game_count), 0)), 1) AS pts
-			  ,ROUND((convert(float,o_r + d_r)/nullif(convert(float,game_count), 0)), 1) AS r_tot
-			  ,ROUND((convert(float,a_s)/nullif(convert(float,game_count), 0)), 1) AS a_s
-			  ,ROUND((convert(float,s_t)/nullif(convert(float,game_count), 0)), 1) AS s_t
-			  ,ROUND((convert(float,b_s)/nullif(convert(float,game_count), 0)), 1) AS b_s
-			  ,ROUND((convert(float,fg)/nullif(convert(float,game_count), 0)), 1) AS fg
-			  ,ROUND((convert(float,fg)/nullif(convert(float,fg_a), 0) * 100), 1) AS fgp
-			  ,ROUND((convert(float,threep)/nullif(convert(float,game_count), 0)), 1) AS threep
-			  ,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
-			  ,ROUND((convert(float,ft)/nullif(convert(float,game_count), 0)), 1) AS ft
-			  ,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
-			  ,ROUND((convert(float,fg+threep)/nullif(convert(float,fg_a+threep_a), 0) * 100), 1) AS ygp
-	    from KCC_EGIS.kbl_data.player_sum
-			where season_code ='45'
-			and quarter_gu ='XX'
-			and game_code = '01'
-			and player_no = #{player_no}
+		SELECT 
+		    ISNULL(ROUND((convert(float, score) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS pts,
+		    ISNULL(ROUND((convert(float, o_r + d_r) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS r_tot,
+		    ISNULL(ROUND((convert(float, a_s) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS a_s,
+		    ISNULL(ROUND((convert(float, s_t) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS s_t,
+		    ISNULL(ROUND((convert(float, b_s) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS b_s,
+		    ISNULL(ROUND((convert(float, fg) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS fg,
+		    ISNULL(ROUND((convert(float, fg) / NULLIF(convert(float, fg_a), 0) * 100), 1), 0.0) AS fgp,
+		    ISNULL(ROUND((convert(float, threep) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS threep,
+		    ISNULL(ROUND((convert(float, threep) / NULLIF(convert(float, threep_a), 0) * 100), 1), 0.0) AS threepp,
+		    ISNULL(ROUND((convert(float, ft) / NULLIF(convert(float, game_count), 0)), 1), 0.0) AS ft,
+		    ISNULL(ROUND((convert(float, ft) / NULLIF(convert(float, ft_a), 0) * 100), 1), 0.0) AS ftp,
+		    ISNULL(ROUND((convert(float, fg + threep) / NULLIF(convert(float, fg_a + threep_a), 0) * 100), 1), 0.0) AS ygp
+		FROM KCC_EGIS.kbl_data.player_sum
+		WHERE season_code = '45'
+		  AND quarter_gu = 'XX'
+		  AND game_code = '01'
+		  AND player_no = #{player_no}
 	</select>
 	<select id="roundPlayerList" resultType="map">
 		select CASE c.win

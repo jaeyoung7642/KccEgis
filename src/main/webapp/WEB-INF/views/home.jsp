@@ -8,14 +8,13 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/main.css"> <!-- main only -->
 	<script src="/resources/common/assets/js/jquery-3.6.0.min.js"></script>
-	<title>Home</title>
 	<script src="/resources/common/assets/js/jquery.scrollDetector.min.js" defer></script>
 	<script src="/resources/common/assets/js/lenis.min.js" defer></script>
 	<script src="/resources/common/assets/js/swiper-bundle.min.js" defer></script>
@@ -68,7 +67,7 @@
 		});
 	} 
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-main">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -354,16 +353,16 @@
 												</c:if>
 											</div>
 											<div class="state">
-												<c:if test="${teamScheduleList.home_team == '60' }">
-												<a href="#" class="el_btn btn_ticket">TICKETS</a>
-												</c:if>
-												<c:if test="${teamScheduleList.away_team == '60' }">
 												<div class="score">
 													<span>VS</span>
 												</div>
-												</c:if>
+												<c:if test="${teamScheduleList.home_team == '60' }">
 												<p class="time" id="countdown${status.index}"></p>
-												<p class="broad">${teamScheduleList.tv_play }</p>
+												</c:if>
+												<c:if test="${teamScheduleList.away_team == '60' }">
+												<p class="time" id="countdown${status.index}" style="display:none;"></p>
+												</c:if>
+												<p class="broad">tvN SPORTS, TVING</p>
 												<input type="hidden" id="game_date_${status.index}" value="${teamScheduleList.game_date_all}">
 											</div>
 										</div>
@@ -615,7 +614,7 @@
 					</div>
 				</div>
 				<div class="col col_brand scroll_wrap">
-					<a href="#" class="box brand" data-anim="fadeUp">
+					<a href="https://www.kccworld.net/main.do" target="_blank" rel="noreferrer" class="box brand" data-anim="fadeUp">
 						<p class="txt_md">글로벌 응용소재화학기업<br>
 						건축자재에서 첨단소재까지</p>
 						<span class="logo anim2"><img src="/resources/common/images/common/logo_kcc.svg" alt="KCC로고"></span>

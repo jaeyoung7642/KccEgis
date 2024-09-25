@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>회원가입 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -53,7 +53,22 @@
 
         // 메시지가 있을 경우 알림 표시
         if (msg !== '') {
-        	alertPop(msg);
+        	var alertHTML = '<button type="button" hidden class="openModal openAlert" data-target="#alertPopup"></button>' +
+            '<div id="alertPopup" tabindex="-1" class="alert alertPopup modal open" data-focus="alert">' +
+            '<div class="modal_module">' +
+            '<div class="modal_content">' +
+            '<div class="modal_body">' +
+            '<p class="alert_msg md">' + msg + '</p>' +
+            '<div class="btn_area gap10b mt30-26">' +
+            '<a href="#" class="el_btn frm_btn blue closeModal">확인</a>' +
+            '</div>' +
+            '</div>' +
+            '<button type="button" class="el_btn close closeModal" data-focus-next="alert"></button>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+	        // body에 추가
+        	$("body").append(alertHTML);
         }
     }
 	function getQueryParam(name) {
@@ -61,7 +76,7 @@
         return urlParams.get(name);
     }
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->

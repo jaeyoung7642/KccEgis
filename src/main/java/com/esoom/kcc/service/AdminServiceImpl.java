@@ -22,6 +22,10 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 	@Override
+	public int insertLoginInfo(Map<String, Object> paramMap) throws Exception {
+		return dao.insert("AdminMapper.insertLoginInfo", paramMap);
+	}
+	@Override
 	public Map<String, Object> memberMap(Map<?, ?> paramMap) throws Exception {
 		Map<String, Object> result = (Map<String, Object>) dao.getMap("AdminMapper.memberMap", paramMap);
 		return result;
@@ -102,6 +106,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int deleteFreeTail(Map<String, Object> paramMap) throws Exception {
 		return dao.delete("AdminMapper.deleteFreeTail", paramMap);
+	}
+	@Override
+	public int deleteNewsPhoto(Map<String, Object> paramMap) throws Exception {
+		return dao.delete("AdminMapper.deleteNewsPhoto", paramMap);
 	}
 	@Override
 	public int deleteFree(Map<String, Object> paramMap) throws Exception {

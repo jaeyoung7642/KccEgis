@@ -76,9 +76,8 @@ function updateCountdown() {
   	return ;
   }
   const targetDate0 = new Date(target.val());
-  const testTargetDate = new Date('2024-07-22 16:18');
   const now = new Date().getTime();
-  const distance0 = testTargetDate - now;
+  const distance0 = targetDate0 - now;
 
   if (distance0 < 0) {
     // 설정한 날짜가 지난 경우

@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>경기일정/결과 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -62,7 +62,7 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alertPop('등록된 영상이 없습니다.');
+					alertPop('아직 등록된 영상이 없습니다.');
 				}else{
 					location.href = "movieListHDetail?num="+result.num;
 				}
@@ -82,7 +82,7 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alertPop('등록된 사진이 없습니다.');
+					alertPop('아직 등록된 사진이 없습니다.');
 				}else{
 					location.href = "photoListHDetail?num="+result.num;
 				}
@@ -93,7 +93,7 @@
 		});
 	} 
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -715,8 +715,14 @@
 									<c:choose>
 					  				<c:when test="${scheduleList.home_score > 0 && scheduleList.away_score > 0}">
 										<a href="scheduleResult?season_code=${scheduleList.season_code}&game_code=${scheduleList.game_code}&game_no=${scheduleList.game_no}" class="el_btn btn1"><span class="el_ico ico_vs"></span> 결과</a> 
+										<c:if test="${season_code =='45' }">
 										<a href="#" class="el_btn btn1" onclick="movie_detail(${scheduleList.game_date})"><span class="el_ico ico_video"></span> 영상</a>
 										<a href="#" class="el_btn btn1" onclick="photo_detail(${scheduleList.game_date})"><span class="el_ico ico_photo"></span> 사진</a>
+										</c:if>
+										<c:if test="${season_code !='45' }">
+										<a href="#" class="el_btn btn1 openModal" data-target="#movieListPop"><span class="el_ico ico_video"></span> 영상</a>
+										<a href="#" class="el_btn btn1 openModal" data-target="#photoListPop"><span class="el_ico ico_photo"></span> 사진</a>
+										</c:if>
 					  				</c:when>
 					  				<c:otherwise>
 									<c:if test="${scheduleList.home_team == '60' }">
@@ -803,7 +809,38 @@
 		<!-- footer -->
 		<app-footer></app-footer>
 		<!-- footer -->
-
+		<!-- 알럿 -->
+			<div id="movieListPop" tabindex="-1" class="alert alertPopup modal" data-focus="alert">
+				<div class="modal_module">
+					<div class="modal_content">
+						<div class="modal_body">
+							<p class="alert_msg md">24-25 이전 시즌 자료는 검색을 통해 확인할 수 있습니다.<br>해당 게시판으로 이동하시겠습니까?</p>
+							<div class="btn_area gap10b mt30-26">
+								<a href="#" class="el_btn frm_btn gray2 closeModal">취소</a>
+								<a href="movieListH" class="el_btn frm_btn blue">확인</a>
+							</div>
+						</div>
+						<button type="button" class="el_btn close closeModal" data-focus-next="alert"></button>
+					</div>
+				</div>
+			</div>
+			<!--  알럿 -->	
+		<!-- 알럿 -->
+			<div id="photoListPop" tabindex="-1" class="alert alertPopup modal" data-focus="alert">
+				<div class="modal_module">
+					<div class="modal_content">
+						<div class="modal_body">
+							<p class="alert_msg md">24-25 이전 시즌 자료는 검색을 통해 확인할 수 있습니다.<br>해당 게시판으로 이동하시겠습니까?</p>
+							<div class="btn_area gap10b mt30-26">
+								<a href="#" class="el_btn frm_btn gray2 closeModal">취소</a>
+								<a href="photoListH" class="el_btn frm_btn blue">확인</a>
+							</div>
+						</div>
+						<button type="button" class="el_btn close closeModal" data-focus-next="alert"></button>
+					</div>
+				</div>
+			</div>
+			<!--  알럿 -->	
 	</div>
 </body>
 </html>

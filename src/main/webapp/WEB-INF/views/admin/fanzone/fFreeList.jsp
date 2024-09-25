@@ -11,13 +11,13 @@
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/admin/assets/font/font.css" />
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/subpage.css"> 
-	<link rel="stylesheet" href="/resources/common/admin/assets/css/jquery-ui.min.css"> <!-- sub page only -->
+	
 	<script src="/resources/common/admin/assets/js/jquery.nice-select.min.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/jquery-ui.min.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/common.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/script.js" defer></script> 
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <script>
 function showYn(num,chkDel){
 	if (confirm("노출여부를 변경하시겠습니까?") == true) {
@@ -57,16 +57,20 @@ function searchval(){
     if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
     	if(keyWord == ''){
     		alert('검색어를 입력해주세요.');
+    		return false;
     	}
     }
     if(keyWord != ''){
 	    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
 	    	alert('검색항목을 한개 이상 체크해주세요.');
+	    	return false;
 	    }else{
 	    	form.submit();
+	    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
 	    }
     }else{
     	form.submit();
+    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
     }
 }
 function searchReset() {

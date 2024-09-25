@@ -132,7 +132,7 @@ public class ClubController {
 		String eyear = "";
 		if("3".equals(season_year)) {
 			syear = "2021";
-			eyear = "9999";
+			eyear = "2023";
 		}
 		if("2".equals(season_year)) {
 			syear = "2011";
@@ -181,7 +181,7 @@ public class ClubController {
 		String eyear = "";
 		if("3".equals(season_year)) {
 			syear = "2021";
-			eyear = "9999";
+			eyear = "2023";
 		}
 		if("2".equals(season_year)) {
 			syear = "2011";

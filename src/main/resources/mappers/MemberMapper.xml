@@ -101,8 +101,7 @@
 		FROM KCC_EGIS.egis.TBL_MEMBER 
 		WHERE 1=1
 		  AND di = #{di}
-		  AND out_date >= DATEADD(DAY, -30, GETDATE())
-		  AND out_date <= GETDATE()
+		  AND (out_date >= DATEADD(DAY, -30, GETDATE()) or (out_date <= GETDATE() and chk_state='S'))
 	   ]]>
 </select>
 </mapper>

@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>응원가 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -27,14 +27,7 @@
 	<script src="/resources/common/assets/js/script.js" defer></script> <!-- 개발용 -->
 	<script src="/resources/common/assets/js/gsap.min.js" defer></script> <!-- main only -->
 	<script src="/resources/common/assets/js/ScrollTrigger.min.js" defer></script> <!-- main only -->
-	<script>
-	function loginForm(){
-		if(confirm("로그인 후 다운로드 가능합니다. 로그인 하시겠습니까?")){
-			location.href = "/loginForm";
-		}
-	}
-	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -84,6 +77,22 @@
 			</div>
 
 			<c:if test="${loginUserMap == null}">
+			<!-- 알럿 -->
+			<div id="loginForm" tabindex="-1" class="alert alertPopup modal" data-focus="alert">
+				<div class="modal_module">
+					<div class="modal_content">
+						<div class="modal_body">
+							<p class="alert_msg md">로그인 후 다운로드 가능합니다.<br> 로그인 하시겠습니까?</p>
+							<div class="btn_area gap10b mt30-26">
+								<a href="#" class="el_btn frm_btn gray2 closeModal">취소</a>
+								<a href="loginForm" class="el_btn frm_btn blue">확인</a>
+							</div>
+						</div>
+						<button type="button" class="el_btn close closeModal" data-focus-next="alert"></button>
+					</div>
+				</div>
+			</div>
+			<!--  알럿 -->
 			<!-- 구단 응원가 -->
 			<section class="section">
 				<div class="ly_inner md">
@@ -96,67 +105,67 @@
 
 					<ul class="cheer_song_list type1 bl_grid_list cols5">
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="우리 하나되어"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="어기여차"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="영원한 친구"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="지야의 함성"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="샹젤리제"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="아파트"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="푸른전사"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="예술이야"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="부산갈매기"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="사랑가"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="별이 되어"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="We are the one"></span>
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="box" onclick="loginForm()">
+							<a href="#" class="box openModal" data-target="#loginForm">
 								<span class="cicleGuide" data-text="오리 날다"></span>
 							</a>
 						</li>
@@ -182,7 +191,7 @@
 
 					<ul class="cheer_song_list type2 bl_grid_list cols5-2">
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 01</span>
@@ -192,7 +201,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 02</span>
@@ -202,7 +211,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 03</span>
@@ -212,7 +221,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 04</span>
@@ -222,7 +231,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 05</span>
@@ -232,7 +241,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 06</span>
@@ -242,7 +251,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 07</span>
@@ -252,7 +261,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 08</span>
@@ -262,7 +271,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 09</span>
@@ -272,7 +281,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 10</span>
@@ -282,7 +291,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 11</span>
@@ -292,7 +301,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 12</span>
@@ -302,7 +311,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 13</span>
@@ -312,7 +321,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 14</span>
@@ -322,7 +331,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 15</span>
@@ -332,7 +341,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 16</span>
@@ -342,7 +351,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 17</span>
@@ -352,7 +361,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 18</span>
@@ -362,7 +371,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<span class="icon icon1 el_ico"></span>
 								<p class="title">
 									<span class="tit">공격음악 19</span>
@@ -375,7 +384,7 @@
 
 					<ul class="cheer_song_list type2 bl_grid_list cols5-2">
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<p class="title">
 									<span class="tit">KCC 시그널<br> ver.1</span>
 								</p>
@@ -383,7 +392,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<p class="title">
 									<span class="tit">KCC 시그널<br> ver.2</span>
 								</p>
@@ -391,7 +400,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<p class="title">
 									<span class="tit">KCC 시그널  ver.3</span>
 								</p>
@@ -399,7 +408,7 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="#" class="bl_card box" onclick="loginForm()">
+							<a href="#" class="bl_card box openModal"  data-target="#loginForm">
 								<p class="title">
 									<span class="tit">KCC 렛츠고</span>
 								</p>
@@ -431,7 +440,7 @@
 								<div class="info">
 									<p class="name">이호현</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -448,11 +457,11 @@
 								<div class="info">
 									<p class="name">최준용</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -469,11 +478,11 @@
 								<div class="info">
 									<p class="name">허웅</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -490,7 +499,7 @@
 								<div class="info">
 									<p class="name">김동현</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -507,7 +516,7 @@
 								<div class="info">
 									<p class="name">송동훈</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -524,7 +533,7 @@
 								<div class="info">
 									<p class="name">정창영</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -541,7 +550,7 @@
 								<div class="info">
 									<p class="name">전태영</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -558,7 +567,7 @@
 								<div class="info">
 									<p class="name">이주영</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -575,7 +584,7 @@
 								<div class="info">
 									<p class="name">전준범</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -592,7 +601,7 @@
 								<div class="info">
 									<p class="name">이근휘</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -609,7 +618,7 @@
 								<div class="info">
 									<p class="name">여준형</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -626,7 +635,7 @@
 								<div class="info">
 									<p class="name">정배권</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -643,7 +652,7 @@
 								<div class="info">
 									<p class="name">에피스톨라</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -660,7 +669,7 @@
 								<div class="info">
 									<p class="name">이승현</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -677,7 +686,7 @@
 								<div class="info">
 									<p class="name">송교창</p>
 									<div class="btn_area">
-										<a href="#" class="el_btn" onclick="loginForm()">
+										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -1324,7 +1333,7 @@
 			</a>
 		</main>
 		<!-- //container -->
-
+		
 		<!-- footer -->
 		<app-footer></app-footer>
 		<!-- footer -->

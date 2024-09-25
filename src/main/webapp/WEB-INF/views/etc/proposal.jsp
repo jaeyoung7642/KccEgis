@@ -26,7 +26,7 @@
 	<script src="/resources/common/assets/js/script.js" defer></script> <!-- 개발용 -->
 	<script src="/resources/common/assets/js/gsap.min.js" defer></script> <!-- main only -->
 	<script src="/resources/common/assets/js/ScrollTrigger.min.js" defer></script> <!-- main only -->
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->

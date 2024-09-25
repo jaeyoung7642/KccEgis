@@ -11,14 +11,14 @@
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/admin/assets/font/font.css" />
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/subpage.css"> 
-	<link rel="stylesheet" href="/resources/common/admin/assets/css/jquery-ui.min.css"> <!-- sub page only -->
+	
 	<script src="/resources/common/admin/assets/js/jquery.nice-select.min.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/common.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/jquery-ui.min.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/script.js" defer></script> 
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -330,6 +330,27 @@
 		});
 
 		$(document).on('click', '.removeInput', function() {
+			const photoNum = $(this).siblings('input[name="photo_num"]').val(); // photo_num 값 가져오기
+			if(photoNum != ''){
+				if (confirm("정말 삭제하시겠습니까?") == true) {
+			        	$.ajax({
+					   	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
+					        url : "/kccadm/deleteNewsPhoto",      // 컨트롤러에서 대기중인 URL 주소이다.
+					        data : {
+					       	 "num":photoNum
+					        },            // Json 형식의 데이터이다.
+					        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+					        },
+					        error: function() {
+								alert("서버 오류!!");
+								return false;
+							}
+					   });
+			            
+			        } else {
+			            return false;
+			        }
+			}
 			formIndex--;
 			$(this).parents('.frm_group').remove();
 		});

@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>아이디/비번찾기 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -26,7 +26,7 @@
 	<script src="/resources/common/assets/js/script.js" defer></script> <!-- 개발용 -->
 	<script src="/resources/common/assets/js/gsap.min.js" defer></script> <!-- main only -->
 	<script src="/resources/common/assets/js/ScrollTrigger.min.js" defer></script> <!-- main only -->
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->

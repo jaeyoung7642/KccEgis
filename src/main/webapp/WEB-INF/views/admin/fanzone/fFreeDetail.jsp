@@ -11,7 +11,7 @@
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/admin/assets/font/font.css" />
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/subpage.css"> 
-	<link rel="stylesheet" href="/resources/common/admin/assets/css/jquery-ui.min.css"> <!-- sub page only -->
+	
 	<script src="/resources/common/admin/assets/js/jquery.nice-select.min.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/common.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/jquery-ui.min.js" defer></script> <!-- sub page only -->
@@ -170,8 +170,14 @@
 	    document.getElementById("tailWriter").checked = false;
 		customSelect();
 	}
+	function handleKeyPress(event) {
+	    if (event.key === 'Enter') {
+	        var num = $("#num").val();
+	        tailSave(num);
+	    }
+	}
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -249,7 +255,7 @@
 						<h4 class="heading lv2">댓글</h4>
 					</div>
 					<div class="board_write">
-						<form action="">
+						<form action="" onsubmit="return false;">
 							<table class="tbl type4">
 								<caption>댓글 리스트</caption>
 								<colgroup>
@@ -273,7 +279,7 @@
 										<td colspan="2">
 											<!-- 댓글 작성 -->
 											<div class="comment_write frm_group">
-												<input type="text" class="frm_input" aria-label="댓글입력" id="tailWrite">
+												<input type="text" class="frm_input" aria-label="댓글입력" id="tailWrite" onkeypress="handleKeyPress(event)">
 												<button type="button" class="el_btn btn frm_btn deep" onclick="tailSave(${result.num});">댓글작성</button>
 											</div>
 										</td>

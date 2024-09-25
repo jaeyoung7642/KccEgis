@@ -19,7 +19,7 @@
 				<span>Tel  031-283-4296</span>
 				<span>Fax  031-284-8744</span>
 			</p>
-			<p class="copy">Copyright (C) 2023 kcc egis basketball club.<br class="t_show"> all rights reserved.Why any question, please mail to webmaster@kccegis.com</p>
+			<p class="copy">Copyright (C) 2024 kcc egis basketball club. All rights reserved.<br class="t_show"> Why any question, please mail to webmaster@kccegis.com</p>
 		</div>
 
 		<div class="ft_related">
@@ -52,4 +52,15 @@
 			</div>
 		</div>
 		<!--  알럿 -->
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W384F33H"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		  <!-- Global site tag (gtag.js) - Google Analytics -->
+		  <script src="https://www.googletagmanager.com/gtag/js?id=UA-180137319-1"></script>
+		  <script>
+		    window.dataLayer = window.dataLayer || [];
+		    function gtag() { dataLayer.push(arguments); }
+		    gtag('js', new Date());
+		    gtag('config', 'UA-180137319-1');
+		  </script>
+<!-- End Google Tag Manager (noscript) -->
 </footer> 

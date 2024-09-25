@@ -1063,7 +1063,7 @@
 	<select id="memberMap" resultType="map">
 		select *
 		,KCC_EGIS.egis.FN_MASK_NAME(name) maskName
-		,SUBSTRING(CONVERT(char(19),regDate ,20),0,17) regDate
+		,SUBSTRING(CONVERT(char(19),reg_date ,20),0,17) regDate
 		,SUBSTRING(CONVERT(char(19),logindate ,20),0,17) loginDate
 		from KCC_EGIS.egis.TBL_MEMBER
 		where
@@ -1199,54 +1199,155 @@
 		order by a.num desc
 	</select>
 	<select id="freeList" resultType="map">
-		SELECT *
-		FROM (
-		select
-		ROW_NUMBER() OVER (ORDER BY a.num) AS rownum, 
-		a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date,
-					KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
-					(SELECT COUNT(*)
-				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
-				     WHERE b.info_num = a.num) AS tail_count
-					 from KCC_EGIS.egis.TBL_FREE a 
-					where 1=1 
-					<if test="sdate != null and edate !=null">
-						<if test='sdate != "" and edate !=""'>
-							and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
-						</if>
-					</if>
-					<if test="chk_del != null">
-						<if test='chk_del != "all"'>
-							and a.chk_del = #{chk_del}
-						</if>
-					</if>
-					<if test="keyWord != null">
-						<if test='keyWord != ""'>
-							and (
-							<trim suffixOverrides="or">
-							<if test='title =="Y"'> 
-						        CONTAINS(a.subject, #{keyWord}) or 
-						    </if>
-						    <if test='content =="Y"'>
-						        CONTAINS(a.content, #{keyWord}) or
-						    </if>
-						    <if test='writer =="Y"'>
-						        CONTAINS(a.writer, #{keyWord}) or
-						    </if>
+		SELECT * 
+			FROM (	
+					select A.*
+					, FORMAT(A.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
+					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
+					, ROW_NUMBER() OVER (ORDER BY A.num) AS rownum
+					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = A.num) AS tail_count
+					, ROW_NUMBER() OVER (PARTITION BY A.SUBJECT ORDER BY A.SUBJECT) AS SEQ
+					from (
+							select a.*
+							from KCC_EGIS.egis.TBL_FREE a 
+							where 1=2 
+							and a.chk_del = 'N'
+							
+							<if test='title =="Y"'>
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+								      	and a.subject LIKE CONCAT('%', #{keyWord}, '%')
+									</if>
+								</if>
+							</if>
+							<if test='content =="Y"'>
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+								      	and CONTAINS(a.content, #{keyWord})
+									</if>
+								</if>
+							</if>
+							<if test='writer =="Y"'>
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+								      	and a.writer LIKE CONCAT('%', #{keyWord}, '%')
+									</if>
+								</if>
+							</if>
 							<if test='tail =="Y"'>
-							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord}))
+									</if>
+								</if>
 							</if>
 							<if test='tailWriter =="Y"'>
-							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where writer LIKE CONCAT('%', #{keyWord}, '%'))
+									</if>
+								</if>
 							</if>
-							</trim>
-							)
-						</if>
-					</if>
-		) A
-		ORDER BY num desc
-		OFFSET (#{currentPage}-1)*#{limit} ROWS
-		FETCH NEXT #{limit} ROWS ONLY
+							<if test='title == "N"'>
+							    <if test='content == "N"'>
+							        <if test='writer == "N"'>
+							            <if test='tail == "N"'>
+							                <if test='tailWriter == "N"'>
+												union all
+												select a.*
+												from KCC_EGIS.egis.TBL_FREE a 
+												where 1=1 
+												<if test="chk_del != null">
+													<if test='chk_del != "all"'>
+														and a.chk_del = #{chk_del}
+													</if>
+												</if>
+												<if test="sdate != null and edate !=null">
+													<if test='sdate != "" and edate !=""'>
+														and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+													</if>
+												</if>
+											</if>
+										</if>
+									</if>
+								</if>
+							</if>
+						) A
+					) A 
+			WHERE A.SEQ = 1
+			ORDER BY num desc
+			OFFSET (#{currentPage}-1)*#{limit} ROWS
+			FETCH NEXT #{limit} ROWS ONLY
 	</select>
 	<select id="popupList" resultType="map">
 		SELECT *
@@ -1290,7 +1391,7 @@
 		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
 		,id
 		,KCC_EGIS.egis.FN_MASK_NAME(name) name
-		,CONVERT(char(10),reg_date ,23) reg_date
+		,CONVERT(char(16),reg_date ,120) reg_date
 		,CONVERT(char(16),logindate ,120) logindate
 		,chk_state
 		from KCC_EGIS.egis.TBL_MEMBER
@@ -1407,46 +1508,152 @@
 	</select>
 	<select id="getFreeListCount" resultType="int">
 		select count(*) from (
-		select a.*,FORMAT(a.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date,
-					KCC_EGIS.egis.FN_MASK_NAME(writer) writer2,
-					(SELECT COUNT(*)
-				     FROM KCC_EGIS.egis.TBL_FREE_TAIL b
-				     WHERE b.info_num = a.num) AS tail_count
-					 from KCC_EGIS.egis.TBL_FREE a 
-					where 1=1 
-					<if test="sdate != null and edate !=null">
-						<if test='sdate != "" and edate !=""'>
-							and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
-						</if>
-					</if>
-					<if test="chk_del != null">
-						<if test='chk_del != "all"'>
-							and a.chk_del = #{chk_del}
-						</if>
-					</if>
-					<if test="keyWord != null">
-						<if test='keyWord != ""'>
-							and (
-							<trim suffixOverrides="or">
-							<if test='title =="Y"'> 
-						        CONTAINS(a.subject, #{keyWord}) or 
-						    </if>
-						    <if test='content =="Y"'>
-						        CONTAINS(a.content, #{keyWord}) or
-						    </if>
-						    <if test='writer =="Y"'>
-						        CONTAINS(a.writer, #{keyWord}) or
-						    </if>
+		SELECT * 
+			FROM (	
+					select A.*
+					, FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date
+					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
+					, ROW_NUMBER() OVER (ORDER BY a.num) AS rownum
+					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = a.num) AS tail_count
+					, ROW_NUMBER() OVER (PARTITION BY A.SUBJECT ORDER BY A.SUBJECT) AS SEQ
+					from (
+							select a.*
+							from KCC_EGIS.egis.TBL_FREE a 
+							where 1=2 
+							and a.chk_del = 'N'
+							
+							<if test='title =="Y"'>
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+								      	and a.subject LIKE CONCAT('%', #{keyWord}, '%')
+									</if>
+								</if>
+							</if>
+							<if test='content =="Y"'>
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+								      	and CONTAINS(a.content, #{keyWord})
+									</if>
+								</if>
+							</if>
+							<if test='writer =="Y"'>
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+								      	and a.writer LIKE CONCAT('%', #{keyWord}, '%')
+									</if>
+								</if>
+							</if>
 							<if test='tail =="Y"'>
-							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord})) or
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord}))
+									</if>
+								</if>
 							</if>
 							<if test='tailWriter =="Y"'>
-							a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(writer, #{keyWord})) or
+								union all
+								select a.*
+								from KCC_EGIS.egis.TBL_FREE a 
+								where 1=1 
+								<if test="chk_del != null">
+									<if test='chk_del != "all"'>
+										and a.chk_del = #{chk_del}
+									</if>
+								</if>
+								<if test="sdate != null and edate !=null">
+									<if test='sdate != "" and edate !=""'>
+										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+									</if>
+								</if>
+								<if test="keyWord != null">
+									<if test='keyWord != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where writer LIKE CONCAT('%', #{keyWord}, '%'))
+									</if>
+								</if>
 							</if>
-							</trim>
-							)
-						</if>
-					</if>
+							<if test='title == "N"'>
+							    <if test='content == "N"'>
+							        <if test='writer == "N"'>
+							            <if test='tail == "N"'>
+							                <if test='tailWriter == "N"'>
+												union all
+												select a.*
+												from KCC_EGIS.egis.TBL_FREE a 
+												where 1=1 
+												<if test="chk_del != null">
+													<if test='chk_del != "all"'>
+														and a.chk_del = #{chk_del}
+													</if>
+												</if>
+												<if test="sdate != null and edate !=null">
+													<if test='sdate != "" and edate !=""'>
+														and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
+													</if>
+												</if>
+											</if>
+										</if>
+									</if>
+								</if>
+							</if>
+						) A
+					) A 
+			WHERE A.SEQ = 1
 		) A
 	</select>
 	<select id="getMainsildeListCount" resultType="int">
@@ -2386,6 +2593,12 @@ VALUES (
 			)
 		</foreach>
 	</insert>
+	<insert id="insertLoginInfo" parameterType="map">
+		insert into KCC_EGIS.egis.TBL_ADMIN_LOG values
+		(
+			#{id},#{ip},getdate()
+		)
+	</insert>
 	<insert id="insertFreeTail" parameterType="map">
 		insert into KCC_EGIS.egis.TBL_FREE_TAIL values
 		(
@@ -2490,6 +2703,11 @@ VALUES (
 	<delete id="deleteWallpaper" parameterType="map">
 		delete from
 		KCC_EGIS.egis.TBL_WALLPAPER
+		where num = #{num}
+	</delete>
+	<delete id="deleteNewsPhoto" parameterType="map">
+		delete from
+		KCC_EGIS.egis.TBL_NEWS_PHOTO
 		where num = #{num}
 	</delete>
 	<delete id="deleteSearchKeyword" parameterType="map">

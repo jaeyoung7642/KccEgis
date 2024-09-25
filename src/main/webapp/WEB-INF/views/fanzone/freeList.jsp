@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>팬게시판 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -43,13 +43,15 @@
 	    var keyWord = document.getElementById('keyWord').value;
 	    var form = $("#freeSearchForm");
 	    if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
-	    	if(keyWord == ''){
-	    		alertPop('검색어를 입력해주세요.');
-	    	}
+	    	if (keyWord.length < 2) {
+	            alertPop('검색어는 2글자 이상 입력해주세요.');
+	            return false;
+	        }
 	    }
 	    if(keyWord != ''){
 		    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
 		    	alertPop('검색항목을 한개 이상 체크해주세요.');
+		    	return false;
 		    }else{
 		    	form.submit();
 		    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
@@ -95,7 +97,7 @@
 		customSelect();
 	}
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->

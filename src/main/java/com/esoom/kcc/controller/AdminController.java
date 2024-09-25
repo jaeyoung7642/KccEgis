@@ -86,7 +86,7 @@ public class AdminController {
 	}
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public ModelAndView adminLogin(ModelAndView mv, HttpSession session, @RequestParam(value = "id") String id,
-			@RequestParam(value = "password") String pwd,String remember,HttpServletResponse response) throws Exception {
+			@RequestParam(value = "password") String pwd,String remember,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		if(remember == null) {
 			remember = "";
@@ -107,6 +107,9 @@ public class AdminController {
 			// 비밀번호 암호화된 정보와 입력한 비밀번호 비교
 //			if (bcryptPasswordEncoder.matches(pwd, userInfo.get("member_pwd").toString())) { // 로그인 성공
 			if (pwd.equals(userInfo.get("pwd"))) { // 로그인 성공
+				String ip = ipUtil.getClientIP(request);
+				paramMap.put("ip", ip);
+				service.insertLoginInfo(paramMap);
 				if("70".equals(userInfo.get("chk_grade"))) {
 					System.out.println("7");
 					session.setMaxInactiveInterval(30 * 60);
@@ -2002,6 +2005,14 @@ public class AdminController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("num", num);
 		int result=service.deleteWallpaper(paramMap);
+		return String.valueOf(result);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/deleteNewsPhoto", method = RequestMethod.GET)
+	public String deleteNewsPhoto(ModelAndView mv,int num)throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		int result=service.deleteNewsPhoto(paramMap);
 		return String.valueOf(result);
 	}
 	@ResponseBody

@@ -21,7 +21,7 @@
 		location.href = 'mMemberList?chk_state='+str
 	}
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -93,8 +93,8 @@
 							<th scope="col">번호</th>
 							<th scope="col">회원명</th>
 							<th scope="col">아이디</th>
-							<th scope="col">가입일</th>
-							<th scope="col">최종방문일</th>
+							<th scope="col">가입일시</th>
+							<th scope="col">최종방문일시</th>
 							<th scope="col">상태</th>
 						</tr>
 					</thead>

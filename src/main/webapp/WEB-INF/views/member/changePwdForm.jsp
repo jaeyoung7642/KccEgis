@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>회원정보수정 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -46,7 +46,7 @@
 	var pwdcheck = false;
 	function pwdKeyup(str){
 		var strVal = str.value;
-		var regex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{6,12}$/;
+		var regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{6,12}$/;
 		var inputField = document.getElementById('member_pwd');
 		if (regex.test(strVal)) {
 			$(inputField).parent().parent().find('.el_error').remove();
@@ -84,7 +84,7 @@
 		}
 	}
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -134,7 +134,7 @@
 										<div class="frm_group gap10b m_column">
 											<input type="password" class="frm_input" name="member_pwd" id="member_pwd" aria-label="비밀번호" placeholder="신규 비밀번호 입력" required onkeyup="pwdKeyup(this)">
 										</div>
-											<p class="el_desc_frm mt10">&nbsp;&nbsp;영문소문자+숫자+특수문자 조합 6~12자</p>
+											<p class="el_desc_frm mt10">&nbsp;&nbsp;영문+숫자+특수문자 조합 6~12자</p>
 									</div>
 									<div class="row">
 										<div class="frm_group gap10b m_column">

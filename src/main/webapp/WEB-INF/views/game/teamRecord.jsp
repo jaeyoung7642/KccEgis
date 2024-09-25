@@ -11,9 +11,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KCC EGIS</title>
+	<title>시즌 기록실 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
-
+	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
 	<link rel="stylesheet" href="/resources/common/assets/css/swiper-bundle.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/assets/css/sub.css"> <!-- sub only -->
@@ -246,7 +246,7 @@
 	    });
 	}
 	</script>
-</head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 <%
     // teamAndteamList 변수는 서버에서 생성한 데이터 리스트라고 가정합니다.
@@ -346,6 +346,11 @@ window.onload = function() {
 								</label>
 							</div>
 						</form>
+						<div class="btns rt">
+							<button type="button" class="el_btn btn_txt openModal" data-target="#termsInfoPopup">
+								<span class="el_ico info"></span> 용어정리
+							</button>
+						</div> 
 					</div>
 
 					<!-- 기록 테이블 -->
@@ -475,7 +480,142 @@ window.onload = function() {
 				</div>
 			</section>
 			<!-- //시즌별 기록 -->
+			<!-- 용어정리 팝업 -->
+			<div id="termsInfoPopup" tabindex="-1" class="modal type2 spc_md termsInfoPopup" data-focus="tmodal">
+				<div class="modal_module">
+					<div class="modal_content">
+						<div class="modal_header no_line">
+							<h4 class="heading md">용어정리</h4>
+						</div>
 
+						<div class="modal_body" data-lenis-prevent>
+
+							<div class="content">
+								<!-- tbl -->
+								<div class="tbl type2 td_xsm td_line">
+									<table summary="명칭, 설명 정보 제공">
+										<colgroup>
+											<col class="col1">
+											<col class="col2">
+										</colgroup>
+										<thead>
+											<tr> 
+												<th scope="col">명칭</th>
+												<th scope="col">설명</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>PTS</td>
+												<td>총 득점</td>
+											</tr>
+											<tr>
+												<td>2P</td>
+												<td>2점슛</td>
+											</tr>
+											<tr>
+												<td>2PA</td>
+												<td>2점슛 시도</td>
+											</tr>
+											<tr>
+												<td>2P%</td>
+												<td>2점슛 성공률</td>
+											</tr>
+											<tr>
+												<td>3P</td>
+												<td>3점슛</td>
+											</tr>
+											<tr>
+												<td>3PA</td>
+												<td>3점슛 시도</td>
+											</tr>
+											<tr>
+												<td>3P%</td>
+												<td>3점슛 성공률</td>
+											</tr>
+											<tr>
+												<td>PP</td>
+												<td>페인트존 득점 성공</td>
+											</tr>
+											<tr>
+												<td>PPA</td>
+												<td>페인트존 득점 시도</td>
+											</tr>
+											<tr>
+												<td>PP%</td>
+												<td>페이트존 득점 성공률</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- //tbl -->
+								<!-- tbl -->
+								<div class="tbl type2 td_xsm td_line">
+									<table summary="명칭, 설명 정보 제공">
+										<colgroup>
+											<col class="col1">
+											<col class="col2">
+											<col>
+										</colgroup>
+										<thead class="xm_hide">
+											<tr> 
+												<th scope="col">명칭</th>
+												<th scope="col">설명</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>OFF REB</td>
+												<td>공격 리바운드</td>
+											</tr>
+											<tr>
+												<td>DEF REB</td>
+												<td>수비 리바운드</td>
+											</tr>
+											<tr>
+												<td>TOT</td>
+												<td>공/수 리바운드 총합</td>
+											</tr>
+											<tr>
+												<td>FT</td>
+												<td>자유투</td>
+											</tr>
+											<tr>
+												<td>FTA</td>
+												<td>자유투 시도</td>
+											</tr>
+											<tr>
+												<td>FT%</td>
+												<td>자유투 성공률</td>
+											</tr>
+											<tr>
+												<td>TO</td>
+												<td>턴오버</td>
+											</tr>
+											<tr>
+												<td>BS</td>
+												<td>블록</td>
+											</tr>
+											<tr>
+												<td>PF</td>
+												<td>개인파울</td>
+											</tr>
+											<tr class="xm_hide">
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- //tbl -->
+							</div>
+
+						</div>
+						<button type="button" class="el_btn close closeModal" data-focus-next="tmodal"></button>
+					</div>
+				</div>
+			</div>
+			<!-- 용어정리 팝업 -->
 			<!-- 라운드별 기록 -->
 			<section class="section mt50">
 				<div class="ly_inner md">
@@ -849,7 +989,7 @@ window.onload = function() {
 										<div class="row">
 											<span class="col lt">부산 KCC</span>
 											<span class="col gray">VS</span>
-											<span class="col rt otherTeamNm"></span>
+											<span class="col rt otherTeamNm">${otherTeamNm}</span>
 										</div>
 									</div> 
 									<!-- //header -->
@@ -999,7 +1139,7 @@ window.onload = function() {
 										<div class="row">
 											<span class="col lt">부산 KCC</span>
 											<span class="col gray">VS</span>
-											<span class="col rt otherTeamNm"></span>
+											<span class="col rt otherTeamNm">${otherTeamNm}</span>
 										</div>
 									</div> 
 									<!-- //header -->
@@ -1201,31 +1341,31 @@ window.onload = function() {
 												<th scope="col">득점</th>
 												<th scope="col" class="no_bl">실점</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 												<th scope="col">KCC</th>
-												<th scope="col" class="no_bl otherTeamNm2">KT</th>
+												<th scope="col" class="no_bl otherTeamNm2">${otherTeamNm2}</th>
 											</tr>
 										</thead>
 										<tbody>

@@ -115,6 +115,8 @@ public interface AdminService {
 	
 	public List<Map<String,Object>> pSupportstaffProfileList(PageInfo pi,Map<?, ?> paramMap) throws Exception;
 	
+	public int insertLoginInfo(Map<String, Object> paramMap) throws Exception;
+	
 	public int insertFreeTail(Map<String, Object> paramMap) throws Exception;
 	
 	public int insertTeamSchedule(Map<String, Object> paramMap) throws Exception;
@@ -138,6 +140,8 @@ public interface AdminService {
 	public int insertSearchKeyword(Map<String, Object> paramMap) throws Exception;
 	
 	public int deleteSearchKeyword(Map<String, Object> paramMap) throws Exception;
+
+	public int deleteNewsPhoto(Map<String, Object> paramMap) throws Exception;
 	
 	public int deleteTeamSchedule(Map<String, Object> paramMap) throws Exception;
 	

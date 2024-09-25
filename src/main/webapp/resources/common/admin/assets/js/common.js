@@ -124,7 +124,8 @@ function commonInit() {
       changeYear: true,
 			yearRange: 'c-20:c+20',
 			showMonthAfterYear:true,
-			monthNamesShort: ['1 월','2 월','3 월','4 월','5 월','6 월','7 월','8 월','9 월','10 월','11 월','12 월'],
+			//monthNamesShort: ['1 월','2 월','3 월','4 월','5 월','6 월','7 월','8 월','9 월','10 월','11 월','12 월'],
+			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 			dayNamesMin: ['일', '월','화','수','목','금','토'],
 		});
 	}

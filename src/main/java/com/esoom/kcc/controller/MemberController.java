@@ -214,7 +214,7 @@ public class MemberController {
 		String productID = "2101979031";
 	    
 	    //운영용
-		String returnURL = "https://kccegis.com/niceResult";
+		String returnURL = request.getScheme()+"://"+request.getServerName()+"/niceResult";
 		//개발용
 //		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult";
 
@@ -322,7 +322,7 @@ public class MemberController {
         }
         // 만나이가 14세 미만인지 확인
         if (age < 14) {
-        	mv.addObject("msg", "만 14세 미만은 가입하실 수 없습니다.\n만 14세 미만의 회원은 보호자 정보로 인증을 해주세요.");
+        	mv.addObject("msg", "만 14세 미만은 가입하실 수 없습니다");
 			mv.setViewName("redirect:/joinForm1");
 			return mv;
         }
@@ -630,7 +630,7 @@ public class MemberController {
     	int result = 0;
     	if(duplicateDi != null) {
     		mv.addObject("msg", "가입 이력이 있는 회원입니다");
-    		mv.setViewName("redirect:/joinForm2");
+    		mv.setViewName("redirect:/joinForm1");
     		return mv;
     	}else {
     		result = service.insertMember(paramMap);
@@ -951,7 +951,7 @@ public class MemberController {
 		String productID = "2101979031";
 	    
 	    //운영용
-		String returnURL = "https://kccegis.com/niceResult2";
+		String returnURL = request.getScheme()+"://"+request.getServerName()+"/niceResult2";
 		//개발용
 //		String returnURL = "http://kccdev.esoom.co.kr:8080/niceResult2";
 
@@ -1097,7 +1097,7 @@ public class MemberController {
 			String daddr = aesUtil.decryptAes2(userMap.get("daddr").toString());
 			resultMap.put("daddr", daddr);
 		}
-		if(userMap.get("player_no") != null) {
+		if(userMap.get("player_no") != null && !"".equals(userMap.get("player_no"))) {
 			String player_no = userMap.get("player_no").toString();
 			paramMap.put("pl_no", player_no);
 			Map<String,Object> playerMap = playerService.getPlayer(paramMap);
@@ -1240,14 +1240,14 @@ public class MemberController {
 				    + "</head>"
 				    + "<body>"
 				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
-				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(http://kccdev.esoom.co.kr:8080/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
-				    + "<img src='http://kccdev.esoom.co.kr:8080/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
+				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
+				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
 				    + "</h1>"
 				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
 				    + "<p>안녕하세요. <span style='color:#000000'>"+name+"</span>님!<br /><br />회원님의 임시비밀번호는 아래와 같습니다.<br />임시비밀번호로 로그인을 하신 후에 회원정보 수정에서 원하시는 비밀번호로 수정해주세요.</p>"
 				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>임시비밀번호 :"+pwd+"</p>"
 				    + "<p style='text-align:center; padding:50px 0 0 0;'>"
-				    + "<a href='https://www.kccegis.com' target='_blank'><img src='http://kccdev.esoom.co.kr:8080/resources/common/images/common/btn_homepage_go.gif' alt='홈페이지바로가기' border='0' /></a>"
+				    + "<a href='https://www.kccegis.com' target='_blank'><img src='https://www.kccegis.com/resources/common/images/common/btn_homepage_go.gif' alt='홈페이지바로가기' border='0' /></a>"
 				    + "</p>"
 				    + "</div>"
 				    + "</div>"
