@@ -68,6 +68,42 @@
 	            return;
 	        }
 		}
+	function readURL2(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview2').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview2').src = '';
+		  }
+		}
+	function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = '';
+		  }
+		}
+	function openPhoto2(){
+		if($('#img2Txt').text().trim() === '' || $('#img2Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img2Pop').trigger('click');
+		}
+	}
+	function openPhoto(){
+		if($('#img1Txt').text().trim() === '' || $('#img1Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img1Pop').trigger('click');
+		}
+	}
 	</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
@@ -137,8 +173,8 @@
 										<div class="frm_group txt_sm">
 											<div class="frm_file">
 												<label>
-													<input type="file" aria-label="파일등록" name="img1" id="img1">
-													<span class="frm_input gray m400">
+													<input type="file" aria-label="파일등록" name="img1" id="img1" onchange="readURL(this);">
+													<span class="frm_input gray m400" id="img1Txt">
 													<c:if test="${result.img1 != null }">
 														${result.img1 }
 													</c:if>
@@ -151,6 +187,8 @@
 											</div>
 											<input type="hidden" name="img1_bf" id="img1_bf" value="${result.img1}">
 											<button type="button" class="el_btn btn frm_btn line2" onclick="fileDownload();">다운로드</button>
+											<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup"></button>
 											<input type="hidden" name="img1_org_bf" id="img1_org_bf" value="${result.img1_org}">
 										</div>
 									</td>
@@ -161,8 +199,8 @@
 										<div class="frm_group txt_sm">
 											<div class="frm_file">
 												<label>
-													<input type="file" aria-label="파일등록" name="img2" id="img2">
-													<span class="frm_input gray m400">
+													<input type="file" aria-label="파일등록" name="img2" id="img2" onchange="readURL2(this);">
+													<span class="frm_input gray m400" id="img2Txt">
 													<c:if test="${result.img2 != null }">
 														${result.img2 }
 													</c:if>
@@ -175,6 +213,8 @@
 											</div>
 											<input type="hidden" name="img2_bf" id="img2_bf" value="${result.img2}">
 											<button type="button" class="el_btn btn frm_btn line2" onclick="fileDownload2();">다운로드</button>
+											<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto2()">사진보기</button>
+											<button class="openModal" id="img2Pop" data-target="#detailPopup2"></button>
 											<input type="hidden" name="img2_org_bf" id="img2_org_bf" value="${result.img2_org}">
 										</div>
 									</td>
@@ -189,7 +229,42 @@
 						<button type="button" class="el_btn md line" onclick="deleteWallpaper(${result.num })">삭제</button>
 					</div>
 				</form>
-			
+			<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<!-- 작성자 정보 -->
+								<img src="/resources/common/images/upload/wallpaper/${result.img1}" id="preview" alt="">
+								<!-- 작//성자 정보 -->
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
+				<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup2" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<!-- 작성자 정보 -->
+								<img src="/resources/common/images/upload/wallpaper/${result.img2}" id="preview2" alt="">
+								<!-- 작//성자 정보 -->
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
 			</main>
 			<!-- //main -->
 		</div>

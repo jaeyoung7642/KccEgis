@@ -16,6 +16,98 @@
 	<script src="/resources/common/admin/assets/js/common.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/script.js" defer></script> 
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script>
+	<script>
+	function openPhoto(){
+		if($('#img1Txt').text().trim() === '' || $('#img1Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img1Pop').trigger('click');
+		}
+	}
+	function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = '';
+		  }
+		}
+	function openPhoto2(){
+		if($('#img2Txt').text().trim() === '' || $('#img2Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img2Pop').trigger('click');
+		}
+	}
+	function readURL2(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview2').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview2').src = '';
+		  }
+		}
+	function openPhoto3(){
+		if($('#img3Txt').text().trim() === '' || $('#img3Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img3Pop').trigger('click');
+		}
+	}
+	function readURL3(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview3').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview3').src = '';
+		  }
+		}
+	function openPhoto4(){
+		if($('#img4Txt').text().trim() === '' || $('#img4Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img4Pop').trigger('click');
+		}
+	}
+	function readURL4(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview4').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview4').src = '';
+		  }
+		}
+	function openPhoto5(){
+		if($('#img5Txt').text().trim() === '' || $('#img5Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img5Pop').trigger('click');
+		}
+	}
+	function readURL5(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview5').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview5').src = '';
+		  }
+		}
+	</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-sub">
 	<div id="wrap">
@@ -164,8 +256,8 @@
 										<div class="frm_group txt_sm">
 											<div class="frm_file">
 												<label>
-													<input type="file" aria-label="파일등록" name="pl_webmain" id="pl_webmain">
-													<span class="frm_input gray m400">
+													<input type="file" aria-label="파일등록" name="pl_webmain" id="pl_webmain" onchange="readURL(this);">
+													<span class="frm_input gray m400" id="img1Txt">
 													<c:if test="${result.pl_webmain != null }">
 														${result.pl_webmain }
 													</c:if>
@@ -176,6 +268,8 @@
 												</label>
 												<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 											</div>
+											<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup"></button>
 											<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
 											<input type="hidden" name="pl_webmain_bf" id="pl_webmain_bf" value="${result.pl_webmain}">
 										</div>
@@ -187,8 +281,8 @@
 										<div class="frm_group txt_sm">
 											<div class="frm_file">
 												<label>
-													<input type="file" aria-label="파일등록" name="pl_webdetail" id="pl_webdetail">
-													<span class="frm_input gray m400">
+													<input type="file" aria-label="파일등록" name="pl_webdetail" id="pl_webdetail" onchange="readURL2(this);">
+													<span class="frm_input gray m400" id="img2Txt">
 													<c:if test="${result.pl_webdetail != null }">
 														${result.pl_webdetail }
 													</c:if>
@@ -199,6 +293,8 @@
 												</label>
 												<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 											</div>
+											<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto2()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup2"></button>
 											<span class="el_info">※ 이미지 사이즈 [330X330]</span>
 											<input type="hidden" name="pl_webdetail_bf" id="pl_webdetail_bf" value="${result.pl_webdetail}">
 										</div>
@@ -212,8 +308,8 @@
 												<div class="frm_group txt_sm">
 													<div class="frm_file">
 														<label>
-															<input type="file" aria-label="파일등록" name="pl_actioncut_1" id="pl_actioncut_1">
-															<span class="frm_input gray m400">
+															<input type="file" aria-label="파일등록" name="pl_actioncut_1" id="pl_actioncut_1" onchange="readURL3(this);">
+															<span class="frm_input gray m400" id="img3Txt">
 															<c:if test="${result.pl_actioncut_1 != null }">
 																${result.pl_actioncut_1 }
 															</c:if>
@@ -224,6 +320,8 @@
 														</label>
 														<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 													</div>
+													<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto3()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup3"></button>
 													<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
 													<input type="hidden" name="pl_actioncut_1_bf" id="pl_actioncut_1_bf" value="${result.pl_actioncut_1}">
 												</div>
@@ -232,8 +330,8 @@
 												<div class="frm_group txt_sm">
 													<div class="frm_file">
 														<label>
-															<input type="file" aria-label="파일등록" name="pl_actioncut_2" id="pl_actioncut_2">
-															<span class="frm_input gray m400">
+															<input type="file" aria-label="파일등록" name="pl_actioncut_2" id="pl_actioncut_2" onchange="readURL4(this);">
+															<span class="frm_input gray m400" id="img4Txt">
 															<c:if test="${result.pl_actioncut_2 != null }">
 																${result.pl_actioncut_2 }
 															</c:if>
@@ -242,6 +340,8 @@
 															</c:if>
 															</span>
 														</label>
+														<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto4()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup4"></button>
 														<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 													</div>
 													<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
@@ -252,8 +352,8 @@
 												<div class="frm_group txt_sm">
 													<div class="frm_file">
 														<label>
-															<input type="file" aria-label="파일등록" name="pl_actioncut_3" id="pl_actioncut_3">
-															<span class="frm_input gray m400">
+															<input type="file" aria-label="파일등록" name="pl_actioncut_3" id="pl_actioncut_3" onchange="readURL5(this);">
+															<span class="frm_input gray m400" id="img5Txt">
 															<c:if test="${result.pl_actioncut_3 != null }">
 																${result.pl_actioncut_3 }
 															</c:if>
@@ -264,6 +364,8 @@
 														</label>
 														<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 													</div>
+													<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto5()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup5"></button>
 													<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
 													<input type="hidden" name="pl_actioncut_3_bf" id="pl_actioncut_3_bf" value="${result.pl_actioncut_3}">
 												</div>
@@ -281,7 +383,86 @@
 						<button type="button" class="el_btn md line" onclick="deletePlayer(${result.num },'${result.pl_pos_code}')">삭제</button>
 					</div>
 				</form>
-			
+				<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<img src="/resources/common/images/upload/player/${result.pl_webmain}" id="preview" alt="">
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
+				<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup2" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<img src="/resources/common/images/upload/player/${result.pl_webdetail}" id="preview" alt="">
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
+				<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup3" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<img src="/resources/common/images/upload/player/${result.pl_actioncut_1}" id="preview" alt="">
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
+				<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup4" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<img src="/resources/common/images/upload/player/${result.pl_actioncut_2}" id="preview" alt="">
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
+				<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup5" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<img src="/resources/common/images/upload/player/${result.pl_actioncut_5}" id="preview" alt="">
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
 			</main>
 			<!-- //main -->
 		</div>

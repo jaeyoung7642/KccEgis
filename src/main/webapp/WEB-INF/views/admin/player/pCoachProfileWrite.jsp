@@ -16,6 +16,26 @@
 	<script src="/resources/common/admin/assets/js/common.js" defer></script> <!-- sub page only -->
 	<script src="/resources/common/admin/assets/js/script.js" defer></script> 
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script>
+	<script>
+	function openPhoto(){
+		if($('#img1Txt').text().trim() === '' || $('#img1Txt')[0].innerText =='사진을 첨부하세요.'){
+			alert("선택된 파일이 없습니다.");
+		}else{
+			$('#img1Pop').trigger('click');
+		}
+	}
+	function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = '';
+		  }
+		}
+	</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <script>
 	var msg = "${msg}"
@@ -154,8 +174,8 @@
 										<div class="frm_group txt_sm">
 											<div class="frm_file">
 												<label>
-													<input type="file" aria-label="파일등록" name="pl_webmain" id="pl_webmain">
-													<span class="frm_input gray m400">
+													<input type="file" aria-label="파일등록" name="pl_webmain" id="pl_webmain" onchange="readURL(this);">
+													<span class="frm_input gray m400" id="img1Txt">
 													<c:if test="${result.pl_webmain != null }">
 														${result.pl_webmain }
 													</c:if>
@@ -166,6 +186,8 @@
 												</label>
 												<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 											</div>
+											<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto()">사진보기</button>
+											<button class="openModal" id="img1Pop" data-target="#detailPopup"></button>
 											<input type="hidden" name="pl_webmain_bf" id="pl_webmain_bf" value="${result.pl_webmain}">
 											<span class="el_info">※ 이미지 사이즈 [295X730]</span>
 										</div>
@@ -181,7 +203,22 @@
 						<button type="button" class="el_btn md line" onclick="deletePlayer(${result.num },'${result.pl_pos_code}')">삭제</button>
 					</div>
 				</form>
-			
+			<!-- 미리보기 정보 팝업 -->
+				<div id="detailPopup" tabindex="-1" class="memberPopup modal" data-focus="modal">
+					<div class="modal_module">
+						<div class="modal_content">
+							<div class="modal_header">
+								<h4 class="modal_title">사진보기</h4>
+							</div>
+
+							<div class="modal_body custom_scroll" style="text-align:center;">
+								<img src="/resources/common/images/upload/player/${result.pl_webmain}" id="preview" alt="">
+							</div>
+							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 미리보기 팝업 -->
 			</main>
 			<!-- //main -->
 		</div>

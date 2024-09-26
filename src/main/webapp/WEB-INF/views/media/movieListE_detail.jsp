@@ -158,8 +158,8 @@
 			<div class="snb_3dth_area">
 				<nav class="snb_3dth snb_list menu_slider">
 					<div class="swiper-wrapper">
-						<a href="movieListH" class="swiper-slide snb_link current"><span>경기 영상</span></a> <!-- 해당페이지에 current 추가 -->
-						<a href="movieListE" class="swiper-slide snb_link"><span>이벤트 영상</span></a>
+						<a href="movieListH" class="swiper-slide snb_link"><span>경기 영상</span></a> <!-- 해당페이지에 current 추가 -->
+						<a href="movieListE" class="swiper-slide snb_link current"><span>이벤트 영상</span></a>
 					</div>
 				</nav>
 			</div>
