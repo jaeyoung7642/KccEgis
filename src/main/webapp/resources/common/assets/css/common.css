@@ -59,7 +59,8 @@
 	--font-sm: 300;
 	--font-rg: 400;
 	--font-md: 400;
-	--font-md2: 600;
+	--font-md2: 500;
+	--font-md3: 600;
 	--font-semi: 400;
 	--font-bd: 700;
 	--font-exbd: 800;
@@ -262,6 +263,7 @@ html:not(.is-mobile) body :is(.bg_dark) *::-webkit-scrollbar-thumb {background: 
 .el_img.media img {-o-object-position: center 18%; object-position: center 18%;}
 
 .el_thumb {display: block; overflow: hidden; transform: translateZ(0);}
+.thumb_hover .overlay {overflow: hidden;}
 .thumb_hover .overlay .cont {position: relative; z-index: 1;}
 
 @media (min-width: 1025px) {
@@ -377,7 +379,7 @@ html:not(.is-mobile) body :is(.bg_dark) *::-webkit-scrollbar-thumb {background: 
 	:is(.fixed) .gnb_link.current {--color: var(--darkblue02) !important;}
 	.gnb_sub {background: #fff; border-radius: 8px; padding: 10px 20px; position: absolute; top: 85px; left: 50%; width: 100%; min-width: 134px; transform: translateX(-50%); box-shadow: var(--shadow); z-index: 10;}
 	.sub_link {display: block; font-size: 17px; font-weight: var(--font-semi); color: var(--grayblue02); padding: 10px 0; white-space: nowrap;}
-	.sub_link:is(:hover, :focus-visible) {color: var(--darkblue02); font-weight: var(--font-md2);}
+	.sub_link:is(:hover, :focus-visible) {color: var(--darkblue02); font-weight: var(--font-md3);}
 }
 
 @media (max-width: 1024px) {
