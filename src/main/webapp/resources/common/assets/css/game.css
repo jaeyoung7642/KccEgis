@@ -236,6 +236,7 @@
 /* 경기 최고 기록 비교 */
 .game_result .mvp {display: flex; justify-content: center; align-items: center; max-width: 424px; margin: 0 auto; padding: var(--size17-10) 0;}
 .game_result .mvp .el_ico {width: 78px; flex-shrink: 0;}
+.game_result .mvp .el_img img {-o-object-position: center top;object-position: center top;}
 .game_result .mvp .cont {margin-left: 17px; font-size: var(--size14-12);}
 .game_result .mvp .cont span {display: inline-block;}
 .game_result .mvp .cont .tit {color: var(--dark01); display: block; margin-bottom: 0.5em;}
