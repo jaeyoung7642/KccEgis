@@ -97,7 +97,7 @@
 							</div>
 							<div class="cont">
 								<p class="txt_intro"><span class="point">안</span>녕하십니까, 부산 KCC EGIS를 사랑해 주시는 팬 여러분.<br>
-									부산 KCC EGIS 프로농구단 구단주 정재훈입니다</p>
+									부산 KCC EGIS 프로농구단 구단주 정재훈입니다.</p>
 
 								<p>부산에서의 첫 시즌을 성공적으로 마칠 수 있었던 것에 대해<br>
 								   진심으로 감사드립니다.<br>

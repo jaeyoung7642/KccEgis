@@ -144,8 +144,9 @@
 .bbs_list_tbl .tit_link {display: inline-block; min-width: 0; max-width: 100%;}
 .bbs_list_tbl .tit_txt {position: relative;}
 .bbs_list_tbl .tit_txt.reply::before {content: ""; display: inline-block; width: 10px; aspect-ratio: 1; background: url('../../images/common/ico_reply.svg') no-repeat center/contain; margin: 0.2143em; vertical-align: top;}
-.bbs_list_tbl a.tit_link:is(:hover, :focus-visible),
-.bbs_list_tbl .tit_link:is(:hover, :focus-visible) .tit_txt {text-decoration: underline;} 
+/* .bbs_list_tbl a.tit_link:is(:hover, :focus-visible),
+.bbs_list_tbl .tit_link:is(:hover, :focus-visible) .tit_txt:is(:hover, :focus-visible) {text-decoration: underline;} */ 
+.bbs_list_tbl a.tit_link:is(:hover, :focus-visible) .tit_txt {text-decoration: underline;}
 .bbs_list_tbl .tit_cont {font-size: var(--size14-12); font-weight: var(--font-md); color: var(--dark04); margin-top: var(--size10-6);}
 .bbs_list_tbl .count {flex-shrink: 0; align-self: flex-end; color: var(--gray01); font-weight: var(--font-md);}
 .bbs_list_tbl .notice {position: relative;}

@@ -492,7 +492,7 @@
 			                </c:choose>
 							</c:forEach>
 							<c:if test="${empty playerMediaList}">
-								<div class="no_post hmd">관련 게시물이 없습니다.</div>
+								<div class="no_post hmd">해당 선수의 기록이 없습니다.</div>
 							</c:if>
 							</div>
 							<div class="swiper-button-next type1 p_hide"></div>

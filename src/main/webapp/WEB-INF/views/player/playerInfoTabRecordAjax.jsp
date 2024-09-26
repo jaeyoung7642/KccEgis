@@ -216,6 +216,6 @@
 						<script src="/resources/common/assets/js/echarts.min.js" defer></script> <!-- 차트있을 때 추가 -->
 				</c:if>
 						<c:if test="${empty playerRecordMap}">
-							<div class="mt30-15 no_data white hmd no_data">관련 게시물이 없습니다.</div>
+							<div class="mt30-15 no_data white hmd no_data">해당 선수의 기록이 없습니다.</div>
 						</c:if>
 				</c:if>

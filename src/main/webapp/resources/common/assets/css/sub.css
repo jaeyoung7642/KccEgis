@@ -783,15 +783,15 @@ body {background: var(--gray07);}
 .snb_2dth .snb_link > span {display: inline-flex; height: 100%; align-items: center; position: relative; border-bottom: 4px solid var(--bd); padding: 0 5px;}
 .snb_2dth .snb_link.current {--color: #fff; --bd: #fff;}
 .snb_2dth_area .inner.fixed {--sbg: #fff; position: fixed; box-shadow: 0 1px 0 0 var(--gray05); z-index: 500;}
-.snb_2dth_area .inner.fixed .snb_link.current {--color: var(--darkblue02); --bd: var(--darkblue02);}
+.snb_2dth_area .inner.fixed .snb_link.current {--color: var(--darkblue02); --bd: var(--darkblue02); font-weight: var(--font-md2);}
 .snb_3dth_area {height: 69px; background: #fff; display: flex; justify-content: center; position: relative;}
 .snb_3dth_area::before {content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--gray05); z-index: 0; pointer-events: none;}
 .snb_3dth .snb_link > span::after {content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--bd); overflow-x: 10;}
-.snb_3dth .snb_link.current {--color: var(--darkblue02); --bd: var(--darkblue02); font-weight: var(--font-bd);}
+.snb_3dth .snb_link.current {--color: var(--darkblue02); --bd: var(--darkblue02); font-weight: var(--font-md2); /* font-weight: var(--font-bd); */}
 
 .snb_4dth_area {display: flex; justify-content: center; width: 100%;}
 .snb_4dth {display: flex; background: rgba(236, 241, 247, 0.80); border-radius: 35px; padding: 2px;}
-.snb_4dth .snb_link {flex: 1; --h: 66px; --cl: var(--dark03); display: inline-flex; justify-content: center; align-items: center; width: 270px; height: var(--h); border-radius: calc(var(--h) / 2); font-size: 20px; line-height: 1; font-weight: var(--font-bd); color: var(--cl);}
+.snb_4dth .snb_link {flex: 1; --h: 66px; --cl: var(--dark03); display: inline-flex; justify-content: center; align-items: center; width: 270px; height: var(--h); border-radius: calc(var(--h) / 2); font-size: 20px; line-height: 1; /* font-weight: var(--font-bd); */ color: var(--cl);}
 .snb_4dth .snb_link.current {--cl: #fff; background: var(--darkblue02);}
 
 @media (min-width: 1025px) {
