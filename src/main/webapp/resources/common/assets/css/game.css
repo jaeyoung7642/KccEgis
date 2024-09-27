@@ -76,7 +76,7 @@
 .game_schedule .header .arr.lt {order: 1;}
 .game_schedule .header .year {font-size: var(--size20-14); color: var(--dark03);} 
 .game_schedule .header .month {font-size: var(--size29-24); color: var(--dark01);} 
-.game_schedule .header .plyers {display: flex; justify-content: flex-end; align-items: center; gap: 10px;}
+.game_schedule .header .plyers {display: flex; justify-content: flex-end; align-items: center; gap: 10px; font-weight: var(--font-md2);}
 .game_schedule .header .plyers .tit {color: var(--grayblue01); margin-right: 4px;}
 .game_schedule .header .plyers .name {color: var(--primary); display: flex; gap: .2em;}
 .game_schedule .header .plyers .name .dash {color: var(--grayblue03); font-weight: var(--font-rg);}
@@ -278,7 +278,7 @@
 
 .best_record .content .col.ct {flex-direction: column;}
 .best_record .content .score {width: var(--scw); font-size: var(--size20-16);}
-.best_record .content :is(.name, .part) {font-size: var(--size14-12); color: var(--dark01);}
+.best_record .content :is(.name, .part) {font-size: var(--size14-12); color: var(--dark01); font-weight: var(--font-md2);}
 .best_record .content .name {margin-top: 0.3572em;}
 .best_record .content .player .el_img img {-o-object-position: center top;object-position: center top;}
 .best_record .content .el_graph {--h: 93px;}
@@ -309,7 +309,7 @@
 .staple_record .content .col.lt {flex-direction: row-reverse;}
 .staple_record .content .col.ct {justify-content: center; text-align: center;}
 .staple_record .content .score {font-size: var(--size16-12);}
-.staple_record .content .part {font-size: var(--size14-12);}
+.staple_record .content .part {font-size: var(--size14-12); font-weight: var(--font-md2);}
 
 @media (max-width: 1024px) { /* 375 */
 	.staple_record {--gw: min(16.267vw, 105px);} /* 64 */
@@ -325,7 +325,7 @@
 .staple_record.season .header .col.lt {justify-content: flex-end; text-align: right;}
 .staple_record.season .el_graph {width: 90px;}
 .staple_record.season .content .row {height: 34px;}
-.staple_record.season .content .part {font-size: var(--size14-12); font-weight: var(--font-md); color: var(--dark01);}
+.staple_record.season .content .part {font-size: var(--size14-12); /* font-weight: var(--font-md); */ color: var(--dark01);}
 .staple_record.season .content .score {font-size: var(--size16-12); font-weight: var(--font-bd);}
 .staple_record.season .content .lt .score {color: var(--grayblue01);}
 .staple_record.season .content .rt .score {color: var(--primary);}
@@ -471,7 +471,7 @@
 .t_record_content .btns {grid-area: btns;}
 .t_record_content .team {display: flex; flex-direction: column; align-items: center;}
 .t_record_content .name {font-weight: var(--font-bd); color: var(--dark01 ); text-align: center;}
-.t_record_content .tbl thead th {font-weight: var(--font-md);  }
+/* .t_record_content .tbl thead th {font-weight: var(--font-md);  } */
 .t_record_content .tbl tbody td:not(.no_post) {font-weight: var(--font-semi);}
 
 @media (min-width: 1025px) {
@@ -571,7 +571,7 @@
 	.ticket_tbl2 .h50 :is(th, td) {height: 64px !important;}
 }
 
-.ticket_notice .el_desc_list {font-weight: var(--font-rg);}  
+.ticket_notice .el_desc_list {font-weight: var(--font-md2);}  
 
 @media (min-width: 1025px) {
 	.ticket_notice {--fa1: 1.2; display: flex; justify-content: space-between; align-items: center; min-height: 192px; background: var(--grayblue07) url('../../images/img/ticket_notice_bg.png') no-repeat center bottom/100% 100%; padding: 26px 0; padding-left: min(9.375vw * var(--fa1), 180px); padding-right: min(11.146vw * var(--fa1), 214px);}

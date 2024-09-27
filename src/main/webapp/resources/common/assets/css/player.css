@@ -146,7 +146,7 @@
 	.coach_item.head_coach .career_box  {margin-top: min(2.083vw * var(--fa3), 40px); padding-right: min(1.563vw, 30px);}
 	.coach_item.head_coach .career_box .tit {font-size: 18px; margin-bottom: 20px;}
 	.coach_item.head_coach .career_box .list {font-size: 16px; max-height: 250px;}
-	.coach_item.head_coach .career_box .list > li {gap: 12px;}
+	.coach_item.head_coach .career_box .list > li {gap: 12px; font-weight: var(--font-md3);}
 	.coach_item.head_coach .career_box .list > li + li {margin-top: 10px;}
 	.coach_item.head_coach .career_box .list .year {min-width: 2.688em; color: var(--gray01);}
 }
@@ -165,7 +165,7 @@
 	.coach_item.head_coach .career_box {grid-area: career; gap: 3.467vw;}
 	.coach_item.head_coach .career_box .tit {margin-bottom: 0.8334em;}
 	.coach_item.head_coach .career_box .list {max-height: inherit; overflow: visible;}
-	.coach_item.head_coach .career_box .list .txt {font-weight: var(--font-md);}
+	/* .coach_item.head_coach .career_box .list .txt {font-weight: var(--font-md);} */
 }
 
 @media (max-width: 360px) {
@@ -575,7 +575,7 @@
 .cheer_song_list.type3 .photo {width: 100%; height: 100%; position: relative; z-index: ;}
 .cheer_song_list.type3 .num {position: absolute; left: 0; top: 5.8642%; width: 100%; font-size: min(2.604vw * var(--fa2), 50px);  font-weight: var(--font-exbd); color: var(--grayblue05); text-align: center; z-index: 0;}
 .cheer_song_list.type3 .info {position: absolute; left: 0; bottom: 0; width: 100%; z-index: 2; background: var(--dimmed01); color: #fff; display: flex; flex-direction: column; align-items: center; padding: 11px 0 0; gap: 2px; height: min(4.688vw * var(--fa1), 90px);}
-.cheer_song_list.type3 .name {font-size: var(--size16-14); font-weight: var(--fong-bd);}
+.cheer_song_list.type3 .name {font-size: var(--size16-14); font-weight: var(--font-bd);}
 
 @media (min-width: 1025px) {
 	.cheer_song_list.type3 {--rowg: min(2.604vw * var(--fa1), 50px);}
