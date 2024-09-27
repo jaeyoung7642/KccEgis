@@ -392,5 +392,13 @@
 		<!-- footer -->
 
 	</div>
+	<script>
+		window.onpageshow = function(event){
+			if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+				console.log(0);
+				$('.loading').remove();
+			}
+		}
+	</script>
 </body>
 </html>
