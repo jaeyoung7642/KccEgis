@@ -131,7 +131,7 @@
 								</if>
 								<if test="keyWord != null">
 									<if test='keyWord != ""'>
-								      	and a.writer LIKE CONCAT('%', #{keyWord}, '%')
+								      	and a.writer LIKE CONCAT('%', REPLACE(#{keyWord},'*','%'), '%')
 									</if>
 								</if>
 							</if>
@@ -165,7 +165,7 @@
 								</if>
 								<if test="keyWord != null">
 									<if test='keyWord != ""'>
-										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where writer LIKE CONCAT('%', #{keyWord}, '%'))
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where writer LIKE CONCAT('%', REPLACE(#{keyWord},'*','%'), '%'))
 									</if>
 								</if>
 							</if>
@@ -271,7 +271,7 @@
 								</if>
 								<if test="keyWord != null">
 									<if test='keyWord != ""'>
-								      	and a.writer LIKE CONCAT('%', #{keyWord}, '%')
+								      	and a.writer LIKE CONCAT('%', REPLACE(#{keyWord},'*','%'), '%')
 									</if>
 								</if>
 							</if>
@@ -305,7 +305,7 @@
 								</if>
 								<if test="keyWord != null">
 									<if test='keyWord != ""'>
-										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where writer LIKE CONCAT('%', #{keyWord}, '%'))
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where writer LIKE CONCAT('%', REPLACE(#{keyWord},'*','%'), '%'))
 									</if>
 								</if>
 							</if>
