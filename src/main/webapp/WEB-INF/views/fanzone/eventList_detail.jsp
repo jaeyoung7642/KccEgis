@@ -8,6 +8,16 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%
+	String baseUrl = request.getRequestURL().toString();
+	String queryString = request.getQueryString();
+	String currentUrl = baseUrl + (queryString != null ? "?" + queryString : "");
+	%>
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="<%= currentUrl %>">
+	<meta property="og:title" content="이벤트 : KCC이지스 프로농구단">
+	<meta property="og:image" content="https://kccegis.com/resources/common/images/common/kcc_og_thum.jpg">
+	<meta property="og:description" content="부산KCC이지스 공식 웹사이트">
 	<title>이벤트 : KCC이지스 프로농구단</title>
 	<link rel="stylesheet preload" as="style" crossorigin href="/resources/common/assets/font/font.css" />
 	<link rel="shortcut icon" href="/resources/common/images/common/favicon_kccegis.png">
