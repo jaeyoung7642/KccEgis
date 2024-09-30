@@ -140,10 +140,11 @@
 .bbs_list_tbl td.num {white-space: nowrap;}
 .bbs_list_tbl td.name {font-size: var(--size16-12);}
 .bbs_list_tbl .tit {font-size: 16px; /* font-weight: var(--font-bd); */}
-.bbs_list_tbl .tit_inner {display: flex; gap: 3px; max-width: 100%;}
+.bbs_list_tbl .tit_inner {display: flex; gap: 3px; max-width: 100%; align-items: center;}
 .bbs_list_tbl .tit_link {display: inline-block; min-width: 0; max-width: 100%;}
 .bbs_list_tbl .tit_txt {position: relative;}
 .bbs_list_tbl .tit_txt.reply::before {content: ""; display: inline-block; width: 10px; aspect-ratio: 1; background: url('../../images/common/ico_reply.svg') no-repeat center/contain; margin: 0.2143em; vertical-align: top;}
+/* .bbs_list_tbl .el_ico.phone {vertical-align: middle;} */
 /* .bbs_list_tbl a.tit_link:is(:hover, :focus-visible),
 .bbs_list_tbl .tit_link:is(:hover, :focus-visible) .tit_txt:is(:hover, :focus-visible) {text-decoration: underline;} */ 
 .bbs_list_tbl a.tit_link:is(:hover, :focus-visible) .tit_txt {text-decoration: underline;}
@@ -152,6 +153,8 @@
 .bbs_list_tbl .notice {position: relative;}
 .bbs_list_tbl .notice :is(.num, .tit_link) {font-weight: var(--font-semi);}
 .bbs_list_tbl .block .tit {color: var(--gray01) !important;}
+.bbs_list_tbl td .bbs_info.view::before {content: "";}
+
 
 /* .bbs_list_tbl.nav td.num {font-weight: var(--font-bd);} */
 
@@ -165,10 +168,12 @@
 	.bbs_list_tbl col.date {--colw: min(8.958vw * var(--fa1), 172px);}
 	.bbs_list_tbl col.date2 {--colw: min(11.719vw * var(--fa2), 225px);}
 	.bbs_list_tbl col.view {--colw: min(7.031vw * var(--fa2), 135px);}
-	.bbs_list_tbl td {background: #fff; border-top: 1px solid var(--gray05); border-bottom: 1px solid var(--gray05);  text-align: center; height: 66px; padding: 19px min(1.042vw * var(--fa1), 20px);}
+	.bbs_list_tbl thead th {height: 66px; background: var(--darkblue01); color: #fff; font-size: 16px;}
+	.bbs_list_tbl td {background: #fff; /* border-top: 1px solid var(--gray05); */ border-bottom: 1px solid var(--gray05);  text-align: center; height: 66px; padding: 19px min(1.042vw * var(--fa1), 20px);}
 	.bbs_list_tbl td.tit {text-align: left; padding-left: 6px; padding-right: 0;}
 	.bbs_list_tbl td .bbs_info {vertical-align: middle;}
 	.bbs_list_tbl td:is(.num, .view) {padding: 0; white-space: nowrap;}
+	.bbs_list_tbl td .bbs_info.view {gap: 0;}
 	.bbs_list_tbl .tit_txt {display: block;}
 	.bbs_list_tbl .tit_txt.reply::before {margin: 6px; margin-left: min(0.521vw * var(--fa1), 10px);}
 	.bbs_list_tbl .notice::after {content: ""; position: absolute; left: 0; top: 0; width: 100%; bottom: -1px; border-top: 1px solid var(--grayblue03); border-bottom: 1px solid var(--grayblue03); pointer-events: none;}
@@ -184,6 +189,7 @@
 @media (max-width: 1024px) { 
 	.bbs_list_tbl {--npl: max(var(--size16), 4.267vw * 0.8);}
 	.bbs_list_tbl :is(table, thead, tbody) {display: block;}
+	.bbs_list_tbl thead {display: none;}
 	.bbs_list_tbl tr {--minH: max(90px, 9.766vw); --rowg: var(--size16-14); --colg: var(--size20-10);  background: #fff; border-top: 1px solid var(--gray05); border-bottom: 1px solid var(--gray05); padding: 19px var(--npl); gap: 0 var(--colg); min-height: var(--minH);}
 	.bbs_list_tbl tr {display: flex; flex-wrap: wrap;}
 	.bbs_list_tbl tr + tr {margin-top: -1px;}
