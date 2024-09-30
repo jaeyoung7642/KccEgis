@@ -167,11 +167,13 @@
 	.bbs_list_tbl col.view {--colw: min(7.031vw * var(--fa2), 135px);}
 	.bbs_list_tbl td {background: #fff; border-top: 1px solid var(--gray05); border-bottom: 1px solid var(--gray05);  text-align: center; height: 66px; padding: 19px min(1.042vw * var(--fa1), 20px);}
 	.bbs_list_tbl td.tit {text-align: left; padding-left: 6px; padding-right: 0;}
+	.bbs_list_tbl td .bbs_info {vertical-align: middle;}
 	.bbs_list_tbl td:is(.num, .view) {padding: 0; white-space: nowrap;}
 	.bbs_list_tbl .tit_txt {display: block;}
 	.bbs_list_tbl .tit_txt.reply::before {margin: 6px; margin-left: min(0.521vw * var(--fa1), 10px);}
 	.bbs_list_tbl .notice::after {content: ""; position: absolute; left: 0; top: 0; width: 100%; bottom: -1px; border-top: 1px solid var(--grayblue03); border-bottom: 1px solid var(--grayblue03); pointer-events: none;}
 	.bbs_list_tbl .notice td {background: var(--grayblue07) !important;}
+	.bbs_list_tbl .current td {background: var(--grayblue06) !important;}
 	.bbs_list_tbl .block td {background: var(--gray06) !important;}
 
 	.bbs_list_tbl.nav tr:first-child td {border-top: none !important;}
@@ -187,6 +189,7 @@
 	.bbs_list_tbl tr + tr {margin-top: -1px;}
 	.bbs_list_tbl tr :is(.num, .tit) {width: 100%; margin-bottom: var(--rowg);}
 	.bbs_list_tbl .notice {background: var(--grayblue07) !important; border-color: var(--grayblue03) !important; z-index: 1;}
+	.bbs_list_tbl .current {background: var(--grayblue06) !important; border-color: var(--grayblue03) !important; z-index: 1;}
 	.bbs_list_tbl .block {--rowg: 0; background: var(--gray06) !important; grid-template-rows: auto 0;}
 	.bbs_list_tbl td.no_post {/* grid-column: 1/-1; grid-row: 1/-1; */ width: 100%; display: grid; place-items: center;}
 
