@@ -405,7 +405,7 @@
 			FROM (
 				select * from KCC_EGIS.egis.TBL_WALLPAPER
 				) A
-		ORDER BY year_month desc
+		ORDER BY year_month desc, num DESC
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
 		FETCH NEXT #{limit} ROWS ONLY
 	</select>
