@@ -267,9 +267,9 @@
 									<td class="txt_lt bd_rt">24시간 운영</td>
 									<td rowspan="3" class="txt_lt rds_rt no_bd_lt p_hide">
 										<ul class="el_desc_list mg txt_black">
-											<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
+											<!--<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
 												일반 회원 예매는 경기 4일 전 오전 11시부터 경기 당일 경기 시작 시까지 입장권 
-												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>
+												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>-->
 											<li>경기 시작 2시간 전까지 취소 가능</li>
 										</ul>
 									</td>
@@ -287,9 +287,9 @@
 								<tr class="t_show h50">
 									<td colspan="3" class="txt_lt">
 										<ul class="el_desc_list mg txt_black">
-											<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
+											<!--<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
 												일반 회원 예매는 경기 4일 전 오전 11시부터 경기 당일 경기 시작 시까지 입장권 
-												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>
+												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>-->
 											<li>경기 시작 2시간 전까지 취소 가능</li>
 										</ul>
 									</td>
@@ -408,5 +408,13 @@
 		<!-- footer -->
 
 	</div>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		  <script src="https://www.googletagmanager.com/gtag/js?id=UA-180137319-1"></script>
+		  <script>
+		    window.dataLayer = window.dataLayer || [];
+		    function gtag() { dataLayer.push(arguments); }
+		    gtag('js', new Date());
+		    gtag('config', 'UA-180137319-1');
+		  </script>
 </body>
 </html>

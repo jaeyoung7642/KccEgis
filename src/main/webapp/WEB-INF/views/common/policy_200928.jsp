@@ -1,6 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <p class="terms_tit lv2">㈜케이씨씨 (EGIS 홈페이지) 개인정보 처리방침</p>
 <p>KCC이지스프로농구단은 개인정보 보호를 매우 중요시하며, 『개인정보보호법』 및 『정보통신망 이용촉진 및 정보보호에 관한 법률』 등 개인정보 보호에 관한 제반 법령을 준수하고 있습니다.<br>
 개인정보 처리방침은 KCC이지스프로농구단이 어떤 개인정보를 수집하고, 수집한 정보를 어떻게 사용하며, 필요한 경우 누구와 이를 공유하며, 이용 목적을 달성한 정보를 언제, 어떻게 파기하는지를 포함한 개인정보 처리에 관련한 정보를 제공합니다. 또한, 정보주체로서 이용자가 자신의 개인정보에 대하여 어떠한 권리를 가지고 있으며, 이를 어떠한 방법과 절차로 행사할 수 있는지, 그리고 개인정보 침해 사고가 발생하는 경우, 이용자가 피해 확대 방지 및 복구를 위하여 어떠한 조치를 취할 수 있는지 안내합니다.<br>

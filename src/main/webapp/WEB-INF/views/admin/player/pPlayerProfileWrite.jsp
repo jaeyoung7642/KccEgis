@@ -294,7 +294,7 @@
 												<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 											</div>
 											<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto2()">사진보기</button>
-											<button class="openModal" id="img1Pop" data-target="#detailPopup2"></button>
+											<button class="openModal" id="img2Pop" data-target="#detailPopup2"></button>
 											<span class="el_info">※ 이미지 사이즈 [330X330]</span>
 											<input type="hidden" name="pl_webdetail_bf" id="pl_webdetail_bf" value="${result.pl_webdetail}">
 										</div>
@@ -321,7 +321,7 @@
 														<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 													</div>
 													<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto3()">사진보기</button>
-											<button class="openModal" id="img1Pop" data-target="#detailPopup3"></button>
+													<button class="openModal" id="img3Pop" data-target="#detailPopup3"></button>
 													<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
 													<input type="hidden" name="pl_actioncut_1_bf" id="pl_actioncut_1_bf" value="${result.pl_actioncut_1}">
 												</div>
@@ -340,10 +340,10 @@
 															</c:if>
 															</span>
 														</label>
-														<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto4()">사진보기</button>
-											<button class="openModal" id="img1Pop" data-target="#detailPopup4"></button>
 														<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 													</div>
+													<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto4()">사진보기</button>
+													<button class="openModal" id="img4Pop" data-target="#detailPopup4"></button>
 													<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
 													<input type="hidden" name="pl_actioncut_2_bf" id="pl_actioncut_2_bf" value="${result.pl_actioncut_2}">
 												</div>
@@ -365,7 +365,7 @@
 														<a href="#" class="el_btn btn frm_btn line2">파일찾기</a>
 													</div>
 													<button type="button" class="el_btn btn frm_btn line2" onclick="openPhoto5()">사진보기</button>
-											<button class="openModal" id="img1Pop" data-target="#detailPopup5"></button>
+													<button class="openModal" id="img5Pop" data-target="#detailPopup5"></button>
 													<span class="el_info">※ 이미지 사이즈 [851X1275]</span>
 													<input type="hidden" name="pl_actioncut_3_bf" id="pl_actioncut_3_bf" value="${result.pl_actioncut_3}">
 												</div>
@@ -456,7 +456,7 @@
 							</div>
 
 							<div class="modal_body custom_scroll" style="text-align:center;">
-								<img src="/resources/common/images/upload/player/${result.pl_actioncut_5}" id="preview" alt="">
+								<img src="/resources/common/images/upload/player/${result.pl_actioncut_3}" id="preview" alt="">
 							</div>
 							<button type="button" class="el_btn modal_close closeModal" aria-label="팝업 닫기" data-focus-next="modal"></button>
 						</div>
@@ -469,5 +469,13 @@
 		<!-- //container -->
 
 	</div>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		  <script src="https://www.googletagmanager.com/gtag/js?id=UA-180137319-1"></script>
+		  <script>
+		    window.dataLayer = window.dataLayer || [];
+		    function gtag() { dataLayer.push(arguments); }
+		    gtag('js', new Date());
+		    gtag('config', 'UA-180137319-1');
+		  </script>
 </body>
 </html>

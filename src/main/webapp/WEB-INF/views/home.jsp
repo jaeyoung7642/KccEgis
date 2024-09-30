@@ -218,7 +218,7 @@
 							</span>
 						</h3>
 
-						<div class="game_list swiper game_slider visible">
+						<div class="game_list swiper game_slider visible" data-anim>
 							<div class="swiper-wrapper inner">
 								<!-- slide -->
 								<div class="swiper-slide item">
@@ -594,22 +594,22 @@
 						<p class="txt_lg">KCC EGIS <em>HISTORIUM</em></p>
 						<p class="txt_sm anim2">전통의 명문 구단 KCC이지스 역사관</p>
 					</a>
-					<div class="anim_bg el_img" data-scroll-zoom><img src="/resources/common/images/img/main_banners_bg_02.jpg" alt=""></div>
+					<div class="anim_bg el_img" data-scroll-zoom><img src="/resources/common/images/img/main_banners_bg_02_2.jpg" alt=""></div>
 				</div>
 				<div class="col col_sponsor">
 					<div class="box sponsor">
 						<ul class="sponsor_list" data-anim>
-							<li><a href="KLENZE" class="siteLink" target="_blank" rel="noreferrer" aria-label="KLENZE(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_01.gif" alt=""></a></li>
-							<li><a href="KCCGLASS" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC글라스(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_02.gif" alt=""></a></li>
-							<li><a href="HOMECC" class="siteLink" target="_blank" rel="noreferrer" aria-label="HOMECC(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_03.gif" alt=""></a></li>
-							<li><a href="KCCWORLD" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC건설(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_04.gif" alt=""></a></li>
-							<li><a href="SWITZEN" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC스위첸(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_05.gif" alt=""></a></li>
-							<li><a href="KCCSILICONE" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC실리콘(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_06.gif" alt=""></a></li>
-							<li><a href="BMK" class="siteLink" target="_blank" rel="noreferrer" aria-label="BNK금융그룹(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_07.gif" alt=""></a></li>
-							<li><a href="WILSON" class="siteLink" target="_blank" rel="noreferrer" aria-label="윌슨(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_13.gif" alt=""></a></li>
-							<li><a href="HITE" class="siteLink" target="_blank" rel="noreferrer" aria-label="하이트진로(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_11.gif" alt=""></a></li>
-							<li><a href="ADVENTURER" class="siteLink" target="_blank" rel="noreferrer" aria-label="승부사온라인(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_09.gif" alt=""></a></li>
-							<li><a href="PANSTAR" class="siteLink" target="_blank" rel="noreferrer" aria-label="팬스타크루즈(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_12.gif" alt=""></a></li>
+							<li><a href="KLENZE" class="siteLink" target="_blank" rel="noreferrer" aria-label="KLENZE(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_01.png" alt=""></a></li>
+							<li><a href="KCCGLASS" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC글라스(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_02.png" alt=""></a></li>
+							<li><a href="HOMECC" class="siteLink" target="_blank" rel="noreferrer" aria-label="HOMECC(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_03.png" alt=""></a></li>
+							<li><a href="KCCWORLD" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC건설(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_04.png" alt=""></a></li>
+							<li><a href="SWITZEN" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC스위첸(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_05.png" alt=""></a></li>
+							<li><a href="KCCSILICONE" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC실리콘(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_06.png" alt=""></a></li>
+							<li><a href="BMK" class="siteLink" target="_blank" rel="noreferrer" aria-label="BNK금융그룹(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_07.png" alt=""></a></li>
+							<li><a href="WILSON" class="siteLink" target="_blank" rel="noreferrer" aria-label="윌슨(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_13.png" alt=""></a></li>
+							<li><a href="HITE" class="siteLink" target="_blank" rel="noreferrer" aria-label="하이트진로(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_11.png" alt=""></a></li>
+							<li><a href="ADVENTURER" class="siteLink" target="_blank" rel="noreferrer" aria-label="승부사온라인(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_09.png" alt=""></a></li>
+							<li><a href="PANSTAR" class="siteLink" target="_blank" rel="noreferrer" aria-label="팬스타크루즈(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_12.png" alt=""></a></li>
 						</ul>
 					</div>
 				</div>
@@ -730,6 +730,13 @@
 		});
 		
 	</script>
-
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		  <script src="https://www.googletagmanager.com/gtag/js?id=UA-180137319-1"></script>
+		  <script>
+		    window.dataLayer = window.dataLayer || [];
+		    function gtag() { dataLayer.push(arguments); }
+		    gtag('js', new Date());
+		    gtag('config', 'UA-180137319-1');
+		  </script>
 </body>
 </html>
