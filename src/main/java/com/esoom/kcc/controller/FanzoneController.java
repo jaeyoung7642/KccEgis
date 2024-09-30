@@ -95,25 +95,26 @@ public class FanzoneController {
 			@RequestParam(value = "tailWriter", defaultValue = "N") String tailWriter,
 			@RequestParam(value = "sdate", defaultValue = "") String sdate,
 			@RequestParam(value = "edate", defaultValue = "") String edate) throws Exception {
-		if("".equals(sdate)&&"".equals(edate)) {
-			// 오늘 날짜 가져오기
-	        LocalDate today = LocalDate.now();
-	        // 1년 전 날짜 계산
-	        LocalDate oneYearAgo = today.minusYears(1);
-	        // 원하는 형식으로 포맷터 생성
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	        // 날짜를 형식에 맞게 변환
-	        String formattedToday = today.format(formatter);
-	        String formattedOneYearAgo = oneYearAgo.format(formatter);
-	        sdate = formattedOneYearAgo;
-	        edate = formattedToday;
-		}
+//		if("".equals(sdate)&&"".equals(edate)) {
+//			// 오늘 날짜 가져오기
+//	        LocalDate today = LocalDate.now();
+//	        // 1년 전 날짜 계산
+//	        LocalDate oneYearAgo = today.minusYears(1);
+//	        // 원하는 형식으로 포맷터 생성
+//	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//	        // 날짜를 형식에 맞게 변환
+//	        String formattedToday = today.format(formatter);
+//	        String formattedOneYearAgo = oneYearAgo.format(formatter);
+//	        sdate = formattedOneYearAgo;
+//	        edate = formattedToday;
+//		}
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		// 현재 페이지
 		int currentPage = (page != null) ? page : 1;
 		// 한페이지당 보여줄 row
 		int boardLimit = 15;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("keyWord2", keyWord.replaceAll(" ", ""));
 		paramMap.put("title", title);
 		paramMap.put("content", content);
 		paramMap.put("writer", writer);
@@ -135,8 +136,6 @@ public class FanzoneController {
 		mv.addObject("freeList", freeList);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
-		System.out.println("start========="+pi.getStartPage());
-		System.out.println("end========="+pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
@@ -192,15 +191,15 @@ public class FanzoneController {
 	}
 	@RequestMapping(value = "/freeListDetail", method = RequestMethod.GET)
 	public ModelAndView freeListDetail(ModelAndView mv,HttpServletRequest request,String num,@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "listpage", required = false) Integer listpage,
-			@RequestParam(value = "keyWord", required = false) String keyWord,
-			@RequestParam(value = "title", required = false) String title,
-			@RequestParam(value = "content", required = false) String content,
-			@RequestParam(value = "writer", required = false) String writer,
-			@RequestParam(value = "tail", required = false) String tail,
-			@RequestParam(value = "tailWriter", required = false) String tailWriter,
-			@RequestParam(value = "sdate", required = false) String sdate,
-			@RequestParam(value = "edate", required = false) String edate) throws Exception {
+			@RequestParam(value = "listpage") Integer listpage,
+			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "title", defaultValue = "N") String title,
+			@RequestParam(value = "content", defaultValue = "N") String content,
+			@RequestParam(value = "writer", defaultValue = "N") String writer,
+			@RequestParam(value = "tail", defaultValue = "N") String tail,
+			@RequestParam(value = "tailWriter", defaultValue = "N") String tailWriter,
+			@RequestParam(value = "sdate", defaultValue = "") String sdate,
+			@RequestParam(value = "edate", defaultValue = "") String edate) throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("num", num);
 		// 현재 페이지
@@ -217,17 +216,54 @@ public class FanzoneController {
 		paramMap.put("currentPage", currentPage);
 		List<Map<String,Object>> tailList = service.freeTailList(paramMap); 
 		
-		Map<String, Object> prevDetail = service.prevFreeDetail(paramMap);
-		Map<String, Object> nextDetail = service.nextFreeDetail(paramMap);
 		
-		mv.addObject("freeDetail", freeDetail);
-		mv.addObject("prevDetail", prevDetail);
-		mv.addObject("nextDetail", nextDetail);
-		mv.addObject("tailList", tailList);
+		
+//		if("".equals(sdate)&&"".equals(edate)) {
+//			// 오늘 날짜 가져오기
+//	        LocalDate today = LocalDate.now();
+//	        // 1년 전 날짜 계산
+//	        LocalDate oneYearAgo = today.minusYears(1);
+//	        // 원하는 형식으로 포맷터 생성
+//	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//	        // 날짜를 형식에 맞게 변환
+//	        String formattedToday = today.format(formatter);
+//	        String formattedOneYearAgo = oneYearAgo.format(formatter);
+//	        sdate = formattedOneYearAgo;
+//	        edate = formattedToday;
+//		}
+		paramMap.put("keyWord", keyWord);
+		paramMap.put("keyWord2", keyWord.replaceAll(" ", ""));
+		paramMap.put("title", title);
+		paramMap.put("content", content);
+		paramMap.put("writer", writer);
+		paramMap.put("tail", tail);
+		paramMap.put("tailWriter", tailWriter);
+		paramMap.put("sdate", sdate);
+		paramMap.put("edate", edate);
+		int boardLimit2 = 15;
+		
+		List<Map<String, Object>> topFreeList = service.topFreeList(paramMap);
+		mv.addObject("topFreeList", topFreeList);
+		
+		// 상위리스트 카운트
+		int listCount2 = service.getFreeListCount(paramMap);
+		PageInfo pi2 = Pagination.getPageInfo(listpage, listCount2, boardLimit2);
+		paramMap.put("limit", pi2.getBoardLimit());
+		paramMap.put("currentPage", listpage);
+		List<Map<String, Object>> freeList = service.freeList(paramMap);
+		
+		mv.addObject("freeList", freeList);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("currentPage2", listpage);
+		mv.addObject("maxPage2", pi2.getMaxPage());
+		
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("freeDetail", freeDetail);
+		mv.addObject("tailList", tailList);
 		
 		mv.addObject("listpage", listpage);
 		mv.addObject("keyWord", keyWord);
@@ -288,6 +324,7 @@ public class FanzoneController {
         		String content = request.getParameter("content");
         		String id = request.getParameter("id");
         		String writer = request.getParameter("writer");
+        		String chk_m = request.getParameter("chk_m");
         		String ip = ipUtil.getClientIP(request);
         		paramMap.put("num", num);
         		paramMap.put("subject", subject);
@@ -295,6 +332,7 @@ public class FanzoneController {
         		paramMap.put("id", id);
         		paramMap.put("writer", writer);
         		paramMap.put("ip", ip);
+        		paramMap.put("chk_m", chk_m);
         		int result = service.mergeFree(paramMap);
         		if (result > 0) {
         			mv.setViewName("redirect:/freeList");

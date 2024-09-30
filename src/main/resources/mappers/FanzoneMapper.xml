@@ -17,7 +17,7 @@
 		order by num desc
 	</select>
 	<select id="noticeList" resultType="map">
-		SELECT * 
+		SELECT * , ROW_NUMBER() OVER (ORDER BY a.num) AS rownum
 			FROM (	
 					select a.*,FORMAT(a.wdate, 'yyyy.MM.dd') AS reg_date,
 					ROW_NUMBER() OVER (ORDER BY a.num) AS rownum,
@@ -70,14 +70,13 @@
 			FETCH NEXT #{limit} ROWS ONLY
 	</select>
 	<select id="freeList" resultType="map">
-		SELECT * 
+		SELECT *, ROW_NUMBER() OVER (ORDER BY A.ref, A.ansnum desc,A.step desc) AS rownum 
 			FROM (	
 					select A.*
 					, FORMAT(A.wdate, 'yyyy.MM.dd') AS reg_date
 					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
-					, ROW_NUMBER() OVER (ORDER BY A.num) AS rownum
 					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = A.num) AS tail_count
-					, ROW_NUMBER() OVER (PARTITION BY A.SUBJECT ORDER BY A.SUBJECT) AS SEQ
+					, ROW_NUMBER() OVER (PARTITION BY A.num ORDER BY A.num) AS SEQ
 					from (
 							select a.*
 							from KCC_EGIS.egis.TBL_FREE a 
@@ -112,9 +111,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-								      	and CONTAINS(a.content, #{keyWord})
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+								      	and CONTAINS(a.content, #{keyWord2})
 									</if>
 								</if>
 							</if>
@@ -146,9 +145,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord}))
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord2}))
 									</if>
 								</if>
 							</if>
@@ -192,7 +191,7 @@
 						) A
 					) A 
 			WHERE A.SEQ = 1
-			ORDER BY num desc
+			ORDER BY ref desc, ansnum,step
 			OFFSET (#{currentPage}-1)*#{limit} ROWS
 			FETCH NEXT #{limit} ROWS ONLY
 	</select>
@@ -217,7 +216,7 @@
 					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
 					, ROW_NUMBER() OVER (ORDER BY A.num) AS rownum
 					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = A.num) AS tail_count
-					, ROW_NUMBER() OVER (PARTITION BY A.SUBJECT ORDER BY A.SUBJECT) AS SEQ
+					, ROW_NUMBER() OVER (PARTITION BY A.num ORDER BY A.num) AS SEQ
 					from (
 							select a.*
 							from KCC_EGIS.egis.TBL_FREE a 
@@ -252,9 +251,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-								      	and CONTAINS(a.content, #{keyWord})
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+								      	and CONTAINS(a.content, #{keyWord2})
 									</if>
 								</if>
 							</if>
@@ -286,9 +285,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord}))
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord2}))
 									</if>
 								</if>
 							</if>
@@ -470,6 +469,7 @@
 				   ,#{id} AS id
 				   ,#{writer} AS writer
 				   ,#{ip} AS ip
+				   ,#{chk_m} AS chk_m
 		) B
 		on A.num = B.num
 		WHEN MATCHED THEN 
@@ -493,6 +493,7 @@
 					   ,tn
 					   ,pn
 					   ,recommend
+					   ,chk_m
 				   )
 			values (
 						B.subject
@@ -504,12 +505,13 @@
 					   ,getdate()
 					   ,'N'
 					   ,0
+					   ,(SELECT ISNULL(MAX(ref), 0) + 1 FROM KCC_EGIS.egis.TBL_FREE)
 					   ,0
 					   ,0
 					   ,0
 					   ,0
 					   ,0
-					   ,0
+					   ,B.chk_m
 					);
 	</update>
 	<update id="freeDelete" parameterType="map">

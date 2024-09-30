@@ -38,6 +38,16 @@
 	<script src="/resources/common/assets/js/gsap.min.js" defer></script> <!-- main only -->
 	<script src="/resources/common/assets/js/ScrollTrigger.min.js" defer></script> <!-- main only -->
 	<script>
+	window.onload = function() {
+		var titleChecked = document.getElementById('title').checked;
+	    var contentChecked = document.getElementById('content').checked;
+	    var writerChecked = document.getElementById('writer').checked;
+	    var tailChecked = document.getElementById('tail').checked;
+	    var tailWriterChecked = document.getElementById('tailWriter').checked;
+		if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
+			document.getElementById("title").checked = true;
+	    }
+    }
 	function handleKeyPress(event) {
 	    if (event.key === 'Enter') {
 	        // Enter 키가 눌렸을 때 searchval 함수 호출
@@ -45,13 +55,15 @@
 	    }
 	}
 	function searchval(){
-		var titleChecked = document.getElementById('title').checked;
+	    var form = $("#freeSearchForm");
+		form.submit();
+    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
+		/* var titleChecked = document.getElementById('title').checked;
 	    var contentChecked = document.getElementById('content').checked;
 	    var writerChecked = document.getElementById('writer').checked;
 	    var tailChecked = document.getElementById('tail').checked;
 	    var tailWriterChecked = document.getElementById('tailWriter').checked;
 	    var keyWord = document.getElementById('keyWord').value;
-	    var form = $("#freeSearchForm");
 	    if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
 	    	if (keyWord.length < 2) {
 	            alertPop('검색어는 2글자 이상 입력해주세요.');
@@ -69,7 +81,7 @@
 	    }else{
 	    	form.submit();
 	    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
-	    }
+	    } */
 	}
 	function loginForm(){
 		if(confirm("로그인 후 글작성이 가능합니다. 로그인 하시겠습니까?")){
@@ -81,7 +93,7 @@
 	}
 	function resetSearch() {
 		// 오늘 날짜 계산
-	    var today = new Date();
+	 /*    var today = new Date();
 	    var yearAgo = new Date();
 	    
 	    // 1년 전 날짜 계산
@@ -93,13 +105,13 @@
 
 	    // sdate는 1년 전 날짜로, edate는 오늘 날짜로 설정
 	    document.getElementById("sdate").value = yearAgoFormatted;
-	    document.getElementById("edate").value = todayFormatted;
+	    document.getElementById("edate").value = todayFormatted; */
 
 	    // 검색어 초기화
 	    document.getElementById("keyWord").value = "";
 
 	    // 체크박스 초기화
-	    document.getElementById("title").checked = false;
+	    document.getElementById("title").checked = true;
 	    document.getElementById("content").checked = false;
 	    document.getElementById("writer").checked = false;
 	    document.getElementById("tail").checked = false;
@@ -162,7 +174,7 @@
 					<div class="search_box type3 lg">
 						<form action="freeList" class="search_box_form" id="freeSearchForm">
 							<div class="row">
-								<div class="col grow col_date frm_date_wrap">
+								<%-- <div class="col grow col_date frm_date_wrap">
 									<span class="frm_date">
 										<input type="text" class="frm_input mdm date" aria-label="시작 일" placeholder="기간 설정" name="sdate" id="sdate" value="${sdate}" readonly>
 									</span>
@@ -170,7 +182,7 @@
 									<span class="frm_date rt">
 										<input type="text" class="frm_input mdm date rt" aria-label="종료 일" name="edate" id="edate" value="${edate}" readonly>
 									</span>
-								</div>
+								</div> --%>
 								<div class="col shrink radios">
 									<label class="frm_checkbox type1 md">
 										<input type="checkbox" id="title" name="title" value="Y" <c:if test="${title=='Y' }">checked</c:if>>
@@ -197,7 +209,7 @@
 								<div class="col shrink pmax484">
 									<input type="text" class="frm_input mdm" aria-label="검색" placeholder="검색어 " id="keyWord" name="keyWord" value="${keyWord}" onkeypress="handleKeyPress(event)">
 									<button type="button" class="el_btn frm_btn black mdm shrink" onclick="searchval()">검색</button>
-									<a href="#" class="el_btn refresh" onclick="resetSearch()" aria-label="새로고침"></a>
+									<a href="freeList" class="el_btn refresh" aria-label="새로고침"><span class="p_hide">새로고침</span></a>
 								</div>
 							</div>
 						</form>
@@ -231,9 +243,9 @@
 									<col class="date">
 									<col class="view">
 								</colgroup>
-								<thead class="blind">
+								<thead>
 									<tr>
-										<th scope="col">번호</th>
+										<th scope="col">NO</th>
 										<th scope="col">제목</th>
 										<th scope="col">작성자</th>
 										<th scope="col">날짜</th>
@@ -268,8 +280,16 @@
 										<td class="num">${freeList.rownum}</td>
 										<td class="tit">
 											<div class="tit_inner">
+												<c:if test="${freeList.chk_m == 'Y' }">
+												<span class="el_ico phone"></span> <!-- 모바일 접속 아이콘 -->
+												</c:if>
 												<a href="freeListDetail?num=${freeList.num}&listpage=${currentPage}&keyWord=${keyWord}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&sdate=${sdate}&edate=${edate}" class="tit_link">
+													<c:if test="${freeList.step == '0' }">
 													<span class="tit_txt txt_line1-2">${freeList.subject }</span>
+													</c:if>
+													<c:if test="${freeList.step != '0' }">
+													<span class="tit_txt txt_line1-2 reply">${freeList.subject }</span>
+													</c:if>
 												</a>
 												<c:if test="${freeList.tail_count != '0' }">
 												<span class="count">[${freeList.tail_count }]</span>
@@ -331,7 +351,7 @@
 								<a href="#" class="el_btn frm_btn blue" onclick="freeWrite()">등록</a>
 								</c:if>
 								<c:if test="${loginUserMap == null}">
-								<a href="#" class="el_btn frm_btn blue" onclick="loginForm()">등록</a>
+								<a href="#" class="el_btn frm_btn blue openModal" data-target="#loginForm">등록</a>
 								</c:if>
 							</div>
 							<c:if test="${not empty freeList}">
@@ -396,7 +416,22 @@
 			</a>
 		</main>
 		<!-- //container -->
-
+		<!-- 알럿 -->
+			<div id="loginForm" tabindex="-1" class="alert alertPopup modal" data-focus="alert">
+				<div class="modal_module">
+					<div class="modal_content">
+						<div class="modal_body">
+							<p class="alert_msg md">로그인 후 글작성이 가능합니다.<br> 로그인 하시겠습니까?</p>
+							<div class="btn_area gap10b mt30-26">
+								<a href="#" class="el_btn frm_btn gray2 closeModal">취소</a>
+								<a href="loginForm" class="el_btn frm_btn blue">확인</a>
+							</div>
+						</div>
+						<button type="button" class="el_btn close closeModal" data-focus-next="alert"></button>
+					</div>
+				</div>
+			</div>
+			<!--  알럿 -->
 		<!-- footer -->
 		<app-footer></app-footer>
 		<!-- footer -->

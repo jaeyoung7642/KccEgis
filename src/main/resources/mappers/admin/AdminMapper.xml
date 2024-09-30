@@ -503,10 +503,9 @@
 		order by num desc
 	</select>
 	<select id="eventList" resultType="map">
-		SELECT *
+		SELECT * ,ROW_NUMBER() OVER (ORDER BY num) AS rownum
 		FROM (
 		select a.*
-		,ROW_NUMBER() OVER (ORDER BY a.num) AS rownum
 		,SUBSTRING(CONVERT(char(19),a.sdate ,20),0,17) sdateFormat
 		,SUBSTRING(CONVERT(char(19),a.edate ,20),0,17) edateFormat
 		from KCC_EGIS.egis.TBL_NEWS a
@@ -1206,7 +1205,7 @@
 					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
 					, ROW_NUMBER() OVER (ORDER BY A.num) AS rownum
 					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = A.num) AS tail_count
-					, ROW_NUMBER() OVER (PARTITION BY A.SUBJECT ORDER BY A.SUBJECT) AS SEQ
+					, ROW_NUMBER() OVER (PARTITION BY A.num ORDER BY A.num) AS SEQ
 					from (
 							select a.*
 							from KCC_EGIS.egis.TBL_FREE a 
@@ -1515,7 +1514,7 @@
 					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
 					, ROW_NUMBER() OVER (ORDER BY a.num) AS rownum
 					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = a.num) AS tail_count
-					, ROW_NUMBER() OVER (PARTITION BY A.SUBJECT ORDER BY A.SUBJECT) AS SEQ
+					, ROW_NUMBER() OVER (PARTITION BY A.num ORDER BY A.num) AS SEQ
 					from (
 							select a.*
 							from KCC_EGIS.egis.TBL_FREE a 

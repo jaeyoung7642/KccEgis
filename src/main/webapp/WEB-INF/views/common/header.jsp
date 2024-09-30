@@ -128,7 +128,7 @@
 
 					<!-- header banner (mo only) -->
 					<div class="header_bnn p_show">
-						<a href="KCCWORLD" target="_blank" rel="noreferrer" aria-label="KCC(새창열림)" class="bnn kcc siteLink">
+						<a href="KCC" target="_blank" rel="noreferrer" aria-label="KCC(새창열림)" class="bnn kcc siteLink">
 							<div class="bnn_box">
 								<p>글로벌 응용소재화학기업</p>
 							</div>
@@ -266,7 +266,7 @@
 
 			<!-- header banner -->
 			<div class="header_bnn">
-				<a href="KCCWORLD" target="_blank" rel="noreferrer" aria-label="KCC(새창열림)" class="bnn kcc siteLink">
+				<a href="KCC" target="_blank" rel="noreferrer" aria-label="KCC(새창열림)" class="bnn kcc siteLink">
 					<div class="bnn_box">
 						<p>글로벌 응용소재화학기업</p>
 					</div>

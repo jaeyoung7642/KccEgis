@@ -619,7 +619,7 @@
 					</div>
 				</div>
 				<div class="col col_brand scroll_wrap">
-					<a href="https://www.kccworld.net/main.do" target="_blank" rel="noreferrer" class="box brand" data-anim="fadeUp">
+					<a href="https://www.kccworld.co.kr" target="_blank" rel="noreferrer" class="box brand" data-anim="fadeUp">
 						<p class="txt_md">글로벌 응용소재화학기업<br>
 						건축자재에서 첨단소재까지</p>
 						<span class="logo anim2"><img src="/resources/common/images/common/logo_kcc.svg" alt="KCC로고"></span>

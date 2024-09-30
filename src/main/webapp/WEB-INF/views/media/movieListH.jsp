@@ -134,7 +134,7 @@
 									</span>
 								</div>
 								<input type="text" class="frm_input mdm col shrink w367" aria-label="검색어" placeholder="검색어 입력 (제목 기반 제공)" name="keyWord" id="keyWord" value="${keyWord}">
-								<a href="#" class="el_btn refresh" aria-label="새로고침" onclick="searchReset()"><span class="p_hide">새로고침</span></a>
+								<a href="movieListH" class="el_btn refresh" aria-label="새로고침" ><span class="p_hide">새로고침</span></a>
 							</div>
 							<div class="row row2">
 								<div class="col grow">

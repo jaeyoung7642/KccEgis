@@ -285,7 +285,7 @@ html:not(.is-mobile) body :is(.bg_dark) *::-webkit-scrollbar-thumb {background: 
 }
 
 /* icon */
-.el_ico {--ratio: 1; display: inline-flex; width: 24px; aspect-ratio: var(--ratio); background-repeat: no-repeat; background-position: center; background-size: contain;}
+.el_ico {--ratio: 1; display: inline-flex; width: 24px; min-width:24px; aspect-ratio: var(--ratio); background-repeat: no-repeat; background-position: center; background-size: contain;}
 .el_ico img,
 .el_ico svg {width: 100%; height: 100%; -o-object-fit: contain; object-fit: contain; fill: currentColor;}
 .ico_calendar2 {background-image: url('../../images/common/nav_calendar.svg');}

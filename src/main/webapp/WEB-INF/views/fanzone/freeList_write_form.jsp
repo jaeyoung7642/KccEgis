@@ -61,6 +61,11 @@
         if (msg !== '') {
         	alertPop(msg);
         }
+        if (isMobile){
+        	$("#chk_m").val("Y");
+        }else{
+        	$("#chk_m").val("N");
+        }
     }
     function onSubmit(e) {
         e.preventDefault();
@@ -133,6 +138,7 @@
 									<input type="hidden" name="id" value="${loginUserMap.id }">
 									<input type="hidden" name="writer" value="${loginUserMap.name }">
 									<input type="hidden" name="num" value="${freeDetail.num }">
+									<input type="hidden" name="chk_m" id="chk_m">
 								</div>
 								<div class="row">
 									<input type="text" name="subject" class="frm_input" aria-label="제목" placeholder="제목을 입력하세요" required value="${freeDetail.subject }">

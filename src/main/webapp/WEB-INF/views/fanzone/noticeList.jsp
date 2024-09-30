@@ -113,9 +113,9 @@
 									<col class="date">
 									<col class="view">
 								</colgroup>
-								<thead class="blind">
+								<thead>
 									<tr>
-										<th scope="col">번호</th>
+										<th scope="col">NO</th>
 										<th scope="col">제목</th>
 										<th scope="col">날짜</th>
 										<th scope="col">조회수</th>
