@@ -312,7 +312,7 @@ html:not(.is-mobile) body :is(.bg_dark) *::-webkit-scrollbar-thumb {background: 
 .el_btn.black {--bg: var(--primary) !important; --cl: #fff !important;}
 .el_btn.blue {--bg: var(--darkblue02) !important; --cl: #fff !important;}
 .el_btn.line {--bg: #fff; border: 1px solid var(--grayblue02);}
-.el_btn.btn1 {font-size: 14px; font-weight: var(--font-semi); height: 34px; padding: 0 6px; gap: 6px; --cl: var(--grayblue02); border-radius: 17px;}
+.el_btn.btn1 {font-size: 14px; /* font-weight: var(--font-semi); */ font-weight: var(--font-md2); height: 34px; padding: 0 6px; gap: 6px; --cl: var(--grayblue02); border-radius: 17px;}
 .el_btn.btn1.pmd {padding: 0 10px;}
 .el_btn.btn1.plg {padding: 0 16px; gap: 4px;}
 .el_btn.btn1.psm {padding: 0 4px; gap: 2px;}

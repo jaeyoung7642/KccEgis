@@ -433,7 +433,7 @@
 }
 
 /* 통산 성적 팝업 */
-.careerPopup {--pmax: 335px; --mpt: 40px; --mpl: 30px; --mpb: 40px; font-size: 14px; color: var(--dark03)}
+.modal.careerPopup {--pmax: 335px; --mpt: 40px; --mpl: 30px; --mpb: 40px; font-size: 14px; color: var(--dark03)}
 .careerPopup .heading {font-size: 20px; font-weight: var(--font-bd); color: var(--dark01); margin-bottom: 30px;} 
 .careerPopup .heading em {color: var(--grayblue02);} 
 .careerPopup .career_tbl :is(th, td) {height: 36px; border-top: 1px solid var(--gray05); border-bottom: 1px solid var(--gray05);} 
@@ -511,7 +511,7 @@
 	.kccad_content .inner {display: grid; grid-template-columns: 230px auto; gap: 20px;}
 	.kccad_cate_area {position: relative;}
 	.kccad_cate {display: flex; flex-direction: column; gap: 10px; width: 230px;}
-	.kccad_cate .cate_link {--cico: 0.5; display: flex; align-items: center; height: 63px; background: var(--darkblue01); font-size: 18px; line-height: 1; font-weight: var(--font-semi); color: var(--grayblue02); border-radius: var(--rds-sm); gap: 10px; padding: 0 16px; opacity: 0.7;}
+	.kccad_cate .cate_link {--cico: 0.5; display: flex; align-items: center; height: 63px; background: var(--darkblue01); font-size: 18px; line-height: 1; /* font-weight: var(--font-semi); */font-weight: var(--font-md2); color: var(--grayblue02); border-radius: var(--rds-sm); gap: 10px; padding: 0 16px; opacity: 0.7;}
 	.kccad_cate .cate_link .el_ico {opacity: var(--cico);}
 	.kccad_cate .cate_link.current {opacity: 1; --cico: 1;}
 }
