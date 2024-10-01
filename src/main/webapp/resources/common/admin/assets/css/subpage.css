@@ -243,7 +243,7 @@ textarea.frm_input {--pt: 15px; height: 110px; padding-top: var(--pt); padding-b
 .tbl.type2 td {color: var(--color-black2);}
 .tbl.type2 td .frm_input,
 .tbl.type2 td .frm_select {margin-top: 4px; margin-bottom: 4px;}
-.tbl.type2 td .count {color: var(--color-gray5);}
+.tbl.type2 td .count {color: var(--color-gray5); vertical-align:top;}
 .tbl.type2 td .tit {display: inline-block; max-width: calc(100% - 2em); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; vertical-align: top;}
 
 .tbl.type3 th,
@@ -305,6 +305,8 @@ select.frm_select {display: none;}
 .board_list .info .date2::before {width: 13px; height: 13px; background-image: url('../../images/common/ico_date.svg'); transform: translateY(-8%);}
 .board_list .info .count {color: #000;}
 .board_list .info .count em {color: var(--color-point);}
+
+.el_ico_phone {--ratio: 1; display: inline-block; width: 20px; aspect-ratio: var(--ratio); background-repeat: no-repeat; background-position: center; background-size: contain; background-image: url('../../images/common/ico_phone.svg');}
 
 .board_list.type1 {--pl: 17px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 25px; padding: 0 17px;}
 .board_list.type1 .tit {margin-bottom: calc(23px + var(--mg));}
