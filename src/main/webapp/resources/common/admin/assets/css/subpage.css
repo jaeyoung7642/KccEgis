@@ -306,7 +306,7 @@ select.frm_select {display: none;}
 .board_list .info .count {color: #000;}
 .board_list .info .count em {color: var(--color-point);}
 
-.el_ico_phone {--ratio: 1; display: inline-block; width: 20px; aspect-ratio: var(--ratio); background-repeat: no-repeat; background-position: center; background-size: contain; background-image: url('../../images/common/ico_phone.svg');}
+.el_ico_phone {--ratio: 1; display: inline-block; width: 20px; aspect-ratio: var(--ratio); background-repeat: no-repeat; background-position: center; background-size: contain; background-image: url('../../images/common/ico_phone.svg'); vertical-align:top;}
 
 .board_list.type1 {--pl: 17px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 25px; padding: 0 17px;}
 .board_list.type1 .tit {margin-bottom: calc(23px + var(--mg));}

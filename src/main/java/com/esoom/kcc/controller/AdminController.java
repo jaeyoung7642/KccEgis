@@ -1645,6 +1645,7 @@ public class AdminController {
 		
 		paramMap.put("chk_del", chk_del);
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("keyWord2", keyWord.replaceAll(" ", ""));
 		paramMap.put("title", title);
 		paramMap.put("content", content);
 		paramMap.put("writer", writer);
@@ -1697,19 +1698,19 @@ public class AdminController {
 			@RequestParam(value = "tailWriter", defaultValue = "N") String tailWriter,
 			@RequestParam(value = "sdate", defaultValue = "") String sdate,
 			@RequestParam(value = "edate", defaultValue = "") String edate) throws Exception{
-		if("".equals(sdate)&&"".equals(edate)) {
-			// 오늘 날짜 가져오기
-	        LocalDate today = LocalDate.now();
-	        // 1년 전 날짜 계산
-	        LocalDate oneYearAgo = today.minusYears(1);
-	        // 원하는 형식으로 포맷터 생성
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	        // 날짜를 형식에 맞게 변환
-	        String formattedToday = today.format(formatter);
-	        String formattedOneYearAgo = oneYearAgo.format(formatter);
-	        sdate = formattedOneYearAgo;
-	        edate = formattedToday;
-		}
+//		if("".equals(sdate)&&"".equals(edate)) {
+//			// 오늘 날짜 가져오기
+//	        LocalDate today = LocalDate.now();
+//	        // 1년 전 날짜 계산
+//	        LocalDate oneYearAgo = today.minusYears(1);
+//	        // 원하는 형식으로 포맷터 생성
+//	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//	        // 날짜를 형식에 맞게 변환
+//	        String formattedToday = today.format(formatter);
+//	        String formattedOneYearAgo = oneYearAgo.format(formatter);
+//	        sdate = formattedOneYearAgo;
+//	        edate = formattedToday;
+//		}
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		// 현재 페이지
 		int currentPage = (page != null) ? page : 1;
@@ -1717,6 +1718,7 @@ public class AdminController {
 		int boardLimit = 10;
 		paramMap.put("chk_del", chk_del);
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("keyWord2", keyWord.replaceAll(" ", ""));
 		paramMap.put("title", title);
 		paramMap.put("content", content);
 		paramMap.put("writer", writer);

@@ -123,22 +123,35 @@
 	        }
 		}
 	function searchval(){
-		var keyWord = $("#keyWord").val();
+	    var form = $("#freeSearchForm");
+	   	form.submit();
+	   	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
+	/* 	var keyWord = $("#keyWord").val();
 		var titleChecked = document.getElementById('title').checked;
 	    var contentChecked = document.getElementById('content').checked;
 	    var writerChecked = document.getElementById('writer').checked;
 	    var tailChecked = document.getElementById('tail').checked;
 	    var tailWriterChecked = document.getElementById('tailWriter').checked;
+	    var keyWord = document.getElementById('keyWord').value;
 	    var form = $("#freeSearchForm");
-	    if(keyWord !=""){
+	    if(titleChecked || contentChecked || writerChecked || tailChecked || tailWriterChecked){
+	    	if(keyWord == ''){
+	    		alert('검색어를 입력해주세요.');
+	    		return false;
+	    	}
+	    }
+	    if(keyWord != ''){
 		    if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
 		    	alert('검색항목을 한개 이상 체크해주세요.');
+		    	return false;
 		    }else{
 		    	form.submit();
+		    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
 		    }
 	    }else{
 	    	form.submit();
-	    }
+	    	$("body").append('<div class="loading"><span class="loading_box"></span></div>');
+	    } */
 	}
 	function searchReset() {
 		// 오늘 날짜 계산
@@ -344,7 +357,7 @@
 					<div class="board_search mt27">
 					<form action="fFreeList" class="forms search_group" id="freeSearchForm">
 						<div class="forms frm_field">
-							<div class="row">
+							<%-- <div class="row">
 								<div class="frm_group">
 								<input type="text" class="frm_input sm w140 date" aria-label="시작 일" placeholder="기간 설정" id="sdate" name="sdate" value="${sdate}" readonly>
 								<span class="dash">-</span>
@@ -354,11 +367,16 @@
 									<option value="N" <c:if test="${chk_del eq 'N'}">selected</c:if>>노출</option>
 									<option value="Y" <c:if test="${chk_del eq 'Y'}">selected</c:if>>미노출</option>
 								</select>
-								<button type="button" class="el_btn frm_btn deep sm w100" onclick="searchReset()">검색초기화</button>
+								<a href="fFreeList" class="el_btn frm_btn deep sm">새로고침</a>
 								</div>
-							</div>
+							</div> --%>
 							<div class="row rt">
 								<div class="frm_group">
+									<select class="frm_select sm m115" aria-label="출력 구분" name="chk_del" id="chk_del">
+										<option value="all" <c:if test="${chk_del eq 'all'}">selected</c:if>>전체</option>
+										<option value="N" <c:if test="${chk_del eq 'N'}">selected</c:if>>노출</option>
+										<option value="Y" <c:if test="${chk_del eq 'Y'}">selected</c:if>>미노출</option>
+									</select>
 									<label class="frm_checkbox type1 md">
 										<input type="checkbox" id="title" name="title" value="Y" <c:if test="${title=='Y' }">checked</c:if>>
 										<span>제목</span>
@@ -379,8 +397,9 @@
 										<input type="checkbox" id="tailWriter" name="tailWriter" value="Y" <c:if test="${tailWriter=='Y' }">checked</c:if>>
 										<span>댓글작성자</span>
 									</label>
-									<input type="text" class="frm_input sm m240" name="keyWord" id="keyWord" value="${keyWord}" aria-label="검색어 입력" placeholder="검색어를 입력하세요.">
-									<button type="button" class="el_btn frm_btn deep sm w100" onclick="searchval()">검색</button>
+									<input type="text" class="frm_input sm " name="keyWord" id="keyWord" value="${keyWord}" aria-label="검색어 입력" placeholder="검색어를 입력하세요.">
+									<button type="button" class="el_btn frm_btn deep sm" onclick="searchval()">검색</button>
+									<a href="fFreeList" class="el_btn frm_btn deep sm">새로고침</a>
 								</div>
 							</div>
 						</div>
@@ -402,7 +421,7 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
+							<th scope="col">NO</th>
 							<th scope="col">제목</th>
 							<th scope="col">내용미리보기</th>
 							<th scope="col">작성자</th>
@@ -446,7 +465,11 @@
 						<tr>
 							<td>${freeList.rownum}</td>
 							</c:if>
-							<td style="text-align: left;"><a href="fFreeDetail?num=${freeList.num }&listpage=${currentPage2}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&chk_del=${chk_del}">${freeList.subject}</a>
+							<td class="lt">
+							<c:if test="${freeList.chk_m == 'Y' }">
+							<span class="el_ico_phone"></span>
+							</c:if>
+							<a href="fFreeDetail?num=${freeList.num }&listpage=${currentPage2}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&chk_del=${chk_del}"><c:if test="${freeList.step != '0' }">ㄴ</c:if>${freeList.subject}</a>
 							<c:if test="${freeList.tail_count != '0' }">
 								<span class="count">[${freeList.tail_count }]</span>
 							</c:if> 
@@ -679,6 +702,14 @@
 		});
 		</script>
 	</div>
+	<script>
+		window.onpageshow = function(event){
+			if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+				console.log(0);
+				$('.loading').remove();
+			}
+		}
+	</script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 		  <script src="https://www.googletagmanager.com/gtag/js?id=UA-180137319-1"></script>
 		  <script>

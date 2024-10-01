@@ -1198,12 +1198,11 @@
 		order by a.num desc
 	</select>
 	<select id="freeList" resultType="map">
-		SELECT * 
+		SELECT * , ROW_NUMBER() OVER (ORDER BY A.ref, A.ansnum desc,A.step desc) AS rownum
 			FROM (	
 					select A.*
 					, FORMAT(A.wdate, 'yyyy-MM-dd HH:mm') AS formatted_date
 					, KCC_EGIS.egis.FN_MASK_NAME(writer) writer2
-					, ROW_NUMBER() OVER (ORDER BY A.num) AS rownum
 					, (SELECT COUNT(*) FROM KCC_EGIS.egis.TBL_FREE_TAIL b WHERE b.info_num = A.num) AS tail_count
 					, ROW_NUMBER() OVER (PARTITION BY A.num ORDER BY A.num) AS SEQ
 					from (
@@ -1248,9 +1247,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-								      	and CONTAINS(a.content, #{keyWord})
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+								      	and CONTAINS(a.content, #{keyWord2})
 									</if>
 								</if>
 							</if>
@@ -1290,9 +1289,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord}))
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord2}))
 									</if>
 								</if>
 							</if>
@@ -1344,7 +1343,7 @@
 						) A
 					) A 
 			WHERE A.SEQ = 1
-			ORDER BY num desc
+			ORDER BY ref desc, ansnum,step
 			OFFSET (#{currentPage}-1)*#{limit} ROWS
 			FETCH NEXT #{limit} ROWS ONLY
 	</select>
@@ -1557,9 +1556,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-								      	and CONTAINS(a.content, #{keyWord})
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+								      	and CONTAINS(a.content, #{keyWord2})
 									</if>
 								</if>
 							</if>
@@ -1599,9 +1598,9 @@
 										and CONVERT(char(10),a.wdate,23) BETWEEN #{sdate} AND #{edate}
 									</if>
 								</if>
-								<if test="keyWord != null">
-									<if test='keyWord != ""'>
-										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord}))
+								<if test="keyWord2 != null">
+									<if test='keyWord2 != ""'>
+										and a.num in (select distinct info_num FROM KCC_EGIS.egis.TBL_FREE_TAIL where CONTAINS(content, #{keyWord2}))
 									</if>
 								</if>
 							</if>
