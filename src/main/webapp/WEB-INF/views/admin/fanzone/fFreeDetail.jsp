@@ -379,7 +379,7 @@
 										<input type="checkbox" id="tailWriter" name="tailWriter" value="Y" <c:if test="${tailWriter=='Y' }">checked</c:if>>
 										<span>댓글작성자</span>
 									</label>
-									<input type="text" class="frm_input sm m240" name="keyWord" id="keyWord" value="${keyWord}" aria-label="검색어 입력" placeholder="검색어를 입력하세요.">
+									<input type="text" class="frm_input sm " name="keyWord" id="keyWord" value="${keyWord}" aria-label="검색어 입력" placeholder="검색어를 입력하세요.">
 									<button type="button" class="el_btn frm_btn deep sm w100" onclick="searchval()">검색</button>
 								</div>
 							</div>
