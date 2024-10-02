@@ -141,6 +141,7 @@
 .bbs_list_tbl td.name {font-size: var(--size16-12);}
 .bbs_list_tbl .tit {font-size: 16px; /* font-weight: var(--font-bd); */}
 .bbs_list_tbl .tit_inner {display: flex; gap: 3px; max-width: 100%; align-items: center;}
+.bbs_list_tbl .tit_inner .el_ico.phone {flex-shrink: 0;}
 .bbs_list_tbl .tit_link {display: inline-block; min-width: 0; max-width: 100%;}
 .bbs_list_tbl .tit_txt {position: relative;}
 .bbs_list_tbl .tit_txt.reply::before {content: ""; display: inline-block; width: 10px; aspect-ratio: 1; background: url('../../images/common/ico_reply.svg') no-repeat center/contain; margin: 0.2143em; vertical-align: top;}
