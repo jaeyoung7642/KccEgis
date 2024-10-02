@@ -145,7 +145,11 @@
 
 @media (max-width: 767px) {
 	.game_schedule_list .datetime {width: min(40vw, 11.923rem);}  /* w: 150 */
-	.game_schedule_list .match_inner {grid-template-areas: "state teamrt"; grid-template-columns: 1fr minmax(50px, 29.24%); padding-left: 0;} /* team: 50px */ 
+	.game_schedule_list .match_inner {--teamw: minmax(50px, 29.24%); grid-template-areas: "state teamrt"; grid-template-columns: 1fr var(--teamw);} /* team: 50px */ 
+	.game_schedule_list .match_inner.logo_lt {grid-template-areas: "teamlt state"; grid-template-columns: var(--teamw) 1fr; padding-right: 0;}
+	.game_schedule_list .match_inner:not(.logo_lt) {padding-left: 0;}
+	.game_schedule_list .match_inner:not(.logo_lt) .team.lt {display: none;}
+	.game_schedule_list .match_inner.logo_lt .team.rt {display: none;}
 	.game_schedule_list .team {text-align: center;} 
 	.game_schedule_list .team .el_logo {margin: 0 auto;}
 	.game_schedule_list .team .name {margin-top: 0.4167em; min-width: 150%; margin-left: -25%;}
