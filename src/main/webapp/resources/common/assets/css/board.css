@@ -231,7 +231,7 @@
 .board_view_comment .inputs {border: 1px solid var(--grayblue05); border-radius: var(--rds); background: #fff; padding: 15px; display: grid; grid-template-areas: "input btn"; grid-template-columns: minmax(0, 1fr) min-content; gap: 15px; height: 118px;}
 .board_view_comment .frm_input {grid-area: input; border: none; padding: 0; min-height: auto; height: 100%;}
 .board_view_comment .el_btn {grid-area: btn; height: 100%;}
-.board_view_comment .tit {font-size: var(--size18-16); color: var(--dark01); margin-top: 10px;}
+.board_view_comment .tit {font-size: var(--size18-16); color: var(--dark01); margin-top: 10px; position: relative;}
 .board_view_comment .comments {border-top: 1px solid var(--gray05); border-bottom: 1px solid var(--gray05);}
 .board_view_comment .comments .row {padding: 16px 0 20px ; display: grid; grid-template-areas: "cont btn" "info btn"; grid-template-columns: minmax(0, 1fr) min-content; gap: 10px;}
 .board_view_comment .comments .row:not(:first-child) {border-top: 1px solid var(--gray05);}
