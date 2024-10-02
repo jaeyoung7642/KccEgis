@@ -154,7 +154,6 @@
 .bbs_list_tbl .notice {position: relative;}
 .bbs_list_tbl .notice :is(.num, .tit_link) {font-weight: var(--font-semi);}
 .bbs_list_tbl .block .tit {color: var(--gray01) !important;}
-.bbs_list_tbl td .bbs_info.view::before {content: "";}
 
 
 /* .bbs_list_tbl.nav td.num {font-weight: var(--font-bd);} */
@@ -174,7 +173,6 @@
 	.bbs_list_tbl td.tit {text-align: left; padding-left: 6px; padding-right: 0;}
 	.bbs_list_tbl td .bbs_info {vertical-align: middle;}
 	.bbs_list_tbl td:is(.num, .view) {padding: 0; white-space: nowrap;}
-	.bbs_list_tbl td .bbs_info.view {gap: 0;}
 	.bbs_list_tbl .tit_txt {display: block;}
 	.bbs_list_tbl .tit_txt.reply::before {margin: 6px; margin-left: min(0.521vw * var(--fa1), 10px);}
 	.bbs_list_tbl .notice::after {content: ""; position: absolute; left: 0; top: 0; width: 100%; bottom: -1px; border-top: 1px solid var(--grayblue03); border-bottom: 1px solid var(--grayblue03); pointer-events: none;}
@@ -185,6 +183,8 @@
 	.bbs_list_tbl.nav tr:first-child td {border-top: none !important;}
 	.bbs_list_tbl.nav col.date {--colw: 108px;}
 	.bbs_list_tbl.nav td.date {padding: 0;}
+
+	.bbs_list_tbl:not(.nav) td .bbs_info:is(.view, .date)::before {display: none;}
 }
 
 @media (max-width: 1024px) { 
