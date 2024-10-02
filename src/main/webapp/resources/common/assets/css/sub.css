@@ -184,7 +184,9 @@ body {background: var(--gray07);}
 .overflow_hidden {overflow: hidden;}
 .section {--mt: 80px; margin-top: var(--mt); position: relative;}
 .snb_3dth_area + .section {--mt: 48px;}
+.anchor_wrap {position: relative;}
 .anchor {position: absolute; top: calc(var(--header) * -1);}
+.anchor.type2 {--navH: var(--size38); top: calc((var(--header) + var(--navH)) * -1);}
 .anchor.type3 {top: -20px;}
 
 @media (min-width: 1025px) {
@@ -192,7 +194,7 @@ body {background: var(--gray07);}
 	.el_heading.type2 .sub {font-size: min(1.875vw * 1.5, 36px); letter-spacing: -0.0278em; line-height: 1.389; margin-bottom: 0.2778em; }
 	.el_heading.type2 .tit {font-size: min(3.125vw * 1.5, 60px); line-height: 1.1;}
 	.p_overflow_hidden {overflow: hidden;}
-	.anchor.type2 {--navH: 78px; top: calc((var(--header) * 2) * -1);}
+	.anchor.type2 {--navH: 78px;}
 }
 
 @media (max-width: 1024px) {
