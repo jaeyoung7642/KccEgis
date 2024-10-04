@@ -1213,7 +1213,7 @@ textarea.frm_input {min-height: 178px; padding-top: var(--fmPl); padding-bottom:
 .tbl_broad td {display: flex; align-items: center; word-break: break-all;}
 .tbl_broad .lt {text-align: right !important; justify-content: flex-end;}
 .tbl_broad .rt {text-align: left !important; justify-content: flex-start;}
-.tbl_broad .tm {width: 60px;}
+.tbl_broad .tm {width: 60px; justify-content: center;}
 .tbl_broad [colspan="3"] {grid-column: 1/-1; justify-content: center;}
 
 @media (max-width: 1024px) { 
