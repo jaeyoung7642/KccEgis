@@ -133,6 +133,8 @@ public interface AdminService {
 	
 	public int insertTeamSum(Map<String, Object> paramMap) throws Exception;
 	
+	public int insertSmsRelay(Map<String, Object> paramMap) throws Exception;
+	
 	public int insertPlayerSum(Map<String, Object> paramMap) throws Exception;
 	
 	public int insertEventTail(Map<String, Object> paramMap) throws Exception;
@@ -152,6 +154,8 @@ public interface AdminService {
 	public int deleteTeamDailyRank(Map<String, Object> paramMap) throws Exception;
 	
 	public int deleteTeamDailyList(Map<String, Object> paramMap) throws Exception;
+	
+	public int deleteSmsRelay(Map<String, Object> paramMap) throws Exception;
 	
 	public int deletePlayerDailyList(Map<String, Object> paramMap) throws Exception;
 	

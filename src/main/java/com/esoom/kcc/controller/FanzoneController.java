@@ -129,15 +129,19 @@ public class FanzoneController {
 		// 상위리스트 카운트
 		int listCount = service.getFreeListCount(paramMap);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
 		paramMap.put("limit", pi.getBoardLimit());
 		paramMap.put("currentPage", currentPage);
 		List<Map<String, Object>> freeList = service.freeList(paramMap);
 		
 		mv.addObject("freeList", freeList);
 		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("startPage2", pi2.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("endPage2", pi2.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
 		mv.addObject("keyWord", keyWord);
 		mv.addObject("title", title);
 		mv.addObject("content", content);
@@ -171,6 +175,7 @@ public class FanzoneController {
 		// 상위리스트 카운트
 		int listCount = service.getNoticeListCount(paramMap);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
 		paramMap.put("limit", pi.getBoardLimit());
 		paramMap.put("currentPage", currentPage);
 		List<Map<String, Object>> noticeList = service.noticeList(paramMap);
@@ -182,9 +187,12 @@ public class FanzoneController {
 		}
 		mv.addObject("noticeList", noticeList);
 		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("startPage2", pi2.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("endPage2", pi2.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
 		mv.addObject("keyWord", keyWord);
 		mv.setViewName("fanzone/noticeList");
 		return mv;
@@ -248,15 +256,19 @@ public class FanzoneController {
 		// 상위리스트 카운트
 		int listCount2 = service.getFreeListCount(paramMap);
 		PageInfo pi2 = Pagination.getPageInfo(listpage, listCount2, boardLimit2);
+		PageInfo pi3 = Pagination.getPageInfo(listpage, listCount2, boardLimit2 ,10);
 		paramMap.put("limit", pi2.getBoardLimit());
 		paramMap.put("currentPage", listpage);
 		List<Map<String, Object>> freeList = service.freeList(paramMap);
 		
 		mv.addObject("freeList", freeList);
 		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("startPage3", pi3.getStartPage());
 		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("endPage3", pi3.getEndPage());
 		mv.addObject("currentPage2", listpage);
 		mv.addObject("maxPage2", pi2.getMaxPage());
+		mv.addObject("maxPage3", pi3.getMaxPage());
 		
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
@@ -459,15 +471,19 @@ public class FanzoneController {
 		// 상위리스트 카운트
 		int listCount = service.getWallpaperListCount(paramMap);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
 		paramMap.put("limit", pi.getBoardLimit());
 		paramMap.put("currentPage", currentPage);
 		List<Map<String, Object>> wallpaperList = service.wallpaperList(paramMap);
 
 		mv.addObject("wallpaperList", wallpaperList);
 		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("startPage2", pi2.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("endPage2", pi2.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
 		mv.setViewName("fanzone/wallpaperList");
 		return mv;
 	}
@@ -484,15 +500,19 @@ public class FanzoneController {
 		// 상위리스트 카운트
 		int listCount = service.getEventListCount(paramMap);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
 		paramMap.put("limit", pi.getBoardLimit());
 		paramMap.put("currentPage", currentPage);
 		List<Map<String, Object>> eventList = service.eventList(paramMap);
 		
 		mv.addObject("eventList", eventList);
 		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("startPage2", pi2.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("endPage2", pi2.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
 		mv.addObject("keyWord", keyWord);
 		mv.setViewName("fanzone/eventList");
 		return mv;

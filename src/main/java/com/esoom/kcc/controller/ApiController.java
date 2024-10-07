@@ -444,6 +444,86 @@ public class ApiController {
 		conn.disconnect();
 		return result;
 	}
+	//문자중계
+		@RequestMapping(value = "/smsApi", method = RequestMethod.GET)
+		public String smsApi(String season_code,String game_code,String game_no) throws IOException, ParseException ,Exception{
+			System.out.println("smsApi");
+			String result = "true";
+			int cnt = 0;
+			StringBuilder urlBuilder = new StringBuilder("http://kblapi.esoom.co.kr/api/gamehistory.php"); /*URL*/
+			URL url = new URL(urlBuilder.toString());
+			Map<String,Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("season_code", season_code);
+			paramMap.put("game_code", game_code);
+			paramMap.put("game_no", game_no);
+			StringBuilder sb = new StringBuilder();
+			for(Map.Entry<String, Object> m : paramMap.entrySet()) {
+				if(sb.length() != 0) sb.append("&");
+				sb.append(URLEncoder.encode(m.getKey(),"UTF-8"));
+				sb.append("=");
+				sb.append(URLEncoder.encode(String.valueOf(m.getValue()), "UTF-8"));
+			}
+			byte[] postDataBytes = sb.toString().getBytes("UTF-8");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+			conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+			conn.getOutputStream().write(postDataBytes);
+			System.out.println("Response code: " + conn.getResponseCode());
+			BufferedReader rd;
+			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+				rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+			} else {
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(),"UTF-8"));
+			}
+			StringBuilder sb2 = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb2.append(line);
+			}
+			System.out.println(sb2.toString());
+			String jsonStr = sb2.toString();
+			JSONParser parser = new JSONParser();
+			JSONArray jsonArray = (JSONArray) parser.parse(jsonStr);
+			// 여기서 각 JSON 객체를 처리할 수 있음
+			if(jsonArray.size()>0) {
+				service.deleteSmsRelay(paramMap);
+				for (Object obj : jsonArray) {
+					JSONObject jsonObj = (JSONObject) obj;
+					paramMap.put("gamehistory_se", jsonObj.get("gamehistory_se"));
+					paramMap.put("seq_no", jsonObj.get("seq_no"));
+					paramMap.put("quarter_gu", jsonObj.get("quarter_gu"));
+					paramMap.put("seq", jsonObj.get("seq"));
+					paramMap.put("sync_seq", jsonObj.get("sync_seq"));
+					paramMap.put("team_code", jsonObj.get("team_code"));
+					paramMap.put("away_team", jsonObj.get("away_team"));
+					paramMap.put("player_no", jsonObj.get("player_no"));
+					paramMap.put("play_min", jsonObj.get("play_min"));
+					paramMap.put("play_sec", jsonObj.get("play_sec"));
+					paramMap.put("action_gu", jsonObj.get("action_gu"));
+					paramMap.put("foul_code", jsonObj.get("foul_code"));
+					paramMap.put("play_cnt", jsonObj.get("play_cnt"));
+					paramMap.put("change_gu", jsonObj.get("change_gu"));
+					paramMap.put("change_d_code", jsonObj.get("change_d_code"));
+					paramMap.put("remark", jsonObj.get("remark"));
+					paramMap.put("player_no_opponent", jsonObj.get("player_no_opponent"));
+					paramMap.put("EVENT_NO", jsonObj.get("EVENT_NO"));
+					paramMap.put("GH_SEQ_SE", jsonObj.get("GH_SEQ_SE"));
+					Map<String,Object> inputtime =  (Map<String, Object>)jsonObj.get("inputtime");
+					paramMap.put("inputtime", inputtime.get("date").toString().substring(0,23));
+					cnt += service.insertSmsRelay(paramMap); 
+				}
+				if(cnt<jsonArray.size()) {
+					result ="false";
+				}
+			}else {
+				result ="false";
+			}
+			rd.close();
+			conn.disconnect();
+			return result;
+		}
 	//선수일자별 리스트
 	@RequestMapping(value = "/playerDailyListApi", method = RequestMethod.GET)
 	public String playerDailyListApi(String season_code,String game_code,String game_no) throws IOException, ParseException ,Exception{

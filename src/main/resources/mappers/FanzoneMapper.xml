@@ -418,7 +418,7 @@
 			    from KCC_EGIS.egis.TBL_FREE_TAIL
 				where info_num = #{num}
 				) A
-		ORDER BY num desc
+		ORDER BY num 
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
 		FETCH NEXT #{limit} ROWS ONLY
 	</select>

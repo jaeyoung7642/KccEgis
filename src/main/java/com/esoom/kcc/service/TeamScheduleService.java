@@ -40,6 +40,10 @@ public interface TeamScheduleService {
 	
 	public List<Map<String,Object>> teamAndteamRecordList(Map<?, ?> paramMap) throws Exception;
 	
+	public List<Map<String,Object>> smsRelay(Map<?, ?> paramMap) throws Exception;
+	
+	public List<Map<String,Object>> smsRelay2(Map<?, ?> paramMap) throws Exception;
+	
 	public int getScheduleListCount(Map<?, ?> paramMap);
 	
 	public int getWinLossCount(Map<?, ?> paramMap);

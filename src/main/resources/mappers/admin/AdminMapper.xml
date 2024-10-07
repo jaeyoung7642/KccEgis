@@ -540,7 +540,7 @@
 		where
 		info_num = #{num}
 		) A
-		ORDER BY num desc
+		ORDER BY num 
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
 		FETCH NEXT #{limit} ROWS ONLY
 	</select>
@@ -1378,7 +1378,7 @@
 		from KCC_EGIS.egis.TBL_FREE_TAIL
 		where info_num = #{num}
 		) A
-		ORDER BY num desc
+		ORDER BY num 
 		OFFSET (#{currentPage}-1)*#{limit} ROWS
 		FETCH NEXT #{limit} ROWS ONLY
 	</select>
@@ -2591,6 +2591,15 @@ VALUES (
 			)
 		</foreach>
 	</insert>
+	<insert id="insertSmsRelay" parameterType="map">
+		insert into KCC_EGIS.kbl_data.gamehistory values
+		(
+		#{gamehistory_se},#{season_code},#{game_code},#{game_no},#{seq_no},#{quarter_gu},#{seq},#{sync_seq}
+		,#{team_code},#{away_team},#{player_no},#{play_min},#{play_sec},#{action_gu}
+		,#{foul_code},#{play_cnt},#{change_gu},#{change_d_code},#{remark},#{inputtime},#{player_no_opponent}
+		,#{EVENT_NO},#{GH_SEQ_SE}
+		)
+	</insert>
 	<insert id="insertLoginInfo" parameterType="map">
 		insert into KCC_EGIS.egis.TBL_ADMIN_LOG values
 		(
@@ -2698,6 +2707,14 @@ VALUES (
 		#{info_num},#{id},#{writer},#{content},#{ip},getdate(),#{part}
 		)
 	</insert>
+	<delete id="deleteSmsRelay" parameterType="map">
+		delete from
+		KCC_EGIS.kbl_data.gamehistory
+		where season_code =
+		#{season_code}
+		and game_code = #{game_code}
+		and game_no = #{game_no}
+	</delete>
 	<delete id="deleteWallpaper" parameterType="map">
 		delete from
 		KCC_EGIS.egis.TBL_WALLPAPER

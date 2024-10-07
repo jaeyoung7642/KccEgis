@@ -195,6 +195,12 @@ public class ScheduleController {
 		paramMap.put("limit", pi.getBoardLimit());
 		paramMap.put("currentPage", currentPage);
 		List<Map<String,Object>> scheduleList = teamScheduleService.scheduleList(paramMap);
+		
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
+		
 		mv.addObject("prevTeamSchedule",prevTeamSchedule);
 		mv.addObject("selectSeasonList",selectSeasonList);
 		mv.addObject("selectDateList",selectDateList);
@@ -605,6 +611,14 @@ public class ScheduleController {
 		resultMap.put("homeTeam", homeTeamMap);
 		resultMap.put("awayTeam", awayTeamMap);
 		resultMap.put("mvp", mvp);
+		
+		//문자중계
+		List<Map<String, Object>> smsRelay = teamScheduleService.smsRelay(paramMap);
+		mv.addObject("smsRelay", smsRelay);
+		//문자중계 연장
+		List<Map<String, Object>> smsRelay2 = teamScheduleService.smsRelay2(paramMap);
+		mv.addObject("smsRelay2", smsRelay2);
+		
 		mv.addObject("result", resultMap);
 		mv.addObject("topList", topList);
 		mv.addObject("season_code", season_code);

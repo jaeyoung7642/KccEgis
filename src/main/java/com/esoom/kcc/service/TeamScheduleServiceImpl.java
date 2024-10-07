@@ -99,6 +99,16 @@ public class TeamScheduleServiceImpl implements TeamScheduleService {
 		return result;
 	}
 	@Override
+	public List<Map<String, Object>> smsRelay(Map<?, ?> paramMap) throws Exception {
+		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("TeamScheduleMapper.smsRelay", paramMap);
+		return result;
+	}
+	@Override
+	public List<Map<String, Object>> smsRelay2(Map<?, ?> paramMap) throws Exception {
+		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("TeamScheduleMapper.smsRelay2", paramMap);
+		return result;
+	}
+	@Override
 	public List<Map<String, Object>> roundList(Map<?, ?> paramMap) throws Exception {
 		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
 		if("avg".equals(paramMap.get("round_gu").toString())) {

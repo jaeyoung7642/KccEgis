@@ -144,7 +144,55 @@
 						<!-- board list -->
 						<c:if test="${not empty eventList}">
 						<!-- pagination -->
-						<div class="pagination">
+						<div class="pagination xm_hide">
+							<!-- 맨처음 -->
+							<c:if test="${maxPage2 eq 0}">
+							<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+							</c:if>
+							<c:if test="${maxPage2 > 0}">
+							<a href="eventList?page=1&keyWord=${keyWord}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+							</c:if>
+							
+							<!-- 이전 블럭으로 이동 -->
+							<c:if test="${startPage2 gt 1 }">
+		                       	<a href="eventList?page=${startPage2-1}&keyWord=${keyWord}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+		                    </c:if>
+							<c:if test="${startPage2 eq 1 }">
+		                       	<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+		                    </c:if>
+		                    
+		                    <!-- 페이지 번호 -->
+		                    <c:forEach var="p" begin="${startPage2}" end="${endPage2}" step="1">
+		                   	<c:if test="${p eq currentPage }">
+		                    	<a href="#" class="page_link current">${p}</a>
+		                    </c:if>
+		                      <c:if test="${p ne currentPage }">
+		                      	<c:url var="eventList" value="eventList?keyWord=${keyWord}">
+			 					<c:param name="page" value="${p}" />
+			 					</c:url>
+			 					<a href="${eventList}" class="page_link">${p}</a>
+		                      </c:if>
+		                    </c:forEach>
+		                    
+		                    <!-- 다음 블럭으로 이동 -->
+		                    <c:if test="${endPage2 ne maxPage2 && maxPage2 > 1}">
+							<a href="eventList?page=${endPage2+1}&keyWord=${keyWord}" class="page_link ico next"><span class="blind">다음</span></a>
+		                    </c:if>
+		                    <c:if test="${endPage2 ge maxPage2}">
+							<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
+		                    </c:if>
+		                    
+		                    <!-- 맨끝 -->
+		                    <c:if test="${maxPage2 eq 0}">
+		                    	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
+		                    </c:if>
+		                    <c:if test="${maxPage2 > 0}">
+							<a href="eventList?page=${maxPage2}&keyWord=${keyWord}" class="page_link ico last"><span class="blind">마지막</span></a>
+							</c:if>
+						</div>
+						<!-- // pagination -->
+						<!-- pagination -->
+						<div class="pagination xm_show">
 							<!-- 맨처음 -->
 							<c:if test="${maxPage eq 0}">
 							<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->

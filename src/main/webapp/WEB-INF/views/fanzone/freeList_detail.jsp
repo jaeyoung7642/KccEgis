@@ -52,8 +52,9 @@
    			success:function(result){
    				$('#contentPageArea').html(result);
    			 // contentPageArea의 높이를 구한 후 스크롤 이동
+   	         	scrollTarget('#tailfocus');
+/* 
    	            var contentPageArea = document.getElementById('tailfocus');
-
 	                // contentPageArea의 높이 구하기
 	                var contentPageAreaHeight = contentPageArea.offsetTop + 280;
   	                
@@ -61,7 +62,7 @@
   	                window.scrollTo({
   	                    top: contentPageAreaHeight,  // contentPageArea까지의 높이만큼 스크롤
   	                    behavior: 'smooth'           // 부드럽게 스크롤
-  	                });
+  	                }); */
    	         },
    	         error:function(){
    	            alert('서버에 문제가 있습니다.');
@@ -331,8 +332,11 @@
 									</c:if>
 								</div>
 								<c:if test="${not empty tailList}">
+								<div class="anchor_wrap">
+									<span class="anchor type2" id="tailfocus"></span>
+								</div>
 								<h5 class="tit">댓글</h5>
-								<div class="comments" id="tailfocus">
+								<div class="comments">
 									<c:forEach items="${tailList}" var="tailList">
 									<!-- row -->
 									<div class="row">
@@ -509,59 +513,6 @@
 			<section class="section">
 				<div class="ly_inner md">
 
-					<!-- 검색 -->
-					<div class="search_box type3 lg">
-						<form action="freeList" class="search_box_form" id="freeSearchForm">
-							<div class="row">
-								<%-- <div class="col grow col_date frm_date_wrap">
-									<span class="frm_date">
-										<input type="text" class="frm_input mdm date" aria-label="시작 일" placeholder="기간 설정" name="sdate" id="sdate" value="${sdate}" readonly>
-									</span>
-									<span class="txt"><span>-</span></span>
-									<span class="frm_date rt">
-										<input type="text" class="frm_input mdm date rt" aria-label="종료 일" name="edate" id="edate" value="${edate}" readonly>
-									</span>
-								</div> --%>
-								<div class="col shrink radios">
-									<label class="frm_checkbox type1 md">
-										<input type="checkbox" id="title" name="title" value="Y" <c:if test="${title=='Y' }">checked</c:if>>
-										<span>제목</span>
-									</label>
-									<label class="frm_checkbox type1 md">
-										<input type="checkbox" id="content" name="content" value="Y" <c:if test="${content=='Y' }">checked</c:if>>
-										<span>내용</span>
-									</label>
-									<label class="frm_checkbox type1 md">
-										<input type="checkbox" id="writer" name="writer" value="Y" <c:if test="${writer=='Y' }">checked</c:if>>
-										<span>작성자</span>
-									</label>
-									<label class="frm_checkbox type1 md">
-										<input type="checkbox" id="tail" name="tail" value="Y" <c:if test="${tail=='Y' }">checked</c:if>>
-										<span>댓글</span>
-									</label>
-									<label class="frm_checkbox type1 md">
-										<input type="checkbox" id="tailWriter" name="tailWriter" value="Y" <c:if test="${tailWriter=='Y' }">checked</c:if>>
-										<span>댓글작성자</span>
-									</label> 
-								</div>
-
-								<div class="col shrink pmax484">
-									<input type="text" class="frm_input mdm" aria-label="검색" placeholder="검색어 " id="keyWord" name="keyWord" value="${keyWord}" onkeypress="handleKeyPress(event)">
-									<button type="button" class="el_btn frm_btn black mdm shrink" onclick="searchval()">검색</button>
-									<a href="freeList" class="el_btn refresh"  aria-label="새로고침"><span class="p_hide">새로고침</span></a>
-								</div>
-							</div>
-						</form>
-					</div>
-					<!-- date picker 사용시 -->
-						<script src="/resources/common/assets/js/jquery-ui.min.js" defer></script>
-						<script defer>
-							$(function() {
-								datePicker();
-							});
-						</script>
-					<!-- 검색 -->
-
 				<!-- 	<ul class="el_desc_list mt10 pml17">
 						<li>팬게시판 성향과 어긋나거나 부적절한 게시물의 경우를 대비하여 회원 신고제도를 도입하였습니다.</li>
 						<li>특정 대상 게시물이 총 5회 신고될 경우, 해당 게시물은 자동 블록 처리되어 내용 확인이 불가능합니다.</li>
@@ -570,7 +521,7 @@
 					
 
 					<!-- 게시판 리스트 -->
-					<article class="mt20 mt30m">
+					<article class="">
 						<!-- board list -->
 						<div class="bbs_list_tbl">
 							<table>
@@ -587,7 +538,7 @@
 										<th scope="col">NO</th>
 										<th scope="col">제목</th>
 										<th scope="col">작성자</th>
-										<th scope="col">등록일자</th>
+										<th scope="col">날짜</th>
 										<th scope="col">조회수</th>
 									</tr>
 								</thead>
@@ -707,7 +658,55 @@
 							</div>
 							<c:if test="${not empty freeList}">
 						<!-- pagination -->
-						<div class="pagination g_page">
+						<div class="pagination g_page xm_hide">
+							<!-- 맨처음 -->
+							<c:if test="${maxPage3 eq 0}">
+							<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+							</c:if>
+							<c:if test="${maxPage3 > 0}">
+							<a href="freeList?page=1&keyWord=${keyWord}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&sdate=${sdate}&edate=${edate}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+							</c:if>
+							
+							<!-- 이전 블럭으로 이동 -->
+							<c:if test="${startPage3 gt 1 }">
+		                       	<a href="freeList?page=${startPage3-1}&keyWord=${keyWord}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&sdate=${sdate}&edate=${edate}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+		                    </c:if>
+							<c:if test="${startPage3 eq 1 }">
+		                       	<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+		                    </c:if>
+		                    
+		                    <!-- 페이지 번호 -->
+		                    <c:forEach var="p" begin="${startPage3}" end="${endPage3}" step="1">
+		                   	<c:if test="${p eq currentPage2 }">
+		                    	<a href="#" class="page_link current">${p}</a>
+		                    </c:if>
+		                      <c:if test="${p ne currentPage2 }">
+		                      	<c:url var="freeList" value="freeList?keyWord=${keyWord}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&sdate=${sdate}&edate=${edate}">
+			 					<c:param name="page" value="${p}" />
+			 					</c:url>
+			 					<a href="${freeList}" class="page_link">${p}</a>
+		                      </c:if>
+		                    </c:forEach>
+		                    
+		                    <!-- 다음 블럭으로 이동 -->
+		                    <c:if test="${endPage3 ne maxPage3 && maxPage3 > 1}">
+							<a href="freeList?page=${endPage2+1}&keyWord=${keyWord}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&sdate=${sdate}&edate=${edate}" class="page_link ico next"><span class="blind">다음</span></a>
+		                    </c:if>
+		                    <c:if test="${endPage3 ge maxPage3}">
+							<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
+		                    </c:if>
+		                    
+		                    <!-- 맨끝 -->
+		                    <c:if test="${maxPage3 eq 0}">
+		                    	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
+		                    </c:if>
+		                    <c:if test="${maxPage3 > 0}">
+							<a href="freeList?page=${maxPage3}&keyWord=${keyWord}&title=${title}&content=${content}&writer=${writer}&tail=${tail}&tailWriter=${tailWriter}&sdate=${sdate}&edate=${edate}" class="page_link ico last"><span class="blind">마지막</span></a>
+							</c:if>
+						</div>
+						<!-- // pagination -->
+						<!-- pagination -->
+						<div class="pagination g_page xm_show">
 							<!-- 맨처음 -->
 							<c:if test="${maxPage2 eq 0}">
 							<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
@@ -756,6 +755,59 @@
 						<!-- // pagination -->
 						</c:if>
 						</div>
+						
+						<!-- 검색 -->
+					<div class="search_box type3 lg mt30b">
+						<form action="freeList" class="search_box_form" id="freeSearchForm">
+							<div class="row">
+								<%-- <div class="col grow col_date frm_date_wrap">
+									<span class="frm_date">
+										<input type="text" class="frm_input mdm date" aria-label="시작 일" placeholder="기간 설정" name="sdate" id="sdate" value="${sdate}" readonly>
+									</span>
+									<span class="txt"><span>-</span></span>
+									<span class="frm_date rt">
+										<input type="text" class="frm_input mdm date rt" aria-label="종료 일" name="edate" id="edate" value="${edate}" readonly>
+									</span>
+								</div> --%>
+								<div class="col shrink radios">
+									<label class="frm_checkbox type1 md">
+										<input type="checkbox" id="title" name="title" value="Y" <c:if test="${title=='Y' }">checked</c:if>>
+										<span>제목</span>
+									</label>
+									<label class="frm_checkbox type1 md">
+										<input type="checkbox" id="content" name="content" value="Y" <c:if test="${content=='Y' }">checked</c:if>>
+										<span>내용</span>
+									</label>
+									<label class="frm_checkbox type1 md">
+										<input type="checkbox" id="writer" name="writer" value="Y" <c:if test="${writer=='Y' }">checked</c:if>>
+										<span>작성자</span>
+									</label>
+									<label class="frm_checkbox type1 md">
+										<input type="checkbox" id="tail" name="tail" value="Y" <c:if test="${tail=='Y' }">checked</c:if>>
+										<span>댓글</span>
+									</label>
+									<label class="frm_checkbox type1 md">
+										<input type="checkbox" id="tailWriter" name="tailWriter" value="Y" <c:if test="${tailWriter=='Y' }">checked</c:if>>
+										<span>댓글작성자</span>
+									</label> 
+								</div>
+
+								<div class="col shrink pmax484">
+									<input type="text" class="frm_input mdm" aria-label="검색" placeholder="검색어 " id="keyWord" name="keyWord" value="${keyWord}" onkeypress="handleKeyPress(event)">
+									<button type="button" class="el_btn frm_btn black mdm shrink" onclick="searchval()">검색</button>
+									<a href="freeList" class="el_btn refresh"  aria-label="새로고침"><span class="p_hide">새로고침</span></a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- date picker 사용시 -->
+						<script src="/resources/common/assets/js/jquery-ui.min.js" defer></script>
+						<script defer>
+							$(function() {
+								datePicker();
+							});
+						</script>
+					<!-- 검색 -->
 					</article>
 					<!-- //게시판 리스트 -->
 

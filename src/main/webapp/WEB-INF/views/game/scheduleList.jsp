@@ -179,39 +179,46 @@
 							<div class="content">
 								<div class="team lt">
 									<div class="el_logo">
-										<c:if test="${prevTeamSchedule.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${prevTeamSchedule.home_team}.svg" alt="">
+										<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${prevTeamSchedule.home_team}.svg" alt="">
 										</c:if>
 										<c:if test="${prevTeamSchedule.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${prevTeamSchedule.away_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${prevTeamSchedule.home_team == '60' }">
+										<p class="blind">${prevTeamSchedule.home_team_name }</p>
+									<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 									<p class="blind">${prevTeamSchedule.home_team_name }</p>
 									</c:if>
 									<c:if test="${prevTeamSchedule.away_team == '60' }">
 									<p class="blind">${prevTeamSchedule.away_team_name }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="team rt">
 									<div class="el_logo">
-										<c:if test="${prevTeamSchedule.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${prevTeamSchedule.away_team}.svg" alt="">
+										<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${prevTeamSchedule.away_team}.svg" alt="">
 										</c:if>
 										<c:if test="${prevTeamSchedule.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${prevTeamSchedule.home_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${prevTeamSchedule.home_team == '60' }">
+										<p class="blind">${prevTeamSchedule.away_team_name }</p>
+									<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 									<p class="blind">${prevTeamSchedule.away_team_name }</p>
 									</c:if>
 									<c:if test="${prevTeamSchedule.away_team == '60' }">
 									<p class="blind">${prevTeamSchedule.home_team_name }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="state score">
 									<a href="#" class="bl_score type1">
-										<c:if test="${prevTeamSchedule.home_team == '60' }">
+										<span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
+										<span class="vs">:</span>
+										<span class="num rt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
+										<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 										<span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
 										<span class="vs">:</span>
 										<span class="num rt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
@@ -220,7 +227,7 @@
 										<span class="num lt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
 										<span class="vs">:</span>
 										<span class="num rt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
-										</c:if>
+										</c:if> --%>
 									</a>
 								</div>
 							</div>
@@ -250,34 +257,41 @@
 								</c:if>
 							</div>
 							<div class="content">
-								<div class="team lt xm_hide">
+								<div class="team lt <c:if test="${currentMap.home_team == '60'}">xm_hide</c:if>">
 									<div class="el_logo md m80">
-										<c:if test="${currentMap.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${currentMap.home_team}.svg" alt="">
+										<%-- <c:if test="${currentMap.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.home_team}.svg" alt="">
 										</c:if>
 										<c:if test="${currentMap.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.away_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${currentMap.home_team == '60' }">
+										<p class="blind">${currentMap.home_team_name }</p>
+										<p class="txt">${currentMap.home_team_wl_three }</p>
+									<%-- <c:if test="${currentMap.home_team == '60' }">
 										<p class="blind">${currentMap.home_team_name }</p>
 										<p class="txt">${currentMap.home_team_wl_three }</p>
 									</c:if>
 									<c:if test="${currentMap.away_team == '60' }">
 										<p class="blind">${currentMap.away_team_name }</p>
 										<p class="txt">${currentMap.away_team_wl_three }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
-								<div class="team rt">
+								<div class="team rt <c:if test="${currentMap.away_team == '60' }">xm_hide</c:if>">
 									<div class="el_logo md m80">
-										<c:if test="${currentMap.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${currentMap.away_team}.svg" alt="">
+										<%-- <c:if test="${currentMap.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.away_team}.svg" alt="">
 										</c:if>
 										<c:if test="${currentMap.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.home_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${currentMap.home_team == '60' }">
+										<p class="blind">${currentMap.away_team_name }</p>
+										<p class="txt">${currentMap.away_team_wl_three }</p>
+										<p class="txt xm_show">${currentMap.away_team_name }</p>
+									<%-- <c:if test="${currentMap.home_team == '60' }">
 									<p class="blind">${currentMap.away_team_name }</p>
 									<p class="txt">${currentMap.away_team_wl_three }</p>
 									<p class="txt xm_show">${currentMap.away_team_name }</p>
@@ -286,7 +300,7 @@
 									<p class="blind">${currentMap.home_team_name }</p>
 									<p class="txt">${currentMap.home_team_wl_three }</p>
 									<p class="txt xm_show">${currentMap.home_team_name }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="state record">
 									<ul class="record_list">
@@ -339,35 +353,39 @@
 							<div class="content">
 								<div class="team lt">
 									<div class="el_logo">
-										<c:if test="${nextMap.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${nextMap.home_team}.svg" alt="">
+										<%-- <c:if test="${nextMap.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${nextMap.home_team}.svg" alt="">
 										</c:if>
 										<c:if test="${nextMap.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${nextMap.away_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${nextMap.home_team == '60' }">
+										<p class="blind">${nextMap.home_team_name }</p>
+									<%-- <c:if test="${nextMap.home_team == '60' }">
 										<p class="blind">${nextMap.home_team_name }</p>
 									</c:if>
 									<c:if test="${nextMap.away_team == '60' }">
 										<p class="blind">${nextMap.away_team_name }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="team rt">
 									<div class="el_logo">
-										<c:if test="${nextMap.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${nextMap.away_team}.svg" alt="">
+										<%-- <c:if test="${nextMap.home_team == '60' }">
 											<img src="/resources/common/images/game/logo_${nextMap.away_team}.svg" alt="">
 										</c:if>
 										<c:if test="${nextMap.away_team == '60' }">
 											<img src="/resources/common/images/game/logo_${nextMap.home_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${nextMap.home_team == '60' }">
+										<p class="blind">${nextMap.away_team_name }</p>
+									<%-- <c:if test="${nextMap.home_team == '60' }">
 									<p class="blind">${nextMap.away_team_name }</p>
 									</c:if>
 									<c:if test="${nextMap.away_team == '60' }">
 									<p class="blind">${nextMap.home_team_name }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="state score">
 									<span>VS</span>
@@ -405,32 +423,39 @@
 							<div class="content">
 								<div class="team lt xm_hide">
 									<div class="el_logo md m80">
-										<c:if test="${currentMap.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${currentMap.home_team}.svg" alt="">
+										<%-- <c:if test="${currentMap.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.home_team}.svg" alt="">
 										</c:if>
 										<c:if test="${currentMap.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.away_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${currentMap.home_team == '60' }">
+										<p class="blind">${currentMap.home_team_name }</p>
+										<p class="txt">${currentMap.home_team_wl_three }</p>
+									<%-- <c:if test="${currentMap.home_team == '60' }">
 										<p class="blind">${currentMap.home_team_name }</p>
 										<p class="txt">${currentMap.home_team_wl_three }</p>
 									</c:if>
 									<c:if test="${currentMap.away_team == '60' }">
 										<p class="blind">${currentMap.away_team_name }</p>
 										<p class="txt">${currentMap.away_team_wl_three }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="team rt">
 									<div class="el_logo md m80">
-										<c:if test="${currentMap.home_team == '60' }">
+										<img src="/resources/common/images/game/logo_${currentMap.away_team}.svg" alt="">
+										<%-- <c:if test="${currentMap.home_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.away_team}.svg" alt="">
 										</c:if>
 										<c:if test="${currentMap.away_team == '60' }">
 										<img src="/resources/common/images/game/logo_${currentMap.home_team}.svg" alt="">
-										</c:if>
+										</c:if> --%>
 									</div>
-									<c:if test="${currentMap.home_team == '60' }">
+										<p class="blind">${currentMap.away_team_name }</p>
+										<p class="txt">${currentMap.away_team_wl_three }</p>
+										<p class="txt xm_show">${currentMap.away_team_name }</p>
+									<%-- <c:if test="${currentMap.home_team == '60' }">
 									<p class="blind">${currentMap.away_team_name }</p>
 									<p class="txt">${currentMap.away_team_wl_three }</p>
 									<p class="txt xm_show">${currentMap.away_team_name }</p>
@@ -439,7 +464,7 @@
 									<p class="blind">${currentMap.home_team_name }</p>
 									<p class="txt">${currentMap.home_team_wl_three }</p>
 									<p class="txt xm_show">${currentMap.home_team_name }</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="state record">
 									<ul class="record_list">
@@ -647,44 +672,66 @@
 									</p>
 								</div>
 								<div class="col match">
-									<div class="match_inner">
-										<div class="team lt xm_hide">
-											<div class="el_logo">
-												<c:if test="${scheduleList.home_team == '60' }">
+									<div class="match_inner <c:if test="${scheduleList.away_team =='60'}">logo_lt</c:if>">
+										<div class="team lt">
+											<div class="el_logo m50">
+												<img src="/resources/common/images/game/team_logo/${season_code}/logo_${scheduleList.home_team}.png" alt="">
+												<%-- <c:if test="${scheduleList.home_team == '60' }">
 												<img src="/resources/common/images/game/team_logo/${season_code}/logo_${scheduleList.home_team}.png" alt="">
 												</c:if>
 												<c:if test="${scheduleList.away_team == '60' }">
 												<img src="/resources/common/images/game/team_logo/${season_code}/logo_${scheduleList.away_team}.png" alt="">
-												</c:if>
+												</c:if> --%>
 											</div>
-											<c:if test="${scheduleList.home_team == '60' }">
+												<p class="name">${scheduleList.home_team_name}</p>
+											<%-- <c:if test="${scheduleList.home_team == '60' }">
 											<p class="name">${scheduleList.home_team_name}</p>
 											</c:if>
 											<c:if test="${scheduleList.away_team == '60' }">
 											<p class="name">${scheduleList.away_team_name}</p>
-											</c:if>
+											</c:if> --%>
 										</div> 
 										<div class="team rt">
 											<div class="el_logo m50">
-												<c:if test="${scheduleList.home_team == '60' }">
+												<img src="/resources/common/images/game/team_logo/${season_code}/logo_${scheduleList.away_team}.png" alt="">
+												<%-- <c:if test="${scheduleList.home_team == '60' }">
 												<img src="/resources/common/images/game/team_logo/${season_code}/logo_${scheduleList.away_team}.png" alt="">
 												</c:if>
 												<c:if test="${scheduleList.away_team == '60' }">
 												<img src="/resources/common/images/game/team_logo/${season_code}/logo_${scheduleList.home_team}.png" alt="">
-												</c:if>
+												</c:if> --%>
 											</div>
-											<c:if test="${scheduleList.home_team == '60' }">
+												<p class="name">${scheduleList.away_team_name}</p>
+											<%-- <c:if test="${scheduleList.home_team == '60' }">
 											<p class="name">${scheduleList.away_team_name}</p>
 											</c:if>
 											<c:if test="${scheduleList.away_team == '60' }">
 											<p class="name">${scheduleList.home_team_name}</p>
-											</c:if>
+											</c:if> --%>
 										</div>
 										<c:choose>
 			  							<c:when test="${scheduleList.home_score > 0 && scheduleList.away_score > 0}">
 										<div class="state score">
 											<a href="scheduleResult?season_code=${scheduleList.season_code}&game_code=${scheduleList.game_code}&game_no=${scheduleList.game_no}" class="bl_score type2">
+					  								<span class="num lt <c:if test="${scheduleList.home_score > scheduleList.away_score}">win</c:if>">${scheduleList.home_score}</span>
 					  								<c:if test="${scheduleList.home_team == '60' }">
+					  								<c:if test="${scheduleList.home_score > scheduleList.away_score}">
+														<span class="el_ccl win"><span class="blind">패</span></span>
+													</c:if>
+													<c:if test="${scheduleList.home_score < scheduleList.away_score}">
+														<span class="el_ccl lose"><span class="blind">패</span></span>
+													</c:if>
+					  								</c:if>
+					  								<c:if test="${scheduleList.away_team == '60' }">
+					  								<c:if test="${scheduleList.home_score > scheduleList.away_score}">
+														<span class="el_ccl lose"><span class="blind">패</span></span>
+													</c:if>
+													<c:if test="${scheduleList.home_score < scheduleList.away_score}">
+														<span class="el_ccl win"><span class="blind">패</span></span>
+													</c:if>
+					  								</c:if>
+					  								<span class="num rt <c:if test="${scheduleList.away_score > scheduleList.home_score}">win</c:if>">${scheduleList.away_score}</span>
+					  								<%-- <c:if test="${scheduleList.home_team == '60' }">
 													<span class="num lt <c:if test="${scheduleList.home_score > scheduleList.away_score}">win</c:if>">${scheduleList.home_score}</span>
 													<c:if test="${scheduleList.home_score > scheduleList.away_score}">
 													<span class="el_ccl win"><span class="blind">패</span></span>
@@ -694,16 +741,17 @@
 													</c:if>
 													<span class="num rt <c:if test="${scheduleList.home_score < scheduleList.away_score}">win</c:if>">${scheduleList.away_score}</span>
 													</c:if>
+													
 													<c:if test="${scheduleList.away_team == '60' }">
-													<span class="num lt <c:if test="${scheduleList.home_score < scheduleList.away_score}">win</c:if>">${scheduleList.away_score}</span>
-													<c:if test="${scheduleList.home_score < scheduleList.away_score}">
+													<span class="num lt <c:if test="${scheduleList.away_score < scheduleList.home_score}">win</c:if>">${scheduleList.home_score}</span>
+													<c:if test="${scheduleList.away_score < scheduleList.home_score}">
 													<span class="el_ccl win"><span class="blind">패</span></span>
 													</c:if>
-													<c:if test="${scheduleList.home_score > scheduleList.away_score}">
+													<c:if test="${scheduleList.away_score > scheduleList.home_score}">
 													<span class="el_ccl lose"><span class="blind">패</span></span>
 													</c:if>
-													<span class="num rt <c:if test="${scheduleList.home_score > scheduleList.away_score}">win</c:if>">${scheduleList.home_score}</span>
-													</c:if>
+													<span class="num rt <c:if test="${scheduleList.away_score > scheduleList.home_score}">win</c:if>">${scheduleList.away_score}</span>
+													</c:if> --%>
 											</a>
 										</div>
 			  							</c:when>
@@ -737,7 +785,7 @@
 					  				<c:otherwise>
 									<c:if test="${scheduleList.home_team == '60' }">
 										<a href="teamRecord?team_code=${scheduleList.away_team }#TEAMRECORD" class="el_btn btn1"><span class="el_ico ico_record"></span> 기록비교</a>
-					  					<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 siteLink xm_hide"><span class="el_ico ico_ticket"></span> 티켓예매</a>
+					  					<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 siteLink"><span class="el_ico ico_ticket"></span> 티켓예매</a>
 									</c:if>
 									<c:if test="${scheduleList.away_team == '60' }">
 										<a href="teamRecord?team_code=${scheduleList.home_team }#TEAMRECORD" class="el_btn btn1"><span class="el_ico ico_record"></span> 기록비교</a>
@@ -758,7 +806,55 @@
 
 					<c:if test="${not empty scheduleList}">
 					<!-- pagination -->
-					<div class="pagination">
+					<div class="pagination xm_hide">
+						<!-- 맨처음 -->
+						<c:if test="${maxPage2 eq 0}">
+						<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+						</c:if>
+						<c:if test="${maxPage2 > 0}">
+						<a href="scheduleList?page=1&season_code=${season_code}&season_month=${season_month}&game_code=${game_code}&round=${round}&ha=${ha}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+						</c:if>
+						
+						<!-- 이전 블럭으로 이동 -->
+						<c:if test="${startPage2 gt 1 }">
+	                       	<a href="scheduleList?page=${startPage2-1}&season_code=${season_code}&season_month=${season_month}&game_code=${game_code}&round=${round}&ha=${ha}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+	                    </c:if>
+						<c:if test="${startPage2 eq 1 }">
+							<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+	                    </c:if>
+	                    
+	                    <!-- 페이지 번호 -->
+	                    <c:forEach var="p" begin="${startPage2}" end="${endPage2}" step="1">
+	                   	<c:if test="${p eq currentPage }">
+	                    	<a href="#" class="page_link current">${p}</a>
+	                    </c:if>
+	                      <c:if test="${p ne currentPage }">
+	                      	<c:url var="scheduleList" value="scheduleList?&season_code=${season_code}&season_month=${season_month}&game_code=${game_code}&round=${round}&ha=${ha}">
+		 					<c:param name="page" value="${p}" />
+		 					</c:url>
+		 					<a href="${scheduleList}" class="page_link">${p}</a>
+	                      </c:if>
+	                    </c:forEach>
+	                    
+	                    <!-- 다음 블럭으로 이동 -->
+	                    <c:if test="${endPage2 ne maxPage2 && maxPage2 > 1}">
+						<a href="scheduleList?page=${endPage2+1}&season_code=${season_code}&season_month=${season_month}&game_code=${game_code}&round=${round}&ha=${ha}" class="page_link ico next"><span class="blind">다음</span></a>
+	                    </c:if>
+	                    <c:if test="${endPage2 ge maxPage2}">
+						<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
+	                    </c:if>
+	                    
+	                    <!-- 맨끝 -->
+	                    <c:if test="${maxPage2 eq 0}">
+	                    	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
+	                    </c:if>
+	                    <c:if test="${maxPage2 > 0}">
+						<a href="scheduleList?page=${maxPage2}&season_code=${season_code}&season_month=${season_month}&game_code=${game_code}&round=${round}&ha=${ha}" class="page_link ico last"><span class="blind">마지막</span></a>
+						</c:if>
+					</div>
+					<!-- // pagination -->
+					<!-- pagination -->
+					<div class="pagination xm_show">
 						<!-- 맨처음 -->
 						<c:if test="${maxPage eq 0}">
 						<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->

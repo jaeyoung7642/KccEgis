@@ -122,6 +122,34 @@
 				}
 		   });   
 		}
+	function smsApi(){
+		var season_code = $("#season_code").val();
+		var game_code = $("#game_code").val();
+		var game_no = $("#game_no").val();
+		$("body").append('<div class="loading"><span class="loading_box"></span></div>');
+       	   $.ajax({
+		   	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
+		        url : "/smsApi",      // 컨트롤러에서 대기중인 URL 주소이다.
+		        data : {
+		       	 "season_code":season_code,
+		       	 "game_code":game_code,
+		       	 "game_no":game_no
+		        },            // Json 형식의 데이터이다.
+		        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+		        	if(res=='true'){
+		        		loaderClose(); 
+		        		alert("데이터를 불러왔습니다.");
+				        }else{
+				        	loaderClose();				       	 
+				        	alert("불러오기 실패했습니다.");
+				        }
+		        },
+		        error: function() {
+		        	loaderClose();
+		        	alert("서버 오류!!");
+				}
+		   });   
+		}
 	function teamSumApi(){
 		var season_code = $("#season_code").val();
 		var game_code = $("#game_code").val();
@@ -304,6 +332,7 @@
 					</div>
 
 					<div class="btn_area mt40 rt">
+						<button type="button" class="el_btn md line" onclick="smsApi()">문자중계</button>
 						<button type="button" class="el_btn md line" onclick="teamQuarterListApi()">기록불러오기</button>
 						<button  class="el_btn md line" >수정</button>
 						<a href="gScheduleList" class="el_btn md line">목록</a>

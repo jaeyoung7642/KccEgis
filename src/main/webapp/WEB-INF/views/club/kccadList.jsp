@@ -162,7 +162,9 @@
 										<p class="tit">${kccadList.title }</p>
 										<div class="btns">
 											<button type="button" aria-label="영상보기" class="el_btn video openModal videoOpen" data-target="#kccadPopup" data-video="${kccadList.addr }"></button>
+											<c:if test="${adgroup != 'KCC건설 스위첸'}">
 											<a href="#" class="el_btn download_lg"  onclick="fileDownload(this);" data-file="${kccadList.downfile}" data-file-org="${kccadList.downfile_original}"><span class="blind">영상 다운로드</span></a>
+											</c:if>
 										</div>
 									</div>
 								</div>

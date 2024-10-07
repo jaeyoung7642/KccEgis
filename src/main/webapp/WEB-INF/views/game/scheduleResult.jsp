@@ -113,7 +113,25 @@
 							</div> 
 							<!-- //header -->
 							<div class="content match">
-							<c:if test="${result.home_team == '60' }">
+							<div class="teams lt">
+								<div class="team">
+									<div class="el_logo md m80">
+										<img src="/resources/common/images/game/team_logo/${season_code}/logo_${result.home_team}.png" alt="">
+									</div>
+									<p class="name">${result.home_team_name}</p>
+								</div>
+								<div class="score <c:if test="${result.home_score > result.away_score}">win</c:if>">${result.home_score}</div>
+							</div>
+								<div class="teams rt">
+									<div class="team">
+										<div class="el_logo md m80">
+											<img src="/resources/common/images/game/team_logo/${season_code}/logo_${result.away_team}.png" alt="">
+										</div>
+										<p class="name">${result.away_team_name}</p>
+									</div>
+									<div class="score <c:if test="${result.away_score > result.home_score}">win</c:if>">${result.away_score}</div>
+								</div>
+							<%-- <c:if test="${result.home_team == '60' }">
 								<div class="teams lt">
 									<div class="team">
 										<div class="el_logo md m80">
@@ -134,8 +152,8 @@
 									</div>
 									<div class="score <c:if test="${result.away_score > result.home_score}">win</c:if>">${result.away_score}</div>
 								</div> 
-							</c:if>
-							<c:if test="${result.home_team == '60' }">
+							</c:if> --%>
+							<%-- <c:if test="${result.home_team == '60' }">
 								<div class="teams rt">
 									<div class="team">
 										<div class="el_logo md m80">
@@ -156,7 +174,7 @@
 									</div>
 									<div class="score <c:if test="${result.home_score > result.away_score}">win</c:if>">${result.home_score}</div>
 								</div>
-							</c:if>
+							</c:if> --%>
 								<div class="record">
 									<div class="tbl type1">
 										<table>
@@ -182,7 +200,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:if test="${result.home_team == '60' }">
 												<tr>
 													<th scope="row">${result.home_team_name}</th>
 													<td>${result.homeTeam.Q1 }</td>
@@ -201,8 +218,27 @@
 													<td>${result.awayTeam.EQ }</td>
 													<td>${result.awayTeam.away_total}</td>
 												</tr>
-												</c:if>
-												<c:if test="${result.away_team == '60' }">
+												<%-- <c:if test="${result.home_team == '60' }">
+												<tr>
+													<th scope="row">${result.home_team_name}</th>
+													<td>${result.homeTeam.Q1 }</td>
+													<td>${result.homeTeam.Q2 }</td>
+													<td>${result.homeTeam.Q3 }</td>
+													<td>${result.homeTeam.Q4 }</td>
+													<td>${result.homeTeam.EQ }</td>
+													<td>${result.homeTeam.home_total}</td>
+												</tr>
+												<tr>
+													<th scope="row">${result.away_team_name}</th>
+													<td>${result.awayTeam.Q1 }</td>
+													<td>${result.awayTeam.Q2 }</td>
+													<td>${result.awayTeam.Q3 }</td>
+													<td>${result.awayTeam.Q4 }</td>
+													<td>${result.awayTeam.EQ }</td>
+													<td>${result.awayTeam.away_total}</td>
+												</tr>
+												</c:if> --%>
+												<%-- <c:if test="${result.away_team == '60' }">
 												<tr>
 													<th scope="row">${result.away_team_name}</th>
 													<td>${result.awayTeam.Q1 }</td>
@@ -221,7 +257,7 @@
 													<td>${result.homeTeam.EQ }</td>
 													<td>${result.homeTeam.home_total}</td>
 												</tr>
-												</c:if>
+												</c:if> --%>
 											</tbody>
 										</table>
 									</div>
@@ -690,8 +726,8 @@
 				</div>
 			</section>
 
-
-			<%-- <!-- 우리팀 및 상대팀 기록 비교 -->
+			<c:if test="${not empty smsRelay }">
+			 <!-- 우리팀 및 상대팀 기록 비교 -->
 			<section class="section mt50">
 				<div class="ly_inner md">
 					<h4 class="blind">부산 KCC 및 상대팀 기록 비교</h4>
@@ -726,110 +762,16 @@
 										</tr>
 									</thead>
 									<tbody>
+										<c:forEach items="${kccTeamList}" var="kccTeamList" varStatus="status">
 										<tr>
-											<td>1</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
+											<td>${kccTeamList.back_num }</td>
+											<td>${kccTeamList.kname }<br> ${kccTeamList.pos }</td>
+											<td>${kccTeamList.foul_tot }</td>
+											<td>${kccTeamList.score }</td>
+											<td>${kccTeamList.r_tot}</td>
+											<td>${kccTeamList.a_s}</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>최준용<br> [GD]</td>
-											<td>4</td>
-											<td>0</td>
-											<td>1</td>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>켈빈 에피스톨라<br> [GD]</td>
-											<td>3</td>
-											<td>0</td>
-											<td>1</td>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>20</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>55</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>7</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>10</td>
-											<td>최준용<br> [GD]</td>
-											<td>0</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>19</td>
-											<td>최준용<br> [GD]</td>
-											<td>0</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>24</td>
-											<td>최준용<br> [GD]</td>
-											<td>1</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>25</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>최준용<br> [GD]</td>
-											<td>4</td>
-											<td>0</td>
-											<td>1</td>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>켈빈 에피스톨라<br> [GD]</td>
-											<td>3</td>
-											<td>0</td>
-											<td>1</td>
-											<td>4</td>
-										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -849,7 +791,9 @@
 									<button type="button" class="tab_link md" role="tab" aria-controls="panelB2" id="tabB2">2쿼터</button>
 									<button type="button" class="tab_link md" role="tab" aria-controls="panelB3" id="tabB3">3쿼터</button>
 									<button type="button" class="tab_link md" role="tab" aria-controls="panelB4" id="tabB4">4쿼터</button>
+									<c:if test="${not empty smsRelay2 }">
 									<button type="button" class="tab_link md" role="tab" aria-controls="panelB5" id="tabB5">연장</button>
+									</c:if>
 								</nav>
 
 								<div class="tab_panels">
@@ -865,99 +809,25 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">1쿼터 최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td colspan="3">게임종료</td>
-												</tr>
+												<c:forEach items="${smsRelay}" var="smsRelay" varStatus="status">
+												<c:if test="${smsRelay.quarter_gu =='Q1'}">
+													<tr>
+														<c:if test="${smsRelay.team_code =='60' && smsRelay.team_code !='' }">
+															<td class="lt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt"></td>
+														</c:if>
+														<c:if test="${smsRelay.team_code !='60' && smsRelay.team_code !='' }">
+															<td class="lt"></td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+														</c:if>
+														<c:if test="${smsRelay.team_code ==''}">
+															<td colspan="3">${smsRelay.action_name_1}</td>
+														</c:if>
+													</tr>
+												</c:if>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -974,99 +844,25 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">2쿼터 최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td colspan="3">게임종료</td>
-												</tr>
+												<c:forEach items="${smsRelay}" var="smsRelay" varStatus="status">
+												<c:if test="${smsRelay.quarter_gu =='Q2'}">
+													<tr>
+														<c:if test="${smsRelay.team_code =='60' && smsRelay.team_code !='' }">
+															<td class="lt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt"></td>
+														</c:if>
+														<c:if test="${smsRelay.team_code !='60' && smsRelay.team_code !='' }">
+															<td class="lt"></td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+														</c:if>
+														<c:if test="${smsRelay.team_code ==''}">
+															<td colspan="3">${smsRelay.action_name_1}</td>
+														</c:if>
+													</tr>
+												</c:if>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -1083,99 +879,25 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">3쿼터 최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td colspan="3">게임종료</td>
-												</tr>
+												<c:forEach items="${smsRelay}" var="smsRelay" varStatus="status">
+												<c:if test="${smsRelay.quarter_gu =='Q3'}">
+													<tr>
+														<c:if test="${smsRelay.team_code =='60' && smsRelay.team_code !='' }">
+															<td class="lt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt"></td>
+														</c:if>
+														<c:if test="${smsRelay.team_code !='60' && smsRelay.team_code !='' }">
+															<td class="lt"></td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+														</c:if>
+														<c:if test="${smsRelay.team_code ==''}">
+															<td colspan="3">${smsRelay.action_name_1}</td>
+														</c:if>
+													</tr>
+												</c:if>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -1192,104 +914,31 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">4쿼터 최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td colspan="3">게임종료</td>
-												</tr>
+												<c:forEach items="${smsRelay}" var="smsRelay" varStatus="status">
+												<c:if test="${smsRelay.quarter_gu =='Q4'}">
+													<tr>
+														<c:if test="${smsRelay.team_code =='60' && smsRelay.team_code !='' }">
+															<td class="lt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt"></td>
+														</c:if>
+														<c:if test="${smsRelay.team_code !='60' && smsRelay.team_code !='' }">
+															<td class="lt"></td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+														</c:if>
+														<c:if test="${smsRelay.team_code ==''}">
+															<td colspan="3">${smsRelay.action_name_1}</td>
+														</c:if>
+													</tr>
+												</c:if>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
 									<!-- //4쿼터 -->
 									<!-- 연장 -->
+									<c:if test="${not empty smsRelay2 }">
 									<div id="panelB5" class="tab_panel" role="tabpanel">
 										<table class="tbl_broad">
 											<caption>연장 기록</caption>
@@ -1301,102 +950,27 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">연장 최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">제프 위디 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt"></td>
-													<td class="tm">00:00</td>
-													<td class="rt">최승욱 교체(OUT) 최승욱 교체(OUT)</td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td class="lt">곽정훈 교체(OUT) 곽정훈 교체(OUT)</td>
-													<td class="tm">00:00</td>
-													<td class="rt"></td>
-												</tr>
-												<tr>
-													<td colspan="3">게임종료</td>
-												</tr>
+												<c:forEach items="${smsRelay2}" var="smsRelay" varStatus="status">
+													<tr>
+														<c:if test="${smsRelay.team_code =='60' && smsRelay.team_code !='' }">
+															<td class="lt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt"></td>
+														</c:if>
+														<c:if test="${smsRelay.team_code !='60' && smsRelay.team_code !='' }">
+															<td class="lt"></td>
+															<td class="tm">${smsRelay.play_min}:${smsRelay.play_sec}</td>
+															<td class="rt">${smsRelay.kname} ${smsRelay.action_name_1}</td>
+														</c:if>
+														<c:if test="${smsRelay.team_code ==''}">
+															<td colspan="3">${smsRelay.action_name_1}</td>
+														</c:if>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
+									</c:if>
 									<!-- //연장 -->
 								</div>
 							</div>
@@ -1406,13 +980,23 @@
 							<!-- header -->  
 							<div class="header type1">
 								<div class="row">
-									<span class="col">수원 KT</span>
+									<c:if test="${result.home_team == '60' }">
+										<span class="col">${result.away_team_name }</span>
+									</c:if>
+									<c:if test="${result.away_team == '60' }">
+										<span class="col">${result.home_team_name }</span>
+									</c:if>
 								</div>
 							</div> 
 							<!-- //header -->
 							<div class="tbl type2 scrollY maxh770" data-lenis-prevent>
 								<table>
-									<caption>수원 KT 기록</caption>
+									<c:if test="${result.home_team == '60' }">
+										<caption>${result.away_team_name } 기록</caption>
+									</c:if>
+									<c:if test="${result.away_team == '60' }">
+										<caption>${result.home_team_name } 기록</caption>
+									</c:if>
 									<colgroup>
 										<col width="70">
 										<col width="123">
@@ -1432,110 +1016,16 @@
 										</tr>
 									</thead>
 									<tbody>
+										<c:forEach items="${otherTeamList}" var="otherTeamList" varStatus="status">
 										<tr>
-											<td>1</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
+											<td>${otherTeamList.back_num }</td>
+											<td>${otherTeamList.kname }<br> ${otherTeamList.pos }</td>
+											<td>${otherTeamList.foul_tot }</td>
+											<td>${otherTeamList.score }</td>
+											<td>${otherTeamList.r_tot}</td>
+											<td>${otherTeamList.a_s}</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>최준용<br> [GD]</td>
-											<td>4</td>
-											<td>0</td>
-											<td>1</td>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>켈빈 에피스톨라<br> [GD]</td>
-											<td>3</td>
-											<td>0</td>
-											<td>1</td>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>20</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>55</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>7</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>10</td>
-											<td>최준용<br> [GD]</td>
-											<td>0</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>19</td>
-											<td>최준용<br> [GD]</td>
-											<td>0</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>24</td>
-											<td>최준용<br> [GD]</td>
-											<td>1</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>25</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>최준용<br> [GD]</td>
-											<td>2</td>
-											<td>0</td>
-											<td>1</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>최준용<br> [GD]</td>
-											<td>4</td>
-											<td>0</td>
-											<td>1</td>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>켈빈 에피스톨라<br> [GD]</td>
-											<td>3</td>
-											<td>0</td>
-											<td>1</td>
-											<td>4</td>
-										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -1543,8 +1033,8 @@
 					</div>
 				</div>
 			</section>
-			<!-- //우리팀 및 상대팀 기록 비교 --> --%>
-
+			<!-- //우리팀 및 상대팀 기록 비교 -->
+			</c:if>
 			<a href="#wrap" class="el_btn gotoTop" aria-label="맨 위로 이동">
 				<img src="/resources/common/images/common/ico_gotoTop.svg" alt="">
 			</a>

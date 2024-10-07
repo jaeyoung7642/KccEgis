@@ -162,6 +162,11 @@ public class MediaController {
 				m.put("wdateformat", dateformat);
 			}
 		}
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
+		
 		mv.addObject("newsList", newsList);
 		mv.addObject("searchKeywordList", searchKeywordList);
 		mv.addObject("selectGame", selectGame);
@@ -265,6 +270,11 @@ public class MediaController {
 				m.put("wdateformat", dateformat);
 			}
 		}
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
+		
 		mv.addObject("photoList", photoList);
 		mv.addObject("searchKeywordList", searchKeywordList);
 		mv.addObject("selectGame", selectGame);
@@ -370,6 +380,11 @@ public class MediaController {
 				m.put("wdateformat", dateformat);
 			}
 		}
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
+		
 		mv.addObject("photoList", photoList);
 		mv.addObject("searchKeywordList", searchKeywordList);
 		mv.addObject("selectGame", selectGame);
@@ -725,6 +740,10 @@ public class MediaController {
 			}
 			mv.addObject("topMovie", topMovie);
 		}
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
 		
 		mv.addObject("movieList", movieList);
 		mv.addObject("searchKeywordList", searchKeywordList);
@@ -844,6 +863,10 @@ public class MediaController {
 			}
 			mv.addObject("topMovie", topMovie);
 		}
+		PageInfo pi2 = Pagination.getPageInfo(currentPage, listCount, boardLimit , 10);
+		mv.addObject("startPage2", pi2.getStartPage());
+		mv.addObject("endPage2", pi2.getEndPage());
+		mv.addObject("maxPage2", pi2.getMaxPage());
 		
 		mv.addObject("movieList", movieList);
 		mv.addObject("searchKeywordList", searchKeywordList);

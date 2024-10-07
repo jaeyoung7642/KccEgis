@@ -499,4 +499,28 @@
 		and a.team_code = #{team_code}
 		and a.away_team = #{away_team}
 	</select>
+	<select id="smsRelay" resultType="map">
+		select a.team_code, a.player_no, a.play_min,RIGHT('00' + CAST(a.play_sec AS VARCHAR(2)), 2) AS play_sec,
+		a.action_gu,a.quarter_gu,b.kname, c.action_name_1
+		from KCC_EGIS.kbl_data.gamehistory a
+		left join KCC_EGIS.kbl_data.player b on b.player_no = a.player_no and b.season_code = a.season_code
+		left join KCC_EGIS.kbl_data.code_action c on c.action_gu = a.action_gu
+		where a.season_code = #{season_code}
+		 and a.game_code = #{game_code} 
+		 and a.game_no = #{game_no}
+		 and a.quarter_gu in ('Q1','Q2','Q3','Q4')
+		order by quarter_gu,seq desc
+	</select>
+<select id="smsRelay2" resultType="map">
+		select a.team_code, a.player_no, a.play_min,RIGHT('00' + CAST(a.play_sec AS VARCHAR(2)), 2) AS play_sec,
+		a.action_gu,a.quarter_gu,b.kname, c.action_name_1
+		from KCC_EGIS.kbl_data.gamehistory a
+		left join KCC_EGIS.kbl_data.player b on b.player_no = a.player_no and b.season_code = a.season_code
+		left join KCC_EGIS.kbl_data.code_action c on c.action_gu = a.action_gu
+		where a.season_code = #{season_code}
+		 and a.game_code = #{game_code} 
+		 and a.game_no = #{game_no}
+		 and a.quarter_gu not in ('Q1','Q2','Q3','Q4')
+		order by quarter_gu desc,seq desc
+	</select>
 </mapper>

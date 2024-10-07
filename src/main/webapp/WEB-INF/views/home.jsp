@@ -252,39 +252,46 @@
 										<div class="teams">
 											<div class="team lt">
 												<div class="logo">
-													<c:if test="${prevTeamSchedule.home_team == '60' }">
+													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt="">
+													<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt="">
 													</c:if>
 													<c:if test="${prevTeamSchedule.away_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt="">
-													</c:if>
+													</c:if> --%>
 												</div>
-												<c:if test="${prevTeamSchedule.home_team == '60' }">
+													<p class="name">${prevTeamSchedule.home_team_name }</p>
+												<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 												<p class="name">${prevTeamSchedule.home_team_name }</p>
 												</c:if>
 												<c:if test="${prevTeamSchedule.away_team == '60' }">
 												<p class="name">${prevTeamSchedule.away_team_name }</p>
-												</c:if>
+												</c:if> --%>
 											</div>
 											<div class="team rt">
 												<div class="logo">
-													<c:if test="${prevTeamSchedule.home_team == '60' }">
+													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt="">
+													<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt="">
 													</c:if>
 													<c:if test="${prevTeamSchedule.away_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt="">
-													</c:if>
+													</c:if> --%>
 												</div>
-												<c:if test="${prevTeamSchedule.home_team == '60' }">
+													<p class="name">${prevTeamSchedule.away_team_name }</p>
+												<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 												<p class="name">${prevTeamSchedule.away_team_name }</p>
 												</c:if>
 												<c:if test="${prevTeamSchedule.away_team == '60' }">
 												<p class="name">${prevTeamSchedule.home_team_name }</p>
-												</c:if>
+												</c:if> --%>
 											</div>
 											<div class="state">
 												<p class="score">
-													<c:if test="${prevTeamSchedule.home_team == '60' }">
+													<span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
+													<span class="vs">:</span>
+													<span class="num rt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
+													<%-- <c:if test="${prevTeamSchedule.home_team == '60' }">
 													<span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
 													<span class="vs">:</span>
 													<span class="num rt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
@@ -293,7 +300,7 @@
 													<span class="num lt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
 													<span class="vs">:</span>
 													<span class="num rt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
-													</c:if>
+													</c:if> --%>
 												</p>
 											</div>
 										</div>
@@ -327,35 +334,39 @@
 										<div class="teams">
 											<div class="team lt">
 												<div class="logo">
-													<c:if test="${teamScheduleList.home_team == '60' }">
+													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
+													<%-- <c:if test="${teamScheduleList.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
 													</c:if>
 													<c:if test="${teamScheduleList.away_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
-													</c:if>
+													</c:if> --%>
 												</div>
-												<c:if test="${teamScheduleList.home_team == '60' }">
+													<p class="name">${teamScheduleList.home_team_name }</p>
+												<%-- <c:if test="${teamScheduleList.home_team == '60' }">
 												<p class="name">${teamScheduleList.home_team_name }</p>
 												</c:if>
 												<c:if test="${teamScheduleList.away_team == '60' }">
 												<p class="name">${teamScheduleList.away_team_name }</p>
-												</c:if>
+												</c:if> --%>
 											</div>
 											<div class="team rt">
 												<div class="logo">
-													<c:if test="${teamScheduleList.home_team == '60' }">
+													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
+													<%-- <c:if test="${teamScheduleList.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
 													</c:if>
 													<c:if test="${teamScheduleList.away_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
-													</c:if>
+													</c:if> --%>
 												</div>
-												<c:if test="${teamScheduleList.home_team == '60' }">
+													<p class="name">${teamScheduleList.away_team_name }</p>
+												<%-- <c:if test="${teamScheduleList.home_team == '60' }">
 												<p class="name">${teamScheduleList.away_team_name }</p>
 												</c:if>
 												<c:if test="${teamScheduleList.away_team == '60' }">
 												<p class="name">${teamScheduleList.home_team_name }</p>
-												</c:if>
+												</c:if> --%>
 											</div>
 											<div class="state">
 												<div class="score">

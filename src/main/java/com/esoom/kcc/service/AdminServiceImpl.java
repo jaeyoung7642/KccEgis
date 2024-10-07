@@ -84,6 +84,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.insert("AdminMapper.insertTeamDailyRank", paramMap);
 	}
 	@Override
+	public int insertSmsRelay(Map<String, Object> paramMap) throws Exception {
+		return dao.insert("AdminMapper.insertSmsRelay", paramMap);
+	}
+	@Override
 	public int insertTeamSum(Map<String, Object> paramMap) throws Exception {
 		return dao.insert("AdminMapper.insertTeamSum", paramMap);
 	}
@@ -110,6 +114,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int deleteNewsPhoto(Map<String, Object> paramMap) throws Exception {
 		return dao.delete("AdminMapper.deleteNewsPhoto", paramMap);
+	}
+	@Override
+	public int deleteSmsRelay(Map<String, Object> paramMap) throws Exception {
+		return dao.delete("AdminMapper.deleteSmsRelay", paramMap);
 	}
 	@Override
 	public int deleteFree(Map<String, Object> paramMap) throws Exception {

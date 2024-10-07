@@ -4,15 +4,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="inputs">
 	<c:if test="${loginUserMap != null}">
-	<textarea class="frm_input" id="content" placeholder="로그인 후 댓글 입력이 가능합니다.&#13;공개된 댓글에 개인정보 노출은 자제를 부탁드립니다." data-lenis-prevent></textarea>
+	<textarea class="frm_input" id="content" placeholder="공개된 댓글에 개인정보 노출은 자제를 부탁드립니다." data-lenis-prevent></textarea>
 	<button type="button" onclick="contentWrite()" class="el_btn frm_btn black">댓글 작성</button>
 	</c:if>
 	<c:if test="${loginUserMap == null}">
-	<textarea class="frm_input" onclick="loginForm()" placeholder="로그인 후 댓글 입력이 가능합니다.&#13;공개된 댓글에 개인정보 노출은 자제를 부탁드립니다." data-lenis-prevent></textarea>
-	<button type="button" onclick="loginForm()" class="el_btn frm_btn black">댓글 작성</button>
+	<textarea class="frm_input" placeholder="로그인 후 댓글 입력이 가능합니다.&#13;공개된 댓글에 개인정보 노출은 자제를 부탁드립니다." data-lenis-prevent></textarea>
+	<button type="button" data-target="#loginForm" class="el_btn frm_btn black openModal">댓글 작성</button>
 	</c:if>
 </div>
 <c:if test="${not empty tailList}">
+<div class="anchor_wrap">
+	<span class="anchor type2" id="tailfocus"></span>
+</div>
 <h5 class="tit">댓글</h5>
 <div class="comments" id="tailfocus">
 	<c:forEach items="${tailList}" var="tailList">
