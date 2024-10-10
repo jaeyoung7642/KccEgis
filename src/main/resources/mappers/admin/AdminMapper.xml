@@ -1088,6 +1088,7 @@
 		,pop_img2
 		,map_chk
 		,map_target
+		,map_url
 		,main_chk
 		,[order]
 		,CONVERT(char(10),sdate ,23) s_day
