@@ -625,22 +625,3 @@
 	.ticket_seatmap .box {width: max(10px, var(--vSize24)); border-radius: 0.154rem;}
 	.ticket_seatmap .seatmap {margin: -22px 0;}
 }
-
-/* 티켓FAQ */
-.ticket_faq {box-shadow : var(--sdw); border-radius: var(--rds); overflow: hidden; color: var(--dark01);}
-.ticket_faq .accordion_item:not(:first-child) {box-shadow: 0 -1px 0 0 var(--gray05);}
-.ticket_faq .header {background: #fff; display: flex; align-items: flex-start; width: 100%;font-size: var(--size16-13); font-weight: var(--semi); padding: 15px 20px; gap: 12px; transition: box-shadow var(--trans);}
-.ticket_faq .header::before {content: ""; display: inline-block; width: var(--size40-30); aspect-ratio: 1; background: url('../../images/img/faq_q.svg') no-repeat center/contain; flex-shrink: 0;}
-.ticket_faq .header .txt {display: inline-block; padding-top: calc((var(--size40-30) - var(--size16-13) * 1.4) / 2);}
-.ticket_faq .header.on {box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.05);}
-.ticket_faq .content {font-size: var(--size14-12); font-weight: var(--font-rg); position: relative; border: 1px solid var(--grayblue06); border-top: none; overflow: hidden;}
-.ticket_faq .content .inner {padding: 28px min(3.75vw * 1.3, 72px); background: var(--grayblue07); display: flex; flex-direction: column; gap: 14px;}
-.ticket_faq .content::after {content: ""; position: absolute; right: -5px; bottom: calc(var(--size27-12) * -1); width: 175px; aspect-ratio: 1; background: url('../../images/img/mypage_top_img.svg') no-repeat center/contain; transform: rotate(-45deg); opacity: 0.1; pointer-events: none;}
-.ticket_faq .content .ol_list {line-height: 2;}
-.ticket_faq .accordion_item:last-child .content {border-radius: 0 0 var(--rds) var(--rds);}
-
-@media (max-width: 1024px) { 
-	.ticket_faq .header {gap: 0.538rem; padding: 13px 14px 14px 20px;} /* 7 */
-	.ticket_faq .content .inner {padding: max(20px, var(--vSize27)) max(20px, 5.333vw * 0.8);}
-	.ticket_faq .content::after {width: 8.462rem;} /* 110 */
-}

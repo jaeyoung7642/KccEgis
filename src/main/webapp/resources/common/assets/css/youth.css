@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/* common */
+.el_role {font-size: min(1.875vw * 1.6, 36px); font-weight: 900; color: var(--gray02);}
+.el_name {display: flex;}
+.el_name .kor {font-size: min(3.125vw * 1.6, 60px); font-weight: var(--font-exbd); color: var(--dark01);}
+.el_name .eng {font-size: min(1.51vw * 1.6, 29px); color: var(--gray01);}
+
+@media (min-width: 1025px) {
+	.el_role {letter-spacing: -0.0278em; margin-bottom: 0.2778em;}
+	.el_name {gap: 9px; align-items: flex-end;}
+	.el_name .kor {line-height: 1.1;}
+	.el_name .eng {margin-bottom: -.15em;}
+}
+
+@media (max-width: 1024px) {
+	.el_role {font-size: 1.692rem; font-weight: var(--font-exbd); } /* 22 */
+	.el_name {flex-direction: column;}
+	.el_name .kor {font-size: max(var(--size24), var(--vSize60));} 
+	.el_name .eng {font-size: max(var(--size14), var(--vSize29));}
+}
+
+/* JR.KCC 소개 */
+.jr_info_top {--fa1: 1.4; --fa2: 1.6; color: var(--dark01);}
+.jr_info_top .ly_inner {display: grid; grid-template-columns: min(35.938vw * var(--fa1), 690px) minmax(0, 1fr); gap: min(4.583vw * 1.1, 88px); align-items: center;}
+.jr_info_top .heading {font-size: var(--size48-24); font-weight: var(--font-bd); margin-bottom: var(--size16-10);}
+.jr_info_top .heading span {display: block;}
+.jr_info_top .heading .logo {width: 1.73em; line-height: 1;} /* 83 */
+.jr_info_top .info_list {font-size: var(--size18-13);}
+.jr_info_top .info {display: grid; grid-template-columns: min-content minmax(0, 1fr); gap: var(--size10-7);}
+.jr_info_top .info + .info {margin-top: 0.4445em;}
+.jr_info_top .info dt {font-weight: var(--font-exbd); display: flex; gap: .5em;}
+.jr_info_top .info dt::before {content: "•";}
+
+@media (min-width: 1025px) {
+	.jr_info_top .el_img {height:  min(23.385vw * var(--fa2), 449px);}
+	.jr_info_top .heading {font-size: min(2.5vw * var(--fa2), 48px); line-height: 1.2;}
+	.jr_info_top .heading .txt {padding: .1em 0;}
+	.jr_info_top .info_list {font-size: min(0.938vw * var(--fa2), 18px);}
+}
+
+@media (max-width: 1024px) {
+	.jr_info_top .ly_inner {grid-template-columns: 100%; gap: var(--size40-20);}
+	.jr_info_top .el_img {aspect-ratio: 1/0.6478;}
+	.jr_info_top .heading {display: flex; align-items: center; gap: .3em;}
+	.jr_info_top .tit .logo {width: min(2.75em, 83px); margin-bottom: 10px;} /* 66 */
+	.jr_info_top .info + .info {margin-top: 0.46154em;}
+}
+
+.jr_program .heading {font-size: var(--size32-20); line-height: 1.1; color: #000; font-weight: var(--font-bd); text-align: center; margin-bottom: var(--size40-20);}
+.jr_program_list .item .el_img {aspect-ratio: 1/0.5642; margin-bottom: 30px;}
+.jr_program_list .item p {font-size: 25px; color: var(--dark02); text-align: center; font-weight: var(--font-bd);}
+
+@media (min-width: 1025px) {
+	.jr_program .heading {letter-spacing: -0.03em;} 
+}
+
+@media (max-width: 1024px) {
+	.jr_program_list {--sldw: 45.5%;}
+	.jr_program_list .swiper-slide {width: var(--sldw);}
+	.jr_program_list .swiper-slide:not(:last-child) {margin-right: 20px;}
+	.jr_program_list .item .el_img {aspect-ratio: 1/0.6667; margin-bottom: var(--size10);}
+	.jr_program_list .item p {font-size: var(--size14);}
+}
+
+@media (max-width: 767px) {
+	.jr_program_list {--sldw: 89.556%;} 
+}
+
+.jr_program_tbl .col1 {width: 210px;}
+
+@media (max-width: 1024px) {
+	.jr_program_tbl .col1 {width: 8.385rem;} /*  109 */
+}
+
+/* 강사진 소개 */
+.jr_teacher_list {display: grid; grid-template-columns: repeat(2, 1fr); gap: min(5.208vw * 1.1, 100px);}
+.jr_teacher_list .photo {margin-bottom: 30px; background: url('../../images/img/jr_teacher_bg.png') no-repeat center bottom/100% 100%; display: flex; justify-content: center;}
+.jr_teacher_list .photo .el_img {aspect-ratio: 1/0.777;}
+
+@media (max-width: 1024px) {
+	.jr_teacher_list {grid-template-columns: 100%; gap: max(var(--size40), var(--vSize80));}
+	.jr_teacher_list .photo {margin-bottom: max(var(--size16), var(--vSize30)); box-shadow: 0 1px 0 0 var(--gray03);}
+	.jr_teacher_list .photo .el_img {height: max(20.154rem, 49.316vw); aspect-ratio: 1/0.7821;} /* 262 */
+	.jr_teacher_list .info {max-width: 660px; margin: 0 auto;}
+}

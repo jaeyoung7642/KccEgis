@@ -576,7 +576,7 @@
 	.busan_gym_top {--pt: max(var(--size30), var(--vSize70)); background-size: auto 103.976%; background-position: 7.5% center;}
 	.busan_gym_top .inner {gap: max(var(--size40), 8.789vw);}
 	.busan_gym_top :is(.desc, .info) {width: 100%; max-width: max(82.133vw, 308px);}
-	.busan_gym_top .desc .tit {font-size:  max(var(--size24), var(--vSize60)); line-height: 1.4167;}
+	.busan_gym_top .desc .tit {font-size:  max(var(--size24), var(--vSize60)); line-height: 1.4167; white-space: nowrap;}
 	.busan_gym_top .desc .tit + .txt_md {margin-top: 0.77em;} 
 	.busan_gym_top .desc {text-align: left; word-break: break-all;}
 	.busan_gym_top .info_list {--colg: 7.2vw;}

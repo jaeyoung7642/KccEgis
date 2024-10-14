@@ -11,6 +11,7 @@
 	--size16-14: 16px;
 	--size18-10: 18px;
 	--size18-12: 18px;
+	--size18-13: 18px;
 	--size18-14: 18px;
 	--size20-12: 20px;
 	--size20-14: 20px;
@@ -82,6 +83,7 @@
 		--size16-14: max(15px, var(--vSize16)); 
 		--size18-10: max(10px, var(--vSize18));
 		--size18-12: var(--size12);
+		--size18-13: max(13px, var(--vSize18));
 		--size18-14: max(14px, var(--vSize18));
 		--size20-12: min(var(--size12), 20px);
 		--size20-14: min(var(--size14), 20px);
@@ -1188,14 +1190,19 @@ textarea.frm_input {min-height: 178px; padding-top: var(--fmPl); padding-bottom:
 .tbl.type5 tbody td:last-child,
 .tbl.type5 tbody td.bd_rt {border-right: 1px solid var(--gray05);}
 .tbl.type5 tbody td.no_bd_lt {border-left: none !important;}
-.tbl.type5 thead tr:first-child th:first-child {border-top-left-radius: var(--rds-sm);}
-.tbl.type5 thead tr:first-child th:last-child {border-top-right-radius: var(--rds-sm);}
+.tbl.type5 thead tr:first-child th:first-child,
+.tbl.type5.no_head tbody tr:first-child td:first-child {border-top-left-radius: var(--rds-sm);}
+.tbl.type5 thead tr:first-child th:last-child,
+.tbl.type5.no_head tbody tr:first-child td:last-child {border-top-right-radius: var(--rds-sm);}
 .tbl.type5 tbody tr:last-child td:first-child {border-bottom-left-radius: var(--rds-sm);}
 .tbl.type5 tbody tr:last-child td:not(.no_rds):last-child,
 .tbl.type5 tbody .rds_rt {border-bottom-right-radius: var(--rds-sm);}
-.tbl.type5 .fixed thead th {border-top-right-radius: 0 !important;}
+.tbl.type5 tbody tr:first-child td {border-top: 1px solid var(--gray05);}
+.tbl.type5 .fixed thead th,
+.tbl.type5.no_head .fixed tbody td {border-top-right-radius: 0 !important;}
 .tbl.type5 .fixed tbody td {border-bottom-right-radius: 0 !important;}
-.tbl.type5 .swipearea thead th {border-top-left-radius:  0 !important;}
+.tbl.type5 .swipearea thead th,
+.tbl.type5.no_head .swipearea tbody td {border-top-left-radius: 0 !important;}
 .tbl.type5 .swipearea tbody td {border-bottom-left-radius:  0 !important;}
 .tbl.type5 .swipearea td:first-child:not(.bd_lt) {border-left: none;}
 .tbl.type5 .dth1 {background: var(--grayblue08); font-weight: var(--font-bd);}
@@ -1205,6 +1212,10 @@ textarea.frm_input {min-height: 178px; padding-top: var(--fmPl); padding-bottom:
 
 @media (min-width: 1025px) {
 	.tbl.type5 tbody .p_rds_lt {border-bottom-left-radius: var(--rds-sm);}
+}
+
+@media (max-width: 1024px) { 
+	.tbl.type5 thead .m_rds_rt {border-top-right-radius: var(--rds-sm);}
 }
 
 .tbl_broad {display: block;}
@@ -1282,6 +1293,27 @@ textarea.frm_input {min-height: 178px; padding-top: var(--fmPl); padding-bottom:
 @media (max-width: 1024px) { 
 	.tblSwipe .swipearea table {width: var(--mwth); min-width: var(--mmin);}
 	.tblSwipe .no_post {margin-right: calc(var(--pdd) * -1);}
+}
+
+
+/* 티켓FAQ */
+.ticket_faq {box-shadow : var(--sdw); border-radius: var(--rds); overflow: hidden; color: var(--dark01);}
+.ticket_faq .accordion_item:not(:first-child) {box-shadow: 0 -1px 0 0 var(--gray05);}
+.ticket_faq .header {background: #fff; display: flex; align-items: flex-start; width: 100%;font-size: var(--size16-13); font-weight: var(--semi); padding: 15px 20px; gap: 12px; transition: box-shadow var(--trans);}
+.ticket_faq .header::before {content: ""; display: inline-block; width: var(--size40-30); aspect-ratio: 1; background: url('../../images/img/faq_q.svg') no-repeat center/contain; flex-shrink: 0;}
+.ticket_faq .header .txt {display: inline-block; padding-top: calc((var(--size40-30) - var(--size16-13) * 1.4) / 2);}
+.ticket_faq .header.on {box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.05);}
+.ticket_faq .content {font-size: var(--size14-12); font-weight: var(--font-rg); position: relative; border: 1px solid var(--grayblue06); border-top: none; overflow: hidden;}
+.ticket_faq .content .inner {padding: 28px min(3.75vw * 1.3, 72px); background: var(--grayblue07); display: flex; flex-direction: column; gap: 14px;}
+.ticket_faq .content::after {content: ""; position: absolute; right: -5px; bottom: calc(var(--size27-12) * -1); width: 175px; aspect-ratio: 1; background: url('../../images/img/mypage_top_img.svg') no-repeat center/contain; transform: rotate(-45deg); opacity: 0.1; pointer-events: none;}
+.ticket_faq.type2 .content::after {display: none;}
+.ticket_faq .content .ol_list {line-height: 2;}
+.ticket_faq .accordion_item:last-child .content {border-radius: 0 0 var(--rds) var(--rds);}
+
+@media (max-width: 1024px) { 
+	.ticket_faq .header {gap: 0.538rem; padding: 13px 14px 14px 20px;} /* 7 */
+	.ticket_faq .content .inner {padding: max(20px, var(--vSize27)) max(20px, 5.333vw * 0.8);}
+	.ticket_faq .content::after {width: 8.462rem;} /* 110 */
 }
 
 /* 그래프 */
