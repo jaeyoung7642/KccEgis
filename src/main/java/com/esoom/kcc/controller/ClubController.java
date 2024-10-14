@@ -123,6 +123,18 @@ public class ClubController {
 		mv.setViewName("club/ci");
 		return mv;
 	}
+	@RequestMapping(value = "/jrInfo", method = RequestMethod.GET)
+	public ModelAndView jrInfo(ModelAndView mv) throws Exception {
+		
+		mv.setViewName("youth/jrInfo");
+		return mv;
+	}
+	@RequestMapping(value = "/jrTeacher", method = RequestMethod.GET)
+	public ModelAndView jrTeacher(ModelAndView mv) throws Exception {
+		
+		mv.setViewName("youth/jrTeacher");
+		return mv;
+	}
 	@RequestMapping(value = "/seasonReview", method = RequestMethod.GET)
 	public ModelAndView seasonReview(ModelAndView mv,
 			@RequestParam(value = "season_year", defaultValue = "3") String season_year,

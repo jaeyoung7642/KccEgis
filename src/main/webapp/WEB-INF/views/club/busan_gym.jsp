@@ -401,7 +401,7 @@
 												<td>4h</td>
 											</tr>
 											<tr>
-												<td class="dth3">서부산(사상) 고속버스 터미널</td>
+												<td class="dth3 bd_lt">서부산(사상) 고속버스 터미널</td>
 												<td>387.5km</td>
 												<td>4h 20m</td>
 											</tr>
@@ -414,7 +414,7 @@
 												<td>4h 15m</td>
 											</tr>
 											<tr>
-												<td class="dth3">서부산(사상) 고속버스 터미널</td>
+												<td class="dth3 bd_lt">서부산(사상) 고속버스 터미널</td>
 												<td>390.1km</td>
 												<td>4h 15m</td>
 											</tr>

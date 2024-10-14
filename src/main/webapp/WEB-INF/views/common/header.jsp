@@ -83,11 +83,11 @@
 							</div>
 						</li> 
 						<li class="gnb_li hasSub">
-							<a href="#" class="gnb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">YOUTH</a>
+							<a href="jrInfo" class="gnb_link">YOUTH</a>
 							<div class="gnb_sub">
 								<ul class="sub_list">
-									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">JR.KCC 소개</a></li>
-									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">강사진 소개</a></li>
+									<li><a href="jrInfo" class="sub_link">JR.KCC 소개</a></li>
+									<li><a href="jrTeacher" class="sub_link">강사진 소개</a></li>
 								</ul>
 							</div>
 						</li> 
@@ -235,10 +235,10 @@
 					</ul>
 				</li> 
 				<li class="dth1">
-					<a href="#" class="dth1_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">YOUTH</a>
+					<a href="jrInfo" class="dth1_link">YOUTH</a>
 					<ul class="dth2">
-						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">JR.KCC 소개</a></li>
-						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">강사진소개</a></li>
+						<li><a href="jrInfo" class="dth2_link">JR.KCC 소개</a></li>
+						<li><a href="jrTeacher" class="dth2_link">강사진소개</a></li>
 					</ul>
 				</li> 
 				<li class="dth1">

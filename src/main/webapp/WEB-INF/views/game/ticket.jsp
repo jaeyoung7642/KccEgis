@@ -266,7 +266,7 @@
 								<tr>
 									<th scope="col">예매방법</th>
 									<th scope="col">내용</th>
-									<th scope="col">운영시간</th>
+									<th scope="col" class="m_rds_rt">운영시간</th>
 									<th scope="col" class="p_hide">비고</th>
 								</tr>
 							</thead>

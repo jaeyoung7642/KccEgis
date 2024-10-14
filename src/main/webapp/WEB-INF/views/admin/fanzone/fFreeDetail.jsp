@@ -292,7 +292,8 @@
 										<td colspan="2">
 											<!-- 댓글 작성 -->
 											<div class="comment_write frm_group">
-												<input type="text" class="frm_input" aria-label="댓글입력" id="tailWrite" onkeypress="handleKeyPress(event)">
+												<!-- <input type="text" class="frm_input" aria-label="댓글입력" id="tailWrite" onkeypress="handleKeyPress(event)"> -->
+												<textarea class="frm_input" aria-label="댓글입력" id="tailWrite"></textarea>
 												<button type="button" class="el_btn btn frm_btn deep" onclick="tailSave(${result.num});">댓글작성</button>
 											</div>
 										</td>
