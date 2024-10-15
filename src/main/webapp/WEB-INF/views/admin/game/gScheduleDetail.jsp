@@ -240,12 +240,12 @@
 										</div>
 									</td>
 								</tr>
-								<%-- <tr>
+								<tr>
 									<th scope="row"><label for="g_broad">중계방송</label></th>
 									<td>
 										<input type="text" class="frm_input w400" id="g_broad" name="tv_play"placeholder="SPOTV, SPOTV" value="${result.tv_play }">
 									</td>
-								</tr> --%>
+								</tr>
 								<tr>
 									<th scope="row">경기정보/기록</th>
 									<td>

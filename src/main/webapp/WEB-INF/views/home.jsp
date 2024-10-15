@@ -381,7 +381,7 @@
 												<c:if test="${teamScheduleList.away_team == '60' }">
 												<p class="time" id="countdown${status.index}" style="display:none;"></p>
 												</c:if>
-												<p class="broad">tvN SPORTS, TVING</p>
+												<p class="broad">${teamScheduleList.tv_play}</p>
 												<input type="hidden" id="game_date_${status.index}" value="${teamScheduleList.game_date_all}">
 											</div>
 										</div>

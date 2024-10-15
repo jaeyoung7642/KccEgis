@@ -757,12 +757,11 @@
 			  							</c:when>
 			  							<c:otherwise>
 			  							<div class="state broad">
-			  							<%-- <c:if test="${scheduleList.tv_play == '' || scheduleList.tv_play == null }">
+			  							<c:if test="${scheduleList.tv_play == '' || scheduleList.tv_play == null }">
 			  								중계방송<br> 
 											미정
 			  							</c:if> 
-			  								${scheduleList.tv_play } --%>
-			  							tvN SPORTS, TVING	
+			  								${scheduleList.tv_play }
 										</div>
 			  							</c:otherwise>
 			  							</c:choose>
