@@ -55,8 +55,8 @@
 								<ul class="sub_list">
 									<li><a href="coachList" class="sub_link">코칭스탭</a></li>
 									<li><a href="playerList" class="sub_link">선수</a></li>
-									<!-- <li><a href="cheer" class="sub_link">응원단</a></li> -->
-									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li>
+									<li><a href="cheer" class="sub_link">응원단</a></li>
+									<!-- <li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li> -->
 									<li><a href="cheer_song" class="sub_link">응원가</a></li>
 								</ul>
 							</div>
@@ -202,8 +202,8 @@
 								<li><a href="playerList?pos_code=s" class="dth3_link">- 군복무</a>
 							</ul>
 						</li>
-						<!-- <li><a href="cheer" class="dth2_link">응원단</a></li> -->
-						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li>
+						<li><a href="cheer" class="dth2_link">응원단</a></li>
+						<!-- <li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li> -->
 						<li><a href="cheer_song" class="dth2_link">응원가</a></li>
 					</ul>
 				</li> 
