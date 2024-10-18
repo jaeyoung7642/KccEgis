@@ -629,6 +629,7 @@
 							<li><a href="HITE" class="siteLink" target="_blank" rel="noreferrer" aria-label="하이트진로(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_11.png" alt=""></a></li>
 							<li><a href="ADVENTURER" class="siteLink" target="_blank" rel="noreferrer" aria-label="승부사온라인(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_09.png" alt=""></a></li>
 							<li><a href="PANSTAR" class="siteLink" target="_blank" rel="noreferrer" aria-label="팬스타크루즈(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_12.png" alt=""></a></li>
+							<li><a href="호식이두마리치킨" class="siteLink" target="_blank" rel="noreferrer" aria-label="호식이두마리치킨(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_14.png" alt=""></a></li>
 						</ul>
 					</div>
 				</div>

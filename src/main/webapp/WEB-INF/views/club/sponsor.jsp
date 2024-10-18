@@ -136,6 +136,9 @@
 							<li class="item">
 								<a href="PANSTAR" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="팬스타크루즈(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_04.svg" alt=""></a>
 							</li>
+							<li class="item">
+								<a href="호식이두마리치킨" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="호식이두마리치킨(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_06.png" alt=""></a>
+							</li>
 						</ul>
 					</article>
 				</div>
