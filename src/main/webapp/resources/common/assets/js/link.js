@@ -28,6 +28,7 @@ function siteLink() {
 		PANSTAR: 'https://www.panstarcruise.com/', // 팬스타크루즈
 		WILSON: 'https://kr.wilson.com/', // 윌슨
 		호식이두마리치킨: 'https://www.9922.co.kr/', // 호식이두마리치킨
+		MOMOS: 'https://www.momos.co.kr/', // 모모스
 	}
 
 	const updateLink = (link, url) => $(link).attr('href', linkURL[url]);
