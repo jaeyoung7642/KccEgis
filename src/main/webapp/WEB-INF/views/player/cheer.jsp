@@ -107,21 +107,23 @@
 								<div class="profile_box_list">
 									<dl>
 										<dt>생일</dt>
-										<dd>1996년 12월 3일</dd>
+										<dd>12월 3일</dd>
 									</dl>
 									<dl>
 										<dt>별명</dt>
-										<dd>거니</dd>
+										<dd>곰탱이</dd>
 									</dl>
 									<dl>
 										<dt>취미</dt>
-										<dd>여행</dd>
+										<dd>예능시청</dd>
+									</dl>
+									<dl>
+										<dt>MBTI</dt>
+										<dd>ISTJ</dd>
 									</dl>
 									<dl>
 										<dt>시즌 각오</dt>
-										<dd>최강 KCC의 부산에서의 첫 시즌!<br>
-											우승을 향해 팬 여러분들과 함께 힘찬 응원 만들어보도록 하겠습니다!!<br>
-											KCC 화이팅!!</dd>
+										<dd>챔피언 부산KCC! 이번시즌도 KCC의 승리를위해 <br>이 한 몸 바쳐보겠습니다! KCC 화이팅!</dd>
 									</dl>
 								</div>
 							</div>
@@ -132,34 +134,36 @@
 						<article class="cheer_item">
 							<div class="photo">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_02.png" alt="김진완 장내 아나운서 사진">
+									<img src="/resources/common/images/img/cheer/cheer_03.png" alt="손동혁 장내 아나운서 사진">
 								</div>
 							</div>
 							<!-- info -->
 							<div class="cheer_info">
 								<h4 class="el_role">장내 아나운서</h4>
 								<p class="el_name">
-									<span class="kor">김진완</span>
+									<span class="kor">손동혁</span>
 								</p>
 
 								<div class="profile_box_list">
 									<dl>
 										<dt>생일</dt>
-										<dd>1990년 11월 8일</dd>
+										<dd>12월 2일</dd>
 									</dl>
 									<dl>
 										<dt>별명</dt>
-										<dd>넘버텐</dd>
+										<dd>MC쏜</dd>
 									</dl>
 									<dl>
 										<dt>취미</dt>
-										<dd>독서, 작문</dd>
+										<dd>멍때리기, 운동, 사람만나기</dd>
+									</dl>
+									<dl>
+										<dt>MBTI</dt>
+										<dd>ESTP</dd>
 									</dl>
 									<dl>
 										<dt>시즌 각오</dt>
-										<dd>이번 시즌,<br>
-											우리에겐 오직 우승뿐이라는 생각으로 매 경기 팬분들께 더욱 즐거운
-											<span class="txt_wrap">농구를</span> 선사하겠습니다!</dd>
+										<dd>부산KCC 와 함께해서 정말 영광입니다. <br>열정과 실력,겸손을 바탕으로<br> 팬여러분들과 팀 승리를 위해 함께하겠습니다.</dd>
 									</dl>
 								</div>
 							</div>
@@ -177,62 +181,41 @@
 					<div class="page_header mb40">
 						<h4 class="el_heading lv1">CHEER LEADER</h4>
 					</div>
-
 					<ul class="cheer_list type2 bl_grid_list cols4b">
 						<li class="item">
 							<a href="cheer_profile?cheer_num=1" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="홍채연 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_01.png" alt="김수현 사진">
 								</div>
 								<div class="info">
-									<spna class="name">홍채연</spna>
+									<spna class="name">김수현</spna>
 								</div>
 							</a>
 						</li>
 						<li class="item">
 							<a href="cheer_profile?cheer_num=2" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="박세아 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_02.png" alt="감서윤 사진">
 								</div>
 								<div class="info">
-									<spna class="name">박세아</spna>
+									<spna class="name">감서윤</spna>
 								</div>
 							</a>
 						</li>
 						<li class="item">
 							<a href="cheer_profile?cheer_num=3" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="신채원 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_03.png" alt="홍재연 사진">
 								</div>
 								<div class="info">
-									<spna class="name">신채원</spna>
+									<spna class="name">홍재연</spna>
 								</div>
 							</a>
 						</li>
 						<li class="item">
 							<a href="cheer_profile?cheer_num=4" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="서유림 사진">
-								</div>
-								<div class="info">
-									<spna class="name">서유림</spna>
-								</div>
-							</a>
-						</li>
-						<li class="item">
-							<a href="cheer_profile?cheer_num=5" class="box">
-								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="이은지 사진">
-								</div>
-								<div class="info">
-									<spna class="name">이은지</spna>
-								</div>
-							</a>
-						</li>
-						<li class="item">
-							<a href="cheer_profile?cheer_num=6" class="box">
-								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="김가은 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_04.png" alt="김가은 사진">
 								</div>
 								<div class="info">
 									<spna class="name">김가은</spna>
@@ -240,9 +223,29 @@
 							</a>
 						</li>
 						<li class="item">
+							<a href="cheer_profile?cheer_num=5" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_05.png" alt="이지원 사진">
+								</div>
+								<div class="info">
+									<spna class="name">이지원</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
+							<a href="cheer_profile?cheer_num=6" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_06.png" alt="신채원 사진">
+								</div>
+								<div class="info">
+									<spna class="name">신채원</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
 							<a href="cheer_profile?cheer_num=7" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="허수미 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_07.png" alt="허수미 사진">
 								</div>
 								<div class="info">
 									<spna class="name">허수미</spna>
@@ -252,37 +255,7 @@
 						<li class="item">
 							<a href="cheer_profile?cheer_num=8" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="김유나 사진">
-								</div>
-								<div class="info">
-									<spna class="name">김유나</spna>
-								</div>
-							</a>
-						</li>
-						<li class="item">
-							<a href="cheer_profile?cheer_num=9" class="box">
-								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="김연정 사진">
-								</div>
-								<div class="info">
-									<spna class="name">김연정</spna>
-								</div>
-							</a>
-						</li>
-						<li class="item">
-							<a href="cheer_profile?cheer_num=10" class="box">
-								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="김수현 사진">
-								</div>
-								<div class="info">
-									<spna class="name">김수현</spna>
-								</div>
-							</a>
-						</li>
-						<li class="item">
-							<a href="cheer_profile?cheer_num=11" class="box">
-								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="강지유 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_08.png" alt="강지유 사진">
 								</div>
 								<div class="info">
 									<spna class="name">강지유</spna>
@@ -290,12 +263,62 @@
 							</a>
 						</li>
 						<li class="item">
-							<a href="cheer_profile?cheer_num=12" class="box">
+							<a href="cheer_profile?cheer_num=9" class="box">
 								<div class="el_img">
-									<img src="/resources/common/images/img/cheer/cheer_thumb_01.png" alt="이지원 사진">
+									<img src="/resources/common/images/img/cheer/cheer_thum_09.png" alt="김유나 사진">
 								</div>
 								<div class="info">
-									<spna class="name">이지원</spna>
+									<spna class="name">김유나</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
+							<a href="cheer_profile?cheer_num=10" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_10_1.png" alt="김가영 사진">
+								</div>
+								<div class="info">
+									<spna class="name">김가영</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
+							<a href="cheer_profile?cheer_num=11" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_11.png" alt="김연정 사진">
+								</div>
+								<div class="info">
+									<spna class="name">김연정</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
+							<a href="cheer_profile?cheer_num=12" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_12.png" alt="이정윤 사진">
+								</div>
+								<div class="info">
+									<spna class="name">이정윤</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
+							<a href="cheer_profile?cheer_num=13" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_13.png" alt="김나현 사진">
+								</div>
+								<div class="info">
+									<spna class="name">김나현</spna>
+								</div>
+							</a>
+						</li>
+						<li class="item">
+							<a href="cheer_profile?cheer_num=14" class="box">
+								<div class="el_img">
+									<img src="/resources/common/images/img/cheer/cheer_thum_14.png" alt="조정현 사진">
+								</div>
+								<div class="info">
+									<spna class="name">조정현</spna>
 								</div>
 							</a>
 						</li>

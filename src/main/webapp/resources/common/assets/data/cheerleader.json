@@ -1,206 +1,142 @@
 [
 	{ 
 		"id": "1",
-		"name": "홍채연",
+		"name": "김수현",
 		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"birthday": "4월 1일",
+		"nickname": "갓쑤",
+		"hobby": "여행",
+		"mbti": "ESTP",
+		"comment": "통합우승을 향해 몸이 부서져라 응원하겠습니다!\n KCC Let's go💙"
 	},
 	{ 
 		"id": "2",
-		"name": "박세아",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "감서윤",
+		"img": "cheerleader_02.png",
+		"birthday": "6월 10일",
+		"nickname": "까미",
+		"hobby": "노래듣기",
+		"mbti": "ISFP",
+		"comment": "밝은 에너지로 열심히 응원하겠습니다!\n 다시 한번 우승을 향해 KCC 화이팅💙"
 	},
 	{ 
 		"id": "3",
-		"name": "신채원",
-		"img": "cheerleader_01.png",
+		"name": "홍재연",
+		"img": "cheerleader_03.png",
 		"birthday": "7월 7일",
 		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"hobby": "영화보기, 러닝",
+		"mbti": "ISTJ",
+		"comment": "부산KCC가 다시한번 정상에 오르게되는 \n 여정에 함께할 수 있어서 행복합니다! \n 팬 여러분들과 하나되어 부산KCC 화이팅 💙"
 	},
 	{ 
 		"id": "4",
-		"name": "서유림",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "김가은",
+		"img": "cheerleader_04.png",
+		"birthday": "4월 24일",
+		"nickname": "가순이",
+		"hobby": "산책",
+		"mbti": "ISTP",
+		"comment": "이번 시즌도 우승을 위해 캐시 여러분들과 힘차게 응원하겠습니다💙"
 	},
 	{ 
 		"id": "5",
-		"name": "이은지",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "이지원",
+		"img": "cheerleader_05.png",
+		"birthday": "6월 19일",
+		"nickname": "지옹이",
+		"hobby": "영화보기",
+		"mbti": "INTP",
+		"comment": "올시즌도 우승을 위해 열심히 응원하겠습니다 KCC 화이팅 💙"
 	},
 	{ 
 		"id": "6",
-		"name": "김가은",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "신채원",
+		"img": "cheerleader_06.png",
+		"birthday": "2월 21일",
+		"nickname": "신채원",
+		"hobby": "디제잉",
+		"mbti": "ENFP",
+		"comment": "이번시즌도 KCC를 응원할 수 있게 되어서 너무나 영광입니다.\n 우승을 위해 최선을 다해서 응원하겠습니다💙"
 	},
 	{ 
 		"id": "7",
 		"name": "허수미",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"img": "cheerleader_07.png",
+		"birthday": "7월 14일",
+		"nickname": "허쑴",
+		"hobby": "독서",
+		"mbti": "ENTP",
+		"comment": "부산 KCC 이지스 올해도 우승을 위해 힘차게 달려봅시다! \n 승리를 향해 함께 높이 도약해요 GO KCC💙"
 	},
 	{ 
 		"id": "8",
-		"name": "김유나",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "강지유",
+		"img": "cheerleader_08.png",
+		"birthday": "9월 14일",
+		"nickname": "지예은",
+		"hobby": "테니스",
+		"mbti": "INFP",
+		"comment": "올 시즌도 우승할 준비 되셨죠?\n 팬 여러분들의 함성으로 사직이 뜨겁게 달궈질 수 있도록\n저도 열심히 응원하겠습니다💙"
 	},
 	{ 
 		"id": "9",
-		"name": "김연정",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "김유나",
+		"img": "cheerleader_09.png",
+		"birthday": "3월 3일",
+		"nickname": "주현영",
+		"hobby": "음악듣기",
+		"mbti": "ISTJ",
+		"comment": "올 시즌 푸른 빛 에너지 뿜뿜 준비되셨나요!?\n 준비되셨다면 Let’s go!!!!!"
 	},
 	{ 
 		"id": "10",
-		"name": "김수현",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "김가영",
+		"img": "cheerleader_10.png",
+		"birthday": "10월 4일",
+		"nickname": "가빵",
+		"hobby": "노래 들으면서 걷기",
+		"mbti": "ESTP",
+		"comment": "캐시분들과 열심히 응원할 준비 완료!! \n이번 시즌도 우승을 위해 열심히 응원하겠습니다\n KCC 화이팅!!💙"
 	},
 	{ 
 		"id": "11",
-		"name": "강지유",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "김연정",
+		"img": "cheerleader_11.png",
+		"birthday": "11월 23일",
+		"nickname": "연듕",
+		"hobby": "골프",
+		"mbti": "ENFJ",
+		"comment": "이번 시즌도 팬여러분들과 함께 \n부산 사직실내체육관을 푸른 응원물결로 가득 채워 \n다시 한번 우승까지 새로운 역사를 만들어 가고 싶습니다! \n부산 KCC 파이팅!!!💙"
 	},
 	{ 
 		"id": "12",
-		"name": "이지원",
-		"img": "cheerleader_01.png",
-		"birthday": "7월 7일",
-		"nickname": "홍스타",
-		"hobby": "영화보기, LP수집",
-		"comment": "이번시즌 KCC 이지스의 승리를 위해 열심히 응원하겠습니다!!\n 부산KCC 화이팅",
-		"career": [
-			"롯데 자이언츠 프로야구단",
-			"울산 현대 프로축구단",
-			"KT 소닉붐 프로농구단",
-			"OK금융그룹 읏맨 프로배구단",
-			"흥국생명 핑크스파이더스 프로배구단",
-			"KCC 이지스 프로농구단"
-		]
+		"name": "이정윤",
+		"img": "cheerleader_12.png",
+		"birthday": "4월 2일",
+		"nickname": "뉴니",
+		"hobby": "여행",
+		"mbti": "ISFP",
+		"comment": "부산 KCC 이지스 우승을 향해\n 더 큰 열정으로 팬분들과 함께 승리의 함성 외치겠습니다 Fighting💙"
+	},
+	{ 
+		"id": "13",
+		"name": "김나현",
+		"img": "cheerleader_13.png",
+		"birthday": "3월 13일",
+		"nickname": "난이",
+		"hobby": "누워있기",
+		"mbti": "ISTP",
+		"comment": "힘이 되도록 열심히 응원하겠습니다"
+	},
+	{ 
+		"id": "14",
+		"name": "조정현",
+		"img": "cheerleader_14.png",
+		"birthday": "11월 3일",
+		"nickname": "밀가루, 백설공주",
+		"hobby": "노래 들으면서 걷기",
+		"mbti": "ISTP",
+		"comment": "KCC와 함께 하게 되어 영광입니다!\n 최선을 다해서 응원할게요💙"
 	}
 ]

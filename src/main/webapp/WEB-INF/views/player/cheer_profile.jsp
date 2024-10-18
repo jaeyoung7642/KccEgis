@@ -115,15 +115,12 @@
 									<dd data-text="hobby"></dd>
 								</dl>
 								<dl>
-									<dt>시즌 각오</dt>
-									<dd data-text="comment"></dd>
+									<dt>MBTI</dt>
+									<dd data-text="mbti"></dd>
 								</dl>
 								<dl>
-									<dt>경력사항</dt>
-									<dd>
-										<ul class="el_desc_list" id="cheerCareer">
-										</ul>
-									</dd>
+									<dt>시즌 각오</dt>
+									<dd data-text="comment"></dd>
 								</dl>
 							</div>
 						</div>
