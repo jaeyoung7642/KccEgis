@@ -109,8 +109,7 @@
 		and A.game_code = #{game_code}
 		and A.game_no   = #{game_no}
 		and A.team_code = '60'
-		and NULLIF(A.play_min,'') is not null
-		and NULLIF(A.play_sec,'') is not null 
+		and (NULLIF(A.play_min,'') is not null or NULLIF(A.play_sec,'') is not null)
 	   ) A
 	   order by A.mvp DESC,A.play_min,A.play_sec
 	</select>

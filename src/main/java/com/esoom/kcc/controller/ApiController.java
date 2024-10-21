@@ -432,6 +432,8 @@ public class ApiController {
 				paramMap.put("md_score", jsonObj.get("md_score"));
 				Map<String,Object> inputtime =  (Map<String, Object>)jsonObj.get("inputtime");
 				paramMap.put("inputtime", inputtime.get("date").toString().substring(0,23));
+				Map<String,Object> updatetime =  (Map<String, Object>)jsonObj.get("updatetime");
+				paramMap.put("updatetime", updatetime.get("date").toString().substring(0,23));
 				cnt += service.insertTeamDailyList(paramMap);
 			}
 			if(cnt<jsonArray.size()) {
@@ -611,6 +613,8 @@ public class ApiController {
 				paramMap.put("fo", jsonObj.get("fo"));
 				Map<String,Object> inputtime =  (Map<String, Object>)jsonObj.get("inputtime");
 				paramMap.put("inputtime", inputtime.get("date").toString().substring(0,23));
+				Map<String,Object> updatetime =  (Map<String, Object>)jsonObj.get("updatetime");
+				paramMap.put("updatetime", updatetime.get("date").toString().substring(0,23));
 				cnt += service.insertPlayerDailyList(paramMap);
 			}
 			if(cnt<jsonArray.size()) {

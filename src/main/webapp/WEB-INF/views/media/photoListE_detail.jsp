@@ -254,7 +254,7 @@
 								<a href="scheduleResult?season_code=${photoDetailSchedule.season_code}&game_code=${photoDetailSchedule.game_code}&game_no=${photoDetailSchedule.game_no}" class="el_btn btn2 blue pmax170">
 									<span class="el_ico ico_vs_w"></span> 경기 결과 보기
 								</a>
-								<a href="#" class="el_btn btn2 blue pmax170">
+								<a href="movieHDetail?game_date=${photoDetailSchedule.game_date }" class="el_btn btn2 blue pmax170">
 									<span class="el_ico ico_photo_w"></span> 경기 영상 보기
 								</a>
 							</div>

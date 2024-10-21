@@ -326,11 +326,11 @@
 							<div class="footer btn_area xm_show">
 								<c:if test="${currentMap.home_team == '60' }">
 									<a href="teamRecord?team_code=${currentMap.away_team}#TEAMRECORD" class="el_btn btn1 pmd"><span class="el_ico ico_record"></span> 팀&팀 기록비교</a>
+									<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 pmd siteLink"><span class="el_ico ico_ticket"></span> 티켓예매</a>
 								</c:if>
 								<c:if test="${currentMap.away_team == '60' }">
 									<a href="teamRecord?team_code=${currentMap.home_team}#TEAMRECORD" class="el_btn btn1 pmd"><span class="el_ico ico_record"></span> 팀&팀 기록비교</a>
 								</c:if>
-								<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 pmd siteLink"><span class="el_ico ico_ticket"></span> 티켓예매</a>
 							</div>
 						</div>
 						<!-- //slide -->

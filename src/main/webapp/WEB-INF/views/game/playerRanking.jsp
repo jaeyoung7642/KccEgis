@@ -698,9 +698,9 @@
 									<thead>
 										<tr>
 											<th scope="col">경기수</th>
-											<th scope="col">2점합계</th>
-											<th scope="col">3점합계</th>
-											<th scope="col">자유투합계</th>
+											<th scope="col">2점슛</th>
+											<th scope="col">3점슛</th>
+											<th scope="col">자유투</th>
 											<th scope="col">득점합계</th>
 											<th scope="col">득점평균</th>
 										</tr>

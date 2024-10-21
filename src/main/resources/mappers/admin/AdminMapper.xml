@@ -168,7 +168,7 @@
 		select
 		B.team_name_1,A.season_code,A.game_code,A.rank,A.team_code,
 		A.game_count,A.t_win,A.t_loss,A.conti_win,A.conti_loss,format(A.win_rate,
-		'##0.##') win_rate,A.win_diff
+		'##0.000') win_rate,A.win_diff
 		from
 		KCC_EGIS.kbl_data.team_daily_rank A,
 		KCC_EGIS.kbl_data.code_team B
@@ -198,11 +198,8 @@
 		and
 		A.game_code = #{game_code}
 		and A.game_no = #{game_no}
-		and A.team_code =
-		#{team_code}
-		and NULLIF(A.play_min,'') is not null
-		and
-		NULLIF(A.play_sec,'') is not null
+		and A.team_code = #{team_code}
+		and (NULLIF(A.play_min,'') is not null or NULLIF(A.play_sec,'') is not null)
 		order by A.score DESC
 	</select>
 	<select id="gScheduleDetail" resultType="map">
@@ -235,8 +232,7 @@
 		where
 		t1.season_code= #{season_code}
 		and t1.game_code = #{game_code}
-		and t1.game_no =
-		#{game_no}
+		and t1.game_no = #{game_no}
 	</select>
 	<select id="getCoachProfileListCount" resultType="int">
 		select count(*) from KCC_EGIS.egis.TBL_PLAYER
@@ -2659,7 +2655,7 @@ VALUES (
 		,#{foul_tot},#{tfb},#{fb},#{p_score},#{score},#{foulout}
 		,#{win},#{loss},#{draw}
 		,#{inout},#{inout1},#{r_count},#{s_count},#{pd_score},#{md_score}
-		,#{inputtime}
+		,#{inputtime},#{updatetime}
 		)
 	</insert>
 	<insert id="insertPlayerDailyList" parameterType="map">
@@ -2672,7 +2668,7 @@ VALUES (
 		,#{t_o},#{wft},#{woft},#{idf},#{tf},#{ef}
 		,#{foul_tot},#{fb},#{p_score},#{score}
 		,#{inout},#{inout1}
-		,#{inputtime},#{fo}
+		,#{inputtime},#{fo},#{updatetime}
 		)
 	</insert>
 	<insert id="insertTeamSum" parameterType="map">

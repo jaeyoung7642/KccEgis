@@ -6,7 +6,7 @@
 <mapper namespace="TeamRankMapper">
 <select id="teamRankHome" resultType="map">
 		select top 1 season_code,game_code,rank,team_code,
-		game_count,t_win,t_loss,conti_win,conti_loss,format(win_rate, '##0.##') win_rate,win_diff 
+		game_count,t_win,t_loss,conti_win,conti_loss,format(win_rate, '##0.000') win_rate,win_diff 
 		from 
 		KCC_EGIS.kbl_data.team_daily_rank
 		where
@@ -16,7 +16,7 @@
 	</select>
 <select id="getTeamRank" resultType="map">
 		select season_code,game_code,rank,team_code,
-		game_count,t_win,t_loss,conti_win,conti_loss,format(win_rate, '##0.##') win_rate,win_diff 
+		game_count,t_win,t_loss,conti_win,conti_loss,format(win_rate, '##0.000') win_rate,win_diff 
 		,wl_three
 		from 
 		KCC_EGIS.kbl_data.team_daily_rank
@@ -31,7 +31,7 @@
 		(SELECT 
 		    t1.season_code, t1.game_code, t1.rank, t1.team_code,
 		    t1.game_count, t1.t_win, t1.t_loss, t1.conti_win, t1.conti_loss,
-		    FORMAT(t1.win_rate, '##0.##') AS win_rate, t1.win_diff, t1.wl_three , max_conti_win , max_conti_loss
+		    FORMAT(t1.win_rate, '##0.000') AS win_rate, t1.win_diff, t1.wl_three , max_conti_win , max_conti_loss
 		FROM 
 		    KCC_EGIS.kbl_data.team_daily_rank t1
 		JOIN (
@@ -213,7 +213,7 @@
 			    ISNULL(tf, 0) AS tf,
 			    ISNULL(bf, 0) AS bf,
 			    ISNULL(ef, 0) AS ef,
-			    ISNULL(ROUND((CONVERT(float, foul_tot) / NULLIF(CONVERT(float, game_count), 0) * 100), 1), 0.0) AS foul_tot,
+			    ISNULL(ROUND((CONVERT(float, foul_tot) / NULLIF(CONVERT(float, game_count), 0)), 1), 0.0) AS foul_tot,
 			    ISNULL(tfb, 0) AS tfb,
 			    ISNULL(fb, 0) AS fb,
 			    ISNULL(p_score, 0) AS p_score,
