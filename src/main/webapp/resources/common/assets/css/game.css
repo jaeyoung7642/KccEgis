@@ -277,7 +277,7 @@
 .game_result .score.win {color: var(--primary);}
 
 .best_record {--gw: 26px; --scw: min(8.438vw * 1.15, 162px);} /* 1920 - 162 */
-.best_record .row {display: grid; grid-template-columns: 52.173% var(--gw) 1fr; text-align: center;}
+.best_record .row {display: grid; /* grid-template-columns: 52.173% var(--gw) 1fr; */ grid-template-columns: 1fr var(--gw) 1fr; text-align: center;}
 .best_record .content .row {padding: 14px 0;}
 
 .best_record .content .col.ct {flex-direction: column;}
@@ -285,6 +285,8 @@
 .best_record .content :is(.name, .part) {font-size: var(--size14-12); color: var(--dark01); font-weight: var(--font-md2);}
 .best_record .content .name {margin-top: 0.3572em;}
 .best_record .content .player .el_img img {-o-object-position: center top;object-position: center top;}
+.best_record .content .player .el_img,
+.best_record .content .team .el_logo {margin-inline: auto;}
 .best_record .content .el_graph {--h: 93px;}
 .best_record .content .col.rt {flex-direction: row-reverse;}
 
@@ -292,6 +294,8 @@
 	.best_record .header .col.lt {padding-right: calc(var(--scw) * 0.3704);}
 	.best_record .header .col.rt {padding-left: calc(var(--scw) * 0.6173);}
 	.best_record .content .row {height: 163px;}
+	.best_record .content :is(.player, .team) {width: var(--size110-80);}
+	.best_record .content .name {line-height: 1;}
 	.best_record .content .col:is(.lt, .rt) {gap: var(--g); justify-content: flex-end;}
 }
 @media (max-width: 1024px) {
