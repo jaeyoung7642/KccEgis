@@ -213,6 +213,7 @@
    					$(".remove").removeAttr("disabled");
    				}
    	            $('#seasonRecord').html(result);
+   	         	swipeEvent();
    	         	fillEmptyCellsWithZero();
    	         },
    	         error:function(){
@@ -234,6 +235,7 @@
    					$(".remove").attr("disabled", true);
    				}
    	            $('#seasonRecord').html(result);
+   	         	swipeEvent();
    	         	fillEmptyCellsWithZero();
    	         },
    	         error:function(){

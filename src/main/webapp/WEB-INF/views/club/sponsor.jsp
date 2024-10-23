@@ -128,6 +128,9 @@
 								<a href="WILSON" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="윌슨(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_05.png" alt=""></a>
 							</li>
 							<li class="item">
+								<a href="UNICITY" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="UNICITY(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_08.png" alt=""></a>
+							</li>
+							<li class="item">
 								<a href="HITE" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="하이트진로(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_02.svg" alt=""></a>
 							</li>
 							<li class="item">

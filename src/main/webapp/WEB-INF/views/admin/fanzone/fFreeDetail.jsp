@@ -19,6 +19,16 @@
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script>
 	<script src="/ckeditor/ckeditor.js"></script>
 	<script>
+	window.onload = function() {
+		var titleChecked = document.getElementById('title').checked;
+	    var contentChecked = document.getElementById('content').checked;
+	    var writerChecked = document.getElementById('writer').checked;
+	    var tailChecked = document.getElementById('tail').checked;
+	    var tailWriterChecked = document.getElementById('tailWriter').checked;
+		if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
+			document.getElementById("title").checked = true;
+	    }
+	}
 	function showYn(num,chkDel){
 		if (confirm("노출여부를 변경하시겠습니까?") == true) {
 			$.ajax({

@@ -346,9 +346,6 @@
 								<c:if test="${nextMap.away_team == '60' }">
 								<span class="el_ccl away"><span class="blind">원정경기</span></span>
 								</c:if>
-								<c:if test="${nextMap.home_team == '60' }">
-								<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 pmd siteLink xm_hide"><span class="el_ico ico_ticket"></span> 티켓예매</a>
-								</c:if>
 							</div>
 							<div class="content">
 								<div class="team lt">

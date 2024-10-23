@@ -626,6 +626,7 @@
 							<li><a href="KCCSILICONE" class="siteLink" target="_blank" rel="noreferrer" aria-label="KCC실리콘(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_06.png" alt=""></a></li>
 							<li><a href="BMK" class="siteLink" target="_blank" rel="noreferrer" aria-label="BNK금융그룹(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_07.png" alt=""></a></li>
 							<li><a href="WILSON" class="siteLink" target="_blank" rel="noreferrer" aria-label="윌슨(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_13.png" alt=""></a></li>
+							<li><a href="UNICITY" class="siteLink" target="_blank" rel="noreferrer" aria-label="UNICITY(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_16.png" alt=""></a></li>
 							<li><a href="HITE" class="siteLink" target="_blank" rel="noreferrer" aria-label="하이트진로(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_11.png" alt=""></a></li>
 							<li><a href="ADVENTURER" class="siteLink" target="_blank" rel="noreferrer" aria-label="승부사온라인(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_09.png" alt=""></a></li>
 							<li><a href="PANSTAR" class="siteLink" target="_blank" rel="noreferrer" aria-label="팬스타크루즈(새창열림)"><img src="/resources/common/images/sponsor/main_sponsor_12.png" alt=""></a></li>

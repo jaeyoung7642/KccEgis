@@ -40,6 +40,16 @@
 	<script src="/resources/common/assets/js/gsap.min.js" defer></script> <!-- main only -->
 	<script src="/resources/common/assets/js/ScrollTrigger.min.js" defer></script> <!-- main only -->
 	<script>
+	window.onload = function() {
+		var titleChecked = document.getElementById('title').checked;
+	    var contentChecked = document.getElementById('content').checked;
+	    var writerChecked = document.getElementById('writer').checked;
+	    var tailChecked = document.getElementById('tail').checked;
+	    var tailWriterChecked = document.getElementById('tailWriter').checked;
+		if(!titleChecked && !contentChecked && !writerChecked && !tailChecked && !tailWriterChecked){
+			document.getElementById("title").checked = true;
+	    }
+    }
 	function contentPage(page){
 		var num = $("#num").val();
 		$.ajax({

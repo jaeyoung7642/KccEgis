@@ -24,7 +24,8 @@
 				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
 			where t1.season_code='45' 
 		and (t1.home_team= 60 or t1.away_team= 60)
-		<![CDATA[and t1.game_date < (SELECT CONVERT(date,GETDATE()))]]>
+		<![CDATA[and isnull(t4.score, 0)>0 and isnull(t3.score, 0)>0
+		and t1.game_date <= (SELECT CONVERT(date,GETDATE()))]]>
 		) A
 		order by A.game_date desc
 	</select>
@@ -49,7 +50,8 @@
 				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
 			where t1.season_code='45' 
 		and (t1.home_team= 60 or t1.away_team= 60)
-		<![CDATA[and t1.game_date > (SELECT CONVERT(date,GETDATE()))]]>
+		and isnull(t4.score, 0)=0 and isnull(t3.score, 0)=0
+		<![CDATA[and t1.game_date >= (SELECT CONVERT(date,GETDATE()))]]>
 		) A
 		order by A.game_date
 	</select>
@@ -384,7 +386,7 @@
 	<select id="teamAndteamListPrev" resultType="map">
 		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
 		from KCC_EGIS.kbl_data.team_daily_list a
-		WHERE a.season_code ='41'
+		WHERE a.season_code ='43'
 		and a.team_code ='60'
 		and a.game_code ='01'
 		<if test='team_code != null'>

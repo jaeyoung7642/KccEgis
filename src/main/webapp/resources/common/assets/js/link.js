@@ -23,7 +23,7 @@ function siteLink() {
 		BMK: 'https://www.bnkfg.com/', // BNK금융그룹
 		PLAYERS: 'https://withplayers.com/', // 플레이어스
 		ADVENTURER: 'https://www.adventurer.co.kr', // 승부사온라인
-		UNICITY: 'http://www.makelifebetter.co.kr/', // 유니시티코리아
+		UNICITY: 'https://korea.unicity.com/', // 유니시티코리아
 		HITE: 'https://www.hitejinro.com/', // 하이트진로
 		PANSTAR: 'https://www.panstarcruise.com/', // 팬스타크루즈
 		WILSON: 'https://kr.wilson.com/', // 윌슨
