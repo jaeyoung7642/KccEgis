@@ -460,6 +460,21 @@ public class AdminController {
 		return String.valueOf(result);
 	}
 	@ResponseBody
+	@RequestMapping(value = "/tvUpdate", method = RequestMethod.GET)
+	public String tvUpdate(String tv_play,String season_code,String game_code,String game_no)throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("tv_play", tv_play);
+		paramMap.put("season_code",season_code);
+		paramMap.put("game_code", game_code);
+		paramMap.put("game_no", game_no);
+		int result = service.updateTeamScheduleOnair(paramMap);
+		String result2 = "false";
+		if(result>0) {
+			result2 = "true";
+		}
+		return result2;
+	}
+	@ResponseBody
 	@RequestMapping(value = "/updateState", method = RequestMethod.GET)
 	public String updateState(int num,ModelAndView mv,String str)throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -2439,7 +2454,6 @@ public class AdminController {
 		String game_date = request.getParameter("game_date")!=null?request.getParameter("game_date"):"";
 		String game_start = request.getParameter("game_start")!=null?request.getParameter("game_start"):"";
 		String stadium_code = request.getParameter("stadium_code");
-		String tv_play = request.getParameter("tv_play")!=null?request.getParameter("tv_play"):"";
 		String hteam = request.getParameter("hteam");
 		String ateam = request.getParameter("ateam");
 		String[] hScore = new String[5];
@@ -2460,7 +2474,6 @@ public class AdminController {
 		paramMap.put("game_date", game_date.replaceAll("-", ""));
 		paramMap.put("game_start", game_start.replaceAll(":", ""));
 		paramMap.put("stadium_code", stadium_code);
-		paramMap.put("tv_play", tv_play);
 		paramMap.put("hteam", hteam);
 		paramMap.put("ateam", ateam);
 		List<Map<String,Object>> scoreList = new ArrayList<Map<String,Object>>();
@@ -2527,13 +2540,6 @@ public class AdminController {
 		if( result < 0) {
 			//스케줄실패
 			System.out.println("스케줄");
-			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
-			mv.setViewName("admin/etc/gScheduleList");
-		}
-		int result2 = service.updateTeamScheduleOnair(paramMap);
-		if( result2 <0) {
-			//티비온에어실패
-			System.out.println("티비");
 			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
 			mv.setViewName("admin/etc/gScheduleList");
 		}

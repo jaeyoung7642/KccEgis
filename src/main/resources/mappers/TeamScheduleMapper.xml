@@ -244,10 +244,11 @@
 		and game_no   = #{game_no}
 	</select>
 	<select id="teamDailyMap" resultType="map">
-		select *, ROUND((convert(float,fg)/convert(float,fg_a) * 100), 1) AS fgp,
-		ROUND((convert(float,ft)/convert(float,ft_a) * 100), 1) AS ftp,
-		ROUND((convert(float,threep)/convert(float,threep_a) * 100), 1) AS threepp,
-		(o_r + d_r) r_tot 
+		select *
+		,ROUND((convert(float,fg)/nullif(convert(float,fg_a), 0) * 100), 1) AS fgp
+		,ROUND((convert(float,ft)/nullif(convert(float,ft_a), 0) * 100), 1) AS ftp
+		,ROUND((convert(float,threep)/nullif(convert(float,threep_a), 0) * 100), 1) AS threepp
+		,(o_r + d_r) r_tot 
 		from KCC_EGIS.kbl_data.team_daily_list
 		where
 		season_code =   #{season_code}

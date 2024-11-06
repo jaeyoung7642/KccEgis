@@ -137,6 +137,9 @@
 								<a href="ADVENTURER" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="승부사온라인(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_03.svg" alt=""></a>
 							</li>
 							<li class="item">
+								<a href="BUSAN" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="부산교통공사(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_09.png" alt=""></a>
+							</li>
+							<li class="item">
 								<a href="PANSTAR" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="팬스타크루즈(새창열림)"><img src="/resources/common/images/img/sponsor/biz_sponsor_04.svg" alt=""></a>
 							</li>
 							<li class="item">

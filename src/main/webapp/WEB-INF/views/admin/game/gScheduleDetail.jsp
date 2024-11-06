@@ -146,7 +146,7 @@
 		        },
 		        error: function() {
 		        	loaderClose();
-		        	alert("서버 오류!!");
+		        	alert("서버에 문제가 있습니다.");
 				}
 		   });   
 		}
@@ -172,6 +172,33 @@
 		        },
 		        error: function() {
 		        	loaderClose();
+		        	alert("서버에 문제가 있습니다.");
+				}
+		   });   
+		}
+	function tvUpdate(){
+		var tv_play = $("#g_broad").val();
+		var season_code = $("#season_code").val();
+		var game_code = $("#game_code").val();
+		var game_no = $("#game_no").val();
+       	   $.ajax({
+		   	 type : "GET",            // HTTP method type(GET, POST) 형식이다.
+		        url : "/kccadm/tvUpdate",      // 컨트롤러에서 대기중인 URL 주소이다.
+		        data : {
+		        	"season_code":season_code,
+			       	 "game_code":game_code,
+			       	 "game_no":game_no,	        	
+		       	 	"tv_play": tv_play
+		        },            // Json 형식의 데이터이다.
+		        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+		        	if(res=='true'){
+		        		alert("중계방송을 변경했습니다.");
+		        		location.reload();
+				        }else{
+				        	alert("변경 실패했습니다.");
+				        }
+		        },
+		        error: function() {
 		        	alert("서버에 문제가 있습니다.");
 				}
 		   });   
@@ -243,7 +270,8 @@
 								<tr>
 									<th scope="row"><label for="g_broad">중계방송</label></th>
 									<td>
-										<input type="text" class="frm_input w400" id="g_broad" name="tv_play"placeholder="SPOTV, SPOTV" value="${result.tv_play }">
+										<input type="text" class="frm_input w400" id="g_broad" placeholder="SPOTV, SPOTV" value="${result.tv_play }">
+										<button type="button" class="el_btn md line" onclick="tvUpdate()">중계방송변경</button>
 									</td>
 								</tr>
 								<tr>

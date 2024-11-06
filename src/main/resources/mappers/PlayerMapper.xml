@@ -135,8 +135,7 @@
 		and A.game_code = #{game_code}
 		and A.game_no   = #{game_no}
 		and A.team_code = #{team_code}
-		and NULLIF(A.play_min,'') is not null
-		and NULLIF(A.play_sec,'') is not null
+		and (NULLIF(A.play_min,'') is not null or NULLIF(A.play_sec,'') is not null)
 		order by A.score DESC
 	</select>
 	<select id="playerTop" resultType="map">
@@ -152,8 +151,7 @@
 	      AND A.game_code = #{game_code}
 	      AND A.game_no = #{game_no}
 	      AND A.team_code = #{team_code}
-	      AND NULLIF(A.play_min, '') IS NOT NULL
-	      AND NULLIF(A.play_sec, '') IS NOT NULL 
+	      and (NULLIF(A.play_min,'') is not null or NULLIF(A.play_sec,'') is not null)
 	    ORDER BY A.score DESC, A.play_min, A.play_sec
 	) AS score
 	UNION ALL
@@ -169,8 +167,7 @@
 	      AND A.game_code = #{game_code}
 	      AND A.game_no = #{game_no}
 	      AND A.team_code = #{team_code}
-	      AND NULLIF(A.play_min, '') IS NOT NULL
-	      AND NULLIF(A.play_sec, '') IS NOT NULL 
+	      and (NULLIF(A.play_min,'') is not null or NULLIF(A.play_sec,'') is not null)
 	    ORDER BY r_tot DESC, A.play_min, A.play_sec
 	) AS rebound
 	UNION ALL
@@ -186,8 +183,7 @@
 	      AND A.game_code = #{game_code}
 	      AND A.game_no = #{game_no}
 	      AND A.team_code = #{team_code}
-	      AND NULLIF(A.play_min, '') IS NOT NULL
-	      AND NULLIF(A.play_sec, '') IS NOT NULL 
+	      and (NULLIF(A.play_min,'') is not null or NULLIF(A.play_sec,'') is not null) 
 	    ORDER BY A.a_s DESC, A.play_min, A.play_sec
 	) AS assist
 	</select>
