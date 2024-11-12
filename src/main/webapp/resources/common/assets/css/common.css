@@ -200,7 +200,7 @@ html.lenis, html.lenis body {height: auto;}
 /* .lenis.lenis-smooth iframe {pointer-events: none;} */
 :is(.lenis-stopped, .noscroll) :is(.ly_header, .ly_allMenu, .snb_2dth_area .inner.fixed) {padding-right: var(--scrollbar);}
 :is(.lenis-stopped, .noscroll) :is(.gotoTop) {margin-right: var(--scrollbar);}
-.preload {transition: none !important;}
+/* .preload {transition: none !important;} */
 
 /* skip navigation */
 #accessibility {position:absolute; z-index:99999; top:0; left:5%; width:90%}
