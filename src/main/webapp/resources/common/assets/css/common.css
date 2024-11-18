@@ -334,8 +334,9 @@ html:not(.is-mobile) body :is(.bg_dark) *::-webkit-scrollbar-thumb {background: 
 :is(.up) .ly_header.fixed {top: 0; box-shadow: var(--shadow2);}
 .ly_header:is(.fixed),
 :is(.gnbOn, .allOpen) .ly_header {--color: var(--dark01); --bg: #fff;}
-.header_inner {--col: 160px; height: var(--header); display: grid; grid-template-areas: "sns gnb utils"; grid-template-columns: var(--col) auto var(--col); align-items: center;}
+.header_inner {--col: 160px; height: var(--header); min-width: 340px; display: grid; grid-template-areas: "sns gnb utils"; grid-template-columns: var(--col) auto var(--col); align-items: center;}
 .header_logo {position: relative; z-index: 10;}
+.header_logo a {display: block;}
 .header_logo img {height: var(--logo);}
 .navigation {grid-area: gnb;}
 .navigation .inner {height: 100%;}
@@ -664,3 +665,15 @@ html:not(.is-mobile) body :is(.bg_dark) *::-webkit-scrollbar-thumb {background: 
 		transform: translateY(0) skewY(0);
 	}
 }
+
+/* season skin */
+[class*="skin"] .header_logo::after {content: ""; position: absolute; inset: 0; background: url('../../images/season/logo_back.png') no-repeat center/contain; z-index: -1; transform: scale(1.058); filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .3)); pointer-events: none;} 
+[class*="skin"] .header_inner {--skinw: 220px; --skinw: calc(var(--logo) * 3.143);}
+[class*="skin"] .header_inner::before,
+[class*="skin"] .header_inner::after {content: ""; position: absolute; width: var(--skinw); aspect-ratio: 1/0.86364; top: 0; left: 50%; transform: translateX(-50%); background-repeat: no-repeat; background-position: center; background-size: contain; pointer-events: none;}
+[class*="skin"] .header_inner::before {z-index: -1;}
+[class*="skin"] .header_inner::after {z-index: 10;}
+.skin-winter .header_inner::before {background-image: url('../../images/season/winter_2024.png');}
+.skin-christmas .header_inner::before {background-image: url('../../images/season/christmas_2024.png');}
+.skin-christmas .header_inner::after {background-image: url('../../images/season/christmas_2024_top.png');}
+.skin-newyear .header_inner::before {background-image: url('../../images/season/newyear_2025.png');}

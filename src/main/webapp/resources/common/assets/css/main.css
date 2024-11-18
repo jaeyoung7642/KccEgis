@@ -145,7 +145,7 @@ body {background: var(--primary);}
 .visual_slider .anim .sec_line::after {animation: lineAnim .4s var(--delay) var(--easing) both;}
 
 @media (max-width: 1024px) {
-	.sec_visual {height: 122.667vw; max-height: 100vh;}
+	.sec_visual {height: 122.667vw; max-height: 100vh; min-height: 460px;}
 	.visual_slider {--paging: 8.261%; --fa: .9;}
 	.visual_slider .content .ly_inner {--y: 5px;}
 	.visual_slider .content .tit {--fz: clamp(19.5px, 5.2vw, var(--size40));}
@@ -580,4 +580,24 @@ body {background: var(--primary);}
 
 @media (max-width: 1024px){
 	.popup .popup_inner {justify-content: center; align-items: center;}
+}
+
+/* season skin */
+[class*="skin"] .visual_slider {--skinw: 355px; --skinw: min(18.49vw * 1.5, 355px);}
+[class*="skin"] .visual_slider .sec_line {display: none;}
+
+[class*="skin"] .visual_slider::before  {content: ""; position: absolute; right: 0; bottom: 0; width: var(--skinw); aspect-ratio: 1; background-repeat: no-repeat; background-position: center; background-size: contain; pointer-events: none; z-index: 10;}
+.skin-winter .visual_slider::before {background-image: url('../../images/season/winter_big_2024.png');}
+.skin-christmas .visual_slider::before {background-image: url('../../images/season/christmas_big_2024.png');}
+.skin-newyear .visual_slider::before {background-image: url('../../images/season/newyear_big_2025.png');}
+
+@media (min-width: 1025px) {
+	[class*="skin"] .visual_slider .swiper-pagination-bullet-active .tit {text-shadow: 0 1px 5px rgba(0, 0, 0, .7);}
+}
+
+@media (max-width: 1024px) {
+	[class*="skin"] .visual_slider {--skinw: max(33.867vw,  127px);}
+	.skin-winter .visual_slider::before {background-image: url('../../images/season/winter_big_2024_mo.png');}
+	.skin-christmas .visual_slider::before {background-image: url('../../images/season/christmas_big_2024_mo.png');}
+	.skin-newyear .visual_slider::before {background-image: url('../../images/season/newyear_big_2025_mo.png');}
 }
