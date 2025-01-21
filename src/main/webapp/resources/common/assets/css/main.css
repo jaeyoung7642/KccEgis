@@ -590,6 +590,7 @@ body {background: var(--primary);}
 .skin-winter .visual_slider::before {background-image: url('../../images/season/winter_big_2024.png');}
 .skin-christmas .visual_slider::before {background-image: url('../../images/season/christmas_big_2024.png');}
 .skin-newyear .visual_slider::before {background-image: url('../../images/season/newyear_big_2025.png');}
+.skin-lunar .visual_slider::before {background-image: url('../../images/season/lunar_big_2025.png');}
 
 @media (min-width: 1025px) {
 	[class*="skin"] .visual_slider .swiper-pagination-bullet-active .tit {text-shadow: 0 1px 5px rgba(0, 0, 0, .7);}
@@ -600,4 +601,5 @@ body {background: var(--primary);}
 	.skin-winter .visual_slider::before {background-image: url('../../images/season/winter_big_2024_mo.png');}
 	.skin-christmas .visual_slider::before {background-image: url('../../images/season/christmas_big_2024_mo.png');}
 	.skin-newyear .visual_slider::before {background-image: url('../../images/season/newyear_big_2025_mo.png');}
+	.skin-lunar .visual_slider::before {background-image: url('../../images/season/lunar_big_2025_mo.png');}
 }
