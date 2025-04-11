@@ -639,12 +639,13 @@ function sliders() {
 			const space = $slider.data('space');
 			const delay = $slider.data('delay');
 			const pageType = $slider.data('pagetype');
+			const onedSld = $slider.find('.swiper-slide').length <= 1;
 			let options = {}
 			let swiper;
 
 			// default option
 			const defaultOption = {
-				loop: $slider.hasClass('loop') ? true : false,
+				loop: $slider.hasClass('loop') && !onedSld  ? true : false,
 				autoplay: !$slider.hasClass('auto') ? false : {
 					delay: delay ? delay : sldDelay,
 				},
