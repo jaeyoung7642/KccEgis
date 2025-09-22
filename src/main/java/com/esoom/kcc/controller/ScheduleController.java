@@ -76,7 +76,7 @@ public class ScheduleController {
 		//이전경기
 		Map<String,Object> prevTeamSchedule = teamScheduleService.prevTeamScheduleHome(paramMap);
 		//예정경기 2개
-		List<Map<String,Object>> teamScheduleList = teamScheduleService.teamScheduleHome(paramMap);
+		List<Map<String,Object>> teamScheduleList = teamScheduleService.teamScheduleHome2(paramMap);
 		if(teamScheduleList.size()==2) {//둘다있을때
 			Map<String, Object> paramMap2 = new HashMap<String, Object>();
 			Map<String,Object> currentMap = teamScheduleList.get(0);
@@ -233,7 +233,7 @@ public class ScheduleController {
 		//이전경기
 		Map<String,Object> prevTeamSchedule = teamScheduleService.prevTeamScheduleHome(paramMap);
 		//예정경기 2개
-		List<Map<String,Object>> teamScheduleList = teamScheduleService.teamScheduleHome(paramMap);
+		List<Map<String,Object>> teamScheduleList = teamScheduleService.teamScheduleHome2(paramMap);
 		if(teamScheduleList.size()==2) {//둘다있을때
 			Map<String, Object> paramMap2 = new HashMap<String, Object>();
 			Map<String,Object> currentMap = teamScheduleList.get(0);

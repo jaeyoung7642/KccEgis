@@ -93,6 +93,8 @@ public class MemberController {
 	private MailService mailService;
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private TeamScheduleService teamScheduleService;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	 //http 통신을 위한 함수
@@ -842,6 +844,8 @@ public class MemberController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView mypage(ModelAndView mv,HttpServletRequest request,HttpSession session) throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		Map<String,Object> nextHomeMap = teamScheduleService.nextHomeSchedule(paramMap);
+		mv.addObject("nextHomeMap", nextHomeMap);
 		Map<String,Object> loginUserMap = (Map<String, Object>) session.getAttribute("loginUserMap");
 		String member_id = loginUserMap.get("id").toString();
 		paramMap.put("member_id", member_id);

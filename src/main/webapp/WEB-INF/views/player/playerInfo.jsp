@@ -293,7 +293,7 @@
 										</span>
 									</a>
 								</div>
-
+								<c:if test="${playerMap.pl_actioncut_2 != null}">
 								<div class="item">
 									<label class="frm_radio frm_radio_box">
 										<input type="radio" class="fav_input" name="p_favorite" aria-label="상세사진2" data-img="/resources/common/images/upload/player/${playerMap.pl_actioncut_2}" <c:if test="${likePlayerMap.img == playerMap.pl_actioncut_2}">checked</c:if>>
@@ -320,7 +320,8 @@
 										</span>
 									</a>
 								</div>
-
+								</c:if>
+								<c:if test="${playerMap.pl_actioncut_3 != null}">
 								<div class="item">
 									<label class="frm_radio frm_radio_box">
 										<input type="radio" class="fav_input" name="p_favorite" aria-label="상세사진3" data-img="/resources/common/images/upload/player/${playerMap.pl_actioncut_3}" <c:if test="${likePlayerMap.img == playerMap.pl_actioncut_3}">checked</c:if>>
@@ -347,6 +348,7 @@
 										</span>
 									</a>
 								</div>
+								</c:if>
 							</form>
 						</article>
 						<!-- //favorite -->

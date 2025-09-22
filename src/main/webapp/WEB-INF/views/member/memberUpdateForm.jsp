@@ -222,7 +222,7 @@
 						</div>
 						<!-- 가장 최근 예정 홈경기 일정 출력 -->
 						<div class="info">
-							<p>다가오는 홈 경기는 <strong>2024년 10월 19일(토) 14:00</strong> 입니다.</p>
+							<!-- <p>다가오는 홈 경기는 <strong>2024년 10월 19일(토) 14:00</strong> 입니다.</p> -->
 						</div>
 						<div class="btns">
 							<a href="#" class="el_btn btn_mb2">

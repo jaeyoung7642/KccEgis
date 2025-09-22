@@ -273,4 +273,21 @@ public interface AdminService {
 	
 	public List<Map<String,Object>> proposalList(Map<?, ?> paramMap) throws Exception;
 	
+	public int mergeAdmin(Map<?, ?> paramMap)throws Exception;
+	
+	public int getTotalAdminListCount(Map<?, ?> paramMap);
+	
+	public int getAdminListCount(Map<?, ?> paramMap);
+	
+	public int getAdminLogListCount(Map<?, ?> paramMap);
+	
+	public List<Map<String,Object>> adminLogList(Map<?, ?> paramMap) throws Exception;
+	
+	public List<Map<String,Object>> adminList(Map<?, ?> paramMap) throws Exception;
+	
+	public int deleteAdmin(Map<String, Object> paramMap) throws Exception;
+	
+	public Map<String, Object> adminMap(Map<?, ?> paramMap) throws Exception;
+	
+	public int changeAdminPwd(Map<String, Object> paramMap) throws Exception;
 }

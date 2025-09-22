@@ -17,7 +17,9 @@
 									<c:forEach items="${playerYearMonthList}" var="playerYearMonthList" varStatus="status">
 										<tr>
 											<td>
-												<a href="scheduleResult?season_code=${playerYearMonthList.season_code }&game_code=${playerYearMonthList.game_code}&game_no=${playerYearMonthList.game_no}" class="el_btn goto">${playerYearMonthList.game_date}</a> <!-- 해당 경기 결과 페이지 이동 -->
+												<c:if test="${playerYearMonthList.team_code eq '60' || playerYearMonthList.away_team eq '60'}"><a href="scheduleResult?season_code=${playerYearMonthList.season_code }&game_code=${playerYearMonthList.game_code}&game_no=${playerYearMonthList.game_no}" class="el_btn goto"></c:if>
+													${playerYearMonthList.game_date}
+												</a> <!-- 해당 경기 결과 페이지 이동 -->
 											</td>
 										</tr>
 									</c:forEach>

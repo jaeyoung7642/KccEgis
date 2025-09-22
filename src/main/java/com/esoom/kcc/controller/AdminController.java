@@ -69,6 +69,27 @@ public class AdminController {
 		mv.setViewName("admin/common/adminHeader");
 		return mv;
 	}
+	@ResponseBody
+    @RequestMapping(value = "/loginAdmin", method = RequestMethod.POST)
+    public String loginAdmin(@RequestParam("id") String id,
+                             @RequestParam("password") String pwd) throws Exception{
+        System.out.println("id: " + id);
+        System.out.println("pwd: " + pwd);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("id", id);
+        Map<String, Object> userInfo = service.getAdmin(paramMap);
+        String result;
+        if(userInfo != null) {
+            if(pwd.equals(userInfo.get("pwd"))) {
+                result = "1"; // 로그인 성공
+            } else {
+                result = "2"; // 비밀번호 틀림
+            }
+        } else {
+            result = "3"; // 아이디 없음
+        }
+        return result;
+    }
 	@RequestMapping(value = "/adminLoginForm", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv,HttpServletRequest request) {
 		String id = "";
@@ -105,7 +126,6 @@ public class AdminController {
 	            response.addCookie(cookie);
 	        }
 			// 비밀번호 암호화된 정보와 입력한 비밀번호 비교
-//			if (bcryptPasswordEncoder.matches(pwd, userInfo.get("member_pwd").toString())) { // 로그인 성공
 			if (pwd.equals(userInfo.get("pwd"))) { // 로그인 성공
 				String ip = ipUtil.getClientIP(request);
 				paramMap.put("ip", ip);
@@ -1013,6 +1033,7 @@ public class AdminController {
 		String flag = request.getParameter("flag");
 		String part = request.getParameter("part");
 		String wtype = request.getParameter("wtype");
+		String keyword_tag = request.getParameter("keyword_tag");
 		String linkurl = request.getParameter("linkurl");
 		String etc1 = request.getParameter("etc1");
 		String game_date = (request.getParameter("game_date") != null ? request.getParameter("game_date").replace("-", "") : "");
@@ -1034,6 +1055,7 @@ public class AdminController {
 		paramMap.put("flag", flag);
 		paramMap.put("part", part);
 		paramMap.put("wtype", wtype);
+		paramMap.put("keyword_tag", keyword_tag);
 		paramMap.put("linkurl", linkurl);
 		paramMap.put("etc1", etc1);
 		paramMap.put("game_date", game_date);
@@ -2788,5 +2810,140 @@ public class AdminController {
 			result.put("content2", Jsoup.clean(content, Safelist.none()).replaceAll("&nbsp;", ""));
 		}
 		return result;
+	}
+	@RequestMapping(value = "/aAdminList", method = RequestMethod.GET)
+	public ModelAndView aAdminList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "select", defaultValue = "") String select) throws Exception{
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		// 현재 페이지
+		int currentPage = (page != null) ? page : 1;
+		// 한페이지당 보여줄 row
+		int boardLimit = 15;
+		paramMap.put("keyWord", keyWord);
+		paramMap.put("select", select);
+		//토탈리스트 카운트
+		int totalListCount = service.getTotalAdminListCount(paramMap);
+		int listCount = service.getAdminListCount(paramMap);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		paramMap.put("limit", pi.getBoardLimit());
+		paramMap.put("currentPage", currentPage);
+		List<Map<String, Object>> adminList = service.adminList(paramMap);
+		mv.addObject("totalListCount", totalListCount);
+		mv.addObject("adminList", adminList);
+		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("keyWord", keyWord);
+		mv.addObject("select", select);
+		mv.setViewName("admin/admin/aAdminList");
+		return mv;
+	}
+	@RequestMapping(value = "/aAdminWrite", method = RequestMethod.GET)
+	public ModelAndView aAdminWrite(ModelAndView mv,
+			@RequestParam(value = "num", required = false) String num) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		if(num != null && !"".equals(num)) {
+			paramMap = new HashMap<String, Object>();
+			paramMap.put("num", num);
+			
+			Map<String, Object> adminMap = service.adminMap(paramMap);
+			resultMap.putAll(adminMap);
+			System.out.println(resultMap.toString());
+		}
+		mv.addObject("result", resultMap);
+		mv.setViewName("admin/admin/aAdminWrite");
+		return mv;
+	}
+	@RequestMapping(value = "/mergeAdmin", method = RequestMethod.POST)
+	public ModelAndView mergeAdmin(ModelAndView mv,HttpServletRequest request)throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		String num = request.getParameter("num");
+		String id = request.getParameter("adminId");
+		String name = request.getParameter("adminName");
+		String pwd = request.getParameter("pwd");
+		String email = request.getParameter("email");
+		String chk_grade = request.getParameter("chk_grade");
+		paramMap.put("num", num);
+		paramMap.put("id", id);
+		paramMap.put("name", name);
+		paramMap.put("pwd", pwd);
+		paramMap.put("email", email);
+		paramMap.put("chk_grade", chk_grade);
+		
+		int result = service.mergeAdmin(paramMap);
+		if (result > 0) {
+			mv.setViewName("redirect:/kccadm/aAdminList");
+		} else {
+			mv.addObject("msg", "서버 오류! 관리자에게 문의 바랍니다.");
+			mv.setViewName("admin/admin/aAdminList");
+		}
+		return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/deleteAdmin", method = RequestMethod.GET)
+	public String deleteAdmin(ModelAndView mv,int num)throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		int result=service.deleteAdmin(paramMap);
+		return String.valueOf(result);
+	}
+	@RequestMapping(value = "/aAdminDetail", method = RequestMethod.GET)
+	public ModelAndView aAdminDetail(ModelAndView mv,
+			@RequestParam(value = "num") String num) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap = new HashMap<String, Object>();
+			paramMap.put("num", num);
+			
+		Map<String, Object> adminMap = service.adminMap(paramMap);
+		resultMap.putAll(adminMap);
+		mv.addObject("result", resultMap);
+		mv.setViewName("admin/admin/aAdminDetail");
+		return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/changeAdminPwd", method = RequestMethod.POST)
+	public Map<String, Object> changeAdminPwd(@RequestParam(value = "pwd") String pwd,
+			@RequestParam(value = "num") String num) throws Exception{
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		paramMap.put("pwd", pwd);
+		int changePwd = service.changeAdminPwd(paramMap);
+		if(changePwd>0) {
+			result.put("result", true);
+		}else {
+			result.put("result", false);
+		}
+		return result;
+	}
+	@RequestMapping(value = "/aAdminLogList", method = RequestMethod.GET)
+	public ModelAndView aAdminLogList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "select", defaultValue = "") String select) throws Exception{
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		// 현재 페이지
+		int currentPage = (page != null) ? page : 1;
+		// 한페이지당 보여줄 row
+		int boardLimit = 15;
+		paramMap.put("keyWord", keyWord);
+		paramMap.put("select", select);
+		int listCount = service.getAdminLogListCount(paramMap);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		paramMap.put("limit", pi.getBoardLimit());
+		paramMap.put("currentPage", currentPage);
+		List<Map<String, Object>> adminLogList = service.adminLogList(paramMap);
+		mv.addObject("adminLogList", adminLogList);
+		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("keyWord", keyWord);
+		mv.addObject("select", select);
+		mv.setViewName("admin/admin/aAdminLogList");
+		return mv;
 	}
 }

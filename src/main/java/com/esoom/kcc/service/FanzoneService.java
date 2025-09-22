@@ -30,6 +30,8 @@ public interface FanzoneService {
 	
 	public Map<String, Object> prevFreeDetail(Map<?, ?> paramMap) throws Exception;
 	
+	public int getBeforeListCnt(Map<?, ?> paramMap);
+	
 	public int getWallpaperListCount(Map<?, ?> paramMap);
 	
 	public int getNoticeListCount(Map<?, ?> paramMap);

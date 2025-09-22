@@ -137,7 +137,7 @@
 									<th scope="row"><label for="tags">키워드 태그</label></th>
 									<td>
 										<div class="frm_group">
-											<input type="text" class="frm_input w400" name="keyword_tag" id="keyword_tag" placeholder="태그를 입력하세요." readonly value="${result.keyword_tag}">
+											<input type="text" class="frm_input w400" name="keyword_tag" id="keyword_tag" placeholder="태그를 입력하세요." value="${result.keyword_tag}">
 										</div>
 									</td>
 								</tr>

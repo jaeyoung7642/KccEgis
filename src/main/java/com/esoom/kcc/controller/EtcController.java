@@ -86,6 +86,11 @@ public class EtcController {
 		mv.setViewName("etc/policy");
 		return mv;
 	}
+	@RequestMapping(value = "/policy_250211", method = RequestMethod.GET)
+	public ModelAndView policy_250211(ModelAndView mv) throws Exception {
+		mv.setViewName("common/policy_250211");
+		return mv;
+	}
 	@RequestMapping(value = "/policy_240722", method = RequestMethod.GET)
 	public ModelAndView policy_240722(ModelAndView mv) throws Exception {
 		mv.setViewName("common/policy_240722");
@@ -109,6 +114,11 @@ public class EtcController {
 	@RequestMapping(value = "/policy_230728", method = RequestMethod.GET)
 	public ModelAndView policy_230728(ModelAndView mv) throws Exception {
 		mv.setViewName("common/policy_230728");
+		return mv;
+	}
+	@RequestMapping(value = "/policy_250326", method = RequestMethod.GET)
+	public ModelAndView policy_250326(ModelAndView mv) throws Exception {
+		mv.setViewName("common/policy_250326");
 		return mv;
 	}
 }

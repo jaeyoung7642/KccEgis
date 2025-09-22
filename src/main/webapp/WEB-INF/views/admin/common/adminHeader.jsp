@@ -34,6 +34,7 @@
 						<li><a href="cKccAdList" class="gnb_link"><span>CLUB</span></a></li>
 						<li><a href="ePopupList" class="gnb_link"><span>ETC</span></a></li>
 						<li><a href="mMemberList" class="gnb_link"><span>MEMBER</span></a></li>
+						<li><a href="aAdminList" class="gnb_link"><span>ADMIN</span></a></li>
 						</c:if>
 					</ul>
 				</nav>

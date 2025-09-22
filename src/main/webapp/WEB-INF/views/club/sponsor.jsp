@@ -101,7 +101,7 @@
 								<a href="KCCGLASS" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="KCC글라스(새창열림)"><img src="/resources/common/images/img/sponsor/sponsor_02.svg" alt=""></a>
 							</li>
 							<li class="item">
-								<a href="HOMECC" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="HOMECC(새창열림)"><img src="/resources/common/images/img/sponsor/sponsor_03_1.png" alt=""></a>
+								<a href="HOMECC" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="HOMECC(새창열림)"><img src="/resources/common/images/img/sponsor/sponsor_03_2.png" alt=""></a>
 							</li>
 							<li class="item">
 								<a href="KCCWORLD" class="el_img siteLink" target="_blank" rel="noreferrer" aria-label="KCC건설(새창열림)"><img src="/resources/common/images/img/sponsor/sponsor_04.svg" alt=""></a>

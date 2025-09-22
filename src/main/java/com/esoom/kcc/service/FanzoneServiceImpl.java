@@ -78,6 +78,10 @@ public class FanzoneServiceImpl implements FanzoneService {
 		return result;
 	}
 	@Override
+	public int getBeforeListCnt(Map<?, ?> paramMap) {
+		return dao.getListSearchCount("FanzoneMapper.getBeforeListCnt",paramMap);
+	}
+	@Override
 	public int getWallpaperListCount(Map<?, ?> paramMap) {
 		return dao.getListSearchCount("FanzoneMapper.getWallpaperListCount",paramMap);
 	}

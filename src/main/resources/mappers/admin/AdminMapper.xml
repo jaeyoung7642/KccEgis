@@ -9,6 +9,11 @@
 		KCC_EGIS.egis.TBL_ADMIN
 		WHERE id = #{id}
 	</select>
+	<select id="adminMap" resultType="map">
+		SELECT * FROM
+		KCC_EGIS.egis.TBL_ADMIN
+		WHERE num = #{num}
+	</select>
 	<select id="gScheduleList" resultType="map">
 		select t1.season_code, t1.game_no, t1.game_code, t1.away_team,
 		t1.home_team, t1.game_date,
@@ -2824,4 +2829,141 @@ VALUES (
 		KCC_EGIS.egis.TBL_MAIN_GOODS
 		where num = #{num}
 	</delete>
+	<select id="adminList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
+		,id
+		,name
+		,email
+		,chk_grade
+		from KCC_EGIS.egis.TBL_ADMIN
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				<if test="select != null">
+					<if test='select == "adminName"'>
+						and name like CONCAT('%', #{keyWord}, '%')
+					</if>
+					<if test='select == "adminId"'>
+						and id like CONCAT('%', #{keyWord}, '%')
+					</if>
+				</if>
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getAdminListCount" resultType="int">
+		select count(*) from (
+		select *
+		from KCC_EGIS.egis.TBL_ADMIN
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				<if test="select != null">
+					<if test='select == "adminName"'>
+						and name like CONCAT('%', #{keyWord}, '%')
+					</if>
+					<if test='select == "adminId"'>
+						and id like CONCAT('%', #{keyWord}, '%')
+					</if>
+				</if>
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="getTotalAdminListCount" resultType="int">
+		select count(*)
+		from (
+		select * from KCC_EGIS.egis.TBL_ADMIN
+		) A
+	</select>
+	<update id="mergeAdmin" parameterType="map">
+		merge into
+		KCC_EGIS.egis.TBL_ADMIN A
+		using
+		(
+		select #{num} AS num
+		,#{id} AS id
+		,#{pwd} AS pwd
+		,#{name} AS name
+		,#{email} AS email
+		,#{chk_grade} AS chk_grade
+		) B
+		on A.num = B.num
+		WHEN MATCHED THEN
+		UPDATE set
+		A.name = B.name
+		,A.email = B.email
+		,A.chk_grade = B.chk_grade
+		WHEN not MATCHED THEN
+		INSERT (
+		id
+		,pwd
+		,name
+		,email
+		,chk_grade
+		)
+		values (
+		B.id
+		,B.pwd
+		,B.name
+		,B.email
+		,B.chk_grade
+		);
+
+	</update>
+	<delete id="deleteAdmin" parameterType="map">
+		delete from
+		KCC_EGIS.egis.TBL_ADMIN
+		where num = #{num}
+	</delete>
+	<update id="changeAdminPwd" parameterType="map">
+		update
+		KCC_EGIS.egis.TBL_ADMIN
+		set pwd = #{pwd}
+		where
+		num= #{num}
+
+	</update>
+	<select id="adminLogList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
+		,id
+		,ip
+		,FORMAT(login_date, 'yyyy-MM-dd HH:mm') AS login_date
+		from KCC_EGIS.egis.TBL_ADMIN_LOG
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and id like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<select id="getAdminLogListCount" resultType="int">
+		select count(*) from (
+		select num
+		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
+		,id
+		,ip
+		,FORMAT(login_date, 'yyyy-MM-dd HH:mm') AS login_date
+		from KCC_EGIS.egis.TBL_ADMIN_LOG
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and id like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+	</select>
 </mapper>

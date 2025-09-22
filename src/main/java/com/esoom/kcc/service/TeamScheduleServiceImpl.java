@@ -29,6 +29,11 @@ public class TeamScheduleServiceImpl implements TeamScheduleService {
 		return result;
 	}
 	@Override
+	public Map<String, Object> nextHomeSchedule(Map<?, ?> paramMap) throws Exception {
+		Map<String, Object> result =  (Map<String, Object>) dao.getMap("TeamScheduleMapper.nextHomeSchedule", paramMap);
+		return result;
+	}
+	@Override
 	public Map<String, Object> scheduleDetail(Map<?, ?> paramMap) throws Exception {
 		Map<String, Object> result =  (Map<String, Object>) dao.getMap("TeamScheduleMapper.scheduleDetail", paramMap);
 		return result;
@@ -41,6 +46,11 @@ public class TeamScheduleServiceImpl implements TeamScheduleService {
 	@Override
 	public List<Map<String, Object>> teamScheduleHome(Map<?, ?> paramMap) throws Exception {
 		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("TeamScheduleMapper.teamScheduleHome", paramMap);
+		return result;
+	}
+	@Override
+	public List<Map<String, Object>> teamScheduleHome2(Map<?, ?> paramMap) throws Exception {
+		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("TeamScheduleMapper.teamScheduleHome_back", paramMap);
 		return result;
 	}
 	@Override

@@ -197,7 +197,7 @@
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -206,6 +206,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS A
 			) AS C
 			WHERE rn in (1,2,3)
@@ -219,7 +222,7 @@
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -228,6 +231,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS B
 			) AS D
 			WHERE rn in (1,2,3)
@@ -241,7 +247,7 @@
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -250,6 +256,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS E
 			) AS F
 			WHERE rn in (1,2,3)
@@ -263,7 +272,7 @@
 				,G.avg DESC, G.play_min, G.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.s_t) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'STEAL' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -272,6 +281,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS G
 			) AS H
 			WHERE rn in (1,2,3)
@@ -284,7 +296,7 @@
 				,I.avg DESC, I.play_min, I.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'BLOCK' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -293,6 +305,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS I
 			) AS J
 			WHERE rn in (1,2,3)
@@ -307,7 +322,7 @@
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -316,6 +331,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS A
 			) AS C
 			WHERE C.player_no = #{player_no}
@@ -329,7 +347,7 @@
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -338,6 +356,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS B
 			) AS D
 			WHERE D.player_no = #{player_no}
@@ -351,7 +372,7 @@
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -360,6 +381,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS E
 			) AS F
 			WHERE F.player_no = #{player_no}
@@ -373,7 +397,7 @@
 				,G.avg DESC, G.play_min, G.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.s_t) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'STEAL' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -382,6 +406,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS G
 			) AS H
 			WHERE H.player_no = #{player_no}
@@ -394,7 +421,7 @@
 				,I.avg DESC, I.play_min, I.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'BLOCK' as cate
-			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
+			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
 			          AND a.season_code = '45'
 			          AND a.game_count != 0
@@ -403,6 +430,9 @@
 			          and b.pl_check = 'Y'
 			          and b.pl_show = 'Y'
 			          and b.pl_pos_code != 's'
+			          and a.season_code = c.season_code
+			          and b.pl_no = c.player_no
+			          and c.team_code = '60'
 			    ) AS I
 			) AS J
 			WHERE J.player_no = #{player_no}

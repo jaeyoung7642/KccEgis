@@ -12,6 +12,43 @@
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/common.css">
 	<link rel="stylesheet" href="/resources/common/admin/assets/css/login.css"> <!-- login only -->
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script> 
+	<script>
+	function login() {
+		var form = $("#adminForm");
+		var id = $("#id").val();
+		var pwd = $("#password").val();
+		if(id == ''){
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		if(pwd == ''){
+			alert("비밀번호를 입력해주세요.");
+			return false;
+		}
+		$.ajax({
+            type: "POST",
+            url: "loginAdmin",
+            data: { "id": id, "password": pwd },
+            success: function(res){
+                console.log("res:", res);
+                if(res == "1"){
+                    $("#authCode").show();
+                    $("#authBtn").show();
+                    $("#loginBtn").hide();
+                } else {
+                    alert("아이디 및 비밀번호를 확인해주세요.");
+                }
+            },
+            error: function(xhr, status, error){
+                console.log("xhr:", xhr);
+                console.log("status:", status);
+                console.log("error:", error);
+                alert("서버에 문제가 있습니다.");
+            }
+        });
+	
+	}
+	</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
 <body class="page-login">
 	<div id="wrap">
@@ -31,9 +68,11 @@
 							<div class="col forms">
 								<input type="text" class="frm_input" name="id" id="id" aria-label="아이디" placeholder="아이디를 입력해주세요" required="required" value="${remember}">
 								<input type="password" class="frm_input" name="password" id="password" aria-label="비밀번호" placeholder="비밀번호를 입력해주세요" required="required">
+								<input type="text" class="frm_input" name="authCode" id="authCode" aria-label="인증번호" placeholder="인증번호를 입력해주세요" required="required" style="display:none;" >
 							</div>
 							<div class="col btns">
-								<button type="submit" class="el_btn btn_submit">로그인</button>
+								<button type="button" id="loginBtn" class="el_btn btn_submit">로그인</button>
+								<button type="submit" id="authBtn"  class="el_btn btn_submit" style="display:none;">인증</button>
 							</div>
 						</div>
 						<div class="row">
@@ -67,5 +106,15 @@
 		    gtag('js', new Date());
 		    gtag('config', 'UA-180137319-1');
 		  </script>
+		  <script>
+			var loginMsg = "${loginMsg}"
+			if(loginMsg != ""){
+				alert(loginMsg);
+			}
+			$("#loginBtn").on("click", function(e){
+			    e.preventDefault(); // form submit 방지
+			    login();
+			});
+		</script>
 </body>
 </html>

@@ -394,6 +394,14 @@
 			where info_num = #{num}
 		) A 
 	</select>
+	<select id="getBeforeListCnt" resultType="int">
+		SELECT count(*) from KCC_EGIS.egis.TBL_FREE
+		<![CDATA[
+		where #{wdate} < wdate 
+		and chk_del = 'N'
+		and flag = 'N'
+		]]>
+	</select>
 	<select id="getWallpaperListCount" resultType="int">
 		select count(*) from (
 			select * from KCC_EGIS.egis.TBL_WALLPAPER

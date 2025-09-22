@@ -71,7 +71,9 @@
 				<div class="ly_inner sm">
 					<div class="page_header">
 						<select class="frm_select pmax240 ml_auto" id="changePolicy" aria-label="시행일자 선택">
-							<option value="240722" selected>시행일자 2024년 7월 22일</option>
+							<option value="250326" selected>시행일자 2025년 3월 26일</option>
+							<option value="250211">시행일자 2025년 2월 11일</option>
+							<option value="240722">시행일자 2024년 7월 22일</option>
 							<option value="240322">시행일자 2024년 3월 22일</option>
 							<option value="230915">시행일자 2023년 9월 15일</option>
 							<option value="230728">시행일자 2023년 7월 28일</option>
@@ -81,7 +83,7 @@
 					<div class="bl_card agreement_card type2 m_full mt30">
 						<div class="terms_area auto">
 							<!-- 내용 -->
-							<div class="js-include" id="policyInclude" data-include="policy_240722"></div>
+							<div class="js-include" id="policyInclude" data-include="policy_250326"></div>
 							<!-- //내용 -->
 						</div>
 					</div>

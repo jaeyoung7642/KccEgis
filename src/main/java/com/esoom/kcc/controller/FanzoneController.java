@@ -199,7 +199,7 @@ public class FanzoneController {
 	}
 	@RequestMapping(value = "/freeListDetail", method = RequestMethod.GET)
 	public ModelAndView freeListDetail(ModelAndView mv,HttpServletRequest request,String num,@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "listpage") Integer listpage,
+			@RequestParam(value = "listpage", required = false) Integer listpage,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
 			@RequestParam(value = "title", defaultValue = "N") String title,
 			@RequestParam(value = "content", defaultValue = "N") String content,
@@ -253,6 +253,18 @@ public class FanzoneController {
 		List<Map<String, Object>> topFreeList = service.topFreeList(paramMap);
 		mv.addObject("topFreeList", topFreeList);
 		
+		if(listpage != null) {
+		}else {
+			String wdate = freeDetail.get("wdate").toString();
+			Map<String, Object> paramMap2 = new HashMap<String, Object>();
+			paramMap2.put("wdate", wdate);
+			int beforeListCnt = service.getBeforeListCnt(paramMap2);
+			if(beforeListCnt == 0) {
+				listpage = 1;
+			}else {
+				listpage = beforeListCnt/boardLimit2 +1;
+			}
+		}
 		// 상위리스트 카운트
 		int listCount2 = service.getFreeListCount(paramMap);
 		PageInfo pi2 = Pagination.getPageInfo(listpage, listCount2, boardLimit2);

@@ -312,6 +312,7 @@
 		where game_date  = #{game_date}
 		and a.stadium_code = b.stadium_code 
 		and a.season_code = b.season_code 
+		and (a.home_team = '60' or a.away_team = '60')
 	</select>
 	<select id="tailList" resultType="map">
 		SELECT * 

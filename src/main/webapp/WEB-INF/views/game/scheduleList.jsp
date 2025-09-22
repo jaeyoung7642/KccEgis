@@ -72,7 +72,7 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alertPop('아직 등록된 영상이 없습니다.');
+					alertPop('등록된 영상이 없습니다.');
 				}else{
 					location.href = "movieListHDetail?num="+result.num;
 				}
@@ -92,7 +92,7 @@
 			},
 			success : function(result) {
 				if(result.detailYn == 'N'){
-					alertPop('아직 등록된 사진이 없습니다.');
+					alertPop('등록된 사진이 없습니다.');
 				}else{
 					location.href = "photoListHDetail?num="+result.num;
 				}
@@ -152,6 +152,7 @@
 			</div>
 
 			<!-- 최신 경기일정 -->
+			<c:if test="${teamScheduleListSize != 0 }">
 			<section class="section">
 				<div class="ly_inner md">
 					<div class="game_card_list">
@@ -498,7 +499,11 @@
 						
 						<!-- slide --> 
 						<div class="item bl_card p_hide">
-							<p>대체이미지</p>
+							<div class="el_img no_game">
+								<picture>
+									<img src="/resources/common/images/game/season_out.jpg" alt="">
+								</picture>
+							</div>
 						</div>
 						<!-- //slide -->
 						</c:if>
@@ -513,6 +518,7 @@
 					</div>
 				</div>
 			</section>
+			</c:if>
 			<!-- //최신 경기일정 -->
 			
 			<!-- 경기일정 리스트 -->

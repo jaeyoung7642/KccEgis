@@ -112,9 +112,9 @@
 						<a href="FACEBOOK" target="_blank" rel="noreferrer" aria-label="페이스북(새창열림)" class="el_btn ccl fa siteLink">
 							<img src="/resources/common/images/common/sns_facebook.svg" alt="">
 						</a>
-						<a href="NAVERPOST" target="_blank" rel="noreferrer" aria-label="네이버포스트(새창열림)" class="el_btn ccl na siteLink">
+						<!-- <a href="NAVERPOST" target="_blank" rel="noreferrer" aria-label="네이버포스트(새창열림)" class="el_btn ccl na siteLink">
 							<img src="/resources/common/images/common/sns_post.svg" alt="">
-						</a>
+						</a> -->
 					</div>
 					<!-- //sns -->
 

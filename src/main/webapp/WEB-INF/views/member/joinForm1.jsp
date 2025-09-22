@@ -43,11 +43,6 @@
 			alertPop('이용약관에 동의해 주세요.');
 			return;
 		}
-		var check2 = $("input[name='check2']:checked").val();
-		if(check2 != 'Y'){
-			alertPop('개인정보 수집 및 이용에 동의해주세요.');
-			return;
-		}
 		var form = $("#myForm");
 		form.submit();
 	}
@@ -158,7 +153,7 @@
 										<dd class="cont">
 											<div class="terms_area auto">
 												<!-- 내용 -->
-												<p>구단 홈페이지 회원가입을 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오.</p>
+												<p>개인정보 보호법 제15조 제1항 제4호에 따라, 정보주체와 체결한 계약의 이행을 위해 정보주체의 동의없이 아래의 개인정보를 수집·이용합니다.</p>
 
 												<p class="terms_tit lv2">개인정보 수집 및 이용 내역</p>
 												
@@ -194,16 +189,8 @@
 														</div>
 													</div>
 												</div>
-												<p>※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다.<br> 그러나 동의를 거부한 경우 홈페이지 이용에 제한을 받을 수 있습니다. </p>
 												<!-- //내용 -->
 											</div>
-										</dd>
-										<p>위와 같이 개인정보를 수집•이용하는데 동의하십니까?</p>
-										<dd class="forms"> 
-											<label class="frm_checkbox type1">
-												<input type="checkbox" class="js_check_each" required name="check2" value="Y">
-												<span>개인정보 수집•이용에 동의합니다. (필수)</span>
-											</label>
 										</dd>
 									</dl>
 								</article>

@@ -146,12 +146,12 @@ function showYn(num,show){
 					<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					<c:if test="${maxPage > 0}">
-					<a href="pPlayerProfileList?page=1&keyWord=${keyWord}&select=${select}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+					<a href="pPlayerProfileList?page=1&keyWord=${keyWord}&select=${select}&show_yn=${show_yn}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					
 					<!-- 이전 블럭으로 이동 -->
 					<c:if test="${startPage gt 1 }">
-                       	<a href="pPlayerProfileList?page=${startPage-1}&keyWord=${keyWord}&select=${select}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+                       	<a href="pPlayerProfileList?page=${startPage-1}&keyWord=${keyWord}&select=${select}&show_yn=${show_yn}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
                     </c:if>
 					<c:if test="${startPage eq 1 }">
                        	<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
@@ -163,7 +163,7 @@ function showYn(num,show){
                     	<a href="#" class="page_link current">${p}</a>
                     </c:if>
                       <c:if test="${p ne currentPage }">
-                      	<c:url var="pPlayerProfileList" value="pPlayerProfileList?&keyWord=${keyWord}&select=${select}">
+                      	<c:url var="pPlayerProfileList" value="pPlayerProfileList?&keyWord=${keyWord}&select=${select}&show_yn=${show_yn}">
 	 					<c:param name="page" value="${p}" />
 	 					</c:url>
 	 					<a href="${pPlayerProfileList}" class="page_link">${p}</a>
@@ -172,7 +172,7 @@ function showYn(num,show){
                     
                     <!-- 다음 블럭으로 이동 -->
                     <c:if test="${endPage ne maxPage && maxPage > 1}">
-					<a href="pPlayerProfileList?page=${endPage+1}&keyWord=${keyWord}&select=${select}" class="page_link ico next"><span class="blind">다음</span></a>
+					<a href="pPlayerProfileList?page=${endPage+1}&keyWord=${keyWord}&select=${select}&show_yn=${show_yn}" class="page_link ico next"><span class="blind">다음</span></a>
                     </c:if>
                     <c:if test="${endPage ge maxPage}">
 					<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
@@ -183,7 +183,7 @@ function showYn(num,show){
                     	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
                     </c:if>
                     <c:if test="${maxPage > 0}">
-					<a href="pPlayerProfileList?page=${maxPage}&keyWord=${keyWord}&select=${select}" class="page_link ico last"><span class="blind">마지막</span></a>
+					<a href="pPlayerProfileList?page=${maxPage}&keyWord=${keyWord}&select=${select}&show_yn=${show_yn}" class="page_link ico last"><span class="blind">마지막</span></a>
 					</c:if>
 				</div>
 				<!-- // pagination -->

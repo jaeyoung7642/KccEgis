@@ -622,4 +622,43 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return result;
 	}
+	@Override
+	public int getAdminListCount(Map<?, ?> paramMap) {
+		return dao.getListSearchCount("AdminMapper.getAdminListCount",paramMap);
+	}
+	@Override
+	public int getTotalAdminListCount(Map<?, ?> paramMap) {
+		return dao.getListSearchCount("AdminMapper.getTotalAdminListCount",paramMap);
+	}
+	@Override
+	public List<Map<String, Object>> adminList(Map<?, ?> paramMap) throws Exception {
+		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("AdminMapper.adminList", paramMap);
+		return result;
+	}
+	@Override
+	public int getAdminLogListCount(Map<?, ?> paramMap) {
+		return dao.getListSearchCount("AdminMapper.getAdminLogListCount",paramMap);
+	}
+	@Override
+	public List<Map<String, Object>> adminLogList(Map<?, ?> paramMap) throws Exception {
+		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("AdminMapper.adminLogList", paramMap);
+		return result;
+	}
+	@Override
+	public int mergeAdmin(Map<?, ?> paramMap) throws Exception {
+		return dao.update("AdminMapper.mergeAdmin", paramMap);
+	}
+	@Override
+	public int deleteAdmin(Map<String, Object> paramMap) throws Exception {
+		return dao.delete("AdminMapper.deleteAdmin", paramMap);
+	}
+	@Override
+	public Map<String, Object> adminMap(Map<?, ?> paramMap) throws Exception {
+		Map<String, Object> result = (Map<String, Object>) dao.getMap("AdminMapper.adminMap", paramMap);
+		return result;
+	}
+	@Override
+	public int changeAdminPwd(Map<String, Object> paramMap) throws Exception {
+		return dao.update("AdminMapper.changeAdminPwd", paramMap);
+	}
 }

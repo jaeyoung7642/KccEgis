@@ -10,11 +10,15 @@ import com.esoom.kcc.common.PageInfo;
 public interface TeamScheduleService {
 	public Map<String,Object> prevTeamScheduleHome(Map<?, ?> paramMap) throws Exception;
 	
+	public Map<String,Object> nextHomeSchedule(Map<?, ?> paramMap) throws Exception;
+	
 	public Map<String,Object> scheduleDetail(Map<?, ?> paramMap) throws Exception;
 	
 	public Map<String,Object> teamDailyMap(Map<?, ?> paramMap) throws Exception;
 	
 	public List<Map<String,Object>> teamScheduleHome(Map<?, ?> paramMap) throws Exception;
+	
+	public List<Map<String,Object>> teamScheduleHome2(Map<?, ?> paramMap) throws Exception;
 	
 	public List<Map<String,Object>> selectDateList(Map<?, ?> paramMap) throws Exception;
 	
