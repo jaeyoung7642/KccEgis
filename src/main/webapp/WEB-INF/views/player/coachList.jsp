@@ -103,6 +103,10 @@
 							<div class="photo">
 								<div class="inner">
 									<img src="/resources/common/images/upload/player/${coachList.pl_webmain}" alt="" >
+									<div class="title">
+										<span class="head">Head</span>
+										<span class="coach">Coach</span>
+									</div>
 								</div>
 							</div>
 							<!-- info -->
