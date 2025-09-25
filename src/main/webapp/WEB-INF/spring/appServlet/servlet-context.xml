@@ -30,6 +30,8 @@
 			<mapping path="/kccadm/*"/>
 			<exclude-mapping path="/kccadm/adminLoginForm"/>
 			<exclude-mapping path="/kccadm/adminLogin"/>
+			<exclude-mapping path="/kccadm/loginAdmin"/>
+			<exclude-mapping path="/kccadm/checkAuthCode"/>
 			<exclude-mapping path="/resources/**"/>
 			<beans:bean class="com.esoom.kcc.intercepter.AdminLoginIntercepter" />
 		</interceptor>

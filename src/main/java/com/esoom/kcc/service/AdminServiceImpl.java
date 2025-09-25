@@ -661,4 +661,25 @@ public class AdminServiceImpl implements AdminService {
 	public int changeAdminPwd(Map<String, Object> paramMap) throws Exception {
 		return dao.update("AdminMapper.changeAdminPwd", paramMap);
 	}
+	@Override
+	public int updatePwdFailCount(Map<String, Object> paramMap) throws Exception {
+		return dao.update("AdminMapper.updatePwdFailCount", paramMap);
+	}
+	@Override
+	public int clearPwdFailCount(Map<String, Object> paramMap) throws Exception {
+		return dao.update("AdminMapper.clearPwdFailCount", paramMap);
+	}
+	@Override
+	public List<Map<String, Object>> adminAuthLogList(Map<?, ?> paramMap) throws Exception {
+		List<Map<String, Object>> result =  (List<Map<String, Object>>) dao.getList("AdminMapper.adminAuthLogList", paramMap);
+		return result;
+	}
+	@Override
+	public int getAdminAuthLogListCount(Map<?, ?> paramMap) {
+		return dao.getListSearchCount("AdminMapper.getAdminAuthLogListCount",paramMap);
+	}
+	@Override
+	public int insertRegLog(Map<String, Object> paramMap) throws Exception {
+		return dao.insert("AdminMapper.insertRegLog", paramMap);
+	}
 }

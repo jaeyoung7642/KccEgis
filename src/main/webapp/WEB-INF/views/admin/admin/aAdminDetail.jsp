@@ -100,6 +100,7 @@
 						<ul class="snb_list">
 							<li><a href="aAdminList" class="snb_link current">관리자관리</a></li> <!-- 현재 페이지 메뉴 current -->
 							<li><a href="aAdminLogList" class="snb_link">관리자 접속로그</a></li> <!-- 현재 페이지 메뉴 current -->
+							<li><a href="aAdminAuthLogList" class="snb_link">관리자 권한설정로그</a></li> <!-- 현재 페이지 메뉴 current -->
 						</ul>
 					</nav>
 				</div>

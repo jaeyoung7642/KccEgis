@@ -186,8 +186,8 @@
 						<div class="results_box type1">
 							<dl>
 								<dt>KBL 누적 성적</dt>
-								<dd>626승 604패
-									<em class="sub md"><span class="dash">/</span> 승률 0.508</em>
+								<dd>644승 640패
+									<em class="sub md"><span class="dash">/</span> 승률 0.501</em>
 								</dd>
 							</dl>
 							<dl>
@@ -278,6 +278,15 @@
 										</tr> 
 									</thead>
 									<tbody>
+										<tr>
+											<td>
+												<div class="td_group">
+													<span>2024-2025</span>
+													<span class="p_show">부산KCC이지스</span>
+												</div>
+											</td>
+											<td class="p_hide">부산KCC이지스</td>
+										</tr>
 										<tr>
 											<td>
 												<div class="td_group">
@@ -522,6 +531,17 @@
 											</tr>
 										</thead>
 										<tbody>
+											<tr>
+												<td>9</td>
+												<td>18</td>
+												<td>36</td>
+												<td>0.333</td>
+												<td>미진출</td>
+												<td>
+													<a href="seasonReview?season_year=3&season_code=45" class="el_btn sm2 blue">바로가기</a> <!-- 해당시즌
+													시즌리뷰 내용으로 이동 -->													
+												</td>
+											</tr>
 											<tr>
 												<td>5</td>
 												<td>30</td>
@@ -803,7 +823,7 @@
 						<!-- 관중 통계 -->
 						<dl class="crowds p_hide">
 							<dt>누적 관중</dt>
-							<dd>4,386,008명</dd>
+							<dd>4,474,398명</dd>
 							<dt>최대 관중</dt>
 							<dd>04-05시즌 261,172 명</dd>
 						</dl>
@@ -814,7 +834,7 @@
 					<article class="results_box type1 p_show">
 						<dl>
 							<dt>누적 관중</dt>
-							<dd>4,386,008명</dd>
+							<dd>4,474,398명</dd>
 						</dl>
 						<dl>
 							<dt>최대 관중</dt>
@@ -840,6 +860,16 @@
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<th scope="row">24-25시즌</th>
+									<td class="td_chart td_line">
+										<div class="el_graph type4 horiz rt">
+											<span class="bar gray" data-value="30" data-max="100" data-count="88,390"></span>
+										</div>
+									</td> 
+									<td>88,390 명</td>
+									<td>9 위</td>
+								</tr>
 								<tr>
 									<th scope="row">23-24시즌</th>
 									<td class="td_chart td_line">
@@ -1072,7 +1102,7 @@
 								</tr> 
 								<tr class="total">
 									<td colspan="2">총 합</td> 
-									<td colspan="2">4,386,008 명</td>
+									<td colspan="2">4,474,398 명</td>
 								</tr> 
 							</tbody>
 						</table>

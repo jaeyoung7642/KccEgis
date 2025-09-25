@@ -290,4 +290,15 @@ public interface AdminService {
 	public Map<String, Object> adminMap(Map<?, ?> paramMap) throws Exception;
 	
 	public int changeAdminPwd(Map<String, Object> paramMap) throws Exception;
+	
+	public int updatePwdFailCount(Map<String, Object> paramMap) throws Exception;
+	
+	public int clearPwdFailCount(Map<String, Object> paramMap) throws Exception;
+	
+	public List<Map<String,Object>> adminAuthLogList(Map<?, ?> paramMap) throws Exception;
+	
+	public int getAdminAuthLogListCount(Map<?, ?> paramMap);
+	
+	public int insertRegLog(Map<String, Object> paramMap) throws Exception;
+	
 }

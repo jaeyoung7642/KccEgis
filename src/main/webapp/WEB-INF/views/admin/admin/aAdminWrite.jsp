@@ -113,6 +113,7 @@
 						<ul class="snb_list">
 							<li><a href="aAdminList" class="snb_link current">관리자관리</a></li> <!-- 현재 페이지 메뉴 current -->
 							<li><a href="aAdminLogList" class="snb_link">관리자 접속로그</a></li> <!-- 현재 페이지 메뉴 current -->
+							<li><a href="aAdminAuthLogList" class="snb_link">관리자 권한설정로그</a></li> <!-- 현재 페이지 메뉴 current -->
 						</ul>
 					</nav>
 				</div>
@@ -138,6 +139,7 @@
 							<input type="hidden" name="num" id="num" value="${result.num }">
 							<tbody>
 								<c:if test="${result.num != null }">
+								<input type="hidden" name="adminId" id="adminId" value="${result.id }">
 								<tr>
 									<th scope="row">아이디</th>
 									<td>
@@ -160,6 +162,7 @@
 											<option value="80" <c:if test="${result.chk_grade eq '80'}">selected</c:if>>일반 관리자</option>
 											<option value="70" <c:if test="${result.chk_grade eq '70'}">selected</c:if>>임시 관리자</option>
 										</select>
+										<input type="hidden" class="frm_input" id="chk_grade_org" name="chk_grade_org" value="${result.chk_grade}">
 									</td>
 								</tr>
 								</c:if>

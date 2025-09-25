@@ -7,6 +7,23 @@
 		<!-- slide -->
 		<div class="swiper-slide">
 			<figure class="el_thumb rds2 el_img media">
+				<img src="/resources/common/images/img/c_history/history_img_2025.jpg" alt="2025년 사진">
+			</figure>
+			<div class="cont">
+				<h5 class="year">2025</h5>
+				<dl>
+					<dt>04.08</dt>
+					<dd>24-25시즌 정규리그 9위</dd>
+					<dt>05.18</dt>
+					<dd>이상민 감독 선임</dd>
+				</dl>
+			</div>
+			
+		</div>
+		<!-- //slide -->
+		<!-- slide -->
+		<div class="swiper-slide">
+			<figure class="el_thumb rds2 el_img media">
 				<img src="/resources/common/images/img/c_history/history_img_2024.jpg" alt="2024년 사진">
 			</figure>
 			<div class="cont">

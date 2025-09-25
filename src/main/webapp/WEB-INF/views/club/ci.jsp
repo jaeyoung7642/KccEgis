@@ -173,17 +173,17 @@
 							<div class="uniform_list">
 								<li class="item">
 									<div class="el_img wear">
-										<img src="/resources/common/images/img/club_uniform_home.jpg" alt="">
+										<img src="/resources/common/images/img/club_uniform_home_2526_1.jpg" alt="">
 									</div>
 								</li>
-								<li class="item">
+								<!-- <li class="item">
 									<div class="el_img player">
-										<img src="/resources/common/images/img/club_uniform_home_2.png" alt="">
+										<img src="/resources/common/images/img/club_uniform_home_2526_1.jpg" alt="">
 									</div>
-									<!--<div class="el_img player">
+									<div class="el_img player">
 										<img src="/resources/common/images/img/club_uniform_home_2.webp" alt="">
-									</div>-->
-								</li>
+									</div>
+								</li> -->
 							</div>
 						</div>
 						<!-- //col -->
@@ -193,17 +193,17 @@
 							<div class="uniform_list">
 								<li class="item">
 									<div class="el_img wear">
-										<img src="/resources/common/images/img/club_uniform_away.jpg" alt="">
+										<img src="/resources/common/images/img/club_uniform_away_2526_1.jpg" alt="">
 									</div>
 								</li>
-								<li class="item">
+								<!-- <li class="item">
 								    <div class="el_img player">
 										<img src="/resources/common/images/img/club_uniform_away_2.png" alt="">
 									</div>
-									<!--<div class="el_img player">
+									<div class="el_img player">
 										<img src="/resources/common/images/img/club_uniform_away_2.webp" alt="">
-									</div>-->
-								</li>
+									</div>
+								</li> -->
 							</div>
 						</div>
 						<!-- //col -->
@@ -222,6 +222,21 @@
 					<div class="club_slogan">
 						<div class="slider club_slogan_slider" data-view="[1,1]" data-space="[50,50]">
 							<div class="swiper-wrapper">
+								<!-- slide -->
+								<div class="swiper-slide item">
+									<div class="el_img el_thumb rds2">
+										<img src="/resources/common/images/img/club_slogan_2526.jpg" alt="2025-2026시즌 슬로건">
+									</div> 
+									<dl class="info el_desc_dl res"> 
+										<dt>2025-2026시즌</dt>
+										<dd>
+											<strong>JUST WIN</strong><br><br>
+											새로운 리더십 아래 다시 한 번 하나된 선수단과 함께 <br>
+											최상의 결과를 얻기 위해 최선을 다하는 선수단의 <br>
+											강력한 결의를 담았습니다.
+									</dl>
+								</div>
+								<!-- //slide -->
 							    <!-- slide -->
 								<div class="swiper-slide item">
 									<div class="el_img el_thumb rds2">

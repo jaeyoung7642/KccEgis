@@ -106,26 +106,20 @@
 								<img src="/resources/common/images/img/front_img_01@1_5x.jpg" alt="">
 							</div>
 							<div class="cont">
-								<p class="txt_intro"><span class="point">안</span>녕하십니까, 부산 KCC EGIS를 사랑해 주시는 팬 여러분.<br>
-									부산 KCC EGIS 프로농구단 구단주 정재훈입니다.</p>
+								<p class="txt_intro"><span class="point">부</span>산 KCC EGIS를 사랑해 주시는 팬 여러분, 안녕하십니까<br>
+									부산 KCC EGIS 프로농구단 구단주 정재훈입니다</p>
 
-								<p>부산에서의 첫 시즌을 성공적으로 마칠 수 있었던 것에 대해<br>
-								   진심으로 감사드립니다.<br>
-								   매 경기 진심을 다해 보내주신 열화와 같은 성원 덕분에<br>
-								   우리는 우승이라는 성과를 이뤄낼 수 있었습니다.<br><br>
+								<p>지난 시즌 어려운 여건 속에서도<br>
+								   변함없이 보내주신 성원에 깊은 감사를 드립니다.<br><br>
+								   2025-2026시즌, 우리는 전환점 위에서<br>
+								   더 강인한 모습과 끊임없는 도전 정신으로 보답해드리고자 합니다.<br><br>
 
-									이번 시즌 더욱 강력해진 선수단과 함께<br>
-									새로운 도전에 나설 준비가 되어 있습니다.<br>
-									새로운 곳에서 다시금 정상에 오르고자 합니다.<br>
-									팬 여러분의 목소리가 얼마나 값진 것인지를 알기에,<br  class="xp_hide">
-									<span class="txt_wrap">우리 선수들은</span> 각자의 역할을 충실히 수행하며 <br>
-									정상이라는 목표를 향해 나아갈 것입니다.<br><br>
+									부산을 대표하는 프로스포츠 구단으로 책임과 긍지를 지니고,<br>
+									팬 여러분과 늘 함께 호흡하는 구단으로 자리하겠습니다.<br><br>
 									
-									부산 KCC EGIS의 성공은<br>
-									팬 여러분과 함께 만들어가는 여정입니다. <br>
-									앞으로도 많은 응원과 지지를 부탁드리며, <br>
-									다시 한번, 우승의 영광을 함께 나누기 위해 정진하겠습니다.<br>
-									감사합니다.</p>	
+									앞으로도 팬 여러분의 열정과 응원에 걸맞은 감동을 전하며,<br>
+									항상 팬과 함께 성장하는 구단으로 남겠습니다.								
+								</p>	
 
 									<p>부산 KCC EGIS 프로농구단<br>
 										구단주 <em class="name">정재훈</em></p>
@@ -139,26 +133,20 @@
 								<img src="/resources/common/images/img/front_img_02@1_5x.jpg" alt="">
 							</div>
 							<div class="cont">
-								<p class="txt_intro"><span class="point">안</span>녕하십니까, 부산 KCC EGIS를 사랑해 주시는 팬 여러분!<br>
+								<p class="txt_intro"><span class="point">부</span>산 KCC EGIS 프로농구단을 사랑해주시는 팬 여러분 안녕하십니까!<br>
 									부산 KCC EGIS 프로농구단 단장 최형길입니다.</p>
 
-								<p>지난 시즌 동안 보내주신 뜨거운 성원에 진심으로 감사드립니다.<br>
-									<span class="txt_wrap">여러분의</span> 응원 덕분에 우리는 '최강'이라는 이름으로<br>
-									우승이라는 놀라운 성과를 이루어 냈습니다.<br>
-									보내주신 사랑과 관심은 선수들에게 큰 힘이 되었고, <br>
-									그 결과 팀이 더욱 성장할 수 있었습니다.<br><br>
+								<p>새로운 시즌의 문이 열렸습니다.<br>
+								우리는 지난 시간의 땀과 노력을 바탕으로<br>
+								다시 한 번 도전의 길에 나서고자 합니다.<br><br>
 
-									이번 시즌의 캐치프레이즈인 'AGAIN KCC'는<br>
-									우리가 다시 한번 정상에 오르겠다는 굳은 의지를 담고 있습니다.<br>
-									디펜딩 챔피언으로서 더욱 강력한 팀워크를 바탕으로<br>
-									다시 한번 우승을 향한 도전에 나서겠습니다.<br>
-									팬 여러분의 기대에 부응하기 위해 최선을 다할 것을 약속드립니다.<br><br>
+								올 시즌은 더욱 특별합니다.<br>
+								새로운 리더십과 강인한 정신력, 끊임없는 열정으로 뭉친 선수들이<br>
+								“JUST WIN”이라는 다짐 아래 하나가 되었습니다.<br><br>
 
-									KCC EGIS를 향한 변함없는 사랑과 관심에 다시 한번 감사드리며,<br>
-									여러분의 열렬한 응원 속에 우승의 영광을 또다시 차지할 수 있도록<br>
-									최선을 다하겠습니다.<br><br>
-									
-									감사합니다.</p>	
+								여러분의 응원과 사랑이 우리 선수단의 가장 큰 힘입니다.<br>
+                                다가오는 가을부터 봄까지, 승리와 감동의 여정을 함께 해주시길 바랍니다.									
+								</p>	
 
 									<p>부산 KCC EGIS 프로농구단<br>
 										단장 <em class="name">최형길</em></p>
@@ -198,7 +186,7 @@
 									<ul class="org_2dth_list lt">
 										<li class="org_2dth">
 											<div class="box box1">
-												<span class="pos">운영 팀장</span>
+												<span class="pos">선임 팀장</span>
 												<span class="name">송원진</span> 
 											</div>
 										</li>
@@ -219,7 +207,7 @@
 									<ul class="org_2dth_list rt">
 										<li class="org_2dth">
 											<div class="box box1">  
-												<span class="pos">홍보/마케팅 팀장</span>
+												<span class="pos">홍보 팀장</span>
 												<span class="name">김 민</span> 
 											</div>
 										</li>

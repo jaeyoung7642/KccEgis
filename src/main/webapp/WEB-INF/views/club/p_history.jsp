@@ -110,6 +110,25 @@
 								<div class="box">
 									<div class="img_area">
 										<div class="el_img">
+											<img src="/resources/common/images/img/p_history/headcoach_6th.webp" alt="이상민 감독 사진">
+										</div>
+									</div>
+									<div class="info_area">
+										<p class="info">
+											<span class="count">제 6대</span>
+											<span>이상민</span>
+											<span class="role">감독</span>
+										</p>
+										<button type="button" class="el_btn sm2 blue openModal coachPopup" data-target="#coachPopup" data-id="7">통산 성적 보기</button>
+									</div>
+								</div>
+							</div>
+							<!-- //slide -->
+							<!-- slide -->
+							<div class="swiper-slide">
+								<div class="box">
+									<div class="img_area">
+										<div class="el_img">
 											<img src="/resources/common/images/img/p_history/headcoach_5th.webp" alt="전창진 감독 사진">
 										</div>
 									</div>
@@ -260,6 +279,23 @@
 				<div class="ly_inner md slide_clamp mask_md">
 					<div class="slider type3 p_histroy_list captain">
 						<div class="swiper-wrapper">
+							<!-- slide -->
+							<div class="swiper-slide">
+								<div class="box">
+									<figure class="el_thumb rds3 el_img">
+										<img data-src="/resources/common/images/img/p_history/captain_10th.webp" alt="최준용 선수 사진" class="lazy-image">
+									</figure>
+									<div class="info_area">
+										<p class="info">
+											<span class="count">10대</span>
+											<span class="count">FORWARD</span>
+											<span>최준용</span>
+										</p>
+										<button type="button" class="el_btn sm2 blue openModal captainPopup" data-target="#captainPopup" data-id="10">통산 성적 보기</button>
+									</div>
+								</div>
+							</div>
+							<!-- //slide -->
 							<!-- slide -->
 							<div class="swiper-slide">
 								<div class="box">

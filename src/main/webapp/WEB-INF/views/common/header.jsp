@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 </head>
-	<header id="header" class="ly_header preload">
+	<header id="header" class="ly_header preload skin-chuseok">
 	<div class="header_inner ly_inner">
 
 		<h1 class="header_logo">

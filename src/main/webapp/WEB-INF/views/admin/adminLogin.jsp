@@ -14,7 +14,6 @@
 	<script src="/resources/common/admin/assets/js/jquery-3.6.0.min.js"></script> 
 	<script>
 	function login() {
-		var form = $("#adminForm");
 		var id = $("#id").val();
 		var pwd = $("#password").val();
 		if(id == ''){
@@ -30,13 +29,18 @@
             url: "loginAdmin",
             data: { "id": id, "password": pwd },
             success: function(res){
-                console.log("res:", res);
                 if(res == "1"){
+                	alert("이메일로 인증번호가 발송되었습니다.");
                     $("#authCode").show();
                     $("#authBtn").show();
                     $("#loginBtn").hide();
-                } else {
-                    alert("아이디 및 비밀번호를 확인해주세요.");
+                 	
+                    $("#id").prop("readonly", true);
+                    $("#password").prop("readonly", true);
+                } else if(res == "5"){
+                    alert("비밀번호를 5회 틀렸습니다. 관리자에게 문의하세요. 02-701-4035");
+                } else{
+                	alert("아이디 및 비밀번호를 확인해주세요. 비밀번호 5회 오류 시 로그인이 제한됩니다.");
                 }
             },
             error: function(xhr, status, error){
@@ -47,6 +51,33 @@
             }
         });
 	
+	}
+	function auth() {
+		var form = $("#adminForm");
+		var authCode = $("#authCode").val();
+		if(authCode== ''){
+			alert("인증번호를 입력해주세요.");
+			return false;
+		}
+		$.ajax({
+            type: "POST",
+            url: "checkAuthCode",
+            data: { "authCode": authCode},
+            success: function(res){
+                if(res == "1"){
+                	form.submit();
+                } else {
+                    alert("인증번호가 일치하지 않습니다.");
+                }
+            },
+            error: function(xhr, status, error){
+                console.log("xhr:", xhr);
+                console.log("status:", status);
+                console.log("error:", error);
+                alert("서버에 문제가 있습니다.");
+            }
+        });
+		
 	}
 	</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W384F33H');</script></head>
@@ -62,7 +93,7 @@
 		<!-- container -->
 		<main class="login_container" role="main">
 			<div class="inner">
-				<form action="adminLogin" method="post">
+				<form action="adminLogin" method="post" id="adminForm">
 					<div class="login_field">
 						<div class="row form_area">
 							<div class="col forms">
@@ -72,7 +103,7 @@
 							</div>
 							<div class="col btns">
 								<button type="button" id="loginBtn" class="el_btn btn_submit">로그인</button>
-								<button type="submit" id="authBtn"  class="el_btn btn_submit" style="display:none;">인증</button>
+								<button type="button" id="authBtn"  class="el_btn btn_submit" style="display:none;" onclick="auth()">인증</button>
 							</div>
 						</div>
 						<div class="row">
@@ -86,7 +117,7 @@
 				<ul class="info_list">
 					<li>관련된 모든 정보는 웹사이트 운영 이외의 목적으로 사용할 수 없으며,<br>
 						이를 어길 경우 법적 조치를 받을 수 있음을 알려드립니다.</li>
-					<li>웹사이트 관리자는 비밀번호 등 관련정보 유출에 주의 하시기 바랍니다.</li>	
+					<li>웹사이트 관리자는 비밀번호 등 관련정보 유출에 주의 하시기 바랍니다.</li>
 				</ul>
 			</div>
 		</main>

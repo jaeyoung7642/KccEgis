@@ -41,6 +41,7 @@ import com.esoom.kcc.common.Pagination;
 import com.esoom.kcc.common.ShaUtil;
 import com.esoom.kcc.service.AdminService;
 import com.esoom.kcc.service.CommonService;
+import com.esoom.kcc.service.MailService;
 
 @Controller
 @RequestMapping("/kccadm")
@@ -57,6 +58,8 @@ public class AdminController {
 	private ShaUtil shaUtil;
 	@Autowired
 	private IpUtil ipUtil;
+	@Autowired
+	private MailService mailService;
 
 	/*
 	 * @Autowired private AdminService service;
@@ -72,7 +75,7 @@ public class AdminController {
 	@ResponseBody
     @RequestMapping(value = "/loginAdmin", method = RequestMethod.POST)
     public String loginAdmin(@RequestParam("id") String id,
-                             @RequestParam("password") String pwd) throws Exception{
+                             @RequestParam("password") String pwd,HttpSession session) throws Exception{
         System.out.println("id: " + id);
         System.out.println("pwd: " + pwd);
         Map<String, Object> paramMap = new HashMap<>();
@@ -80,13 +83,58 @@ public class AdminController {
         Map<String, Object> userInfo = service.getAdmin(paramMap);
         String result;
         if(userInfo != null) {
+        	if(userInfo.get("chk_pwd").toString().equals("5")) {
+        		return "5";
+        	}
             if(pwd.equals(userInfo.get("pwd"))) {
                 result = "1"; // 로그인 성공
+                String email = userInfo.get("email").toString();
+                String authCode = commonService.getRandomPassword(6);
+                session.setMaxInactiveInterval(5 * 60);
+				session.setAttribute("authCode", authCode);
+				System.out.println("authCode=============="+authCode);
+//                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
+//    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
+//    				    + "<head>"
+//    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
+//    				    + "<title>KCC EGIS!!</title>"
+//    				    + "<style type='text/css'>"
+//    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
+//    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
+//    				    + "a:hover {font-weight:bold; text-decoration:none} "
+//    				    + "</style>"
+//    				    + "</head>"
+//    				    + "<body>"
+//    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
+//    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
+//    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
+//    				    + "</h1>"
+//    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
+//    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
+//    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
+//    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
+//    				    + "</div>"
+//    				    + "</div>"
+//    				    + "</body>"
+//    				    + "</html>";
+//    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
             } else {
                 result = "2"; // 비밀번호 틀림
+                service.updatePwdFailCount(paramMap);
             }
         } else {
             result = "3"; // 아이디 없음
+        }
+        return result;
+    }
+	@ResponseBody
+    @RequestMapping(value = "/checkAuthCode", method = RequestMethod.POST)
+    public String checkAuthCode(HttpSession session,@RequestParam(value = "authCode") String authCode) throws Exception{
+        String result;
+        if(authCode.equals(session.getAttribute("authCode"))) {
+        	result = "1";
+        }else {
+        	result = "2";
         }
         return result;
     }
@@ -107,50 +155,40 @@ public class AdminController {
 	}
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public ModelAndView adminLogin(ModelAndView mv, HttpSession session, @RequestParam(value = "id") String id,
-			@RequestParam(value = "password") String pwd,String remember,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		if(remember == null) {
-			remember = "";
-		}
-		System.out.println("remeber : "+remember);
-		paramMap.put("id", id);
-		// 입력한 아이디로 사용자 정보 조회
-		Map<String, Object> userInfo = service.getAdmin(paramMap);
-		System.out.println("userInfo"+userInfo);
-		if (userInfo != null) {
-			if (remember.equals("on")) {
-	            Cookie cookie = new Cookie("remember", userInfo.get("id").toString());
-	            response.addCookie(cookie);
-	        } else {
-	            Cookie cookie = new Cookie("remember", "");
-	            response.addCookie(cookie);
-	        }
-			// 비밀번호 암호화된 정보와 입력한 비밀번호 비교
-			if (pwd.equals(userInfo.get("pwd"))) { // 로그인 성공
-				String ip = ipUtil.getClientIP(request);
-				paramMap.put("ip", ip);
-				service.insertLoginInfo(paramMap);
-				if("70".equals(userInfo.get("chk_grade"))) {
-					System.out.println("7");
-					session.setMaxInactiveInterval(30 * 60);
-					session.setAttribute("user", userInfo);
-					mv.setViewName("redirect:/kccadm/fFreeList");
-				}else {
-					System.out.println("2");
-					session.setMaxInactiveInterval(30 * 60);
-					session.setAttribute("user", userInfo);
-					mv.setViewName("redirect:/kccadm/gScheduleList");
-				}
-			} else {// 비밀번호가 틀렸을 경우
-				System.out.println("3");
-				mv.addObject("loginMsg", "아이디 및 비밀번호를 확인해주세요.");
-				mv.setViewName("admin/adminLogin");
+			@RequestParam(value = "password") String pwd,@RequestParam(value = "authCode") String authCode,String remember,HttpServletRequest request,HttpServletResponse response) throws Exception {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			if(remember == null) {
+				remember = "";
 			}
-		} else { // 아이디가 없을 경우
-			System.out.println("4");
-			mv.addObject("loginMsg", "아이디 및 비밀번호를 확인해주세요.");
-			mv.setViewName("admin/adminLogin");
-		}
+			paramMap.put("id", id);
+			// 입력한 아이디로 사용자 정보 조회
+			Map<String, Object> userInfo = service.getAdmin(paramMap);
+			if (userInfo != null) {
+				service.clearPwdFailCount(paramMap);
+				if (remember.equals("on")) {
+					Cookie cookie = new Cookie("remember", userInfo.get("id").toString());
+					response.addCookie(cookie);
+				} else {
+					Cookie cookie = new Cookie("remember", "");
+					response.addCookie(cookie);
+				}
+				if (pwd.equals(userInfo.get("pwd"))) { 
+					String ip = ipUtil.getClientIP(request);
+					paramMap.put("ip", ip);
+					service.insertLoginInfo(paramMap);
+					if("70".equals(userInfo.get("chk_grade"))) {
+						System.out.println("7");
+						session.setMaxInactiveInterval(30 * 60);
+						session.setAttribute("user", userInfo);
+						mv.setViewName("redirect:/kccadm/fFreeList");
+					}else {
+						System.out.println("2");
+						session.setMaxInactiveInterval(30 * 60);
+						session.setAttribute("user", userInfo);
+						mv.setViewName("redirect:/kccadm/gScheduleList");
+					}
+				}
+			}
 		return mv;
 	}
 	@RequestMapping(value = "/adminLogout", method = RequestMethod.GET)
@@ -2858,7 +2896,7 @@ public class AdminController {
 		return mv;
 	}
 	@RequestMapping(value = "/mergeAdmin", method = RequestMethod.POST)
-	public ModelAndView mergeAdmin(ModelAndView mv,HttpServletRequest request)throws Exception {
+	public ModelAndView mergeAdmin(ModelAndView mv,HttpServletRequest request,HttpSession session)throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		String num = request.getParameter("num");
 		String id = request.getParameter("adminId");
@@ -2866,6 +2904,21 @@ public class AdminController {
 		String pwd = request.getParameter("pwd");
 		String email = request.getParameter("email");
 		String chk_grade = request.getParameter("chk_grade");
+		String chk_grade_org = request.getParameter("chk_grade_org");
+		Map<String, Object> paramMap2 = new HashMap<String, Object>();
+		Map<String,Object> userInfo = (Map<String, Object>) session.getAttribute("user");
+		paramMap2.put("id", userInfo.get("id"));
+		paramMap2.put("ip", ipUtil.getClientIP(request));
+		paramMap2.put("reg_id", id);
+		paramMap2.put("n_grade", chk_grade);	
+		if(chk_grade_org == null) {//권한설정로그등록
+			paramMap2.put("act", "등록");	
+			service.insertRegLog(paramMap2);
+		}else if(!chk_grade.equals(chk_grade_org)) {//권한설정로그 수정
+			paramMap2.put("act", "수정");	
+			paramMap2.put("p_grade", chk_grade_org);
+			service.insertRegLog(paramMap2);
+		}
 		paramMap.put("num", num);
 		paramMap.put("id", id);
 		paramMap.put("name", name);
@@ -2884,9 +2937,19 @@ public class AdminController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/deleteAdmin", method = RequestMethod.GET)
-	public String deleteAdmin(ModelAndView mv,int num)throws Exception {
+	public String deleteAdmin(ModelAndView mv,int num,HttpSession session,HttpServletRequest request)throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("num", num);
+		Map<String, Object> user = service.adminMap(paramMap);
+		Map<String, Object> paramMap2 = new HashMap<String, Object>();
+		Map<String,Object> userInfo = (Map<String, Object>) session.getAttribute("user");
+		paramMap2.put("id", userInfo.get("id"));
+		paramMap2.put("ip", ipUtil.getClientIP(request));
+		paramMap2.put("reg_id", user.get("id"));
+		paramMap2.put("p_grade", user.get("chk_grade"));	
+		paramMap2.put("act", "삭제");	
+		service.insertRegLog(paramMap2);
+		
 		int result=service.deleteAdmin(paramMap);
 		return String.valueOf(result);
 	}
@@ -2914,6 +2977,7 @@ public class AdminController {
 		paramMap.put("pwd", pwd);
 		int changePwd = service.changeAdminPwd(paramMap);
 		if(changePwd>0) {
+			service.clearPwdFailCount(paramMap);
 			result.put("result", true);
 		}else {
 			result.put("result", false);
@@ -2944,6 +3008,32 @@ public class AdminController {
 		mv.addObject("keyWord", keyWord);
 		mv.addObject("select", select);
 		mv.setViewName("admin/admin/aAdminLogList");
+		return mv;
+	}
+	@RequestMapping(value = "/aAdminAuthLogList", method = RequestMethod.GET)
+	public ModelAndView aAdminAuthLogList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "select", defaultValue = "") String select) throws Exception{
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		// 현재 페이지
+		int currentPage = (page != null) ? page : 1;
+		// 한페이지당 보여줄 row
+		int boardLimit = 15;
+		paramMap.put("keyWord", keyWord);
+		paramMap.put("select", select);
+		int listCount = service.getAdminAuthLogListCount(paramMap);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, boardLimit);
+		paramMap.put("limit", pi.getBoardLimit());
+		paramMap.put("currentPage", currentPage);
+		List<Map<String, Object>> adminAuthLogList = service.adminAuthLogList(paramMap);
+		mv.addObject("adminAuthLogList", adminAuthLogList);
+		mv.addObject("startPage", pi.getStartPage());
+		mv.addObject("endPage", pi.getEndPage());
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("maxPage", pi.getMaxPage());
+		mv.addObject("keyWord", keyWord);
+		mv.addObject("select", select);
+		mv.setViewName("admin/admin/aAdminAuthLogList");
 		return mv;
 	}
 }

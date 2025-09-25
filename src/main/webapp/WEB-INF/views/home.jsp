@@ -92,7 +92,7 @@
 		<!-- //header -->
 
 		<!-- container -->
-		<main id="container" class="ly_container">
+		<main id="container" class="ly_container skin-chuseok">
 			<h2 id="con" class="blind">본문</h2>
 
 			<!-- visual (최대 3개) -->

@@ -41,8 +41,8 @@
 					<nav id="snb">
 						<ul class="snb_list">
 							<li><a href="aAdminList" class="snb_link">관리자관리</a></li> <!-- 현재 페이지 메뉴 current -->
-							<li><a href="aAdminLogList" class="snb_link current">관리자 접속로그</a></li> <!-- 현재 페이지 메뉴 current -->
-							<li><a href="aAdminAuthLogList" class="snb_link">관리자 권한설정로그</a></li> <!-- 현재 페이지 메뉴 current -->
+							<li><a href="aAdminLogList" class="snb_link">관리자 접속로그</a></li> <!-- 현재 페이지 메뉴 current -->
+							<li><a href="aAdminAuthLogList" class="snb_link current">관리자 권한설정로그</a></li> <!-- 현재 페이지 메뉴 current -->
 						</ul>
 					</nav>
 				</div>
@@ -54,9 +54,9 @@
 				<h2 id="con" class="blind">본문</h2>
 
 				<div class="page_header">
-					<h3 class="heading">관리자 접속로그</h3>
+					<h3 class="heading">관리자 권한설정로그</h3>
 					<!-- search -->
-					<form action="aAdminLogList" class="forms frm_group">
+					<form action="aAdminAuthLogList" class="forms frm_group">
 						<input type="text" class="frm_input sm m240" name="keyWord" id="keyWord" value="${keyWord}" aria-label="검색어 입력" placeholder="검색어를 입력하세요.">
 						<button class="el_btn frm_btn deep sm w100">검색</button>
 					</form>
@@ -68,34 +68,59 @@
 					<caption>선수 목록</caption>
 					<colgroup>
 						<col width="88">
-						<col width="194">
-						<col width="194">
+						<col width="130">
+						<col width="130">
+						<col width="130">
+						<col width="130">
+						<col width="130">
 						<col>
 					</colgroup>
 					<thead>
 						<tr>
 							<th scope="col">번호</th>
-							<th scope="col">관리자 아이디</th>
-							<th scope="col">ip</th>
-							<th scope="col">접속시간</th>
+							<th scope="col">대상아이디</th>
+							<th scope="col">작업내용</th>
+							<th scope="col">이전권한</th>
+							<th scope="col">변경권한</th>
+							<th scope="col">작업아이디</th>
+							<th scope="col">작업일시</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${adminLogList}" var="admin">
+						<c:forEach items="${adminAuthLogList}" var="admin">
 						<tr>
 							<td>${admin.rownum}</td>
+							<td>${admin.reg_id}</td>
+							<td>${admin.act}</td>
+							<td><c:if test="${admin.p_grade == '70' }">
+								임시 관리자
+							</c:if>
+							<c:if test="${admin.p_grade == '80' }">
+								일반 관리자
+							</c:if>
+							<c:if test="${admin.p_grade == '90' }">
+								마스터 관리자
+							</c:if></td>
+							<td><c:if test="${admin.n_grade == '70' }">
+								임시 관리자
+							</c:if>
+							<c:if test="${admin.n_grade == '80' }">
+								일반 관리자
+							</c:if>
+							<c:if test="${admin.n_grade == '90' }">
+								마스터 관리자
+							</c:if></td>
 							<td>${admin.id}</td>
-							<td>${admin.ip}</td>
-							<td>${admin.login_date}</td>
+							<td>${admin.regdate}</td>
 						</tr>
 					</c:forEach>
-					<c:if test="${empty adminLogList}">
-							<tr><td colspan="4">검색된 결과가 없습니다.</td></tr>
+					<c:if test="${empty adminAuthLogList}">
+							<tr><td colspan="7">검색된 결과가 없습니다.</td></tr>
 					</c:if>
 					</tbody>
 				</table>
 				<!-- //board list -->
-				<c:if test="${not empty adminLogList}">
+				<c:if test="${not empty adminAuthLogList}">
 				<!-- pagination -->
 				<div class="pagination mt20">
 					<!-- 맨처음 -->
@@ -103,12 +128,12 @@
 					<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					<c:if test="${maxPage > 0}">
-					<a href="aAdminLogList?page=1&keyWord=${keyWord}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+					<a href="aAdminAuthLogList?page=1&keyWord=${keyWord}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					
 					<!-- 이전 블럭으로 이동 -->
 					<c:if test="${startPage gt 1 }">
-                       	<a href="aAdminLogList?page=${startPage-1}&keyWord=${keyWord}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+                       	<a href="aAdminAuthLogList?page=${startPage-1}&keyWord=${keyWord}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
                     </c:if>
 					<c:if test="${startPage eq 1 }">
                        	<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
@@ -120,16 +145,16 @@
                     	<a href="#" class="page_link current">${p}</a>
                     </c:if>
                       <c:if test="${p ne currentPage }">
-                      	<c:url var="aAdminLogList" value="aAdminLogList?&keyWord=${keyWord}">
+                      	<c:url var="aAdminAuthLogList" value="aAdminAuthLogList?&keyWord=${keyWord}">
 	 					<c:param name="page" value="${p}" />
 	 					</c:url>
-	 					<a href="${aAdminLogList}" class="page_link">${p}</a>
+	 					<a href="${aAdminAuthLogList}" class="page_link">${p}</a>
                       </c:if>
                     </c:forEach>
                     
                     <!-- 다음 블럭으로 이동 -->
                     <c:if test="${endPage ne maxPage && maxPage > 1}">
-					<a href="aAdminLogList?page=${endPage+1}&keyWord=${keyWord}" class="page_link ico next"><span class="blind">다음</span></a>
+					<a href="aAdminAuthLogList?page=${endPage+1}&keyWord=${keyWord}" class="page_link ico next"><span class="blind">다음</span></a>
                     </c:if>
                     <c:if test="${endPage ge maxPage}">
 					<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
@@ -140,7 +165,7 @@
                     	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
                     </c:if>
                     <c:if test="${maxPage > 0}">
-					<a href="aAdminLogList?page=${maxPage}&keyWord=${keyWord}" class="page_link ico last"><span class="blind">마지막</span></a>
+					<a href="aAdminAuthLogList?page=${maxPage}&keyWord=${keyWord}" class="page_link ico last"><span class="blind">마지막</span></a>
 					</c:if>
 				</div>
 				<!-- // pagination -->

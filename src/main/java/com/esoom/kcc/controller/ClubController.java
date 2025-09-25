@@ -138,13 +138,13 @@ public class ClubController {
 	@RequestMapping(value = "/seasonReview", method = RequestMethod.GET)
 	public ModelAndView seasonReview(ModelAndView mv,
 			@RequestParam(value = "season_year", defaultValue = "3") String season_year,
-			@RequestParam(value = "season_code", defaultValue = "43") String season_code) throws Exception {
+			@RequestParam(value = "season_code", defaultValue = "45") String season_code) throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		String syear = "";
 		String eyear = "";
 		if("3".equals(season_year)) {
 			syear = "2021";
-			eyear = "2023";
+			eyear = "2024";
 		}
 		if("2".equals(season_year)) {
 			syear = "2011";
@@ -175,7 +175,7 @@ public class ClubController {
 	}
 	@RequestMapping(value = "/selectSeasonRecord", method = RequestMethod.GET)
 	public ModelAndView selectSeasonRecord(ModelAndView mv,
-			@RequestParam(value = "season_code", defaultValue = "43") String season_code) throws Exception {
+			@RequestParam(value = "season_code", defaultValue = "45") String season_code) throws Exception {
 		System.out.println(season_code);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("season_code", season_code);
@@ -193,7 +193,7 @@ public class ClubController {
 		String eyear = "";
 		if("3".equals(season_year)) {
 			syear = "2021";
-			eyear = "2023";
+			eyear = "2024";
 		}
 		if("2".equals(season_year)) {
 			syear = "2011";
@@ -249,6 +249,11 @@ public class ClubController {
 	@RequestMapping(value = "/c_history_2010", method = RequestMethod.GET)
 	public ModelAndView c_history_2010(ModelAndView mv) throws Exception {
 		mv.setViewName("club/history/c_history_2010");
+		return mv;
+	}
+	@RequestMapping(value = "/season_45", method = RequestMethod.GET)
+	public ModelAndView season_45(ModelAndView mv) throws Exception {
+		mv.setViewName("club/review/season_45");
 		return mv;
 	}
 	@RequestMapping(value = "/season_43", method = RequestMethod.GET)
@@ -364,6 +369,11 @@ public class ClubController {
 	@RequestMapping(value = "/season_6", method = RequestMethod.GET)
 	public ModelAndView season_6(ModelAndView mv) throws Exception {
 		mv.setViewName("club/review/season_6");
+		return mv;
+	}
+	@RequestMapping(value = "/photo_45", method = RequestMethod.GET)
+	public ModelAndView photo_45(ModelAndView mv) throws Exception {
+		mv.setViewName("club/review/photo_45");
 		return mv;
 	}
 	@RequestMapping(value = "/photo_43", method = RequestMethod.GET)

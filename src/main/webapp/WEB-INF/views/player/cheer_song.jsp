@@ -585,57 +585,6 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.6</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_05.png" alt="송동훈 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">송동훈</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.7</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_06.png" alt="정창영 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">정창영</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.9</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_07.png" alt="전태영 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">전태영</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.10</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_08.png" alt="이주영 선수 사진">
@@ -653,63 +602,12 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.12</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_12_1.png" alt="도노반 스미스 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">도노반 스미스</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.13</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_13_1.png" alt="이찬영 선수 사진">
 								</div>
 								<div class="info">
 									<p class="name">이찬영</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.17</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_09.png" alt="전준범 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">전준범</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.19</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_10.png" alt="이근휘 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">이근휘</p>
 									<div class="btn_area">
 										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
@@ -755,67 +653,12 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.25</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_13.png" alt="에피스톨라 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">에피스톨라</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.30</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_30_1.png" alt="이현호 선수 사진">
 								</div>
 								<div class="info">
 									<p class="name">이현호</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.33</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_14.png" alt="이승현 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">이승현</p>
-									<div class="btn_area">
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.44</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_17.png" alt="리온 윌리엄스 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">리온 윌리엄스</p>
 									<div class="btn_area">
 										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
@@ -838,23 +681,6 @@
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
-										<a href="#" class="el_btn openModal" data-target="#loginForm">
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.92</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_92.png" alt="캐디 라렌 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">캐디 라렌</p>
-									<div class="btn_area">
 										<a href="#" class="el_btn openModal" data-target="#loginForm">
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
@@ -1353,57 +1179,6 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.6</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_05.png" alt="송동훈 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">송동훈</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song06.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.7</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_06.png" alt="정창영 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">정창영</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song07.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.9</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_07.png" alt="전태영 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">전태영</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song09.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.10</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_08.png" alt="이주영 선수 사진">
@@ -1421,23 +1196,6 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.12</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_12_1.png" alt="도노반 스미스 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">도노반 스미스</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2425_song12.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.13</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_13_1.png" alt="이찬영 선수 사진">
@@ -1446,40 +1204,6 @@
 									<p class="name">이찬영</p>
 									<div class="btn_area">
 										<a href="/resources/common/download/cheer_song/theme2324_song13_1.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.17</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_09.png" alt="전준범 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">전준범</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song17_1.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.19</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_10.png" alt="이근휘 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">이근휘</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song19.wav" class="el_btn" download>
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>
@@ -1523,23 +1247,6 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.25</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_13.png" alt="에피스톨라 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">에피스톨라</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song25.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.30</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_30_1.png" alt="이현호 선수 사진">
@@ -1557,40 +1264,6 @@
 						</li>
 						<li class="item">
 							<div class="bl_card box">
-								<span class="num">No.33</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_14.png" alt="이승현 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">이승현</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song33_2.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.44</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_17.png" alt="리온 윌리엄스 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">리온 윌리엄스</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2324_song44_1.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
 								<span class="num">No.55</span>
 								<div class="photo el_img">
 									<img src="/resources/common/images/img/cheer/player_song_15_1.png" alt="송교창 선수 사진">
@@ -1599,23 +1272,6 @@
 									<p class="name">송교창</p>
 									<div class="btn_area">
 										<a href="/resources/common/download/cheer_song/theme2324_song55_1.wav" class="el_btn" download>
-											<span class="el_ico donwload w"></span>
-											<span class="blind">(다운로드)</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="item">
-							<div class="bl_card box">
-								<span class="num">No.92</span>
-								<div class="photo el_img">
-									<img src="/resources/common/images/img/cheer/player_song_92.png" alt="캐디 라렌 선수 사진">
-								</div>
-								<div class="info">
-									<p class="name">캐디 라렌</p>
-									<div class="btn_area">
-										<a href="/resources/common/download/cheer_song/theme2425_song92.wav" class="el_btn" download>
 											<span class="el_ico donwload w"></span>
 											<span class="blind">(다운로드)</span>
 										</a>

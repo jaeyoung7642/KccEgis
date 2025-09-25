@@ -2966,4 +2966,74 @@ VALUES (
 		</if>
 		) A
 	</select>
+	<select id="getAdminAuthLogListCount" resultType="int">
+		select count(*) from (
+		select num
+		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
+		,id
+		,ip
+		,reg_id
+		,act
+		,p_grade
+		,n_grade
+		,FORMAT(regdate, 'yyyy-MM-dd HH:mm') AS regdate
+		from KCC_EGIS.egis.TBL_ADMIN_REG_LOG
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and id like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+	</select>
+	<select id="adminAuthLogList" resultType="map">
+		SELECT *
+		FROM (
+		select num
+		,ROW_NUMBER() OVER (ORDER BY num) AS rownum
+		,id
+		,ip
+		,reg_id
+		,act
+		,p_grade
+		,n_grade
+		,FORMAT(regdate, 'yyyy-MM-dd HH:mm') AS regdate
+		from KCC_EGIS.egis.TBL_ADMIN_REG_LOG
+		where 1=1
+		<if test="keyWord != null">
+			<if test='keyWord != ""'>
+				and id like CONCAT('%', #{keyWord}, '%')
+			</if>
+		</if>
+		) A
+		ORDER BY num desc
+		OFFSET (#{currentPage}-1)*#{limit} ROWS
+		FETCH NEXT #{limit} ROWS ONLY
+	</select>
+	<update id="updatePwdFailCount" parameterType="map">
+		update
+		KCC_EGIS.egis.TBL_ADMIN
+		SET chk_pwd = chk_pwd + 1
+		where
+		id =
+		#{id}
+	</update>
+	<update id="clearPwdFailCount" parameterType="map">
+		update
+		KCC_EGIS.egis.TBL_ADMIN
+		SET chk_pwd = 0
+		where 1=1 
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<if test="num != null">
+			and num = #{num}
+		</if>
+	</update>
+	<insert id="insertRegLog" parameterType="map">
+		insert into KCC_EGIS.egis.TBL_ADMIN_REG_LOG values
+			(
+			#{id},#{ip},#{reg_id},#{act},#{p_grade},#{n_grade},getdate()
+			)
+	</insert>
 </mapper>
