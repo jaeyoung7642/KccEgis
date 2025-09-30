@@ -1572,6 +1572,12 @@ body {
   margin-top: 1em;
 }
 
+.sec_goods .best {
+  color: #ffffff;
+}
+.sec_goods .best .name {
+  color: #ffffff;
+}
 .sec_goods .best .tit {
   line-height: 0.8;
   font-size: var(--fsz);
