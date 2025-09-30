@@ -512,6 +512,7 @@ body {
   .news_slider .overlay .tit {
     --mg: -0.2em;
     line-height: 1.385;
+    color: #020e51;
   }
   .news_slider .swiper-slide {
     width: var(--w, 36%) !important;
@@ -720,7 +721,7 @@ body {
 @media (max-width: 1024px) {
   .game_list_area {
     --pt: max(var(--size30), 8.008vw);
-    background: none;
+    /* background: none; */
   } /* 1024 - 82 */
   .game_list_area .game_tit {
     --mb: max(var(--size28), 7.227vw);
