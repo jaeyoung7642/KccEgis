@@ -130,6 +130,9 @@ function teamDailyRankApi(){
 							<td>${rank.win_diff}</td>
 						</tr>
 					</c:forEach>
+					<c:if test="${empty DailyRankList}">
+							<tr><td colspan="9">첫 경기 이후 데이터가 출력됩니다.</td></tr>
+					</c:if>
 					</tbody>
 				</table>
 				<!-- //board list -->

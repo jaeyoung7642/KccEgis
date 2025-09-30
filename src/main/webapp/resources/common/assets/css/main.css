@@ -49,6 +49,29 @@
 body {
   background: var(--primary);
 }
+.page-main {
+  background-image: url('../../images/img/renewer_2508_01/bg_01.jpg');
+  background-color: #dee6fb;
+  background-repeat: no-repeat;
+  background-position: 0 900px;
+}
+.page-main .el_heading {
+  color: #020e51;
+}
+.page-main
+  .swiper-controls.type1
+  .swiper-pagination-fraction
+  .swiper-pagination-current {
+  color: #020e51;
+}
+
+.page-main .sec_media {
+  color: #020e51;
+}
+.page-main .sec_goods {
+  color: #082571;
+}
+
 .ly_container * {
   letter-spacing: -0.01em;
 }
@@ -91,7 +114,7 @@ body {
   aspect-ratio: 1;
 }
 .el_ico.more.w {
-  background-image: url('../../images/common/ico_more_white.svg');
+  background-image: url('../../images/common/ico_more.svg');
 }
 .el_btn.btn1.type2 {
   --g: 0.4375em;
@@ -1239,7 +1262,7 @@ body {
 }
 
 /* Media */
-.sec_media::after {
+/* .sec_media::after {
   --btm: clamp(80px, 21.333vw, 220px);
   content: '';
   position: absolute;
@@ -1250,7 +1273,7 @@ body {
   background: url('../../images/img/main_media_bg.jpg') no-repeat center/cover;
   z-index: -1;
   transform: translateY(28.41%);
-}
+} */
 @media (min-width: 1921px) {
   .sec_media::after {
     background-size: contain;
@@ -1517,7 +1540,7 @@ body {
   font-size: var(--size18-12);
   line-height: 1.5556;
   font-weight: var(--font-md);
-  color: #d1d1d1;
+  color: #082571;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
@@ -2023,7 +2046,7 @@ body {
   .skin-lunar .visual_slider::before {
     background-image: url('../../images/season/lunar_big_2025_mo.png');
   }
-  .skin-chuseok .visual_slider::before {
+  /* .skin-chuseok .visual_slider::before {
     background-image: url('../../images/season/skin_chuseok_2025_main_01_mob.png');
-  }
+  } */
 }

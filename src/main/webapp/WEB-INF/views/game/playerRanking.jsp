@@ -78,7 +78,8 @@
 								<a href="scheduleList" class="swiper-slide snb_link"><span>경기일정/결과</span></a> <!-- 해당페이지에 current 추가 -->
 								<a href="teamRank" class="swiper-slide snb_link current"><span>팀/선수 순위</span></a>
 								<a href="teamRecord" class="swiper-slide snb_link"><span>시즌 기록실</span></a>
-								<a href="ticket" class="swiper-slide snb_link"><span>티켓팅</span></a>
+								<!-- <a href="ticket" class="swiper-slide snb_link"><span>티켓팅</span></a> -->
+								<a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>티켓팅</span></a>
 							</div>
 						</div>
 					</div>
@@ -99,7 +100,7 @@
 			<section class="section overflow_hidden">
 				<div class="ly_inner md">
 					<div class="page_header">
-						<h4 class="el_heading lv1">24-25 SEASON</h4>
+						<h4 class="el_heading lv1">25-26 SEASON</h4>
 					</div> 
 					<c:if test="${empty pointRankList}">
 					<div class="slider p_ranking_content no_bg" data-view="[5,5]" data-space="[20,20]"> <!-- 데이터가 없을때  no_bg 클래스 추가 -->

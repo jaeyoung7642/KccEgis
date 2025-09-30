@@ -94,7 +94,14 @@
 							<td><a href="aAdminDetail?num=${admin.num }">${admin.name}</a></td>
 							<td><a href="aAdminDetail?num=${admin.num }">${admin.id}</a></td>
 							<td>${admin.email}</td>
-							<td>${admin.chk_grade}</td>
+							<td>
+							<c:if test="${admin.chk_grade == '80' }">
+								일반 관리자
+							</c:if>
+							<c:if test="${admin.chk_grade == '90' }">
+								마스터 관리자
+							</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<c:if test="${empty adminList}">

@@ -85,12 +85,15 @@
 						</div>
 						<!-- 가장 최근 예정 홈경기 일정 출력 -->
 						<div class="info">
-							<%-- <p>다가오는 홈 경기는 <strong>${nextHomeMap.game_date_format}(${nextHomeMap.week_day }) ${nextHomeMap.game_start_format }</strong> 입니다.</p> --%>
+							<p>다가오는 홈 경기는 <strong>${nextHomeMap.game_date_format}(${nextHomeMap.week_day }) ${nextHomeMap.game_start_format }</strong> 입니다.</p>
 						</div>
 						<div class="btns">
-							<a href="ticket" class="el_btn btn_mb2">
+							<a href="#" class="el_btn btn_mb2" onclick="alertPop('시즌 업데이트 준비중입니다.')">
 								<span class="el_ico ico_ticket_line_w"></span> 티켓팅
-							</a> <!-- 티켓 안내 페이지로 연결 -->
+							</a>
+							<!-- <a href="ticket" class="el_btn btn_mb2">
+								<span class="el_ico ico_ticket_line_w"></span> 티켓팅
+							</a> --> <!-- 티켓 안내 페이지로 연결 -->
 							<a href="scheduleList?ha=2" class="el_btn btn_mb2">
 								<span class="el_ico ico_calendar2_w"></span> 전체 홈 경기일정
 							</a> <!-- 경기 일정 목록 페이지 (기획서 확인) -->
@@ -165,7 +168,7 @@
 						<!-- record -->
 						<article class="mypage_record">
 							<p class="season">
-								<span class="year">2024-2025</span><span class="txt">SEASON</span>
+								<span class="year">2025-2026</span><span class="txt">SEASON</span>
 							</p>
 							<div class="ranking">
 								<ul class="bl_card_list type2">

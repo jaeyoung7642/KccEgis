@@ -144,7 +144,8 @@
 								<a href="scheduleList" class="swiper-slide snb_link current"><span>경기일정/결과</span></a> <!-- 해당페이지에 current 추가 -->
 								<a href="teamRank" class="swiper-slide snb_link"><span>팀/선수 순위</span></a>
 								<a href="teamRecord" class="swiper-slide snb_link"><span>시즌 기록실</span></a>
-								<a href="ticket" class="swiper-slide snb_link"><span>티켓팅</span></a>
+								<!-- <a href="ticket" class="swiper-slide snb_link"><span>티켓팅</span></a> -->
+								<a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>티켓팅</span></a>
 							</div>
 						</div>
 					</div>
@@ -775,11 +776,11 @@
 									<c:choose>
 					  				<c:when test="${scheduleList.home_score > 0 && scheduleList.away_score > 0}">
 										<a href="scheduleResult?season_code=${scheduleList.season_code}&game_code=${scheduleList.game_code}&game_no=${scheduleList.game_no}" class="el_btn btn1"><span class="el_ico ico_vs"></span> 결과</a> 
-										<c:if test="${season_code =='45' }">
+										<c:if test="${season_code ge 45 }">
 										<a href="#" class="el_btn btn1" onclick="movie_detail(${scheduleList.game_date})"><span class="el_ico ico_video"></span> 영상</a>
 										<a href="#" class="el_btn btn1" onclick="photo_detail(${scheduleList.game_date})"><span class="el_ico ico_photo"></span> 사진</a>
 										</c:if>
-										<c:if test="${season_code !='45' }">
+										<c:if test="${season_code lt 45 }">
 										<a href="#" class="el_btn btn1 openModal" data-target="#movieListPop"><span class="el_ico ico_video"></span> 영상</a>
 										<a href="#" class="el_btn btn1 openModal" data-target="#photoListPop"><span class="el_ico ico_photo"></span> 사진</a>
 										</c:if>

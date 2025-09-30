@@ -86,9 +86,9 @@
 								<!-- header -->  
 								<div class="header">
 									<div class="row">
-										<span class="col lt">23-24</span> <!-- 지난시즌 -->
+										<span class="col lt">24-25</span> <!-- 지난시즌 -->
 										<span class="col"></span>
-										<span class="col rt">24-25</span> <!-- 이번시즌 -->
+										<span class="col rt">25-26</span> <!-- 이번시즌 -->
 									</div>
 								</div> 
 								<!-- //header -->

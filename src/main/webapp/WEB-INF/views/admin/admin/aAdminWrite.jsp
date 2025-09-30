@@ -124,7 +124,7 @@
 			<main id="contents" class="ly_contents">
 				<h2 id="con" class="blind">본문</h2>
 
-				<h3 class="heading">회원관리</h3>
+				<h3 class="heading">관리자관리</h3>
 
 				<form action="mergeAdmin" enctype="multipart/form-data" method="post" id="adminForm">
 					<div class="board_write">
@@ -160,7 +160,6 @@
 										<select class="frm_select m240" aria-label="권한" name="chk_grade" id="chk_grade">
 											<option value="90" <c:if test="${result.chk_grade eq '90'}">selected</c:if>>마스터 관리자</option>
 											<option value="80" <c:if test="${result.chk_grade eq '80'}">selected</c:if>>일반 관리자</option>
-											<option value="70" <c:if test="${result.chk_grade eq '70'}">selected</c:if>>임시 관리자</option>
 										</select>
 										<input type="hidden" class="frm_input" id="chk_grade_org" name="chk_grade_org" value="${result.chk_grade}">
 									</td>
@@ -195,7 +194,6 @@
 										<select class="frm_select m400" aria-label="권한" name="chk_grade" id="chk_grade">
 											<option value="90" <c:if test="${result.chk_grade eq '90'}">selected</c:if>>마스터 관리자</option>
 											<option value="80" <c:if test="${result.chk_grade eq '80'}">selected</c:if>>일반 관리자</option>
-											<option value="70" <c:if test="${result.chk_grade eq '70'}">selected</c:if>>임시 관리자</option>
 										</select>
 									</td>
 								</tr>

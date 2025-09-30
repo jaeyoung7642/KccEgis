@@ -93,31 +93,31 @@ public class AdminController {
                 session.setMaxInactiveInterval(5 * 60);
 				session.setAttribute("authCode", authCode);
 				System.out.println("authCode=============="+authCode);
-//                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
-//    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
-//    				    + "<head>"
-//    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
-//    				    + "<title>KCC EGIS!!</title>"
-//    				    + "<style type='text/css'>"
-//    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
-//    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
-//    				    + "a:hover {font-weight:bold; text-decoration:none} "
-//    				    + "</style>"
-//    				    + "</head>"
-//    				    + "<body>"
-//    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
-//    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
-//    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
-//    				    + "</h1>"
-//    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
-//    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
-//    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
-//    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
-//    				    + "</div>"
-//    				    + "</div>"
-//    				    + "</body>"
-//    				    + "</html>";
-//    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
+                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
+    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
+    				    + "<head>"
+    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
+    				    + "<title>KCC EGIS!!</title>"
+    				    + "<style type='text/css'>"
+    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
+    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
+    				    + "a:hover {font-weight:bold; text-decoration:none} "
+    				    + "</style>"
+    				    + "</head>"
+    				    + "<body>"
+    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
+    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
+    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
+    				    + "</h1>"
+    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
+    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
+    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
+    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
+    				    + "</div>"
+    				    + "</div>"
+    				    + "</body>"
+    				    + "</html>";
+    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
             } else {
                 result = "2"; // 비밀번호 틀림
                 service.updatePwdFailCount(paramMap);
@@ -199,7 +199,7 @@ public class AdminController {
 	}
 	@RequestMapping(value = "/gScheduleList", method = RequestMethod.GET)
 	public ModelAndView gScheduleList(ModelAndView mv,HttpServletRequest request ,@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "season", defaultValue = "01") String season,@RequestParam(value = "yyyymm", defaultValue = "202410") String yyyymm,
+			@RequestParam(value = "season", defaultValue = "01") String season,@RequestParam(value = "yyyymm", defaultValue = "202510") String yyyymm,
 			@RequestParam(value = "round", defaultValue = "0") String round,@RequestParam(value = "state", defaultValue = "1") String state
 			,@RequestParam(value = "ha", defaultValue = "1") String ha) throws Exception{
 		// 쿼리로 담아갈 데이터맵
@@ -254,7 +254,7 @@ public class AdminController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("season_code", season_code != null ? season_code : "45");
+		paramMap.put("season_code", season_code != null ? season_code : "47");
 		paramMap.put("game_code", game_code != null ?game_code:"01");
 		paramMap.put("game_no", game_no);
 		//장소셋팅
@@ -409,7 +409,7 @@ public class AdminController {
 	@RequestMapping(value = "/gDailyRank", method = RequestMethod.GET)
 	public ModelAndView gDailyRank(ModelAndView mv,HttpServletRequest request) throws Exception{
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("season_code", "45");
+		paramMap.put("season_code", "47");
 		paramMap.put("game_code", "01");
 		List<Map<String, Object>> DailyRankList = service.DailyRankList(paramMap);
 		if(DailyRankList != null) {

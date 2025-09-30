@@ -62,9 +62,9 @@ public class HomeController {
 		//팀순위영역
 		Map<String,Object> teamRank = teamRankService.teamRankHome(paramMap);
 		//경기일정 영역
-//		Map<String,Object> prevTeamSchedule = teamScheduleService.prevTeamScheduleHome(paramMap);
+		Map<String,Object> prevTeamSchedule = teamScheduleService.prevTeamScheduleHome(paramMap);
 		List<Map<String,Object>> teamScheduleList = teamScheduleService.teamScheduleHome(paramMap);
-		List<Map<String,Object>> teamScheduleList2 = teamScheduleService.teamScheduleHome2(paramMap);
+//		List<Map<String,Object>> teamScheduleList2 = teamScheduleService.teamScheduleHome2(paramMap);
 		//선수순위 영역
 		List<Map<String,Object>> playerRankList = playerService.playerRankHome(paramMap);
 		//미디어 영역
@@ -79,9 +79,9 @@ public class HomeController {
 		mv.addObject("mainSlideList",mainSlideList);
 		mv.addObject("newsList",newsList);
 		mv.addObject("teamRank",teamRank);
-//		mv.addObject("prevTeamSchedule",prevTeamSchedule);
+		mv.addObject("prevTeamSchedule",prevTeamSchedule);
 		mv.addObject("teamScheduleList",teamScheduleList);
-		mv.addObject("teamScheduleListSize",teamScheduleList2.size());
+		mv.addObject("teamScheduleListSize",teamScheduleList.size());
 		mv.addObject("playerRankList",playerRankList);
 		mv.addObject("mediaUList",mediaUList);
 		mv.addObject("mediaSList",mediaSList);

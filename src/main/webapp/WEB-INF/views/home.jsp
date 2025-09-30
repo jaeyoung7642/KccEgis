@@ -179,7 +179,7 @@
 			</section>
 			<!-- //News -->
 
-<%-- 			<!-- Game -->
+			<!-- Game -->
 			<section class="section sec_game mt220">
 				<article class="team_ranking_area">
 					<div class="ly_inner">
@@ -337,7 +337,6 @@
 										<div class="teams">
 											<div class="team lt">
 												<div class="logo">
-													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
 													<c:if test="${teamScheduleList.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
 													</c:if>
@@ -345,7 +344,6 @@
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
 													</c:if>
 												</div>
-													<p class="name">${teamScheduleList.home_team_name }</p>
 												<c:if test="${teamScheduleList.home_team == '60' }">
 												<p class="name">${teamScheduleList.home_team_name }</p>
 												</c:if>
@@ -355,7 +353,6 @@
 											</div>
 											<div class="team rt">
 												<div class="logo">
-													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
 													<c:if test="${teamScheduleList.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.away_team}.png" alt="">
 													</c:if>
@@ -363,7 +360,6 @@
 													<img src="/resources/common/images/game/b_logo_${teamScheduleList.home_team}.png" alt="">
 													</c:if>
 												</div>
-													<p class="name">${teamScheduleList.away_team_name }</p>
 												<c:if test="${teamScheduleList.home_team == '60' }">
 												<p class="name">${teamScheduleList.away_team_name }</p>
 												</c:if>
@@ -412,7 +408,7 @@
 									<p>대체이미지1</p>
 									<p>대체이미지2</p>
 								</c:if>
-								<!-- slide -->
+								<%-- <!-- slide -->
 								<c:forEach items="${teamScheduleList}" var="teamScheduleList" varStatus="status">
 								<c:if test="${teamScheduleList.home_score > 0 }">
 								<div class="swiper-slide item">
@@ -537,7 +533,7 @@
 										</picture>
 									</div>
 								</div>
-								</c:if>
+								</c:if> --%>
 							</div>
 						</div>
 					</div>
@@ -585,7 +581,7 @@
 				</div>
 			</section>
 			<!-- //Ranking -->
-			</c:if> --%>
+			</c:if>
 
 			<!-- Media -->
 			<section class="section sec_media mt220">

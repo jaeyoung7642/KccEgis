@@ -87,7 +87,7 @@
 								<dd>
 									<div class="frm_group">
 										<select class="frm_select" aria-label="시즌 선택" id="season_code">
-											<option value="43">24-25시즌</option>
+											<option value="47">25-26시즌</option>
 										</select>
 										<button type="button" class="el_btn frm_btn line gray" onclick="teamScheduleApi()">불러오기</button>
 										* KBL DB에서 해당 데이터를 불러옵니다.
@@ -105,27 +105,19 @@
 							<div class="row">
 								<div class="frm_group">
 									<select class="frm_select sm full" aria-label="시즌 선택" name="season" id="season">
-										<option value="01" <c:if test="${season eq 01}">selected</c:if>>24-25시즌 정규</option>
-										<option value="03" <c:if test="${season eq 03}">selected</c:if>>24-25시즌 플레이오프</option>
-										<option value="04" <c:if test="${season eq 04}">selected</c:if>>24-25시즌 챔피온결정전</option>
+										<option value="01" <c:if test="${season eq 01}">selected</c:if>>25-26시즌 정규</option>
+										<option value="03" <c:if test="${season eq 03}">selected</c:if>>25-26시즌 플레이오프</option>
+										<option value="04" <c:if test="${season eq 04}">selected</c:if>>25-26시즌 챔피온결정전</option>
 									</select>
 									<select class="frm_select sm full" aria-label="월 별" name = "yyyymm" id="yyyymm">
-										<option value="202410" <c:if test="${yyyymm eq 202410}">selected</c:if>>2024년 10월</option>
-										<option value="202411" <c:if test="${yyyymm eq 202411}">selected</c:if>>2024년 11월</option>
-										<option value="202412" <c:if test="${yyyymm eq 202412}">selected</c:if>>2024년 12월</option>
-										<option value="202501" <c:if test="${yyyymm eq 202501}">selected</c:if>>2025년 01월</option>
-										<option value="202502" <c:if test="${yyyymm eq 202502}">selected</c:if>>2025년 02월</option>
-										<option value="202503" <c:if test="${yyyymm eq 202503}">selected</c:if>>2025년 03월</option>
-										<option value="202504" <c:if test="${yyyymm eq 202504}">selected</c:if>>2025년 04월</option>
-										<option value="202505" <c:if test="${yyyymm eq 202505}">selected</c:if>>2025년 05월</option>
-										<option value="202310" <c:if test="${yyyymm eq 202310}">selected</c:if>>2023년 10월</option>
-										<option value="202311" <c:if test="${yyyymm eq 202311}">selected</c:if>>2023년 11월</option>
-										<option value="202312" <c:if test="${yyyymm eq 202312}">selected</c:if>>2023년 12월</option>
-										<option value="202401" <c:if test="${yyyymm eq 202401}">selected</c:if>>2024년 01월</option>
-										<option value="202402" <c:if test="${yyyymm eq 202402}">selected</c:if>>2024년 02월</option>
-										<option value="202403" <c:if test="${yyyymm eq 202403}">selected</c:if>>2024년 03월</option>
-										<option value="202404" <c:if test="${yyyymm eq 202404}">selected</c:if>>2024년 04월</option>
-										<option value="202405" <c:if test="${yyyymm eq 202405}">selected</c:if>>2024년 05월</option>
+										<option value="202510" <c:if test="${yyyymm eq 202510}">selected</c:if>>2025년 10월</option>
+										<option value="202511" <c:if test="${yyyymm eq 202511}">selected</c:if>>2025년 11월</option>
+										<option value="202512" <c:if test="${yyyymm eq 202512}">selected</c:if>>2025년 12월</option>
+										<option value="202601" <c:if test="${yyyymm eq 202601}">selected</c:if>>2026년 01월</option>
+										<option value="202602" <c:if test="${yyyymm eq 202602}">selected</c:if>>2026년 02월</option>
+										<option value="202603" <c:if test="${yyyymm eq 202603}">selected</c:if>>2026년 03월</option>
+										<option value="202604" <c:if test="${yyyymm eq 202604}">selected</c:if>>2026년 04월</option>
+										<option value="202605" <c:if test="${yyyymm eq 202605}">selected</c:if>>2026년 05월</option>
 									</select>
 									<select class="frm_select sm full" aria-label="라운드 별" name="round" id="round">
 										<option value="0" <c:if test="${round eq 0}">selected</c:if>>전체라운드</option>

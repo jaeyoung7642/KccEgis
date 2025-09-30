@@ -25,16 +25,19 @@
 					<h2 id="nav" class="blind">메뉴</h2>
 					<ul class="gnb_list">
 						<c:if test="${user.chk_grade == '70'}">
+							<li><a href="fNoticeList" class="gnb_link"><span>FANZONE</span></a></li> 
 						</c:if>
 						<c:if test="${user.chk_grade != '70'}">
-						<li><a href="gScheduleList" class="gnb_link"><span>GAME</span></a></li>
-						<li><a href="pCoachProfileList" class="gnb_link"><span>PLAYER</span></a></li>
-						<li><a href="mNewsList" class="gnb_link"><span>MEDIA</span></a></li>
-						<li><a href="fNoticeList" class="gnb_link"><span>FANZONE</span></a></li> <!-- 현재 페이지 메뉴 current -->
-						<li><a href="cKccAdList" class="gnb_link"><span>CLUB</span></a></li>
-						<li><a href="ePopupList" class="gnb_link"><span>ETC</span></a></li>
-						<li><a href="mMemberList" class="gnb_link"><span>MEMBER</span></a></li>
-						<li><a href="aAdminList" class="gnb_link"><span>ADMIN</span></a></li>
+							<li><a href="gScheduleList" class="gnb_link"><span>GAME</span></a></li>
+							<li><a href="pCoachProfileList" class="gnb_link"><span>PLAYER</span></a></li>
+							<li><a href="mNewsList" class="gnb_link"><span>MEDIA</span></a></li>
+							<li><a href="fNoticeList" class="gnb_link"><span>FANZONE</span></a></li> 
+							<li><a href="cKccAdList" class="gnb_link"><span>CLUB</span></a></li>
+							<li><a href="ePopupList" class="gnb_link"><span>ETC</span></a></li>
+						<c:if test="${user.chk_grade == '90'}">
+							<li><a href="mMemberList" class="gnb_link"><span>MEMBER</span></a></li>
+							<li><a href="aAdminList" class="gnb_link"><span>ADMIN</span></a></li>
+						</c:if>
 						</c:if>
 					</ul>
 				</nav>

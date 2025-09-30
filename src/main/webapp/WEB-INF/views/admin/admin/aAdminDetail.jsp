@@ -111,7 +111,7 @@
 			<main id="contents" class="ly_contents">
 				<h2 id="con" class="blind">본문</h2>
 
-				<h3 class="heading">회원관리</h3>
+				<h3 class="heading">관리자관리</h3>
 
 				<form action="" enctype="multipart/form-data" method="post" id="adminForm">
 					<div class="board_write">
@@ -151,9 +151,9 @@
 								<tr>
 								<th scope="row">권한</th>
 									<td>
-										<c:if test="${result.chk_grade == '70' }">
+										<%-- <c:if test="${result.chk_grade == '70' }">
 											임시 관리자
-										</c:if>
+										</c:if> --%>
 										<c:if test="${result.chk_grade == '80' }">
 											일반 관리자
 										</c:if>

@@ -22,38 +22,12 @@
 				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
 				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
 				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
-			where t1.season_code='45' 
+			where t1.season_code='47' 
 		and (t1.home_team= 60 or t1.away_team= 60)
 		<![CDATA[and isnull(t4.score, 0)>0 and isnull(t3.score, 0)>0
 		and t1.game_date <= (SELECT CONVERT(date,GETDATE()))]]>
 		) A
 		order by A.game_date desc
-	</select>
-<select id="teamScheduleHome_back" resultType="map">
-		select top 2 A.* from (	
-		select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
-			SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
-			SUBSTRING(t1.game_date,5,2) AS game_date_mm,
-			SUBSTRING(t1.game_date,7,2) AS game_date_dd,
-			CONVERT(DATETIME, t1.game_date +' '+ SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2), 112) game_date_all,
-			isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
-			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
-			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
-			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
-			from KCC_EGIS.kbl_data.team_schedule t1 
-				inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
-				inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
-				inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
-				left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
-				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
-				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
-				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
-			where t1.season_code='45' 
-		and (t1.home_team= 60 or t1.away_team= 60)
-		and isnull(t4.score, 0)=0 and isnull(t3.score, 0)=0
-		<![CDATA[and t1.game_date >= (SELECT CONVERT(date,GETDATE()))]]>
-		) A
-		order by A.game_date
 	</select>
 <select id="teamScheduleHome" resultType="map">
 		select top 2 A.* from (	
@@ -74,12 +48,39 @@
 				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
 				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
 				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
-			where t1.season_code='45' 
+			where t1.season_code='47' 
+		and (t1.home_team= 60 or t1.away_team= 60)
+		and isnull(t4.score, 0)=0 and isnull(t3.score, 0)=0
+		and t1.game_code = 01
+		<![CDATA[and t1.game_date >= (SELECT CONVERT(date,GETDATE()))]]>
+		) A
+		order by A.game_date
+	</select>
+<!-- <select id="teamScheduleHome" resultType="map">
+		select top 2 A.* from (	
+		select t1.season_code, t1.game_no, t1.game_code,t1.game_round, t1.away_team, t1.home_team, t1.game_date, 
+			SUBSTRING(t1.game_date, 1, 4) + '.' +SUBSTRING(t1.game_date, 5, 2) + '.' + SUBSTRING(t1.game_date, 7, 2) AS game_date_format,
+			SUBSTRING(t1.game_date,5,2) AS game_date_mm,
+			SUBSTRING(t1.game_date,7,2) AS game_date_dd,
+			CONVERT(DATETIME, t1.game_date +' '+ SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2), 112) game_date_all,
+			isnull(t3.play_min, 0) play_min, t2.stadium_name_2, isnull(t3.score, 0) away_score, 
+			isnull(t4.score, 0) home_score, isnull(t5.game_end, '') game_end, t1.game_start, 
+			SUBSTRING(t1.game_start, 1, 2) + ':' + SUBSTRING(t1.game_start, 3, 2) AS game_start_format,
+			t1.week_day, t6.tv_play, t7.team_name_1 AS home_team_name,t8.team_name_1 AS away_team_name  
+			from KCC_EGIS.kbl_data.team_schedule t1 
+				inner join KCC_EGIS.kbl_data.code_stadium t2 on t1.stadium_code=t2.stadium_code and t1.season_code=t2.season_code 
+				inner join KCC_EGIS.kbl_data.code_team t7 on t1.home_team=t7.team_code and t1.season_code=t7.season_code  
+				inner join KCC_EGIS.kbl_data.code_team t8 on t1.away_team=t8.team_code and t1.season_code=t8.season_code
+				left outer join KCC_EGIS.kbl_data.team_daily_list t3 on t1.away_team=t3.team_code and t1.season_code=t3.season_code and t1.game_no=t3.game_no and t1.game_code=t3.game_code	 
+				left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
+				left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
+				left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
+			where t1.season_code='47' 
 		and (t1.home_team= 60 or t1.away_team= 60)
 		<![CDATA[and t1.game_date > '2025-04-05']]>
 		) A
 		order by A.game_date
-	</select>
+	</select> -->
 <select id="nextHomeSchedule" resultType="map">
 		SELECT TOP 1 season_code, game_no, game_code,game_round, away_team, home_team, game_date, 
 				SUBSTRING(game_date, 1, 4) + '.' +SUBSTRING(game_date, 5, 2) + '.' + SUBSTRING(game_date, 7, 2) AS game_date_format,
@@ -90,7 +91,7 @@
 				SUBSTRING(game_start, 1, 2) + ':' + SUBSTRING(game_start, 3, 2) AS game_start_format, 
 				week_day
 		FROM KCC_EGIS.kbl_data.team_schedule
-		WHERE season_code = '45'
+		WHERE season_code = '47'
 		  AND home_team = '60'
 		  <![CDATA[AND game_date >= CONVERT(date, GETDATE())]]>
 		ORDER BY game_date
@@ -343,8 +344,8 @@
 		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     JOIN KCC_EGIS.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
 		     WHERE a_sub.team_code ='60'
-		       AND a_sub.season_code ='45'
-		       AND b_sub.season_code = '45'
+		       AND a_sub.season_code ='47'
+		       AND b_sub.season_code = '47'
 		       AND b_sub.game_code = '01'
 		       AND a_sub.game_code = '01'
 		       AND b_sub.game_round = b.game_round 
@@ -354,8 +355,8 @@
 		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     JOIN KCC_EGIS.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
 		     WHERE a_sub.team_code ='60'
-		       AND a_sub.season_code ='45'
-		       AND b_sub.season_code = '45'
+		       AND a_sub.season_code ='47'
+		       AND b_sub.season_code = '47'
 		       AND b_sub.game_code = '01'
 		       AND a_sub.game_code = '01'
 		       AND b_sub.game_round = b.game_round 
@@ -364,8 +365,8 @@
 		FROM KCC_EGIS.kbl_data.team_daily_list a
 		JOIN KCC_EGIS.kbl_data.team_schedule b ON a.game_no = b.game_no
 		WHERE a.team_code ='60'
-		  AND a.season_code ='45'
-		  AND b.season_code = '45'
+		  AND a.season_code ='47'
+		  AND b.season_code = '47'
 		  AND b.game_code = '01'
 		  AND a.game_code = '01'
 		GROUP BY b.game_round) A
@@ -396,8 +397,8 @@
 		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     JOIN KCC_EGIS.kbl_data.team_schedule b_sub ON a_sub.game_no = b_sub.game_no
 		     WHERE a_sub.team_code ='60'
-		       AND a_sub.season_code ='45'
-		       AND b_sub.season_code = '45'
+		       AND a_sub.season_code ='47'
+		       AND b_sub.season_code = '47'
 		       AND b_sub.game_code = '01'
 		       AND a_sub.game_code = '01'
 		       AND b_sub.game_round = b.game_round 
@@ -406,8 +407,8 @@
 		FROM KCC_EGIS.kbl_data.team_daily_list a
 		JOIN KCC_EGIS.kbl_data.team_schedule b ON a.game_no = b.game_no
 		WHERE a.team_code ='60'
-		  AND a.season_code ='45'
-		  AND b.season_code = '45'
+		  AND a.season_code ='47'
+		  AND b.season_code = '47'
 		  AND b.game_code = '01'
 		  AND a.game_code = '01'
 		GROUP BY b.game_round
@@ -416,7 +417,7 @@
 	<select id="teamAndteamList" resultType="map">
 		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
 		from KCC_EGIS.kbl_data.team_daily_list a
-		WHERE a.season_code ='45'
+		WHERE a.season_code ='47'
 		and a.team_code ='60'
 		and a.game_code ='01'
 		<if test='team_code != null'>
@@ -427,7 +428,7 @@
 	<select id="teamAndteamListPrev" resultType="map">
 		select a.away_team,ISNULL(sum(CONVERT(int, a.win)), 0) win, ISNULL(sum(CONVERT(int, a.loss)), 0) loss 
 		from KCC_EGIS.kbl_data.team_daily_list a
-		WHERE a.season_code ='43'
+		WHERE a.season_code ='45'
 		and a.team_code ='60'
 		and a.game_code ='01'
 		<if test='team_code != null'>
@@ -453,7 +454,7 @@
 	        from KCC_EGIS.kbl_data.team_daily_list 
 		where team_code = '60'
 		and away_team =#{team_code}
-		and season_code ='45'
+		and season_code ='47'
 		order by inputtime desc
 	</select>
 	<select id="teamAndteamDataList" resultType="map">
@@ -506,7 +507,7 @@
 		    ROUND((convert(float,SUM(a.score))/nullif(convert(float,(SELECT COUNT(*) 
 		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     WHERE a_sub.team_code =#{team_code}
-		       AND a_sub.season_code ='45'
+		       AND a_sub.season_code ='47'
 		       AND a_sub.game_code = '01'
 		       and a_sub.away_team = #{away_team}
 		    )), 0)), 1) AS pts,
@@ -514,13 +515,13 @@
 		    (SELECT COUNT(*) 
 		     FROM KCC_EGIS.kbl_data.team_daily_list a_sub
 		     WHERE a_sub.team_code =#{team_code}
-		       AND a_sub.season_code ='45'
+		       AND a_sub.season_code ='47'
 		       AND a_sub.game_code = '01'
 		       and a_sub.away_team = #{away_team}
 		    ) AS row_count
 		FROM KCC_EGIS.kbl_data.team_daily_list a
 		WHERE a.team_code =#{team_code}
-		  AND a.season_code ='45'
+		  AND a.season_code ='47'
 		  AND a.game_code = '01'
 		  and a.away_team = #{away_team}
 		GROUP BY a.away_team) A
@@ -538,7 +539,7 @@
 		and a.game_code  = b.game_code 
 		and a.game_no  = b.game_no 
 		and a.game_code = '01'
-		and a.season_code = '45'
+		and a.season_code = '47'
 		and a.team_code = #{team_code}
 		and a.away_team = #{away_team}
 	</select>

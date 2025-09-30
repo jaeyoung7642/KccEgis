@@ -77,8 +77,8 @@
 							<div class="swiper-wrapper">
 								<a href="coachList" class="swiper-slide snb_link"><span>코칭스탭</span></a>  <!-- 해당페이지에 current 추가 -->
 								<a href="playerList" class="swiper-slide snb_link current"><span>선수</span></a>
-								<a href="cheer" class="swiper-slide snb_link"><span>응원단</span></a>
-								<!-- <a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>응원단</span></a> -->
+								<!-- <a href="cheer" class="swiper-slide snb_link"><span>응원단</span></a> -->
+								<a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>응원단</span></a>
 								<a href="cheer_song" class="swiper-slide snb_link"><span>응원가</span></a>
 							</div>
 						</div>
@@ -139,7 +139,7 @@
 												</colgroup>
 												<thead>
 													<tr>
-														<th scope="col">24-25</th>
+														<th scope="col">25-26</th>
 														<th scope="col">POINT</th>
 														<th scope="col">REBOUND</th>
 														<th scope="col">ASSIST</th>

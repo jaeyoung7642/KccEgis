@@ -7,16 +7,16 @@
 <select id="playerRankHome" resultType="map">
 		SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -29,16 +29,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -51,16 +51,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -190,16 +190,16 @@
 	<select id="playerRankListTop" resultType="map">
 	    SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -215,16 +215,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -240,16 +240,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -265,16 +265,16 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when G.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when G.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 50)/54 then 0 else 1 end) asc
 				,G.avg DESC, G.play_min, G.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.s_t) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'STEAL' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -290,15 +290,15 @@
 			UNION ALL
 			SELECT *
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
-				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
+				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 30)/54 then 0 else 1 end) asc
 				,I.avg DESC, I.play_min, I.play_sec) AS rn
 			    FROM (
 			        SELECT a.*, ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'BLOCK' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -315,16 +315,16 @@
 	<select id="playerRankListCategory" resultType="map">
 	    SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when A.game_count>=  (select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc
 				,A.avg DESC, A.play_min, A.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.score) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'POINT' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -340,16 +340,16 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when B.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when (B.o_r + B.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc
 				,B.avg DESC, B.play_min, B.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.o_r + a.d_r) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'REBOUND' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -365,16 +365,16 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when E.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when E.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc
 				,E.avg DESC, E.play_min, E.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.a_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'ASSIST' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -390,16 +390,16 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when G.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when G.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when G.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 50)/54 then 0 else 1 end) asc
 				,G.avg DESC, G.play_min, G.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.s_t) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'STEAL' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -415,15 +415,15 @@
 			UNION ALL
 			SELECT *,rn
 			FROM (
-			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
-				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+			    SELECT *, ROW_NUMBER() OVER (ORDER BY (case when I.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
+				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 when I.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 30)/54 then 0 else 1 end) asc
 				,I.avg DESC, I.play_min, I.play_sec) AS rn
 			    FROM (
 			        SELECT a.*,(a.o_r + a.d_r) r_tot, ROUND(CONVERT(FLOAT, a.b_s) / a.game_count, 1) AS avg,b.pl_name,b.pl_back,b.pl_postion,b.pl_webmain,'BLOCK' as cate
 			        FROM KCC_EGIS.kbl_data.player_sum a,KCC_EGIS.egis.TBL_PLAYER b , KCC_EGIS.kbl_data.player c
 			        WHERE a.quarter_gu = 'XX'
-			          AND a.season_code = '45'
+			          AND a.season_code = '47'
 			          AND a.game_count != 0
 			          AND a.player_no = b.pl_no
 			          and a.game_code = '01'
@@ -441,33 +441,33 @@
 	SELECT *,ROW_NUMBER() OVER 
 (ORDER BY 
 <if test='category == "point"'>
-(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.score>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX'and game_code = '01') * CONVERT(FLOAT, 500)/54 then 0 else 1 end) asc,  -- 득점순위일 경우
 </if>
 <if test='category == "rebound"'>
-(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when (A.o_r + A.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when (A.o_r + A.d_r)>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 300)/54 then 0 else 1 end) asc,  -- 리바운드순위일 경우
 </if>
 <if test='category == "assist"'>
-(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.a_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 120)/54 then 0 else 1 end) asc,  -- 어시스트순위일 경우
 </if>
 <if test='category == "steal"'>
-(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.s_t>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 50)/54 then 0 else 1 end) asc,  -- 스틸순위일 경우
 </if>
 <if test='category == "block"'>
-(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+(case when A.game_count>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 32)/54 then 0 
-				when A.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='45' and team_code = '60'
+				when A.b_s>=(select game_count from KCC_EGIS.kbl_data.team_sum where season_code ='47' and team_code = '60'
 				and quarter_gu ='XX' and game_code = '01') * CONVERT(FLOAT, 30)/54 then 0 else 1 end) asc,  -- 블록순위일 경우
 </if>
 A.avg2 DESC, A.play_min, A.play_sec) AS rn
@@ -642,7 +642,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 			ROUND((CONVERT(float, ft) / ISNULL(NULLIF(CONVERT(float, ft_a), 0), 1) * 100), 1) AS ftp,
 			ROUND((CONVERT(float, fg + threep) / ISNULL(NULLIF(CONVERT(float, fg_a + threep_a), 0), 1) * 100), 1) AS ygp
 	    from KCC_EGIS.kbl_data.player_sum
-			where season_code ='43'
+			where season_code ='45'
 			and quarter_gu ='XX'
 			and game_code = '01'
 			and player_no = #{player_no}
@@ -662,7 +662,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		    ISNULL(ROUND((convert(float, ft) / NULLIF(convert(float, ft_a), 0) * 100), 1), 0.0) AS ftp,
 		    ISNULL(ROUND((convert(float, fg + threep) / NULLIF(convert(float, fg_a + threep_a), 0) * 100), 1), 0.0) AS ygp
 		FROM KCC_EGIS.kbl_data.player_sum
-		WHERE season_code = '45'
+		WHERE season_code = '47'
 		  AND quarter_gu = 'XX'
 		  AND game_code = '01'
 		  AND player_no = #{player_no}
@@ -678,7 +678,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		from KCC_EGIS.kbl_data.player_daily_list a,
 		KCC_EGIS.kbl_data.team_schedule b,
 		KCC_EGIS.kbl_data.team_daily_list c
-		WHERE a.season_code ='45'
+		WHERE a.season_code ='47'
 		and a.team_code ='60'
 		and a.player_no =#{player_no}
 		and a.game_code = '01'
@@ -764,7 +764,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		select *,(o_r+d_r) r_tot from KCC_EGIS.kbl_data.player_sum 
 		where quarter_gu ='XX'
 		and game_code ='01'
-		and season_code ='45'
+		and season_code ='47'
 		and player_no = #{player_no}
 	</select>
 	<select id="playerSeasonList" resultType="map">
@@ -781,7 +781,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		    KCC_EGIS.kbl_data.team_schedule b
 		WHERE 1=1
 		    and a.player_no = #{player_no}
-		    AND a.season_code = '45'
+		    AND a.season_code = '47'
 		    AND a.game_code = '01'
 		    AND a.season_code = b.season_code 
 		    AND a.game_code = b.game_code 
@@ -797,7 +797,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		KCC_EGIS.kbl_data.team_schedule b 
 		where 1=1
 		and a.player_no = #{player_no}
-		and a.season_code ='45'
+		and a.season_code ='47'
 		and a.game_code = '01'
 		and a.season_code = b.season_code 
 		and a.game_code  = b.game_code 

@@ -175,7 +175,7 @@ public class ClubController {
 	}
 	@RequestMapping(value = "/selectSeasonRecord", method = RequestMethod.GET)
 	public ModelAndView selectSeasonRecord(ModelAndView mv,
-			@RequestParam(value = "season_code", defaultValue = "45") String season_code) throws Exception {
+			@RequestParam(value = "season_code", defaultValue = "47") String season_code) throws Exception {
 		System.out.println(season_code);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("season_code", season_code);

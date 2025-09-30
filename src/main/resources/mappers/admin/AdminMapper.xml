@@ -41,7 +41,7 @@
 		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
-		where t1.season_code='45'
+		where t1.season_code='47'
 		<if test="season != null">
 			and t1.game_code = #{season}
 		</if>
@@ -115,7 +115,7 @@
 		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
-		where t1.season_code='45'
+		where t1.season_code='47'
 		<if test="season != null">
 			and t1.game_code = #{season}
 		</if>
@@ -752,7 +752,7 @@
 		select max(game_date)
 		last_game_date,MIN(game_date) first_game_date from
 		KCC_EGIS.kbl_data.team_schedule
-		WHERE season_code = '45'
+		WHERE season_code = '47'
 		and
 		(home_team ='60' or away_team ='60')
 		and game_round = #{round}
@@ -784,7 +784,7 @@
 		left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on
 		t1.season_code=t6.season_code and t1.game_code=t6.game_code and
 		t1.game_no=t6.game_no
-		where t1.season_code='45'
+		where t1.season_code='47'
 		and (t1.home_team= 60 or t1.away_team= 60)
 		<if test="game_round != null">
 			and t1.game_round = #{game_round}
@@ -2840,6 +2840,7 @@ VALUES (
 		,chk_grade
 		from KCC_EGIS.egis.TBL_ADMIN
 		where 1=1
+		and chk_grade != '70'
 		<if test="keyWord != null">
 			<if test='keyWord != ""'>
 				<if test="select != null">

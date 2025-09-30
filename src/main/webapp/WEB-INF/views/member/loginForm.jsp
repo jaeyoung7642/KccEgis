@@ -195,5 +195,11 @@ window.onload = function() {
 		    gtag('js', new Date());
 		    gtag('config', 'UA-180137319-1');
 		  </script>
+		  <script>
+			var msg = "${msg}"
+			if(msg != ""){
+				alert(msg);
+			}
+		</script>
 </body>
 </html>

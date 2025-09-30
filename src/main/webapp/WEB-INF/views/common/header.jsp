@@ -45,7 +45,8 @@
 									<li><a href="scheduleList" class="sub_link">경기일정/결과</a></li>
 									<li><a href="teamRank" class="sub_link">팀/선수 순위</a></li>
 									<li><a href="teamRecord" class="sub_link">시즌 기록실</a></li>
-									<li><a href="ticket" class="sub_link">티켓팅</a></li>
+									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">티켓팅</a></li>
+									<!-- <li><a href="ticket" class="sub_link">티켓팅</a></li> -->
 								</ul>
 							</div>
 						</li> 
@@ -55,8 +56,8 @@
 								<ul class="sub_list">
 									<li><a href="coachList" class="sub_link">코칭스탭</a></li>
 									<li><a href="playerList" class="sub_link">선수</a></li>
-									<li><a href="cheer" class="sub_link">응원단</a></li>
-									<!-- <li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li> -->
+									<!-- <li><a href="cheer" class="sub_link">응원단</a></li> -->
+									<li><a href="#" class="sub_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li>
 									<li><a href="cheer_song" class="sub_link">응원가</a></li>
 								</ul>
 							</div>
@@ -155,7 +156,8 @@
 			<a href="logout" aria-label="로그아웃" class="el_btn" data-svg="logout"></a>
 			</c:if>
 			<a href="mypage" aria-label="마이페이지" class="el_btn" data-svg="mypage"></a>
-			<a href="ticket" class="el_btn p_hide" data-svg="ticket"></a>
+			<!-- <a href="ticket" class="el_btn p_hide" data-svg="ticket" ></a> -->
+			<a href="#" class="el_btn p_hide" data-svg="ticket" onclick="alertPop('시즌 업데이트 준비중입니다.')"></a>
 			<button type="button" aria-label="전체 메뉴 열기" class="el_btn p_hide openAllMenu" data-svg="menu" aria-expanded="false"></button>
 		</div>
 		<!-- //utils -->
@@ -181,10 +183,14 @@
 								<li><a href="playerRecord" class="dth3_link">- 선수 기록</a>
 							</ul>
 						</li>
-						<li><a href="ticket" class="dth2_link">티켓팅</a>
+						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">티켓팅</a>
+						<!-- <a href="ticket" class="dth2_link">티켓팅</a> -->
+							
 							<ul class="dth3">
-								<li><a href="ticket" class="dth3_link">- 티켓안내</a>
-								<li><a href="ticket_faq" class="dth3_link">- 티켓FAQ</a>
+								<!-- <li><a href="ticket" class="dth3_link">- 티켓안내</a>
+								<li><a href="ticket_faq" class="dth3_link">- 티켓FAQ</a> -->
+								<li><a href="#" class="dth3_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">- 티켓안내</a>
+								<li><a href="#" class="dth3_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">- 티켓FAQ</a>
 							</ul>
 						</li>
 					</ul>
@@ -202,8 +208,8 @@
 								<li><a href="playerList?pos_code=s" class="dth3_link">- 군복무</a>
 							</ul>
 						</li>
-						<li><a href="cheer" class="dth2_link">응원단</a></li>
-						<!-- <li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li> -->
+						<!-- <li><a href="cheer" class="dth2_link">응원단</a></li> -->
+						<li><a href="#" class="dth2_link" onclick="alertPop('시즌 업데이트 준비중입니다.')">응원단</a></li>
 						<li><a href="cheer_song" class="dth2_link">응원가</a></li>
 					</ul>
 				</li> 

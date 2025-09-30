@@ -12,7 +12,7 @@
 		where
 		team_code = '60'
 		and game_date = (select MAX(game_date) from KCC_EGIS.kbl_data.team_daily_rank where game_code = '01')  
-		and season_code ='45'
+		and season_code ='47'
 	</select>
 <select id="getTeamRank" resultType="map">
 		select season_code,game_code,rank,team_code,

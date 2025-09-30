@@ -92,18 +92,14 @@
 							<td>${admin.rownum}</td>
 							<td>${admin.reg_id}</td>
 							<td>${admin.act}</td>
-							<td><c:if test="${admin.p_grade == '70' }">
-								임시 관리자
-							</c:if>
+							<td>
 							<c:if test="${admin.p_grade == '80' }">
 								일반 관리자
 							</c:if>
 							<c:if test="${admin.p_grade == '90' }">
 								마스터 관리자
 							</c:if></td>
-							<td><c:if test="${admin.n_grade == '70' }">
-								임시 관리자
-							</c:if>
+							<td>
 							<c:if test="${admin.n_grade == '80' }">
 								일반 관리자
 							</c:if>
