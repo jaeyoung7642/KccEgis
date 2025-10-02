@@ -54,18 +54,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--gap);
+  flex-wrap: wrap;
+  gap: 0.2rem var(--gap);
   max-width: 100%;
+}
+.game_card_list .header .where {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  /* gap: 0.5rem; */
+}
+.game_card_list .header .chanel {
+  color: #7289a3;
+  white-space: nowrap;
 }
 .game_card_list .header .day {
   font-size: 20px;
   font-weight: var(--font-bd);
   color: var(--dark01);
+  white-space: nowrap;
 }
 .game_card_list .header .place {
   font-weight: var(--font-semi);
   color: #000;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 .game_card_list .content {
   grid-area: content;
@@ -214,6 +228,12 @@
   }
   .game_card_list .header {
     flex-wrap: wrap;
+  }
+  .game_card_list .header .where {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 0.5rem;
   }
   .game_card_list .content {
     padding-left: 10px;
@@ -471,6 +491,12 @@
 }
 
 @media (min-width: 768px) {
+  .game_card_list .header .where {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* gap: 0.5rem; */
+  }
   .game_schedule_list .team {
     display: flex;
     align-items: center;
