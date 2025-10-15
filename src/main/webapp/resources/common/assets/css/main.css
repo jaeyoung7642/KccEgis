@@ -113,8 +113,11 @@ body {
   width: var(--size24-12);
   aspect-ratio: 1;
 }
-.el_ico.more.w {
+.el_ico.more.primary {
   background-image: url('../../images/common/ico_more.svg');
+}
+.el_ico.more.w {
+  background-image: url('../../images/common/ico_more_white.svg');
 }
 .el_btn.btn1.type2 {
   --g: 0.4375em;
@@ -2027,9 +2030,9 @@ body {
 .skin-lunar .visual_slider::before {
   background-image: url('../../images/season/lunar_big_2025.png');
 }
-.skin-chuseok .visual_slider::before {
+/* .skin-chuseok .visual_slider::before {
   background-image: url('../../images/season/skin_chuseok_2025_main_01.png');
-}
+} */
 
 @media (min-width: 1025px) {
   [class*='skin'] .visual_slider .swiper-pagination-bullet-active .tit {
