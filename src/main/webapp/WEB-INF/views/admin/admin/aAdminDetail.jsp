@@ -187,5 +187,15 @@
 		    gtag('js', new Date());
 		    gtag('config', 'UA-180137319-1');
 		  </script>
+		  <script>
+			$(document).ready(function(){
+			    $("#adminForm").on("keydown", function(event) {
+			        if (event.key === "Enter") {
+			            event.preventDefault();
+			            return false;
+			        }
+			    });
+			});
+			</script>
 </body>
 </html>

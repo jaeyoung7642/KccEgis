@@ -83,6 +83,7 @@ public class MediaController {
 	@RequestMapping(value = "/newsList", method = RequestMethod.GET)
 	public ModelAndView newsList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -94,6 +95,7 @@ public class MediaController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 12;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -103,28 +105,31 @@ public class MediaController {
 		
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat+ " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -142,7 +147,7 @@ public class MediaController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -169,13 +174,13 @@ public class MediaController {
 		
 		mv.addObject("newsList", newsList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -187,6 +192,7 @@ public class MediaController {
 	@RequestMapping(value = "/photoListH", method = RequestMethod.GET)
 	public ModelAndView photoListH(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -200,6 +206,7 @@ public class MediaController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 12;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -211,28 +218,31 @@ public class MediaController {
 		
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat+ " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -250,7 +260,7 @@ public class MediaController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -277,13 +287,13 @@ public class MediaController {
 		
 		mv.addObject("photoList", photoList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -297,6 +307,7 @@ public class MediaController {
 	@RequestMapping(value = "/photoListE", method = RequestMethod.GET)
 	public ModelAndView photoListE(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -310,6 +321,7 @@ public class MediaController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 12;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -321,28 +333,31 @@ public class MediaController {
 		
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat+ " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -360,7 +375,7 @@ public class MediaController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -387,13 +402,13 @@ public class MediaController {
 		
 		mv.addObject("photoList", photoList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -408,6 +423,7 @@ public class MediaController {
 	public ModelAndView photoListHDetail(ModelAndView mv,HttpServletRequest request,String num,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "listpage", required = false) Integer listpage,
 			@RequestParam(value = "keyWord", required = false) String keyWord,
+			@RequestParam(value = "season", required = false) String season,
 			@RequestParam(value = "round", required = false) String round,
 			@RequestParam(value = "game", required = false) String game,
 			@RequestParam(value = "player", required = false) String player,
@@ -458,6 +474,7 @@ public class MediaController {
 		
 		mv.addObject("listpage", listpage);
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -578,6 +595,7 @@ public class MediaController {
 	public ModelAndView photoListEDetail(ModelAndView mv,HttpServletRequest request,String num,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "listpage", required = false) Integer listpage,
 			@RequestParam(value = "keyWord", required = false) String keyWord,
+			@RequestParam(value = "season", required = false) String season,
 			@RequestParam(value = "round", required = false) String round,
 			@RequestParam(value = "game", required = false) String game,
 			@RequestParam(value = "player", required = false) String player,
@@ -628,6 +646,7 @@ public class MediaController {
 		
 		mv.addObject("listpage", listpage);
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -643,6 +662,7 @@ public class MediaController {
 	@RequestMapping(value = "/movieListH", method = RequestMethod.GET)
 	public ModelAndView movieListH(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -656,6 +676,7 @@ public class MediaController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 12;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -668,28 +689,31 @@ public class MediaController {
 		
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat+ " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -707,7 +731,7 @@ public class MediaController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -747,13 +771,13 @@ public class MediaController {
 		
 		mv.addObject("movieList", movieList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -767,6 +791,7 @@ public class MediaController {
 	@RequestMapping(value = "/movieListE", method = RequestMethod.GET)
 	public ModelAndView movieListE(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -780,6 +805,7 @@ public class MediaController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 12;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -792,28 +818,31 @@ public class MediaController {
 		
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat+ " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -831,7 +860,7 @@ public class MediaController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -870,13 +899,13 @@ public class MediaController {
 		
 		mv.addObject("movieList", movieList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -891,6 +920,7 @@ public class MediaController {
 	public ModelAndView movieListEDetail(ModelAndView mv,HttpServletRequest request,String num,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "listpage", required = false) Integer listpage,
 			@RequestParam(value = "keyWord", required = false) String keyWord,
+			@RequestParam(value = "season", required = false) String season,
 			@RequestParam(value = "round", required = false) String round,
 			@RequestParam(value = "game", required = false) String game,
 			@RequestParam(value = "player", required = false) String player,
@@ -937,6 +967,7 @@ public class MediaController {
 		
 		mv.addObject("listpage", listpage);
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -952,6 +983,7 @@ public class MediaController {
 	public ModelAndView movieListHDetail(ModelAndView mv,HttpServletRequest request,String num,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "listpage", required = false) Integer listpage,
 			@RequestParam(value = "keyWord", required = false) String keyWord,
+			@RequestParam(value = "season", required = false) String season,
 			@RequestParam(value = "round", required = false) String round,
 			@RequestParam(value = "game", required = false) String game,
 			@RequestParam(value = "player", required = false) String player,
@@ -997,6 +1029,7 @@ public class MediaController {
 		
 		mv.addObject("listpage", listpage);
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -1071,5 +1104,35 @@ public class MediaController {
 			detailMap.put("detailYn", "Y");
 		}
 		return detailMap;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/getGamesBySeason", method = RequestMethod.GET)
+	public List<Map<String,Object>> getGamesBySeason(@RequestParam("season") String season)throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("seasonCode", season);
+		List<Map<String, Object>> gameList = service.gameList(paramMap);
+		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+		Map<String, Object> temp = new HashMap<String, Object>();
+		temp.put("gameCd", "all");
+		temp.put("gameNm", "경기 선택");
+		selectGame.add(temp);
+		if(gameList != null && gameList.size() >0) {
+			for(Map m: gameList) {
+				String gameCd = m.get("game_date").toString();
+				String gameNm ="";
+				String game_date = m.get("game_date").toString();
+				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+				temp = new HashMap<String, Object>();
+				if("60".equals(m.get("home_team"))) {
+					gameNm = dateformat+ " vs " + m.get("away_team_name");
+				}else {
+					gameNm = dateformat + " vs " + m.get("home_team_name");
+				}
+				temp.put("gameCd", gameCd);
+				temp.put("gameNm", gameNm);
+				selectGame.add(temp);
+			}
+		}
+		return selectGame;
 	}
 }

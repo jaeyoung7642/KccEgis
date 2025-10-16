@@ -314,11 +314,98 @@ function onInputDateHandler(a) {
         }
 	}
 	function resetSearch() {
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
 		$("#sdate").val("");
 		$("#edate").val("");
 		$("#keyWord").val("");
 		$("#round").val("all");
 		$("#game").val("all");
 		$("#player").val("all");
+		$("#season").val("");
+		gameSelect.disabled = true;
+		roundSelect.disabled = true;
 		customSelect();
 	}
+	function initGameRound(){
+	const seasonSelect = document.getElementById('season');
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
+    const selectedSeason = seasonSelect.value;
+    if (selectedSeason) {
+    	gameSelect.disabled = false;
+    	roundSelect.disabled = false;
+    	
+    	gameSelect.innerHTML = '';
+    	$.ajax({
+			type: "GET",
+			url: "/getGamesBySeason",
+			data: { season: selectedSeason },
+			success: function(response) {
+				if (response && response.length > 0) {
+					response.forEach(function(game) {
+						const option = document.createElement('option');
+						option.value = game.gameCd;
+						option.textContent = game.gameNm;
+						gameSelect.appendChild(option);
+					});
+				} else {
+					const option = document.createElement('option');
+					option.textContent = '해당 시즌의 경기가 없습니다';
+					option.disabled = true;
+					gameSelect.appendChild(option);
+				}
+				customSelect();
+			},
+			error: function() {
+				alert('경기 데이터를 불러오는 데 실패했습니다.');
+			}
+		});
+    }else {
+    	$("#game").val("all");
+    	$("#round").val("all");
+		gameSelect.disabled = true;
+		roundSelect.disabled = true;
+		customSelect();
+	}
+}
+function disabledGame(){
+		const roundSelect = document.getElementById('round');
+	    const gameSelect = document.getElementById('game');
+
+	    // 라운드 선택 시 게임 선택 비활성화
+	    if (roundSelect.value) {
+	        gameSelect.disabled = true;
+			$("#game").val("all");
+	    } else {
+	        gameSelect.disabled = false;
+	    }
+	    customSelect();
+	}
+function disabledRound(){
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
+
+    // 라운드 선택 시 게임 선택 비활성화
+    if (gameSelect.value) {
+    	roundSelect.disabled = true;
+    	$("#round").val("all");
+    } else {
+    	roundSelect.disabled = false;
+    }
+    customSelect();
+}
+function formChk(){
+	const seasonSelect = document.getElementById('season');
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
+    const selectedSeason = seasonSelect.value;
+    if (selectedSeason) {
+    	if(roundSelect.value == 'all' && gameSelect.value == 'all'){
+    		alert("시즌 선택시 라운드를 선택하거나 경기를 선택해주세요.");
+    		return false;
+    	}
+    }
+	var form = $("#searchForm");
+	form.submit();
+}

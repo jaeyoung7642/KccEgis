@@ -92,7 +92,7 @@
 			left outer join KCC_EGIS.kbl_data.team_daily_list t4 on t1.home_team=t4.team_code and t1.season_code=t4.season_code and t1.game_no=t4.game_no and t1.game_code=t4.game_code	 
 			left outer join KCC_EGIS.kbl_data.game_info t5 on t1.season_code=t5.season_code and t1.game_no=t5.game_no and t1.game_code=t5.game_code 
 			left outer join KCC_EGIS.kbl_data.team_schedule_onair t6 on t1.season_code=t6.season_code and t1.game_code=t6.game_code and t1.game_no=t6.game_no 
-		where t1.season_code='47' 
+		where t1.season_code= #{seasonCode} 
 		and (t1.home_team= 60 or t1.away_team= 60)
 		<if test="game_round != null"> 
 		and t1.game_round = #{game_round}
@@ -112,7 +112,7 @@
 	</select>
 	<select id="getRoundDate" resultType="map">
 		select max(game_date) last_game_date,MIN(game_date) first_game_date from KCC_EGIS.kbl_data.team_schedule
-		WHERE season_code = '47'
+		WHERE season_code = #{seasonCode}
 		and (home_team ='60' or away_team ='60')
 		and game_round = #{round}
 	</select>

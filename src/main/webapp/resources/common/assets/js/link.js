@@ -30,6 +30,7 @@ function siteLink() {
 		호식이두마리치킨: 'https://www.9922.co.kr/', // 호식이두마리치킨
 		MOMOS: 'https://www.momos.co.kr/', // 모모스
 		BUSAN: 'https://www.humetro.busan.kr/default/main.do', // 부산교통공사
+		YOUTUBE: 'https://www.youtube.com/@kccegis'
 	}
 
 	const updateLink = (link, url) => $(link).attr('href', linkURL[url]);

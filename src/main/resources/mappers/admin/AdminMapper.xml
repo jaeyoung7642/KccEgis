@@ -752,7 +752,7 @@
 		select max(game_date)
 		last_game_date,MIN(game_date) first_game_date from
 		KCC_EGIS.kbl_data.team_schedule
-		WHERE season_code = '47'
+		WHERE season_code = #{seasonCode}
 		and
 		(home_team ='60' or away_team ='60')
 		and game_round = #{round}

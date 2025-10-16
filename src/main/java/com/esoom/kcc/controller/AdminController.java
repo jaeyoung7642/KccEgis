@@ -93,31 +93,31 @@ public class AdminController {
                 session.setMaxInactiveInterval(5 * 60);
 				session.setAttribute("authCode", authCode);
 				System.out.println("authCode=============="+authCode);
-                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
-    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
-    				    + "<head>"
-    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
-    				    + "<title>KCC EGIS!!</title>"
-    				    + "<style type='text/css'>"
-    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
-    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
-    				    + "a:hover {font-weight:bold; text-decoration:none} "
-    				    + "</style>"
-    				    + "</head>"
-    				    + "<body>"
-    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
-    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
-    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
-    				    + "</h1>"
-    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
-    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
-    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
-    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
-    				    + "</div>"
-    				    + "</div>"
-    				    + "</body>"
-    				    + "</html>";
-    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
+//                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
+//    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
+//    				    + "<head>"
+//    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
+//    				    + "<title>KCC EGIS!!</title>"
+//    				    + "<style type='text/css'>"
+//    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
+//    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
+//    				    + "a:hover {font-weight:bold; text-decoration:none} "
+//    				    + "</style>"
+//    				    + "</head>"
+//    				    + "<body>"
+//    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
+//    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
+//    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
+//    				    + "</h1>"
+//    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
+//    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
+//    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
+//    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
+//    				    + "</div>"
+//    				    + "</div>"
+//    				    + "</body>"
+//    				    + "</html>";
+//    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
             } else {
                 result = "2"; // 비밀번호 틀림
                 service.updatePwdFailCount(paramMap);
@@ -809,6 +809,7 @@ public class AdminController {
 	@RequestMapping(value = "/mNewsList", method = RequestMethod.GET)
 	public ModelAndView mNewsList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -821,6 +822,7 @@ public class AdminController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 8;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -831,28 +833,31 @@ public class AdminController {
 		int totalListCount = service.getTotalNewsListCount(paramMap);
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat+ " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -870,7 +875,7 @@ public class AdminController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -893,13 +898,13 @@ public class AdminController {
 		mv.addObject("totalListCount", totalListCount);
 		mv.addObject("newsList", newsList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -1183,6 +1188,7 @@ public class AdminController {
 	@RequestMapping(value = "/mMovieList", method = RequestMethod.GET)
 	public ModelAndView mMovieList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -1195,6 +1201,7 @@ public class AdminController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 8;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -1206,28 +1213,31 @@ public class AdminController {
 		int totalListCount = service.getTotalNoticeListCount(paramMap);
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat + " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -1245,7 +1255,7 @@ public class AdminController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -1268,13 +1278,13 @@ public class AdminController {
 		mv.addObject("totalListCount", totalListCount);
 		mv.addObject("movieList", movieList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);
@@ -1367,6 +1377,7 @@ public class AdminController {
 	@RequestMapping(value = "/mPhotoList", method = RequestMethod.GET)
 	public ModelAndView mPhotoList(ModelAndView mv,HttpServletRequest request,@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "keyWord", defaultValue = "") String keyWord,
+			@RequestParam(value = "season", defaultValue = "") String season,
 			@RequestParam(value = "round", defaultValue = "all") String round,
 			@RequestParam(value = "game", defaultValue = "all") String game,
 			@RequestParam(value = "player", defaultValue = "all") String player,
@@ -1380,6 +1391,7 @@ public class AdminController {
 		// 한페이지당 보여줄 row
 		int boardLimit = 8;
 		paramMap.put("keyWord", keyWord);
+		paramMap.put("seasonCode", season);
 		paramMap.put("round", round);
 		paramMap.put("game", game);
 		paramMap.put("player", player);
@@ -1391,28 +1403,31 @@ public class AdminController {
 		int totalListCount = service.getTotalNoticeListCount(paramMap);
 		//init
 		List<Map<String, Object>> searchKeywordList = service.searchKeywordList(paramMap);
-		List<Map<String, Object>> gameList = service.gameList(paramMap);
-		List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
-		Map<String, Object> temp = new HashMap<String, Object>();
-		temp.put("gameCd", "all");
-		temp.put("gameNm", "경기 선택");
-		selectGame.add(temp);
-		if(gameList != null && gameList.size() >0) {
-			for(Map m: gameList) {
-				String gameCd = m.get("game_date").toString();
-				String gameNm ="";
-				String game_date = m.get("game_date").toString();
-				String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
-				temp = new HashMap<String, Object>();
-				if("60".equals(m.get("home_team"))) {
-					gameNm = dateformat + " vs " + m.get("away_team_name");
-				}else {
-					gameNm = dateformat + " vs " + m.get("home_team_name");
+		if(!"".equals(season)) {
+			List<Map<String, Object>> gameList = service.gameList(paramMap);
+			List<Map<String,Object>> selectGame = new ArrayList<Map<String,Object>>();
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("gameCd", "all");
+			temp.put("gameNm", "경기 선택");
+			selectGame.add(temp);
+			if(gameList != null && gameList.size() >0) {
+				for(Map m: gameList) {
+					String gameCd = m.get("game_date").toString();
+					String gameNm ="";
+					String game_date = m.get("game_date").toString();
+					String dateformat = game_date.substring(0, 4) + "." + game_date.substring(4, 6) + "." + game_date.substring(6, 8);
+					temp = new HashMap<String, Object>();
+					if("60".equals(m.get("home_team"))) {
+						gameNm = dateformat+ " vs " + m.get("away_team_name");
+					}else {
+						gameNm = dateformat + " vs " + m.get("home_team_name");
+					}
+					temp.put("gameCd", gameCd);
+					temp.put("gameNm", gameNm);
+					selectGame.add(temp);
 				}
-				temp.put("gameCd", gameCd);
-				temp.put("gameNm", gameNm);
-				selectGame.add(temp);
 			}
+			mv.addObject("selectGame", selectGame);
 		}
 		List<Map<String, Object>> playerList = service.playerList(paramMap);
 		List<Map<String,Object>> selectPlayer = new ArrayList<Map<String,Object>>();
@@ -1430,7 +1445,7 @@ public class AdminController {
 				selectPlayer.add(temp2);
 			}
 		}
-		if(!"all".equals(round)) {
+		if(!"all".equals(round) && !"".equals(season)) {
 			Map<String, Object> roundMap = service.getRoundDate(paramMap);
 			if(roundMap != null) {
 				paramMap.put("first_game_date", roundMap.get("first_game_date"));
@@ -1453,13 +1468,13 @@ public class AdminController {
 		mv.addObject("totalListCount", totalListCount);
 		mv.addObject("photoList", photoList);
 		mv.addObject("searchKeywordList", searchKeywordList);
-		mv.addObject("selectGame", selectGame);
 		mv.addObject("selectPlayer", selectPlayer);
 		mv.addObject("startPage", pi.getStartPage());
 		mv.addObject("endPage", pi.getEndPage());
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("maxPage", pi.getMaxPage());
 		mv.addObject("keyWord", keyWord);
+		mv.addObject("season", season);
 		mv.addObject("round", round);
 		mv.addObject("game", game);
 		mv.addObject("player", player);

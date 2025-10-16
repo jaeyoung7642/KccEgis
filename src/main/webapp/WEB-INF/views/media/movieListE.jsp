@@ -98,10 +98,10 @@
 
 					<!-- 검색 -->
 					<article class="search_box type2 mb0">
-						<form action="movieListE" class="search_box_form grid">
+						<form action="movieListE" class="search_box_form grid" id="searchForm">
 						<input type="hidden" name="wtype" value="${wtype}">
 						<input type="hidden" name="otype" value="${otype}">
-							<div class="row row1">
+						<div class="row row1">
 								<div class="col grow col_date frm_date_wrap">
 									<span class="frm_date">
 										<input type="text" class="frm_input mdm date" aria-label="시작 일" placeholder="기간 설정" name="sdate" id="sdate" value="${sdate}" readonly>
@@ -112,11 +112,17 @@
 									</span>
 								</div>
 								<input type="text" class="frm_input mdm col shrink w367" aria-label="검색어" placeholder="검색어 입력 (제목 기반 제공)" name="keyWord" id="keyWord" value="${keyWord}">
-								<a href="movieListE" class="el_btn refresh" aria-label="새로고침"><span class="p_hide">새로고침</span></a>
+								<a href="movieListE" class="el_btn refresh p_hide" aria-label="새로고침" ><span class="p_hide">새로고침</span></a>
 							</div>
 							<div class="row row2">
 								<div class="col grow">
-									<select class="frm_select mdm" aria-label="라운드 선택" name="round" id="round" onchange="disabledGame()">
+									<select class="frm_select mdm" aria-label="시즌 선택" name="season" id="season" onchange="initGameRound()">
+										<option data-display="시즌 선택" hidden></option>
+										<option value="" <c:if test="${season eq ''}">selected</c:if>>전체</option>
+										<option value="47" <c:if test="${season eq '47'}">selected</c:if>>25-26시즌</option>
+										<option value="45" <c:if test="${season eq '45'}">selected</c:if>>24-25시즌</option>
+									</select>
+									<select class="frm_select mdm" aria-label="라운드 선택" name="round" id="round" onchange="disabledGame()" <c:if test="${empty season}">disabled</c:if>>
 										<option data-display="라운드 선택" hidden></option>
 										<option value="all" <c:if test="${round eq 'all'}">selected</c:if>>라운드 선택</option>
 										<option value="1" <c:if test="${round eq '1'}">selected</c:if>>1라운드</option>
@@ -126,23 +132,22 @@
 										<option value="5" <c:if test="${round eq '5'}">selected</c:if>>5라운드</option>
 										<option value="6" <c:if test="${round eq '6'}">selected</c:if>>6라운드</option>
 									</select>
-									<select class="frm_select mdm rt" aria-label="경기 선택" name="game" id="game" onchange="disabledRound()">
+									<select class="frm_select mdm" aria-label="경기 선택" name="game" id="game" onchange="disabledRound()" <c:if test="${empty season}">disabled</c:if>>
 										<option data-display="경기 선택" hidden></option>
-										<option value="">전체</option>
 										<c:forEach items="${selectGame}" var="selectGame">
 											<option value="${selectGame.gameCd}" <c:if test="${game eq selectGame.gameCd}">selected</c:if>>${selectGame.gameNm}</option>
 										</c:forEach>
 									</select>
-								</div>
-								<div class="col shrink w367">
 									<select class="frm_select mdm" aria-label="선수 선택" name="player" id="player">
 										<option data-display="선수 선택" hidden></option>
-										<option value="">전체</option>
 										<c:forEach items="${selectPlayer}" var="selectPlayer">
 											<option value="${selectPlayer.playerCd}" <c:if test="${player eq selectPlayer.playerCd}">selected</c:if>>${selectPlayer.playerNm}</option>
 										</c:forEach>
 									</select>
-									<button class="el_btn frm_btn mdm black">검색</button>
+								</div>
+								<div class="col m_flex">
+									<button type="button" class="el_btn frm_btn mdm black" onclick="formChk()">검색</button>
+									<a href="movieListE" class="el_btn refresh p_show" aria-label="새로고침"></a>
 								</div>
 							</div>
 							<div class="tags bl_tag_list">
@@ -184,14 +189,14 @@
 						<!-- board header -->
 						<div class="board_header">
 							<div class="bbs_cate_list">
-								<a href="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&otype=${otype}" class="cate <c:if test="${wtype =='all'}">active</c:if>">전체</a>
-								<a href="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=U&otype=${otype}" class="cate <c:if test="${wtype =='U'}">active</c:if>">영상</a>
-								<a href="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=S&otype=${otype}" class="cate <c:if test="${wtype =='S'}">active</c:if>">숏츠</a>
+								<a href="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&otype=${otype}" class="cate <c:if test="${wtype =='all'}">active</c:if>">전체</a>
+								<a href="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=U&otype=${otype}" class="cate <c:if test="${wtype =='U'}">active</c:if>">영상</a>
+								<a href="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=S&otype=${otype}" class="cate <c:if test="${wtype =='S'}">active</c:if>">숏츠</a>
 							</div>
 
 							<div class="bbs_sort_list">
-								<a href="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=num" class="sort <c:if test="${otype =='num'}">active</c:if>">최신순</a>
-								<a href="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=visited" class="sort <c:if test="${otype =='visited'}">active</c:if>">조회순</a>
+								<a href="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=num" class="sort <c:if test="${otype =='num'}">active</c:if>">최신순</a>
+								<a href="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=visited" class="sort <c:if test="${otype =='visited'}">active</c:if>">조회순</a>
 							</div>
 						</div>
 						<!-- //board header -->
@@ -201,7 +206,7 @@
 						<ul class="board_list type1">
 						<c:forEach items="${movieList}" var="movieList">
 							<li class="item">
-								<a href="movieListEDetail?num=${movieList.num}&listpage=${currentPage}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="bbs_box">
+								<a href="movieListEDetail?num=${movieList.num}&listpage=${currentPage}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="bbs_box">
 								<c:choose>
 				                	<c:when test="${movieList.wtype =='U'}">
 				                		<div class="el_thumb rds el_img media youtube">
@@ -244,12 +249,12 @@
 					<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					<c:if test="${maxPage2 > 0}">
-					<a href="movieListE?page=1&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+					<a href="movieListE?page=1&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					
 					<!-- 이전 블럭으로 이동 -->
 					<c:if test="${startPage2 gt 1 }">
-                       	<a href="movieListE?page=${startPage2-1}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+                       	<a href="movieListE?page=${startPage2-1}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
                     </c:if>
 					<c:if test="${startPage2 eq 1 }">
                        	<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
@@ -261,7 +266,7 @@
                     	<a href="#" class="page_link current">${p}</a>
                     </c:if>
                       <c:if test="${p ne currentPage }">
-                      	<c:url var="movieListE" value="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}">
+                      	<c:url var="movieListE" value="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}">
 	 					<c:param name="page" value="${p}" />
 	 					</c:url>
 	 					<a href="${movieListE}" class="page_link">${p}</a>
@@ -270,7 +275,7 @@
                     
                     <!-- 다음 블럭으로 이동 -->
                     <c:if test="${endPage2 ne maxPage2 && maxPage2 > 1}">
-					<a href="movieListE?page=${endPage2+1}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico next"><span class="blind">다음</span></a>
+					<a href="movieListE?page=${endPage2+1}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico next"><span class="blind">다음</span></a>
                     </c:if>
                     <c:if test="${endPage2 ge maxPage2}">
 					<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
@@ -281,7 +286,7 @@
                     	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
                     </c:if>
                     <c:if test="${maxPage2 > 0}">
-					<a href="movieListE?page=${maxPage2}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico last"><span class="blind">마지막</span></a>
+					<a href="movieListE?page=${maxPage2}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico last"><span class="blind">마지막</span></a>
 					</c:if>
 				</div>
 				<!-- // pagination -->
@@ -292,12 +297,12 @@
 					<a href="#" class="page_link ico first" disabled><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					<c:if test="${maxPage > 0}">
-					<a href="movieListE?page=1&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
+					<a href="movieListE?page=1&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico first"><span class="blind">처음</span></a> <!-- 비활성화시 disabled 추가 -->
 					</c:if>
 					
 					<!-- 이전 블럭으로 이동 -->
 					<c:if test="${startPage gt 1 }">
-                       	<a href="movieListE?page=${startPage-1}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
+                       	<a href="movieListE?page=${startPage-1}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico prev"><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
                     </c:if>
 					<c:if test="${startPage eq 1 }">
                        	<a href="#" class="page_link ico prev" disabled><span class="blind">이전</span></a> <!-- 비활성화시 disabled 추가 -->
@@ -309,7 +314,7 @@
                     	<a href="#" class="page_link current">${p}</a>
                     </c:if>
                       <c:if test="${p ne currentPage }">
-                      	<c:url var="movieListE" value="movieListE?keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}">
+                      	<c:url var="movieListE" value="movieListE?keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}">
 	 					<c:param name="page" value="${p}" />
 	 					</c:url>
 	 					<a href="${movieListE}" class="page_link">${p}</a>
@@ -318,7 +323,7 @@
                     
                     <!-- 다음 블럭으로 이동 -->
                     <c:if test="${endPage ne maxPage && maxPage > 1}">
-					<a href="movieListE?page=${endPage+1}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico next"><span class="blind">다음</span></a>
+					<a href="movieListE?page=${endPage+1}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico next"><span class="blind">다음</span></a>
                     </c:if>
                     <c:if test="${endPage ge maxPage}">
 					<a href="#" class="page_link ico next" disabled><span class="blind">다음</span></a>
@@ -329,7 +334,7 @@
                     	<a href="#" class="page_link ico last" disabled><span class="blind">마지막</span></a>
                     </c:if>
                     <c:if test="${maxPage > 0}">
-					<a href="movieListE?page=${maxPage}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico last"><span class="blind">마지막</span></a>
+					<a href="movieListE?page=${maxPage}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="page_link ico last"><span class="blind">마지막</span></a>
 					</c:if>
 				</div>
 				<!-- // pagination -->

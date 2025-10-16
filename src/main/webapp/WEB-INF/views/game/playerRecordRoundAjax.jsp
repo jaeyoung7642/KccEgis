@@ -26,7 +26,7 @@
 							</div>
 							<div class="swipearea">
 								<div class="inner">
-									<table summary="대진팀, 경기결과, min, 득점, 2점슛, 3점슛, 자유투, 리운드, 어시스트, 스틸, 블록, 턴오버, 파울 정보 제공공" style="--pmin: 1100px; --mmin: 970px;">
+									<table summary="대진팀, 경기결과, min, 득점, 2점슛, 3점슛, 자유투, 리바운드, 어시스트, 스틸, 블록, 턴오버, 파울 정보 제공공" style="--pmin: 1100px; --mmin: 970px;">
 										<caption>경기별 기록 비교 스크롤영역</caption>
 										<colgroup>
 											<col>
@@ -52,7 +52,7 @@
 												<th scope="col">2점슛</th>
 												<th scope="col">3점슛</th>
 												<th scope="col">자유투</th>
-												<th scope="col">리운드</th>
+												<th scope="col">리바운드</th>
 												<th scope="col">어시스트</th>
 												<th scope="col">스틸</th>
 												<th scope="col">블록</th>

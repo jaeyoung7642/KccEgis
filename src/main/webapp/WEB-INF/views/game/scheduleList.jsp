@@ -253,10 +253,13 @@
 								<c:if test="${currentMap.away_team == '60' }">
 								<span class="el_ccl away"><span class="blind">원정경기</span></span>
 								</c:if>
+								<div class="where">
 								<p class="place">${currentMap.stadium_name_2}</p>
 								<c:if test="${currentMap.home_team == '60' }">
 								<a href="TICKET" target="_blank" rel="noreferrer" aria-label="티켓예매(새창열림)" class="el_btn btn1 pmd siteLink xm_hide"><span class="el_ico ico_ticket"></span> 티켓예매</a>
 								</c:if>
+								<p class="chanel">${currentMap.tv_play}</p>
+								</div>
 							</div>
 							<div class="content">
 								<div class="team lt <c:if test="${currentMap.home_team == '60'}">xm_hide</c:if>">
@@ -348,6 +351,7 @@
 								<c:if test="${nextMap.away_team == '60' }">
 								<span class="el_ccl away"><span class="blind">원정경기</span></span>
 								</c:if>
+								<p class="chanel">${nextMap.tv_play}</p>
 							</div>
 							<div class="content">
 								<div class="team lt">

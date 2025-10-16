@@ -26,6 +26,48 @@ function headerEvt() {
 function footerEvt() {
 	siteLink();
 }
+function initGameRound(){
+	const seasonSelect = document.getElementById('season');
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
+    const selectedSeason = seasonSelect.value;
+    if (selectedSeason) {
+    	gameSelect.disabled = false;
+    	roundSelect.disabled = false;
+    	
+    	gameSelect.innerHTML = '<option data-display="경기 선택" hidden>all</option>';
+    	$.ajax({
+			type: "GET",
+			url: "/getGamesBySeason",
+			data: { season: selectedSeason },
+			success: function(response) {
+				if (response && response.length > 0) {
+					response.forEach(function(game) {
+						const option = document.createElement('option');
+						option.value = game.gameCd;
+						option.textContent = game.gameNm;
+						gameSelect.appendChild(option);
+					});
+				} else {
+					const option = document.createElement('option');
+					option.textContent = '해당 시즌의 경기가 없습니다';
+					option.disabled = true;
+					gameSelect.appendChild(option);
+				}
+				customSelect();
+			},
+			error: function() {
+				alert('경기 데이터를 불러오는 데 실패했습니다.');
+			}
+		});
+    }else {
+    	$("#game").val("all");
+    	$("#round").val("all");
+		gameSelect.disabled = true;
+		roundSelect.disabled = true;
+		customSelect();
+	}
+}
 function disabledGame(){
 		const roundSelect = document.getElementById('round');
 	    const gameSelect = document.getElementById('game');
@@ -51,6 +93,20 @@ function disabledRound(){
     	roundSelect.disabled = false;
     }
     customSelect();
+}
+function formChk(){
+	const seasonSelect = document.getElementById('season');
+	const roundSelect = document.getElementById('round');
+    const gameSelect = document.getElementById('game');
+    const selectedSeason = seasonSelect.value;
+    if (selectedSeason) {
+    	if(roundSelect.value == 'all' && gameSelect.value == 'all'){
+    		alert("시즌 선택시 라운드를 선택하거나 경기를 선택해주세요.");
+    		return false;
+    	}
+    }
+	var form = $("#searchForm");
+	form.submit();
 }
 function searchReset() {
 		const roundSelect = document.getElementById('round');

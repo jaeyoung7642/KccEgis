@@ -92,7 +92,7 @@
 		<!-- //header -->
 
 		<!-- container -->
-		<main id="container" class="ly_container skin-chuseok">
+		<main id="container" class="ly_container">
 			<h2 id="con" class="blind">본문</h2>
 
 			<!-- visual (최대 3개) -->
@@ -255,7 +255,7 @@
 										<div class="teams">
 											<div class="team lt">
 												<div class="logo">
-													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt="">
+													<%-- <img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt=""> --%>
 													<c:if test="${prevTeamSchedule.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt="">
 													</c:if>
@@ -263,7 +263,7 @@
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt="">
 													</c:if>
 												</div>
-													<p class="name">${prevTeamSchedule.home_team_name }</p>
+													<%-- <p class="name">${prevTeamSchedule.home_team_name }</p> --%>
 												<c:if test="${prevTeamSchedule.home_team == '60' }">
 												<p class="name">${prevTeamSchedule.home_team_name }</p>
 												</c:if>
@@ -273,7 +273,7 @@
 											</div>
 											<div class="team rt">
 												<div class="logo">
-													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt="">
+													<%-- <img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt=""> --%>
 													<c:if test="${prevTeamSchedule.home_team == '60' }">
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.away_team}.png" alt="">
 													</c:if>
@@ -281,7 +281,7 @@
 													<img src="/resources/common/images/game/b_logo_${prevTeamSchedule.home_team}.png" alt="">
 													</c:if>
 												</div>
-													<p class="name">${prevTeamSchedule.away_team_name }</p>
+													<%-- <p class="name">${prevTeamSchedule.away_team_name }</p> --%>
 												<c:if test="${prevTeamSchedule.home_team == '60' }">
 												<p class="name">${prevTeamSchedule.away_team_name }</p>
 												</c:if>
@@ -291,9 +291,9 @@
 											</div>
 											<div class="state">
 												<p class="score">
-													<span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
+													<%-- <span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
 													<span class="vs">:</span>
-													<span class="num rt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span>
+													<span class="num rt <c:if test="${prevTeamSchedule.home_score < prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.away_score}</span> --%>
 													<c:if test="${prevTeamSchedule.home_team == '60' }">
 													<span class="num lt <c:if test="${prevTeamSchedule.home_score > prevTeamSchedule.away_score}">win</c:if>">${prevTeamSchedule.home_score}</span>
 													<span class="vs">:</span>
@@ -722,7 +722,7 @@
 						<!-- //left -->
 					</div>
 
-					<a href="https://smartstore.naver.com/ravona/category/5d967cb738634c69bd00cd9458411d5c?cp=1" target="_blank" rel="noreferrer" class="el_btn btn_more" aria-label="상품 더보기(새창열림)"><span class="el_ico more w"></span></a>
+					<a href="https://smartstore.naver.com/ravona/category/5d967cb738634c69bd00cd9458411d5c?cp=1" target="_blank" rel="noreferrer" class="el_btn btn_more" aria-label="상품 더보기(새창열림)"><span class="el_ico more primary"></span></a>
 				</div>
 			</section>
 			<!-- //Goods -->
