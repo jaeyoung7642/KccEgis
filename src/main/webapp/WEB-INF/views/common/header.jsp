@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 </head>
-	<header id="header" class="ly_header preload skin-chuseok">
+	<header id="header" class="ly_header preload">
 	<div class="header_inner ly_inner">
 
 		<h1 class="header_logo">
@@ -109,6 +109,9 @@
 					<div class="header_utils sns">
 						<a href="INSTAGRAM" target="_blank" rel="noreferrer" aria-label="인스타그램(새창열림)" class="el_btn ccl in siteLink">
 							<img src="/resources/common/images/common/sns_instagram.svg" alt="">
+						</a>
+						<a href="YOUTUBE" target="_blank" rel="noreferrer" aria-label="유튜브(새창열림)" class="el_btn ccl yt siteLink">
+							<img src="/resources/common/images/common/sns_youtube.svg" alt="">
 						</a>
 						<a href="FACEBOOK" target="_blank" rel="noreferrer" aria-label="페이스북(새창열림)" class="el_btn ccl fa siteLink">
 							<img src="/resources/common/images/common/sns_facebook.svg" alt="">

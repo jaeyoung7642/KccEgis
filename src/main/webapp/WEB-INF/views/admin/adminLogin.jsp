@@ -146,6 +146,12 @@
 			    e.preventDefault(); // form submit 방지
 			    login();
 			});
+			$("#adminForm").on("keydown", function(event) {
+			    if (event.key === "Enter") {
+			        event.preventDefault();
+			        return false;
+			    }
+			});
 		</script>
 </body>
 </html>

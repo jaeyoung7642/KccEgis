@@ -1064,6 +1064,8 @@ textarea.frm_input {min-height: 178px; padding-top: var(--fmPl); padding-bottom:
 	.search_box .load_menu_slider {height: 31px; line-height: 31px; text-align: center;}
 	.search_box .load_menu_slider .swiper-slide {padding: 0 30px;}
 	.search_box .load_menu_slider .frm_radio span {white-space: nowrap;} 
+	/* 20250930 추가 */
+	.search_box .col.m_flex button.mdm{flex:auto;}
 }
 
 @media (max-width: 575px) {

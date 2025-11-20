@@ -297,7 +297,7 @@
 							<!-- comment --> --%>
 
 							<div class="btn_area mt50-30">
-								<a href="movieListE?page=${listpage}&keyWord=${keyWord}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="el_btn frm_btn gray">목록</a>
+								<a href="movieListE?page=${listpage}&keyWord=${keyWord}&season=${season}&sdate=${sdate}&edate=${edate}&round=${round}&game=${game}&player=${player}&wtype=${wtype}&otype=${otype}" class="el_btn frm_btn gray">목록</a>
 							</div>
 						</div>
 					</div>

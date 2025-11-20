@@ -59,7 +59,7 @@
 				</div>
 				<!-- search -->
 				<div class="board_search">
-					<form action="mMovieList" class="search_group">
+					<form action="mMovieList" class="search_group" id="searchForm">
 						<div class="forms frm_field">
 							<div class="row">
 								<div class="frm_group">
@@ -73,7 +73,13 @@
 
 							<div class="row">
 								<div class="frm_group">
-									<select class="frm_select sm m137" aria-label="라운드 선택" name="round" id="round">
+									<select class="frm_select sm m137" aria-label="시즌 선택" name="season" id="season" onchange="initGameRound()">
+										<option value="" <c:if test="${season eq ''}">selected</c:if>>전체</option>
+										<option value="47" <c:if test="${season eq '47'}">selected</c:if>>25-26시즌</option>
+										<option value="45" <c:if test="${season eq '45'}">selected</c:if>>24-25시즌</option>
+									</select>
+									<select class="frm_select sm m137" aria-label="라운드 선택" name="round" id="round" onchange="disabledGame()" <c:if test="${empty season}">disabled</c:if>>
+										<option data-display="라운드 선택" hidden></option>
 										<option value="all" <c:if test="${round eq 'all'}">selected</c:if>>라운드 선택</option>
 										<option value="1" <c:if test="${round eq '1'}">selected</c:if>>1라운드</option>
 										<option value="2" <c:if test="${round eq '2'}">selected</c:if>>2라운드</option>
@@ -82,17 +88,18 @@
 										<option value="5" <c:if test="${round eq '5'}">selected</c:if>>5라운드</option>
 										<option value="6" <c:if test="${round eq '6'}">selected</c:if>>6라운드</option>
 									</select>
-									<select class="frm_select sm full" aria-label="경기 선택" name="game" id="game">
+									<select class="frm_select sm full" aria-label="경기 선택" name="game" id="game" onchange="disabledRound()" <c:if test="${empty season}">disabled</c:if>>
+										<option data-display="경기 선택" hidden>all</option>
 										<c:forEach items="${selectGame}" var="selectGame">
 											<option value="${selectGame.gameCd}" <c:if test="${game eq selectGame.gameCd}">selected</c:if>>${selectGame.gameNm}</option>
 										</c:forEach>
 									</select>
-									<select class="frm_select sm m153" aria-label="선수 선택" name="player" id="player">
+									<select class="frm_select sm m143" aria-label="선수 선택" name="player" id="player">
 										<c:forEach items="${selectPlayer}" var="selectPlayer">
 											<option value="${selectPlayer.playerCd}" <c:if test="${player eq selectPlayer.playerCd}">selected</c:if>>${selectPlayer.playerNm}</option>
 										</c:forEach>
 									</select>
-									<button class="el_btn frm_btn deep sm w100">검색</button>
+									<button type="button" class="el_btn frm_btn deep sm w100" onclick="formChk()">검색</button>
 								</div>
 							</div>
 						</div>

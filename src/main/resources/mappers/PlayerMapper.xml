@@ -690,6 +690,7 @@ A.avg2 DESC, A.play_min, A.play_sec) AS rn
 		and a.game_code = c.game_code 
 		and a.game_no = c.game_no
 		and a.team_code = c.team_code
+		order by b.game_date desc
 	</select>
 	<select id="seasonSearchAvgList" resultType="map">
 				select b.kname AS pl_name
