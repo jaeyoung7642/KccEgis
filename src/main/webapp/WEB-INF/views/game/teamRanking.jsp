@@ -83,8 +83,8 @@
 								<a href="scheduleList" class="swiper-slide snb_link"><span>경기일정/결과</span></a> <!-- 해당페이지에 current 추가 -->
 								<a href="teamRank" class="swiper-slide snb_link current"><span>팀/선수 순위</span></a>
 								<a href="teamRecord" class="swiper-slide snb_link"><span>시즌 기록실</span></a>
-								<!-- <a href="ticket" class="swiper-slide snb_link"><span>티켓팅</span></a> -->
-								<a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>티켓팅</span></a>
+								<a href="ticket" class="swiper-slide snb_link"><span>티켓팅</span></a>
+								<!-- <a href="#" class="swiper-slide snb_link" onclick="alertPop('시즌 업데이트 준비중입니다.')"><span>티켓팅</span></a> -->
 							</div>
 						</div>
 					</div>

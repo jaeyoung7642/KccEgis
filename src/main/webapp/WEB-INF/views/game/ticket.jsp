@@ -99,7 +99,7 @@
 			<section class="section">
 				<div class="ly_inner md">
 					<div class="page_header">
-						<h4 class="el_heading lv1">24-25시즌 티켓예매 안내</h4> 
+						<h4 class="el_heading lv1">25-26시즌 티켓예매 안내</h4> 
 					</div>
 
 					<!-- 티켓예매 안내 테이블 -->
@@ -121,7 +121,7 @@
 										<td></td>
 									</tr>
 									<tr>
-										<td class="dth1" id="floor2" style="height: calc(40px * 6)">2층</td>
+										<td class="dth1" id="floor2" style="height: calc(40px * 8)">2층</td>
 									</tr>
 									<tr>
 										<td class="dth1" id="floor3" style="height: calc(40px * 2)">3, 4층</td>
@@ -142,7 +142,7 @@
 									<thead>
 										<tr>
 											<th scope="col" colspan="2">좌석</th>
-											<th scope="col">주중/EASL(3경기)</th>
+											<th scope="col">주중</th>
 											<th scope="col">주말/공휴일</th>
 											<th scope="col">비고</th>
 										</tr>
@@ -150,72 +150,78 @@
 									<tbody>
 										<tr>
 											<td scope="row" headers="floor1" colspan="2" class="dth1">F석</td>
-											<td class="dth2 txt_rt">45,000원</td>
-											<td class="dth3 txt_rt">50,000원</td>
+											<td class="dth2 txt_rt">50,000원</td>
+											<td class="dth3 txt_rt">60,000원</td>
 											<td class="txt_lt"></td>
 										</tr>
 										<tr>
 											<td scope="row" headers="floor1" colspan="2" class="dth1">익사이팅 1~4</td>
+											<td class="dth2 txt_rt">35,000원</td>
+											<td class="dth3 txt_rt">40,000원</td>
+											<td class="txt_lt"></td>
+										</tr>
+										<tr>
+											<td scope="row" headers="floor1" colspan="2" class="dth1">익사이팅 5~6</td>
 											<td class="dth2 txt_rt">30,000원</td>
 											<td class="dth3 txt_rt">33,000원</td>
 											<td class="txt_lt"></td>
 										</tr>
 										<tr>
-											<td scope="row" headers="floor1" colspan="2" class="dth1">익사이팅 5~6</td>
-											<td class="dth2 txt_rt">25,000원</td>
-											<td class="dth3 txt_rt">28,000원</td>
+											<td scope="row" headers="floor2" colspan="2" class="dth1">테이블석(2인 기준)</td>
+											<td class="dth2 txt_rt">80,000원</td>
+											<td class="dth3 txt_rt">100,000원</td>
 											<td class="txt_lt"></td>
 										</tr>
 										<tr>
-											<td scope="row" headers="floor2" colspan="2" class="dth1">커플석(2인 기준)</td>
-											<td class="dth2 txt_rt">45,000원</td>
-											<td class="dth3 txt_rt">50,000원</td>
+											<td scope="row" headers="floor2" colspan="2" class="dth1">A석 /영화관 좌석</td>
+											<td class="dth2 txt_rt">22,000원</td>
+											<td class="dth3 txt_rt">25,000원</td>
 											<td class="txt_lt"></td>
-										</tr>
-										<tr>
-											<td scope="row" headers="floor2" colspan="2" class="dth1">A석</td>
-											<td class="dth2 txt_rt">20,000원</td>
-											<td class="dth3 txt_rt">22,000원</td>
-											<td class="txt_lt"></td>
-										</tr>	
+										</tr>										
 										<tr>
 											<td scope="row" headers="floor2" rowspan="2" class="dth1">일반석(응원석)</td>
 											<td scope="row" class="dth1">성인</td>
-											<td class="dth2 txt_rt">13,000원</td>
-											<td class="dth3 txt_rt">13,000원</td>
+											<td class="dth2" colspan="2">15,000원</td>
 											<td class="txt_lt"></td>
 										</tr>
 										<tr>
 											<td scope="row" class="dth1 bd_lt">청소년</td>
-											<td class="dth2 txt_rt">11,000원</td>
-											<td class="dth3 txt_rt">11,000원</td>
-											<td class="txt_lt">청소년 할인 적용</td>
-										</tr>
+											<td class="dth2" colspan="2">13,000원</td>
+											<td class="txt_lt">청소년 할인 제공</td>
+										</tr>										
 										<tr>
 											<td scope="row" headers="floor2" rowspan="2" class="dth1">일반석</td>
 											<td scope="row" class="dth1">성인</td>
-											<td class="dth2 txt_rt">12,000원</td>
-											<td class="dth3 txt_rt">12,000원</td>
+											<td class="dth2" colspan="2">14,000원</td>
 											<td class="txt_lt"></td>
 										</tr>
 										<tr>
 											<td scope="row" class="dth1 bd_lt">청소년</td>
-											<td class="dth2 txt_rt">10,000원</td>
-											<td class="dth3 txt_rt">10,000원</td>
-											<td class="txt_lt">청소년 할인 적용</td>
+											<td class="dth2" colspan="2">12,000원</td>
+											<td class="txt_lt">청소년 할인 제공</td>
+										</tr>
+										<tr>
+											<td scope="row" headers="floor2" colspan="2" class="dth1">가족석(2인)</td>
+											<td class="dth2 txt_rt">100,000원</td>
+											<td class="dth3 txt_rt">120,000원</td>
+											<td class="txt_lt">최대 4인 수용 가능 (성인 2인, 미취학아동 2인)</td>
+										</tr>
+										<tr>
+											<td scope="row" headers="floor2" colspan="2" class="dth1">가족석(4인)</td>
+											<td class="dth2 txt_rt">200,000원</td>
+											<td class="dth3 txt_rt">240,000원</td>
+											<td class="txt_lt">최대 6인 수용 가능 (성인 4인, 미취학아동 2인)</td>
 										</tr>
 										<tr>
 											<td scope="row" headers="floor3" rowspan="2" class="dth1">일반석</td>
 											<td scope="row" class="dth1">성인</td>
-											<td class="dth2 txt_rt">10,000원</td>
-											<td class="dth3 txt_rt">10,000원</td>
+											<td class="dth2" colspan="2">10,000원</td>
 											<td class="txt_lt"></td>
 										</tr>
 										<tr>
 											<td scope="row" class="dth1 bd_lt">청소년</td>
-											<td class="dth2 txt_rt">8,000원</td>
-											<td class="dth3 txt_rt">8,000원</td>
-											<td class="txt_lt">청소년 할인 적용</td>
+											<td class="dth2" colspan="2">8,000원</td>
+											<td class="txt_lt">청소년 할인 제공</td>
 										</tr>
 								</table> 
 							</div>
@@ -229,7 +235,7 @@
 						</div>
 
 						<ul class="el_desc_list no_mg txt_black">
-							<li>경로우대(만65세 이상), 장애인 복지카드 50%할인 / 1인 1매(일반석에 한함)</li>
+							<li>경로우대(만65세 이상), 장애인 복지카드 50%할인/1인 1매(일반석에 한함)</li>
 							<li>청소년은 36개월 이상부터 초,중,고 학생에 한함(학생증 제시 요망)</li>
 							<li>36개월 이하의 경우 좌석을 점유 할 경우 티켓 구매 필수</li>
 							<li>문화누리카드40%(일반석에 한함)</li> 
@@ -273,13 +279,13 @@
 							<tbody>
 								<tr class="h50">
 									<td scope="row" class="dth1 txt_lt">온라인</td>
-									<td class="txt_lt"><a href="TICKET" target="_blank" rel="noreferrer" aria-label="(새창열림)" class="siteLink">https://egis.kbl.or.kr</a></td>
+									<td class="txt_lt"><a href="TICKET" target="_blank" rel="noreferrer" aria-label="(새창열림)" class="siteLink">https://egis.kbl.or.kr/</a></td>
 									<td class="txt_lt bd_rt">24시간 운영</td>
 									<td rowspan="3" class="txt_lt rds_rt no_bd_lt p_hide">
 										<ul class="el_desc_list mg txt_black">
-											<!--<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
-												일반 회원 예매는 경기 4일 전 오전 11시부터 경기 당일 경기 시작 시까지 입장권 
-												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>-->
+											<li>멤버십 회원 예매는 5일 전 오후 12시,<br class="xm_hide"> 
+												일반 회원 예매는 경기 4일 전 오후 12시부터 경기 당일 경기 시작 시까지 입장권 
+												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>
 											<li>경기 시작 2시간 전까지 취소 가능</li>
 										</ul>
 									</td>
@@ -297,9 +303,9 @@
 								<tr class="t_show h50">
 									<td colspan="3" class="txt_lt">
 										<ul class="el_desc_list mg txt_black">
-											<!--<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
+											<li>멤버십 회원 예매는 5일 전 오전 11시,<br class="xm_hide"> 
 												일반 회원 예매는 경기 4일 전 오전 11시부터 경기 당일 경기 시작 시까지 입장권 
-												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>-->
+												<span class="txt_wrap">예매 시</span> <span class="txt_wrap">1,000원 할인</span>(전  좌석 동일 적용)</li>
 											<li>경기 시작 2시간 전까지 취소 가능</li>
 										</ul>
 									</td>
@@ -356,19 +362,11 @@
 								<ul class="info_list type2">
 									<li class="item">
 										<span class="box c3"></span>
-										A석
-									</li>
-									<!--<li class="item">
-										<span class="box c4"></span>
-										VIP석
-									</li>-->
-									<li class="item">
-										<span class="box c5"></span>
-										커플석(2인)
+										A석(영화관 좌석)
 									</li>
 									<li class="item">
 										<span class="box c6"></span>
-										기자석
+										테이블석(2인)
 									</li>
 									<li class="item">
 										<span class="box c8"></span>
@@ -377,6 +375,10 @@
 									<li class="item">
 										<span class="box c7"></span>
 										일반석(응원석)
+									</li>
+									<li class="item">
+										<span class="box c4"></span>
+										가족석(4인, 6인)
 									</li>
 								</ul>
 							</div>
@@ -398,7 +400,7 @@
 						</div>
 						<div class="seatmap el_img">
 							<!--<img src="/resources/common/images/img/ticket_seatmap.webp" alt="부산사직실내체육관 좌석배치도 이미지">-->
-							<img src="/resources/common/images/img/seat_2425_2.png" alt="부산사직실내체육관 좌석배치도 이미지">
+							<img src="/resources/common/images/img/seat_2526.png" alt="부산사직실내체육관 좌석배치도 이미지">
 						</div>
 					</div>
 

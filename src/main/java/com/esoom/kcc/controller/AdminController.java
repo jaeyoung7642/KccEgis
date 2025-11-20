@@ -1,8 +1,22 @@
 package com.esoom.kcc.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+import java.security.cert.X509Certificate;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,11 +24,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.TrustManager;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.slf4j.Logger;
@@ -29,6 +48,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -93,31 +114,31 @@ public class AdminController {
                 session.setMaxInactiveInterval(5 * 60);
 				session.setAttribute("authCode", authCode);
 				System.out.println("authCode=============="+authCode);
-//                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
-//    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
-//    				    + "<head>"
-//    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
-//    				    + "<title>KCC EGIS!!</title>"
-//    				    + "<style type='text/css'>"
-//    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
-//    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
-//    				    + "a:hover {font-weight:bold; text-decoration:none} "
-//    				    + "</style>"
-//    				    + "</head>"
-//    				    + "<body>"
-//    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
-//    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
-//    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
-//    				    + "</h1>"
-//    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
-//    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
-//    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
-//    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
-//    				    + "</div>"
-//    				    + "</div>"
-//    				    + "</body>"
-//    				    + "</html>";
-//    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
+                String body = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
+    				    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='ko' lang='ko'>"
+    				    + "<head>"
+    				    + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
+    				    + "<title>KCC EGIS!!</title>"
+    				    + "<style type='text/css'>"
+    				    + "body { font-size:12px; line-height:180%; color:#555; padding:0; margin:0} "
+    				    + "a:link, a:visited, a:active {color:#f39800; text-decoration:underline} "
+    				    + "a:hover {font-weight:bold; text-decoration:none} "
+    				    + "</style>"
+    				    + "</head>"
+    				    + "<body>"
+    				    + "<div style='border:1px solid #e1e1e1; border-top:10px solid #0084c5; width:700px; padding:0 0 40px 0; margin:0;'>"
+    				    + "<h1 style='margin:0; padding:40px 0 50px 0; width:700px; text-align:center; background-color:#edf2f8; background-image:url(https://www.kccegis.com/resources/common/images/common/mailing_bg_shadow.gif); background-repeat:no-repeat; background-position:left bottom'>"
+    				    + "<img src='https://www.kccegis.com/resources/common/images/common/mailing_logo.gif' alt='KCC EGIS' border='0' />"
+    				    + "</h1>"
+    				    + "<div style='margin:30px 0 50px 90px; width:540px; border:0; padding:0'>"
+    				    + "<p>안녕하세요. <span style='color:#000000'>관리자</span>님!<br /><br />KCC EGIS 관리자 이메일 인증번호는 아래와 같습니다.<br />\n"
+    				    + "발급된 인증번호를 관리자 로그인 시 입력해주세요.</p>"
+    				    + "<p style='text-align:center; font-weight:bold; color:#014099; padding:30px 0 0 0;'>이메일 인증번호 :"+authCode+"</p>"
+    				    + "</div>"
+    				    + "</div>"
+    				    + "</body>"
+    				    + "</html>";
+    			mailService.sendMail(email, "KCC EGIS 관리자 이메일 인증번호를 안내해 드립니다.", body);
             } else {
                 result = "2"; // 비밀번호 틀림
                 service.updatePwdFailCount(paramMap);
@@ -2027,6 +2048,12 @@ public class AdminController {
 				memberMap.put("addr_dec", addr_dec);
 				memberMap.put("daddr_dec", daddr_dec);
 				memberMap.put("htel_dec", htel_dec);
+				Map<String, Object> apiMap = new HashMap<String, Object>();
+				apiMap.put("program", "회원관리(상세)");
+				apiMap.put("targetId", memberMap.get("id"));
+				apiMap.put("log", "조회");
+				String apiLog = logApi(apiMap);
+				System.out.println("apiLog======================"+apiLog);
 			}
 			resultMap.putAll(memberMap);
 			System.out.println(resultMap.toString());
@@ -2701,6 +2728,23 @@ public class AdminController {
 		paramMap.put("limit", pi.getBoardLimit());
 		paramMap.put("currentPage", currentPage);
 		List<Map<String, Object>> memberList = service.memberList(paramMap);
+		if(memberList.size()>0) {
+			String idList = "";
+			for(Map m : memberList) {
+				if("".equals(idList)) {
+					idList = m.get("id").toString();
+				}else {
+					idList = idList + "," + m.get("id");
+				}
+			}
+			System.out.println(idList);
+			Map<String, Object> apiMap = new HashMap<String, Object>();
+			apiMap.put("program", "회원관리(목록)");
+			apiMap.put("targetId", idList);
+			apiMap.put("log", "조회");
+			String apiLog = logApi(apiMap);
+			System.out.println("apiLog======================"+apiLog);
+		}
 		mv.addObject("totalListCount", totalListCount);
 		mv.addObject("memberList", memberList);
 		mv.addObject("startPage", pi.getStartPage());
@@ -2724,6 +2768,13 @@ public class AdminController {
 		paramMap.put("pwd", afterPwd);
 		int changePwd = service.changePwd(paramMap);
 		if(changePwd>0) {
+			Map<String, Object> memberMap = service.memberMap(paramMap);
+			Map<String, Object> apiMap = new HashMap<String, Object>();
+			apiMap.put("program", "회원관리(상세)");
+			apiMap.put("targetId", memberMap.get("id"));
+			apiMap.put("log", "수정");
+			String apiLog = logApi(apiMap);
+			System.out.println("apiLog======================"+apiLog);
 			result.put("result", true);
 		}else {
 			result.put("result", false);
@@ -3050,5 +3101,61 @@ public class AdminController {
 		mv.addObject("select", select);
 		mv.setViewName("admin/admin/aAdminAuthLogList");
 		return mv;
+	}
+	public String logApi(Map<String,Object> paramMap) throws IOException, ParseException ,Exception{
+		String result = "true";
+		TrustManager[] trustAllCerts = new TrustManager[]{
+		        new X509TrustManager() {
+		            public X509Certificate[] getAcceptedIssuers() { return null; }
+		            public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+		            public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+		        }
+		    };
+
+	    SSLContext sc = SSLContext.getInstance("TLS");
+	    sc.init(null, trustAllCerts, new SecureRandom());
+	    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+	    HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+	        @Override
+	        public boolean verify(String hostname, SSLSession session) {
+	            return true;
+	        }
+	    });
+		// 현재 시간 구하기
+        LocalDateTime now = LocalDateTime.now();
+        // 원하는 포맷 정의
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
+        // 포맷 적용
+        String formatted = now.format(formatter);
+        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attrs.getRequest();
+        HttpSession session = request.getSession();
+        String ip = ipUtil.getClientIP(request);
+        Map<String,Object> userInfo = (Map<String, Object>) session.getAttribute("user");
+        paramMap.put("system", "EGIS");
+        paramMap.put("userId", userInfo.get("id"));
+        paramMap.put("time", formatted);
+        paramMap.put("ip", ip);
+		StringBuilder urlBuilder = new StringBuilder("https://privacylog.kccworld.co.kr/rest/setLog"); /*URL*/
+        URL url = new URL(urlBuilder.toString());
+		StringBuilder sb = new StringBuilder();
+		for(Map.Entry<String, Object> m : paramMap.entrySet()) {
+			if(sb.length() != 0) sb.append("&");
+			sb.append(URLEncoder.encode(m.getKey(),"UTF-8"));
+			sb.append("=");
+			sb.append(URLEncoder.encode(String.valueOf(m.getValue()), "UTF-8"));
+		}
+		byte[] postDataBytes = sb.toString().getBytes("UTF-8");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+		conn.getOutputStream().write(postDataBytes);
+        System.out.println("Response code: " + conn.getResponseCode());
+        if(conn.getResponseCode() != 200) {
+        	result = "false";
+        }
+        conn.disconnect();
+		return result;
 	}
 }
