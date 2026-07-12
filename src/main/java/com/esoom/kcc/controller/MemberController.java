@@ -951,8 +951,8 @@ public class MemberController {
 		    e.printStackTrace();
 		}
 
-		String client_id = "605a8ef0-4a9a-459a-95af-212b06a8b275";
-		String productID = "2101979031";
+		String client_id = "";
+		String productID = "";
 	    
 	    //운영용
 		String returnURL = request.getScheme()+"://"+request.getServerName()+"/niceResult2";
