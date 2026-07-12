@@ -194,8 +194,8 @@ public class MemberController {
 		String tURL = "https://svc.niceapi.co.kr:22001/digital/niceid/oauth/oauth/token";
 		String uParam="grant_type=client_credentials&scope=default";
 		
-		String clientID="605a8ef0-4a9a-459a-95af-212b06a8b275";
-		String secretKey="426bc5973f865c56d601474883f53655";
+		String clientID="";
+		String secretKey="";
 		
 		String Auth = Base64.getEncoder().encodeToString((clientID+":"+secretKey).getBytes());
 		String responseData = testHttpRequest(tURL, uParam,Auth);
@@ -212,8 +212,8 @@ public class MemberController {
 		    e.printStackTrace();
 		}
 
-		String client_id = "605a8ef0-4a9a-459a-95af-212b06a8b275";
-		String productID = "2101979031";
+		String client_id = "";
+		String productID = "";
 	    
 	    //운영용
 		String returnURL = request.getScheme()+"://"+request.getServerName()+"/niceResult";
@@ -933,8 +933,8 @@ public class MemberController {
 		String tURL = "https://svc.niceapi.co.kr:22001/digital/niceid/oauth/oauth/token";
 		String uParam="grant_type=client_credentials&scope=default";
 		
-		String clientID="605a8ef0-4a9a-459a-95af-212b06a8b275";
-		String secretKey="426bc5973f865c56d601474883f53655";
+		String clientID="";
+		String secretKey="";
 		
 		String Auth = Base64.getEncoder().encodeToString((clientID+":"+secretKey).getBytes());
 		String responseData = testHttpRequest(tURL, uParam,Auth);
